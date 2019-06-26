@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Navbar, Nav, DropdownButton, Dropdown } from 'react-bootstrap';
 import { withRouter, Link } from 'react-router-dom';
 
@@ -6,6 +7,15 @@ class NavbarComponent extends Component {
   state = {
     userAddress: 0
   };
+
+  componentDidMount = () => {
+    window.updateTheNavbar = async action => {
+      if(action.type === 'LOAD-WALLET-INSTANCE') {
+        const userAddress = await action.payload.getAddress();
+        this.setState({ userAddress });
+      }
+    };
+  }
 
   render() {
     return (
@@ -39,11 +49,11 @@ class NavbarComponent extends Component {
             !this.state.userAddress ? <Dropdown.Item onClick={() => this.props.history.push('/load-wallet')}>Load Wallet</Dropdown.Item> : null}
 
             {/* show if not signed in*/
-            this.state.userAddress ? <Dropdown.Item onClick={() => this.props.history.push('/account')}>Account page</Dropdown.Item> : null}
+            this.state.userAddress ? <Dropdown.Item onClick={() => this.props.history.push('/user')}>Account page</Dropdown.Item> : null}
 
             {/* show if not signed in*/
             this.state.userAddress ? <Dropdown.Item onClick={() => {
-              this.props.store.dispatch({ type: 'LOAD-WALLET-INSTANCE', payload: {} });
+              this.props.dispatch({ type: 'LOAD-WALLET-INSTANCE', payload: {} });
             }}>Log out</Dropdown.Item> : null}
           </DropdownButton>
         </Navbar.Collapse>
@@ -53,4 +63,4 @@ class NavbarComponent extends Component {
   }
 }
 
-export default withRouter(NavbarComponent);
+export default connect(state => {return{store: state}})(withRouter(NavbarComponent));

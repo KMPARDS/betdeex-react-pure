@@ -1,3 +1,6 @@
+// this component can be split in multiple routes like LoadWallet
+// not doing while converting from next js project because this is not priority.
+// create wallet will be removed in future from BetDeEx
 import React, { Component } from 'react';
 import { Card, Form, Button, ProgressBar, Alert, Row, Col, Spinner } from 'react-bootstrap';
 import CompleteModal from './CompleteModal';
