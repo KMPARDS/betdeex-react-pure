@@ -32,17 +32,17 @@ class NavbarComponent extends Component {
             {/*<Dropdown.Header>Your HD Accounts</Dropdown.Header>
             <Dropdown.Item>Signed in as 0x124B7... (23.75 ES)</Dropdown.Item>*/}
 
-            // show if not signed in
-            {!this.state.userAddress ? <Dropdown.Item onClick={() => this.props.history.push('/account/create-wallet')}>Create Wallet</Dropdown.Item> : null}
+            {/* show if not signed in*/
+            !this.state.userAddress ? <Dropdown.Item onClick={() => this.props.history.push('/create-wallet')}>Create Wallet</Dropdown.Item> : null}
 
-            // show if not signed in
-            {!this.state.userAddress ? <Dropdown.Item onClick={() => this.props.history.push('/account/load-wallet')}>Load Wallet</Dropdown.Item> : null}
+            {/* show if not signed in*/
+            !this.state.userAddress ? <Dropdown.Item onClick={() => this.props.history.push('/load-wallet')}>Load Wallet</Dropdown.Item> : null}
 
-            // show if signed in
-            {this.state.userAddress ? <Dropdown.Item onClick={() => this.props.history.push('/account')}>Account page</Dropdown.Item> : null}
+            {/* show if not signed in*/
+            this.state.userAddress ? <Dropdown.Item onClick={() => this.props.history.push('/account')}>Account page</Dropdown.Item> : null}
 
-            // show if signed in
-            {this.state.userAddress ? <Dropdown.Item onClick={() => {
+            {/* show if not signed in*/
+            this.state.userAddress ? <Dropdown.Item onClick={() => {
               this.props.store.dispatch({ type: 'LOAD-WALLET-INSTANCE', payload: {} });
             }}>Log out</Dropdown.Item> : null}
           </DropdownButton>

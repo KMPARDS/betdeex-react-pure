@@ -1,6 +1,8 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
+
 import Navbar from './containers/Navbar/Navbar';
+import CreateWallet from './containers/CreateWallet/CreateWallet';
 import logo from './logo.svg';
 import './App.css';
 
@@ -9,7 +11,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Navbar />
-        Hey
+        <Route path="/create-wallet" component={CreateWallet} />
       </div>
     </BrowserRouter>
   );
