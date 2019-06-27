@@ -1,21 +1,24 @@
 import React from 'react';
-import { Col, Card, Accordion, Button } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
+import { Card, Accordion } from 'react-bootstrap';
 import { categoryArray,subCategoryArray } from '../../env';
 
-const Sidebar = () => {
+const Sidebar = props => {
   const listOfCategories = [];
 
   for(const categoryId in categoryArray) {
     const listOfSubCategories = [];
 
     for(const subCategoryId in subCategoryArray[categoryId]) {
+      const url = `/${categoryArray[categoryId].toLowerCase().split(' ').join('-')}/${subCategoryArray[categoryId][subCategoryId].toLowerCase().split(' ').join('-')}`;
+
       listOfSubCategories.push(
-        <Card.Body>{subCategoryArray[categoryId][subCategoryId]}</Card.Body>
+        <Card.Body key={url} onClick={() => props.history.push(url)}>{subCategoryArray[categoryId][subCategoryId]}</Card.Body>
       );
     }
 
     listOfCategories.push(
-      <Card>
+      <Card key={categoryArray[categoryId]}>
         <Accordion.Toggle as={Card.Header} variant="link" eventKey={categoryId}>
           {categoryArray[categoryId]}
         </Accordion.Toggle>
@@ -28,10 +31,10 @@ const Sidebar = () => {
   }
 
   return (
-    <Accordion>
+    <Accordion style={{margin: '15px'}}>
       {listOfCategories}
     </Accordion>
   );
 }
 
-export default Sidebar;
+export default withRouter(Sidebar);

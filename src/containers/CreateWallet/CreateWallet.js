@@ -52,7 +52,7 @@ class CreateWalletPage extends Component {
 
   // from first screen to second screen
   submitPassword = async event => {
-    if(this.state.password1.length && this.state.password1 == this.state.password2) {
+    if(this.state.password1.length && this.state.password1 === this.state.password2) {
       // generate a mnemonic and store it and display it
       await this.setState({ mnemonicGenerateSpinner: true });
       setTimeout(()=>{

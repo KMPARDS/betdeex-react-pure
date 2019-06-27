@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Card, Row, Col, Form, Button, Alert, Spinner } from 'react-bootstrap';
 import { Route } from 'react-router-dom';
 
 import ListOfLoadMethods from './ListOfLoadMethods';
@@ -8,9 +7,6 @@ import UsingKeystoreFile from './UsingKeystoreFile';
 import UsingPrivateKey from './UsingPrivateKey';
 import UsingMnemonic from './UsingMnemonic';
 
-const ethereumjs = require('ethereumjs-wallet');
-const hdkey = require('ethereumjs-wallet/hdkey');
-const ethers = require('ethers');
 
 class LoadWallet extends Component {
   render() {

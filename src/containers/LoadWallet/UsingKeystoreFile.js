@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Row, Col, Form, Button, Alert, Spinner } from 'react-bootstrap';
+import { Card, Form, Button, Alert, Spinner } from 'react-bootstrap';
 
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const ethereumjs = require('ethereumjs-wallet');
-const hdkey = require('ethereumjs-wallet/hdkey');
 const ethers = require('ethers');
 
 class UsingKeystoreFile extends Component {

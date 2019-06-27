@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Row, Col, Form, Button, Alert, Spinner, ListGroup } from 'react-bootstrap';
-import { withRouter, Link } from 'react-router-dom';
+import { Card, Form, Button, Alert, Spinner } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
 
 import { esContract } from '../../env';
 
 const bip39 = require('bip39');
-const ethereumjs = require('ethereumjs-wallet');
 const hdkey = require('ethereumjs-wallet/hdkey');
 const ethers = require('ethers');
 

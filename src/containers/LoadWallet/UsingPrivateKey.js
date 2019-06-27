@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Row, Col, Form, Button, Alert, Spinner } from 'react-bootstrap';
-import { withRouter, Link } from 'react-router-dom';
-const ethereumjs = require('ethereumjs-wallet');
-const hdkey = require('ethereumjs-wallet/hdkey');
+import { Card, Form, Button, Alert, Spinner } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
 const ethers = require('ethers');
 
 class UsingPrivateKey extends Component {

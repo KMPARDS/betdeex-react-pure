@@ -2,15 +2,10 @@ import { applyMiddleware, createStore } from "redux";
 
 const initialState = {
   walletInstance: {},
-  esContractInstance: {},
-  display: {
-    category: null,
-    subCategory: null
-  },
-  results: {
-    category: null,
-    subCategory: null
-  }
+  esInstance: {},
+  betdeexInstance: {},
+  providerInstance: {},
+  betsMapping: {}
 };
 
 const reducer = (state, action) => {
@@ -18,9 +13,13 @@ const reducer = (state, action) => {
     case 'LOAD-WALLET-INSTANCE':
       return {...state, walletInstance: action.payload};
     case 'LOAD-ES-INSTANCE':
-      return {...state, esContractInstance: action.payload};
-    case 'CHANGE-DISPLAY-CATEGORY':
-      return {...state, display: action.payload};
+      return {...state, esInstance: action.payload};
+    case 'LOAD-BETDEEX-INSTANCE':
+      return {...state, betdeexInstance: action.payload};
+    case 'LOAD-PROVIDER-INSTANCE':
+      return {...state, providerInstance: action.payload};
+    case 'UPDATE-BETS-MAPPING':
+      return {...state, betsMapping: action.payload}
     default:
       return state;
     }
@@ -30,7 +29,11 @@ const reducer = (state, action) => {
 const walletChangeUpdater = store => next => action => {
 
   // we are getting action on every dispatch. can write logic to update the navbar set state.
-  window.updateTheNavbar(action);
+  try {
+    window.updateTheNavbar(action);
+  } catch (e) {
+    console.log(e.message);
+  }
 
   console.group(action.type)
   console.info('dispatching', action)
