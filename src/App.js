@@ -8,6 +8,7 @@ import Sidebar from './containers/Sidebar/Sidebar';
 import CreateWallet from './containers/CreateWallet/CreateWallet';
 import LoadWallet from './containers/LoadWallet/LoadWallet';
 import BetsList from './containers/BetsList/BetsList';
+import BetView from './containers/BetView/BetView';
 
 import './App.css';
 import { categoryArray, subCategoryArray } from './env.js';
@@ -26,7 +27,8 @@ function App(props) {
               <Route path="/create-wallet" exact component={CreateWallet} />
               <Route path="/load-wallet" component={LoadWallet} />
               <Route path="/" exact component={BetsList} />
-              <Route path="/:category/:subCategory" render={props => {
+              <Route path="/bet/:address" exact component={BetView} />
+              <Route path="/:category/:subCategory" exact render={props => {
                 let categoryWordArray = [];
                 for(const categoryWord of props.match.params.category.split('-')) {
                   categoryWordArray.push(categoryWord.charAt(0).toUpperCase() + categoryWord.slice(1));

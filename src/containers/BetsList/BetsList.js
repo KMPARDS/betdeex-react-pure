@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Bet from './Bet';
 
-import { betdeex } from '../../env.js';
+import { betdeex, categoryArray, subCategoryArray } from '../../env.js';
 import provider from '../../ethereum/provider';
 
 const ethers = require('ethers');
@@ -40,15 +40,15 @@ class BetsList extends Component {
       topics
     });
 
-    console.log(logs);
+    console.log('fetching logs from the ethereum blockchain', logs);
 
-    console.log(this.props.store);
+    console.log('in showBets',this.props.store);
 
     if(Object.entries(this.props.store.betsMapping).length === 0) {
       // if redux store is empty then try to copy the local storage if there is any data. otherwise do nothing.
       const storedBetsMapping = JSON.parse(localStorage.getItem('betdeex-betsMapping') || '{}');
       if(Object.entries(storedBetsMapping).length > 0) {
-        this.props.dispatch({ type: 'UPDATE-BETS-MAPPING', payload: storedBetsMapping });
+        this.props.dispatch({ type: 'LOAD-BETS-MAPPING-FROM-LOCALSTORAGE', payload: storedBetsMapping });
       }
     }
 
@@ -64,33 +64,56 @@ class BetsList extends Component {
       betsArray.push(address);
 
       // storing for reusing it in bet page
-      this.props.dispatch({ type: 'UPDATE-BETS-MAPPING', payload: {
-        ...this.props.store.betsMapping,
-        [address]: {
-          ...this.props.store.betsMapping[address],
-          description,
-          categoryId,
-          subCategoryId
+      // initialising bet object in our mapping
+      if(!this.props.store.betsMapping[address]) {
+        this.props.dispatch({
+          type: 'UPDATE-BETS-MAPPING-ADDBET',
+          payload: {
+            address
+          }
+        });
+      }
+
+      this.props.dispatch({
+        type: 'UPDATE-BETS-MAPPING-DESCRIPTION',
+        payload: {
+          address,
+          value: description
         }
-      } });
+      });
+
+      this.props.dispatch({
+        type: 'UPDATE-BETS-MAPPING-CATEGORY',
+        payload: {
+          address,
+          value: categoryId
+        }
+      });
+
+      this.props.dispatch({
+        type: 'UPDATE-BETS-MAPPING-SUBCATEGORY',
+        payload: {
+          address,
+          value: subCategoryId
+        }
+      });
 
     }
 
-    betsArray.forEach(address => {
-      if(!this.props.store.betsMapping[address]) {
-        this.props.dispatch({ type: 'UPDATE-BETS-MAPPING', payload: {
-          ...this.props.store.betsMapping,
-          [address]: {}
-        } });
-      }
-    });
+    // betsArray.forEach(address => {
+    //   if(!this.props.store.betsMapping[address]) {
+    //     this.props.dispatch({ type: 'UPDATE-BETS-MAPPING', payload: {
+    //       ...this.props.store.betsMapping,
+    //       [address]: {}
+    //     } });
+    //   }
+    // });
 
-    
+
 
     this.setState({
-      betsToDisplay: betsArray.slice(0,5).map(address =>{
-
-        return (
+      betsToDisplay: betsArray.slice(0,5).map(
+        address =>
           <Bet
             key={address}
             address={address}
@@ -98,8 +121,7 @@ class BetsList extends Component {
             category={this.props.store.betsMapping[address].categoryId}
             subCategory={this.props.store.betsMapping[address].subCategoryId}
           />
-        );
-      })});
+      ) });
 
     //localStorage.setItem('betdeex-betsArray', betsArray);
     localStorage.setItem('betdeex-betsMapping', JSON.stringify(this.props.store.betsMapping));
@@ -108,7 +130,16 @@ class BetsList extends Component {
   render() {
     return (
       <div>
-        Showing 5 latest bets<br />
+        Showing 5 bets{console.log(this.props)}
+        {
+          this.props.categoryId !== undefined
+          ? ` of ${categoryArray[this.props.categoryId]}`
+          : null
+        +
+          this.props.subCategoryId !== undefined
+          ? `/${subCategoryArray[this.props.categoryId][this.props.subCategoryId]}`
+          : null
+        }<br />
         {this.state.betsToDisplay}
       </div>
     );

@@ -18,7 +18,7 @@ class Bet extends Component {
       // if redux store is empty then try to copy the local storage if there is any data. otherwise do nothing.
       const storedBetsMapping = JSON.parse(localStorage.getItem('betdeex-betsMapping') || '{}');
       if(Object.entries(storedBetsMapping).length > 0) {
-        this.props.dispatch({ type: 'UPDATE-BETS-MAPPING', payload: storedBetsMapping });
+        this.props.dispatch({ type: 'LOAD-BETS-MAPPING-FROM-LOCALSTORAGE', payload: storedBetsMapping });
       }
     }
 
@@ -31,21 +31,18 @@ class Bet extends Component {
         creationTimestamp = this.props.store.betsMapping[this.props.address].creationTimestamp;
       } else {
         creationTimestamp = Number(await betInstance.creationTimestamp());
+        console.log('fetching creationTimestamp from blockchain', creationTimestamp);
 
         this.props.dispatch({ type: 'UPDATE-BETS-MAPPING', payload: {
-          ...this.props.store,
-          betsMapping: {
-            ...this.props.store.betsMapping,
-            [this.props.address]: {
-              ...this.props.store.betsMapping[this.props.address],
-              creationTimestamp
-            }
+          ...this.props.store.betsMapping,
+          [this.props.address]: {
+            ...this.props.store.betsMapping[this.props.address],
+            creationTimestamp
           }
         } });
       }
 
       this.setState({ creationTime: new Date(creationTimestamp * 1000).toLocaleString() + ' (in your local timezone)' });
-
 
 
       let pauseTimestamp;
@@ -54,21 +51,19 @@ class Bet extends Component {
         pauseTimestamp = this.props.store.betsMapping[this.props.address].pauseTimestamp;
       } else {
         pauseTimestamp = Number(await betInstance.pauseTimestamp());
+        console.log('fetching pauseTimestamp from blockchain', pauseTimestamp);
+
         this.props.dispatch({ type: 'UPDATE-BETS-MAPPING', payload: {
-          ...this.props.store,
-          betsMapping: {
-            ...this.props.store.betsMapping,
-            [this.props.address]: {
-              ...this.props.store.betsMapping[this.props.address],
-              pauseTimestamp
-            }
+          ...this.props.store.betsMapping,
+          [this.props.address]: {
+            ...this.props.store.betsMapping[this.props.address],
+            pauseTimestamp
           }
         } });
       }
 
       this.setState({ pauseTime: new Date(pauseTimestamp * 1000).toLocaleString() + ' (in your local timezone)' });
 
-      console.log('updated betsMapping after mounting bet component',this.props.store.betsMapping);
       localStorage.setItem('betdeex-betsMapping', JSON.stringify(this.props.store.betsMapping));
 
     })();
@@ -92,7 +87,7 @@ class Bet extends Component {
           Bet allowed till: {this.state.pauseTime}
           <br />
 
-            <Button onClick={() => this.props.history.push(`/bets/${this.props.address}`)} variant="primary">View</Button>
+            <Button onClick={() => this.props.history.push(`/bet/${this.props.address}`)} variant="primary">View</Button>
 
 
           </Card.Text>

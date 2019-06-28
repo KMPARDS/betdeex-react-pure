@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Layout from '../../components/Layout';
 import { Card, Button } from 'react-bootstrap';
-import { categoryArray, subCategoryArray } from '../../betdeex-config';
+
+import { categoryArray, subCategoryArray } from '../../env';
 import createBetInstance from '../../ethereum/betInstance';
 const provider = require('../../ethereum/provider');
 
-class BetPage extends Component {
-  static getInitialProps({store, isServer, pathname, query}) {
-    return {
-      address: query.address
-    }
-  }
+class BetView extends Component {
 
   state = {
     description: 'Loading...',
@@ -28,17 +23,18 @@ class BetPage extends Component {
 
   async componentDidMount() {
     const betInstance = createBetInstance(this.props.address);
-    if(!window.betsMapping) window.betsMapping = {};
-    if(!window.betsMapping[this.props.address]) window.betsMapping[this.props.address] = {};
 
     // loading description
     (async()=>{
-      if(window.betsMapping[this.props.address].description) {
-        this.setState({ description: window.betsMapping[this.props.address].description });
+      if(this.props.store.betsMapping[this.props.address] && this.props.store.betsMapping[this.props.address].description) {
+        this.setState({ description: this.props.store.betsMapping[this.props.address].description });
       } else {
         const description = await betInstance.description();
         this.setState({ description:  description });
         window.betsMapping[this.props.address].description = description;
+        // this.props.dispatch({
+        //   type:
+        // });
       }
     })();
 
@@ -121,30 +117,26 @@ class BetPage extends Component {
 
   render() {
     return (
-      <Layout>
-        <Card style={{margin: '15px 0'}}>
-          <Card.Body>
-            <p>Bet Address: {this.props.address}</p>
-            <p>Category: {this.state.category} / {this.state.subCategory}</p>
-            <h3>Description: {this.state.description}</h3>
-            <p>Start Time: {this.state.creationTime}</p>
-            <p>Pause Time: {this.state.pauseTime}</p>
-            <p>Fees: {this.state.fees}</p>
-            <p>Total Bet Amount: {this.state.totalBetAmount}</p>
-            <p>Yes Amount: {this.state.yesAmount}</p>
-            <p>No Amount: {this.state.noAmount}</p>
-            <p>Draw Amount: {this.state.drawAmount}</p>
-            Predict Now:&nbsp;
-            <Button variant="success">Yes</Button>
-            <Button variant="danger">No</Button>
-            <Button variant="warning">Draw</Button>
-
-          </Card.Body>
-        </Card>
-
-      </Layout>
+      <Card style={{margin: '15px 0'}}>
+        <Card.Body>
+          <p>Bet Address: {this.props.address}</p>
+          <p>Category: {this.state.category} / {this.state.subCategory}</p>
+          <h3>Description: {this.state.description}</h3>
+          <p>Start Time: {this.state.creationTime}</p>
+          <p>Pause Time: {this.state.pauseTime}</p>
+          <p>Fees: {this.state.fees}</p>
+          <p>Total Bet Amount: {this.state.totalBetAmount}</p>
+          <p>Yes Amount: {this.state.yesAmount}</p>
+          <p>No Amount: {this.state.noAmount}</p>
+          <p>Draw Amount: {this.state.drawAmount}</p>
+          Predict Now:&nbsp;
+          <Button variant="success">Yes</Button>
+          <Button variant="danger">No</Button>
+          <Button variant="warning">Draw</Button>
+        </Card.Body>
+      </Card>
     );
   }
 }
 
-export default connect(state => state)(BetPage);
+export default connect(state => {return{store: state}})(BetView);
