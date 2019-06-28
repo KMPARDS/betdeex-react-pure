@@ -143,7 +143,7 @@ const reducer = (state, action) => {
           }
         }
     };
-    case 'UPDATE-BETS-MAPPING-MINIMUMBET':
+    case 'UPDATE-BETS-MAPPING-MINIMUMBETINEXAES':
       return {
         ...state,
         betsMapping: {
@@ -154,7 +154,7 @@ const reducer = (state, action) => {
           }
         }
     };
-    case 'UPDATE-BETS-MAPPING-PRICEPERCENT':
+    case 'UPDATE-BETS-MAPPING-PRICEPERCENTPERTHOUSAND':
       return {
         ...state,
         betsMapping: {
@@ -165,7 +165,7 @@ const reducer = (state, action) => {
           }
         }
     };
-    case 'UPDATE-BETS-MAPPING-TOTALBETBYCHOICE':
+    case 'UPDATE-BETS-MAPPING-TOTALBETTOKENSINEXAESBYCHOICE':
       return {
         ...state,
         betsMapping: {
@@ -176,7 +176,7 @@ const reducer = (state, action) => {
           }
         }
     };
-    case 'UPDATE-BETS-MAPPING-NUMBERBETTORSBYCHOICE':
+    case 'UPDATE-BETS-MAPPING-GETNUMBEROFCHOICEBETTORSBYCHOICE':
       return {
         ...state,
         betsMapping: {
@@ -221,15 +221,15 @@ const walletChangeUpdater = store => next => action => {
   try {
     window.updateTheNavbar(action);
   } catch (e) {
-    console.log(e.message);
+    //console.log(e.message);
   }
 
-  console.group(action.type)
-  console.info('dispatching', action)
-  let result = next(action)
-  console.log('next state', store.getState())
-  console.groupEnd()
-  return result
+  console.group(action.type);
+  console.info('dispatching', action);
+  let result = next(action);
+  console.log('next state', store.getState());
+  console.groupEnd();
+  return result;
 }
 
 const store = createStore(reducer, initialState, applyMiddleware(walletChangeUpdater));

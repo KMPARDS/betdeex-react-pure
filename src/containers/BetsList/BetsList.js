@@ -42,16 +42,6 @@ class BetsList extends Component {
 
     console.log('fetching logs from the ethereum blockchain', logs);
 
-    console.log('in showBets',this.props.store);
-
-    if(Object.entries(this.props.store.betsMapping).length === 0) {
-      // if redux store is empty then try to copy the local storage if there is any data. otherwise do nothing.
-      const storedBetsMapping = JSON.parse(localStorage.getItem('betdeex-betsMapping') || '{}');
-      if(Object.entries(storedBetsMapping).length > 0) {
-        this.props.dispatch({ type: 'LOAD-BETS-MAPPING-FROM-LOCALSTORAGE', payload: storedBetsMapping });
-      }
-    }
-
     let betsArray = [];
 
     for (let log of logs) {
@@ -65,7 +55,7 @@ class BetsList extends Component {
 
       // storing for reusing it in bet page
       // initialising bet object in our mapping
-      if(!this.props.store.betsMapping[address]) {
+      if(this.props.store.betsMapping[address]===undefined) {
         this.props.dispatch({
           type: 'UPDATE-BETS-MAPPING-ADDBET',
           payload: {
@@ -74,39 +64,39 @@ class BetsList extends Component {
         });
       }
 
-      this.props.dispatch({
-        type: 'UPDATE-BETS-MAPPING-DESCRIPTION',
-        payload: {
-          address,
-          value: description
-        }
-      });
+      if(this.props.store.betsMapping[address].description===undefined) {
+        this.props.dispatch({
+          type: 'UPDATE-BETS-MAPPING-DESCRIPTION',
+          payload: {
+            address,
+            value: description
+          }
+        });
+      }
 
-      this.props.dispatch({
-        type: 'UPDATE-BETS-MAPPING-CATEGORY',
-        payload: {
-          address,
-          value: categoryId
-        }
-      });
+      if(this.props.store.betsMapping[address].category===undefined) {
+        this.props.dispatch({
+          type: 'UPDATE-BETS-MAPPING-CATEGORY',
+          payload: {
+            address,
+            value: categoryId
+          }
+        });
+      }
 
-      this.props.dispatch({
-        type: 'UPDATE-BETS-MAPPING-SUBCATEGORY',
-        payload: {
-          address,
-          value: subCategoryId
-        }
-      });
-
+      if(this.props.store.betsMapping[address].subCategory===undefined) {
+        this.props.dispatch({
+          type: 'UPDATE-BETS-MAPPING-SUBCATEGORY',
+          payload: {
+            address,
+            value: subCategoryId
+          }
+        });
+      }
     }
 
     // betsArray.forEach(address => {
-    //   if(!this.props.store.betsMapping[address]) {
-    //     this.props.dispatch({ type: 'UPDATE-BETS-MAPPING', payload: {
-    //       ...this.props.store.betsMapping,
-    //       [address]: {}
-    //     } });
-    //   }
+    //   console.log('soham',this.props.store.betsMapping[address]);
     // });
 
 
@@ -118,8 +108,8 @@ class BetsList extends Component {
             key={address}
             address={address}
             description={this.props.store.betsMapping[address].description}
-            category={this.props.store.betsMapping[address].categoryId}
-            subCategory={this.props.store.betsMapping[address].subCategoryId}
+            category={this.props.store.betsMapping[address].category}
+            subCategory={this.props.store.betsMapping[address].subCategory}
           />
       ) });
 
@@ -130,7 +120,7 @@ class BetsList extends Component {
   render() {
     return (
       <div>
-        Showing 5 bets{console.log(this.props.categoryId !== undefined, this.props.subCategoryId !== undefined)}
+        Showing 5 bets
         {
           (this.props.categoryId !== undefined
           ? ` of ${categoryArray[this.props.categoryId]}`

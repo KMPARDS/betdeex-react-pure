@@ -27,19 +27,19 @@ class Bet extends Component {
     (async()=>{
       let creationTimestamp;
 
-      if(this.props.store.betsMapping[this.props.address].creationTimestamp) {
+      if(this.props.store.betsMapping[this.props.address].creationTimestamp===undefined) {
         creationTimestamp = this.props.store.betsMapping[this.props.address].creationTimestamp;
       } else {
         creationTimestamp = Number(await betInstance.creationTimestamp());
         console.log('fetching creationTimestamp from blockchain', creationTimestamp);
 
-        this.props.dispatch({ type: 'UPDATE-BETS-MAPPING', payload: {
-          ...this.props.store.betsMapping,
-          [this.props.address]: {
-            ...this.props.store.betsMapping[this.props.address],
-            creationTimestamp
+        this.props.dispatch({
+          type: 'UPDATE-BETS-MAPPING-CREATIONTIMESTAMP',
+          payload: {
+            address: this.props.address,
+            value: creationTimestamp
           }
-        } });
+        });
       }
 
       this.setState({ creationTime: new Date(creationTimestamp * 1000).toLocaleString() + ' (in your local timezone)' });
@@ -47,19 +47,19 @@ class Bet extends Component {
 
       let pauseTimestamp;
 
-      if(this.props.store.betsMapping[this.props.address].pauseTimestamp) {
+      if(this.props.store.betsMapping[this.props.address].pauseTimestamp===undefined) {
         pauseTimestamp = this.props.store.betsMapping[this.props.address].pauseTimestamp;
       } else {
         pauseTimestamp = Number(await betInstance.pauseTimestamp());
         console.log('fetching pauseTimestamp from blockchain', pauseTimestamp);
 
-        this.props.dispatch({ type: 'UPDATE-BETS-MAPPING', payload: {
-          ...this.props.store.betsMapping,
-          [this.props.address]: {
-            ...this.props.store.betsMapping[this.props.address],
-            pauseTimestamp
+        this.props.dispatch({
+          type: 'UPDATE-BETS-MAPPING-PAUSETIMESTAMP',
+          payload: {
+            address: this.props.address,
+            value: pauseTimestamp
           }
-        } });
+        });
       }
 
       this.setState({ pauseTime: new Date(pauseTimestamp * 1000).toLocaleString() + ' (in your local timezone)' });
