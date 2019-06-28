@@ -130,15 +130,15 @@ class BetsList extends Component {
   render() {
     return (
       <div>
-        Showing 5 bets{console.log(this.props)}
+        Showing 5 bets{console.log(this.props.categoryId !== undefined, this.props.subCategoryId !== undefined)}
         {
-          this.props.categoryId !== undefined
+          (this.props.categoryId !== undefined
           ? ` of ${categoryArray[this.props.categoryId]}`
-          : null
+          : null)
         +
-          this.props.subCategoryId !== undefined
+          (this.props.subCategoryId !== undefined
           ? `/${subCategoryArray[this.props.categoryId][this.props.subCategoryId]}`
-          : null
+          : null)
         }<br />
         {this.state.betsToDisplay}
       </div>
