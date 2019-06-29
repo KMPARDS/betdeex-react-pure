@@ -5,13 +5,16 @@ import { withRouter, Link } from 'react-router-dom';
 
 class NavbarComponent extends Component {
   state = {
-    userAddress: 0
+    userAddress: ''
   };
 
   componentDidMount = () => {
     window.updateTheNavbar = async action => {
       if(action.type === 'LOAD-WALLET-INSTANCE') {
-        const userAddress = await action.payload.getAddress();
+        let userAddress = '';
+        if(Object.entries(action.payload).length) {
+          userAddress = await action.payload.getAddress();
+        }
         this.setState({ userAddress });
       }
     };

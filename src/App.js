@@ -36,6 +36,7 @@ function App(props) {
               <Route path="/create-wallet" exact component={CreateWallet} />
               <Route path="/load-wallet" component={LoadWallet} />
               <Route path="/" exact component={BetsList} />
+              <Route path="/account" exact render={()=>{}} />
               <Route path="/bet/:address" exact component={BetView} />
               <Route path="/:category" exact render={props => {
                 let categoryWordArray = [];

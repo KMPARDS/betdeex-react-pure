@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { Spinner } from 'react-bootstrap';
+
 import Bet from './Bet';
 
 import { betdeex, categoryArray, subCategoryArray } from '../../env.js';
@@ -10,7 +12,8 @@ const ethers = require('ethers');
 
 class BetsList extends Component {
   state = {
-    betsToDisplay: []
+    betsToDisplay: [],
+    betsLoading: true
   }
 
   componentDidMount = () => {
@@ -24,6 +27,7 @@ class BetsList extends Component {
   }
 
   showBets = async () => {
+    this.setState({ betsToDisplay: [], betsLoading: true });
     const newBetEventSig = ethers.utils.id("NewBetContract(address,address,uint8,uint8,string)");
     const topics = [ newBetEventSig, null, null, null ];
     topics[2] = this.props.categoryId !== undefined ?
@@ -44,7 +48,8 @@ class BetsList extends Component {
 
     let betsArray = [];
 
-    for (let log of logs) {
+    for (let i = logs.length - 1; i >=0; i--) {
+      const log = logs[i];
       const address = '0x'+log.data.slice(26,66);
       const description = ethers.utils.toUtf8String('0x'+log.data.slice(192)).replace(/[^A-Za-z 0-9?]/g, "");
       const categoryId = +log.topics[2];
@@ -111,7 +116,9 @@ class BetsList extends Component {
             category={this.props.store.betsMapping[address].category}
             subCategory={this.props.store.betsMapping[address].subCategory}
           />
-      ) });
+        ),
+      betsLoading: false
+     });
 
     //localStorage.setItem('betdeex-betsArray', betsArray);
     localStorage.setItem('betdeex-betsMapping', JSON.stringify(this.props.store.betsMapping));
@@ -125,11 +132,17 @@ class BetsList extends Component {
           (this.props.categoryId !== undefined
           ? ` of ${categoryArray[this.props.categoryId]}`
           : null)
-        +
+        }{
           (this.props.subCategoryId !== undefined
           ? `/${subCategoryArray[this.props.categoryId][this.props.subCategoryId]}`
           : null)
         }<br />
+        { this.state.betsLoading ?
+          <Spinner animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+          : null
+        }
         {this.state.betsToDisplay}
       </div>
     );

@@ -53,7 +53,7 @@ class UsingMnemonic extends Component {
 
       console.log(ethersWalletArray);
 
-      if(Object.entries(this.props.store.esContractInstance).length === 0) {
+      if(Object.entries(this.props.store.esInstance).length === 0) {
         this.props.dispatch({ type: 'LOAD-ES-INSTANCE', payload: new ethers.Contract(esContract.address, esContract.abi, new ethers.providers.InfuraProvider('rinkeby')) });
       }
 
@@ -62,7 +62,7 @@ class UsingMnemonic extends Component {
       for(let walletInstance of ethersWalletArray) {
         const address = await walletInstance.getAddress();
         const ethBal = Number(await walletInstance.getBalance()) / (10**18);
-        const esBal = Number(await this.props.store.esContractInstance.balanceOf(address)) / (10**18);
+        const esBal = Number(await this.props.store.esInstance.balanceOf(address)) / (10**18);
         //console.log(address, Number(ethBal), Number(esBal));
         walletsDetail.push({
           walletInstance, address, ethBal, esBal
@@ -79,7 +79,7 @@ class UsingMnemonic extends Component {
 
     } catch (e) {
       // handle wrong password
-      console.log(e.message);
+      //console.log(e.message);
       this.setState({ mnemonicErrorDisplay: true, unlocking: false });
     }
   }
@@ -93,7 +93,7 @@ class UsingMnemonic extends Component {
     console.log(newWalletInstance.getAddress());
     const newAddress = await newWalletInstance.getAddress();
     const ethBal = Number(await newWalletInstance.getBalance()) / (10**18);
-    const esBal = Number(await this.props.store.esContractInstance.balanceOf(newAddress)) / (10**18);
+    const esBal = Number(await this.props.store.esInstance.balanceOf(newAddress)) / (10**18);
 
     this.setState({ wallets: [
         ...this.state.wallets,

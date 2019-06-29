@@ -27,7 +27,7 @@ class Bet extends Component {
     (async()=>{
       let creationTimestamp;
 
-      if(this.props.store.betsMapping[this.props.address].creationTimestamp===undefined) {
+      if(this.props.store.betsMapping[this.props.address].creationTimestamp!==undefined) {
         creationTimestamp = this.props.store.betsMapping[this.props.address].creationTimestamp;
       } else {
         creationTimestamp = Number(await betInstance.creationTimestamp());
@@ -47,7 +47,7 @@ class Bet extends Component {
 
       let pauseTimestamp;
 
-      if(this.props.store.betsMapping[this.props.address].pauseTimestamp===undefined) {
+      if(this.props.store.betsMapping[this.props.address].pauseTimestamp!==undefined) {
         pauseTimestamp = this.props.store.betsMapping[this.props.address].pauseTimestamp;
       } else {
         pauseTimestamp = Number(await betInstance.pauseTimestamp());
