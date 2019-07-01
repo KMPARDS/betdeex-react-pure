@@ -2,7 +2,7 @@ import { bet } from '../env';
 import provider from './provider';
 const ethers = require('ethers');
 
-const createBetInstance = (_address, _wallet) => {
+const createBetInstance = (_address, _wallet = {}) => {
   let instance;
   if (Object.entries(_wallet).length) {
     // connect with wallet

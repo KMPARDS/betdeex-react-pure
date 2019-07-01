@@ -108,6 +108,7 @@ class BetView extends Component {
   }
 
   render() {
+    window.betInstance = this.betInstance;
     const fees = this.state.pricePercentPerThousand!==undefined  ? (1000 - ethers.utils.bigNumberify(this.state.pricePercentPerThousand).toNumber()) / 10 : undefined;
 
     const minimumBetInEs = this.state.minimumBetInExaEs!==undefined ? (new BigNumber(ethers.utils.bigNumberify(this.state.minimumBetInExaEs))).dividedBy(10**18).toFixed() : undefined;
@@ -167,9 +168,9 @@ class BetView extends Component {
           }</p>
           Predict Now:&nbsp;
           <Button variant="success" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 1 })}}>Yes</Button>
-          <Button variant="danger">No</Button>
+          <Button variant="danger" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 0 })}}>No</Button>
           {
-            this.state.isDrawPossible ? <Button variant="warning">Draw</Button> : null
+            this.state.isDrawPossible ? <Button variant="warning" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</Button> : null
           }
 
 
@@ -182,8 +183,9 @@ class BetView extends Component {
           onHide={modalClose}
           ethereum={{
             transactor: this.betInstance.functions.enterBet,
-            estimator: this.betInstance.estimate.endBet,
-            arguments: [this.state.userChoice]
+            estimator: this.betInstance.estimate.enterBet,
+            arguments: [this.state.userChoice],
+            minimumBetInEs: this.state.minimumBetInExaEs!==undefined ? (new BigNumber(ethers.utils.bigNumberify(this.state.minimumBetInExaEs))).dividedBy(10**18).toFixed() : undefined
           }}
           />
       </Card>

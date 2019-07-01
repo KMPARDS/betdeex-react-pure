@@ -57,6 +57,8 @@ class NavbarComponent extends Component {
             {/* show if not signed in*/
             this.state.userAddress ? <Dropdown.Item onClick={() => {
               this.props.dispatch({ type: 'LOAD-WALLET-INSTANCE', payload: {} });
+              window.historyy = this.props.history;
+              this.props.history.push('/logout');
             }}>Log out</Dropdown.Item> : null}
           </DropdownButton>
         </Navbar.Collapse>
