@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Modal, Button, InputGroup, FormControl, Spinner } from 'react-bootstrap';
 import axios from 'axios';
@@ -49,41 +50,42 @@ class TransactionModal extends Component {
   estimateGasScreen = async () => {
     this.setState({ estimating: true });
 
-    const betTokensInExaEs = ethers.utils.bigNumberify(this.state.esTokensToBet).mul(10**15).mul(10**3);
-    window.sohammm = betTokensInExaEs;
-    const estimatedGas = (await this.props.ethereum.estimator(...this.props.ethereum.arguments, betTokensInExaEs)).toNumber();
-    const ethGasStationResponse = (await axios.get('https://ethgasstation.info/json/ethgasAPI.json')).data;
-    console.log(ethGasStationResponse);
-    this.setState({
-      ethGasStation: [
-        ethGasStationResponse['safeLow'],
-        ethGasStationResponse['average'],
-        ethGasStationResponse['fast'],
-        ethGasStationResponse['fastest']
-      ],
-      estimatedGas
-    });
+    try {
+      const betTokensInExaEs = ethers.utils.bigNumberify(this.state.esTokensToBet).mul(10**15).mul(10**3);
+      window.sohammm = betTokensInExaEs;
+      const estimatedGas = (await this.props.ethereum.estimator(...this.props.ethereum.arguments, betTokensInExaEs)).toNumber();
+      const ethGasStationResponse = (await axios.get('https://ethgasstation.info/json/ethgasAPI.json')).data;
+      console.log(ethGasStationResponse);
+      this.setState({
+        ethGasStation: [
+          ethGasStationResponse['safeLow'],
+          ethGasStationResponse['average'],
+          ethGasStationResponse['fast'],
+          ethGasStationResponse['fastest']
+        ],
+        estimatedGas
+      });
 
-    this.setState({ currentScreen: 1 });
+      this.setState({ currentScreen: 1 });
+    } catch (e) {
+
+    }
   }
 
   render() {
-    return (
-      <Modal
-        {...this.props}
-        size="sm"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Era Swap Wallet
-          </Modal.Title>
-        </Modal.Header>
-
-
-
-        { this.state.currentScreen === 0 ?
+    let screenContent;
+    if(Object.entries(this.props.store.walletInstance).length === 0) {
+      screenContent = (
+        <Modal.Body style={{textAlign: 'center'}}>
+          <h5>You need to load your wallet to place a prediction.</h5>
+          <Button onClick={() => {window.redirectHereAfterLoadWallet=this.props.location.pathname;this.props.history.push('/load-wallet')}}>Load my wallet</Button>
+          <hr />
+          <h5>If you don't yet have a wallet, create it now.</h5>
+          <Button onClick={() => this.props.history.push('/create-wallet')}>Create wallet</Button>
+        </Modal.Body>
+      );
+    } else if(this.state.currentScreen === 0) {
+      screenContent = (
         <div>
           <Modal.Body>
             <h5>Enter the amount of ES to bet on {this.props.ethereum.arguments[0] === 0 ? 'No' : (this.props.ethereum.arguments[0] === 1 ? 'Yes' : 'Draw')}</h5>
@@ -111,13 +113,9 @@ class TransactionModal extends Component {
             </Button>
           </Modal.Footer>
         </div>
-        :null
-        }
-
-
-
-
-        { this.state.currentScreen === 1 ?
+      );
+    } else {
+      screenContent = (
         <div>
           <Modal.Body>
           <p>
@@ -137,18 +135,39 @@ class TransactionModal extends Component {
             <Button>Sign and send transaction</Button>
           </Modal.Footer>
         </div>
-        : null
-        }
+      );
+    }
 
 
+    return (
+      <Modal
+        {...this.props}
+        onHide={() => {
+          this.props.hideFunction();
+          setTimeout(() => {
+            this.setState({
+              currentScreen: 0,
+              esTokensToBet: 0,
+              estimating: false,
+              estimatedGas: 0,
+              ethGasStation: {}
+            });
+          }, 500);
+        }}
+        size="sm"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Era Swap Wallet
+          </Modal.Title>
+        </Modal.Header>
 
-
-
-
-
+        {screenContent}
       </Modal>
     );
   }
 }
 
-export default TransactionModal;
+export default withRouter(TransactionModal);

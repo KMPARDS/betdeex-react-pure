@@ -57,7 +57,7 @@ class UsingKeystoreFile extends Component {
         this.props.dispatch({ type: 'LOAD-WALLET-INSTANCE', payload: wallet });
         await this.setState({ unlocking: false, success: true });
         setTimeout(()=>{
-          this.props.history.push('/user');
+          this.props.history.push(window.redirectHereAfterLoadWallet || '/user');
         }, 1000);
       } catch (e) {
         // handle wrong password

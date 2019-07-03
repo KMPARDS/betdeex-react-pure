@@ -157,7 +157,7 @@ class UsingMnemonic extends Component {
                     <Card.Subtitle className="mb-2 text-muted">{walletDetail.esBal} ES | {walletDetail.ethBal} ETH</Card.Subtitle>
                     <Button onClick={() => {
                       this.props.dispatch({ type: 'LOAD-WALLET-INSTANCE', payload: walletDetail.walletInstance });
-                      this.props.history.push('/user');
+                      this.props.history.push(window.redirectHereAfterLoadWallet || '/user');
                       console.log('going to /account');
                     }}>Use this account</Button>
                   </Card.Body>

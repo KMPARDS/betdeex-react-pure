@@ -180,7 +180,8 @@ class BetView extends Component {
 
         <TransactionModal
           show={this.state.showTransactionModal}
-          onHide={modalClose}
+          hideFunction={modalClose}
+          store={this.props.store}
           ethereum={{
             transactor: this.betInstance.functions.enterBet,
             estimator: this.betInstance.estimate.enterBet,
