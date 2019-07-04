@@ -100,6 +100,7 @@ class TransactionModal extends Component {
 
   render() {
     let screenContent;
+
     if(Object.entries(this.props.store.walletInstance).length === 0) {
       screenContent = (
         <Modal.Body style={{textAlign: 'center'}}>
@@ -110,7 +111,10 @@ class TransactionModal extends Component {
           <Button onClick={() => this.props.history.push('/create-wallet')}>Create wallet</Button>
         </Modal.Body>
       );
-    } else if(this.state.currentScreen === 0) {
+    }
+
+
+    else if(this.state.currentScreen === 0) {
       screenContent = (
         <Modal.Body>
           <h5>Enter the amount of ES to bet on {this.props.ethereum.arguments[0] === 0 ? 'NO' : (this.props.ethereum.arguments[0] === 1 ? 'YES' : 'DRAW')}</h5>
@@ -147,31 +151,57 @@ class TransactionModal extends Component {
           </div>
         </Modal.Body>
       );
-    } else if(this.state.currentScreen === 1) {
+    }
+
+
+    else if(this.state.currentScreen === 1) {
       screenContent = (
         <Modal.Body style={{padding: '15px'}}>
+          From: Your address <strong>{this.state.userAddress.slice(0,6) + '..' + this.state.userAddress.slice(this.state.userAddress.length - 3)}</strong><br />
+          To: Bet address <strong>{this.state.contractAddress.slice(0,6) + '..' + this.state.contractAddress.slice(this.state.contractAddress.length - 3)}</strong>
 
-
-              From: Your address<strong>{this.state.userAddress.slice(0,6) + '..' + this.state.userAddress.slice(this.state.userAddress.length - 3)}</strong><br />
-              To: Bet address<strong>{this.state.contractAddress.slice(0,6) + '..' + this.state.contractAddress.slice(this.state.contractAddress.length - 3)}</strong>
-
-              <Card style={{display:'block', padding: '15px'}}>
-                New betting on <Badge variant={this.props.ethereum.arguments[0] === 0 ? 'danger' : (this.props.ethereum.arguments[0] === 1 ? 'success' : 'warning')}>{this.props.ethereum.arguments[0] === 0 ? 'NO' : (this.props.ethereum.arguments[0] === 1 ? 'YES' : 'DRAW')}</Badge>
-                <span style={{display: 'block', fontSize: '1.8rem'}}>
-                  {this.state.esTokensToBet} ES
-                </span>
-                + network fee of Ethereum
-                <span style={{display: 'block', fontSize: '1.8rem'}}>
-                  {Math.round(this.state.estimatedGas * ( this.state.ethGasStation[2] / 10 )) / 10**9} ETH
-                </span>
-                <span style={{display: 'block', textAlign:'right'}}>Advanced settings</span>
-              </Card>
-
-
+          <Card style={{display:'block', padding: '15px', marginTop: '5px'}}>
+            New betting on <Badge variant={this.props.ethereum.arguments[0] === 0 ? 'danger' : (this.props.ethereum.arguments[0] === 1 ? 'success' : 'warning')}>{this.props.ethereum.arguments[0] === 0 ? 'NO' : (this.props.ethereum.arguments[0] === 1 ? 'YES' : 'DRAW')}</Badge>
+            <span style={{display: 'block', fontSize: '1.8rem'}}>
+              {this.state.esTokensToBet}<strong>ES</strong>
+            </span>
+            + network fee of Ethereum
+            <span style={{display: 'block', fontSize: '1.8rem'}}>
+              {Math.round(this.state.estimatedGas * ( this.state.ethGasStation[2] / 10 )) / 10**9}<strong>ETH</strong>
+            </span>
+            <span onClick={()=>this.setState({currentScreen: 2})} style={{display: 'block', textAlign:'right', fontSize: '0.8rem'}}>Advanced settings</span>
+          </Card>
 
         </Modal.Body>
       );
-    } else {
+    }
+
+
+    else if(this.state.currentScreen === 2) {
+      screenContent = (
+        <Modal.Body style={{padding: '15px'}}>
+          <h5>Advanced gas settings</h5>
+          {[
+            {name: 'Slow', eth: Math.round(this.state.estimatedGas * ( this.state.ethGasStation[0] / 10 )) / 10**9, time: 'around 30 mins to confirm'},
+            {name: 'Average', eth: Math.round(this.state.estimatedGas * ( this.state.ethGasStation[1] / 10 )) / 10**9, time: 'around 10 mins to confirm' },
+            {name: 'Fast', eth: Math.round(this.state.estimatedGas * ( this.state.ethGasStation[2] / 10 )) / 10**9, time: 'around 2 mins to confirm' },
+            {name: 'Faster', eth: Math.round(this.state.estimatedGas * ( this.state.ethGasStation[3] / 10 )) / 10**9, time: 'around 30 secs to conirm'}
+          ].map(plan => (
+            <Card key={'advanced-'+plan.name} onClick={() => {
+              // update the gwei being used
+              // change screen to 1
+            }}>
+              <Card.Title>{plan.name}</Card.Title>
+              <Card.Subtitle>{plan.eth}</Card.Subtitle>
+              <Card.Text>{plan.time}</Card.Text>
+            </Card>
+          ))}
+        </Modal.Body>
+      );
+    }
+
+
+    else {
       screenContent = (
         <div>
           <Modal.Body>
