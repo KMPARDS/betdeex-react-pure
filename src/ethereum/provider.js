@@ -1,15 +1,14 @@
-import store from '../store';
 const ethers = require('ethers');
 
-const state = store.getState();
+const state = window.reduxStore.getState();
 
 if(!Object.entries(state.providerInstance).length) {
-  store.dispatch({
+  window.reduxStore.dispatch({
     type: 'LOAD-PROVIDER-INSTANCE',
     payload: new ethers.providers.InfuraProvider('rinkeby')
   });
 }
 
-const newState = store.getState();
+const newState = window.reduxStore.getState();
 
 export default newState.providerInstance;

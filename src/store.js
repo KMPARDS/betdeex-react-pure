@@ -234,4 +234,6 @@ const walletChangeUpdater = store => next => action => {
 
 const store = createStore(reducer, initialState, applyMiddleware(walletChangeUpdater));
 
+window.reduxStore = store;
+
 export default store;

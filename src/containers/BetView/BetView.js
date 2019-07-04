@@ -4,13 +4,15 @@ import { Card, Button } from 'react-bootstrap';
 
 import TransactionModal from '../TransactionModal/TransactionModal';
 import { categoryArray, subCategoryArray } from '../../env';
-import betdeexInstance from '../../ethereum/betdeexInstance';
+//import betdeexInstance from '../../ethereum/betdeexInstance';
 import createBetInstance from '../../ethereum/betInstance';
 const provider = require('../../ethereum/provider');
 const ethers = require('ethers');
 const BigNumber = require('bignumber.js');
 
 class BetView extends Component {
+
+  betdeexInstance = this.props.store.betdeexInstance;
 
   // using undefined instead of placeholder values because undefined is required for inequalities
   betInstance = createBetInstance(this.props.match.params.address, this.props.store.walletInstance);
@@ -34,13 +36,15 @@ class BetView extends Component {
   }
 
   async componentDidMount() {
+    const betdeexInstance = this.betdeexInstance;
+    const betInstance = this.betInstance;
+
     const address = this.props.match.params.address;
     const isBetValid = await betdeexInstance.isBetValid(address);
     if(!isBetValid) {
       this.setState({ isBetValid: false });
       return;
     };
-    const betInstance = this.betInstance;
 
     const loadMy = async (property, outsideValue, shouldItloadAgain) => {
 
@@ -102,9 +106,6 @@ class BetView extends Component {
     ], true);
 
     localStorage.setItem('betdeex-betsMapping', JSON.stringify(this.props.store.betsMapping));
-
-    window.sohamm = this.state;
-    ;
   }
 
   render() {
@@ -181,7 +182,6 @@ class BetView extends Component {
         <TransactionModal
           show={this.state.showTransactionModal}
           hideFunction={modalClose}
-          store={this.props.store}
           ethereum={{
             transactor: this.betInstance.functions.enterBet,
             estimator: this.betInstance.estimate.enterBet,

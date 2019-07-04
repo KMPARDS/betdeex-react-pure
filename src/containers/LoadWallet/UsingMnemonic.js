@@ -53,10 +53,6 @@ class UsingMnemonic extends Component {
 
       console.log(ethersWalletArray);
 
-      if(Object.entries(this.props.store.esInstance).length === 0) {
-        this.props.dispatch({ type: 'LOAD-ES-INSTANCE', payload: new ethers.Contract(esContract.address, esContract.abi, new ethers.providers.InfuraProvider('rinkeby')) });
-      }
-
       const walletsDetail = [];
 
       for(let walletInstance of ethersWalletArray) {
