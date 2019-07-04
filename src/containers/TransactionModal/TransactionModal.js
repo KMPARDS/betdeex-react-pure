@@ -60,7 +60,23 @@ class TransactionModal extends Component {
     });
 
     try {
-      const betTokensInExaEs = ethers.utils.bigNumberify(this.state.esTokensToBet).mul(10**15).mul(10**3);
+      const amountStringArray = this.state.esTokensToBet.split('.');
+
+      let betTokensInExaEsString;
+      if(amountStringArray[0].length === this.state.esTokensToBet.length) {
+        // no decimal point
+        betTokensInExaEsString = this.state.esTokensToBet + '0'.repeat(18);
+      } else {
+        // decimal point is entered
+        if(amountStringArray[1].length > 18 || amountStringArray[2]) {
+          throw new Error('Can have only upto 18 decimal points');
+        } else {
+          // between 1 and 18 decimals
+          betTokensInExaEsString = amountStringArray[0] + amountStringArray[1] + '0'.repeat(18 - amountStringArray[1].length);
+        }
+      }
+
+      const betTokensInExaEs = ethers.utils.bigNumberify(betTokensInExaEsString)//.mul(10**15).mul(10**3);
       const estimatedGas = (await this.props.ethereum.estimator(...this.props.ethereum.arguments, betTokensInExaEs)).toNumber();
       const ethGasStationResponse = (await axios.get('https://ethgasstation.info/json/ethgasAPI.json')).data;
       console.log(ethGasStationResponse);
@@ -148,6 +164,7 @@ class TransactionModal extends Component {
                 <span style={{display: 'block', fontSize: '1.8rem'}}>
                   {Math.round(this.state.estimatedGas * ( this.state.ethGasStation[2] / 10 )) / 10**9} ETH
                 </span>
+                <span style={{display: 'block', textAlign:'right'}}>Advanced settings</span>
               </Card>
 
 
