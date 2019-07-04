@@ -71,7 +71,7 @@ class UsingKeystoreFile extends Component {
 
   render() {
     return (
-      <Card style={{margin: '15px 0'}}>
+      <Card>
       {console.log(this.props)}
         <Card.Body align="center">
           <h4>Unlock wallet using keystore file</h4>

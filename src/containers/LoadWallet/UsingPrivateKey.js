@@ -44,7 +44,7 @@ class UsingPrivateKey extends Component {
 
   render() {
     return (
-      <Card style={{margin: '15px 0'}}>
+      <Card>
         <Card.Body align="center">
           <h4>Unlock wallet using your Private Key</h4>
 

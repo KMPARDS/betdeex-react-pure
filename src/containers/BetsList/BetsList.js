@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Spinner } from 'react-bootstrap';
+import { Spinner, Card } from 'react-bootstrap';
 
 import Bet from './Bet';
 
@@ -127,7 +127,7 @@ class BetsList extends Component {
   render() {
     return (
       <div>
-        Showing 5 bets
+        <Card>Showing 5 bets
         {
           (this.props.categoryId !== undefined
           ? ` of ${categoryArray[this.props.categoryId]}`
@@ -136,9 +136,9 @@ class BetsList extends Component {
           (this.props.subCategoryId !== undefined
           ? `/${subCategoryArray[this.props.categoryId][this.props.subCategoryId]}`
           : null)
-        }<br />
+        }</Card>
         { this.state.betsLoading ?
-          <Spinner animation="border" role="status">
+          <Spinner animation="border" role="status" style={{marginTop: '15px'}}>
             <span className="sr-only">Loading...</span>
           </Spinner>
           : null

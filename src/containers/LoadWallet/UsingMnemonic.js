@@ -103,10 +103,10 @@ class UsingMnemonic extends Component {
   render() {
     return (
       <div>
-        <Card style={{margin: '15px 0'}}>
+        <Card>
           <Card.Body align="center">
             <h4>Unlock wallet using Mnemonic</h4>
-            <Form onSubmit={this.onMnemonicSubmit} style={{border: '1px solid rgba(0,0,0,.125)', borderRadius: '.25rem', padding: '10px', width: '400px'}}>
+            <Form onSubmit={this.onMnemonicSubmit} style={{border: '1px solid rgba(0,0,0,.125)', borderRadius: '.25rem', padding: '10px', width: '400px', padding:'20px 40px'}}>
               <Form.Group controlId="mnemonic">
                 <Form.Control onKeyUp={this.onMnemonicUpdate} type="text" placeholder="Enter your mnemonic" style={{width: '325px'}} />
               </Form.Group>

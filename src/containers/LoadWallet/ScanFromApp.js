@@ -3,7 +3,7 @@ import { Card } from 'react-bootstrap';
 
 const ScanFromApp = () => {
   return (
-    <Card style={{margin: '15px 0'}}>
+    <Card>
       Scan to Login
     </Card>
   );

@@ -172,7 +172,7 @@ class CreateWalletPage extends Component {
 
     return (
       <div>
-        <Card style={{margin: '15px 0'}}>
+        <Card>
           <Card.Body align="center">
             <Row>
               <Col style={{textAlign: 'left'}}>

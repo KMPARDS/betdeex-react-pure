@@ -40,11 +40,7 @@ class BetView extends Component {
     const betInstance = this.betInstance;
 
     const address = this.props.match.params.address;
-    const isBetValid = await betdeexInstance.isBetValid(address);
-    if(!isBetValid) {
-      this.setState({ isBetValid: false });
-      return;
-    };
+
 
     const loadMy = async (property, outsideValue, shouldItloadAgain) => {
 
@@ -58,10 +54,10 @@ class BetView extends Component {
           await outsideValue[1],
           await outsideValue[2]
         ]
-        console.log('Array.isArray',property, outsideValue);
+        //console.log('Array.isArray',property, outsideValue);
       }
 
-      console.log('fetch condition check- ' + property, this.props.store.betsMapping[address]===undefined, '||', this.props.store.betsMapping[address][property]===undefined, this.props.store.betsMapping[address]);
+      // console.log('fetch condition check- ' + property, this.props.store.betsMapping[address]===undefined, '||', this.props.store.betsMapping[address][property]===undefined, this.props.store.betsMapping[address]);
 
       if(this.props.store.betsMapping[address]===undefined || this.props.store.betsMapping[address][property]===undefined) {
         this.props.dispatch({
@@ -105,7 +101,15 @@ class BetView extends Component {
       betInstance.getNumberOfChoiceBettors(2)
     ], true);
 
-    localStorage.setItem('betdeex-betsMapping', JSON.stringify(this.props.store.betsMapping));
+    const isBetValid = await betdeexInstance.isBetValid(address);
+    if(!isBetValid) {
+      this.setState({ isBetValid: false });
+      return;
+    };
+
+    setTimeout(()=> {
+      localStorage.setItem('betdeex-betsMapping', JSON.stringify(this.props.store.betsMapping));
+    }, 5000);
   }
 
   render() {
@@ -125,7 +129,7 @@ class BetView extends Component {
     let modalClose = () => this.setState({ showTransactionModal: false });
 
     return (
-      <Card style={{margin: '15px 0'}}>
+      <Card>
         { this.state.isBetValid ?
         <Card.Body>
           <p>Bet Address: {this.props.match.params.address}</p>
@@ -170,9 +174,7 @@ class BetView extends Component {
           Predict Now:&nbsp;
           <Button variant="success" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 1 })}}>Yes</Button>
           <Button variant="danger" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 0 })}}>No</Button>
-          {
-            this.state.isDrawPossible ? <Button variant="warning" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</Button> : null
-          }
+          <Button variant="warning" disabled={!this.state.isDrawPossible} onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</Button>
 
 
         </Card.Body>
@@ -185,6 +187,7 @@ class BetView extends Component {
           ethereum={{
             transactor: this.betInstance.functions.enterBet,
             estimator: this.betInstance.estimate.enterBet,
+            contract: this.betInstance,
             arguments: [this.state.userChoice],
             minimumBetInEs: this.state.minimumBetInExaEs!==undefined ? (new BigNumber(ethers.utils.bigNumberify(this.state.minimumBetInExaEs))).dividedBy(10**18).toFixed() : undefined
           }}

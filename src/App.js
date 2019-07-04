@@ -47,10 +47,10 @@ function App(props) {
       <div className="App">
         <Navbar />
         <Row>
-          <Col>
+          <Col style={{margin: '15px 0 0 15px'}}>
             <Sidebar />
           </Col>
-          <Col xs="9">
+          <Col xs="9" style={{margin: '15px 15px 0 0', paddingLeft: '0'}}>
             <Switch>
               <Route path="/" exact component={BetsList} />
               <Route path="/create-wallet" exact component={CreateWallet} />

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Modal, Button, InputGroup, FormControl, Spinner, Alert } from 'react-bootstrap';
+import { Modal, Button, InputGroup, FormControl, Spinner, Alert, Badge, Card, ListGroup } from 'react-bootstrap';
 import axios from 'axios';
 
+import { betdeex } from '../../env';
 import createBetInstance from '../../ethereum/betInstance';
 
 const ethers = require('ethers');
@@ -12,6 +13,7 @@ const BigNumber = require('bignumber.js');
 class TransactionModal extends Component {
   state = {
     userAddress: '',
+    contractAddress: '',
     currentScreen: 0,
     esTokensToBet: 0,
     estimating: false,
@@ -50,7 +52,12 @@ class TransactionModal extends Component {
   // }
 
   showEstimateGasScreen = async () => {
-    this.setState({ estimating: true, estimationError: '', userAddress: await this.props.store.walletInstance.getAddress() });
+    this.setState({
+      estimating: true,
+      estimationError: '',
+      userAddress: (await this.props.store.walletInstance.getAddress()).toLowerCase(),
+      contractAddress: await this.props.ethereum.contract.address
+    });
 
     try {
       const betTokensInExaEs = ethers.utils.bigNumberify(this.state.esTokensToBet).mul(10**15).mul(10**3);
@@ -126,10 +133,25 @@ class TransactionModal extends Component {
       );
     } else if(this.state.currentScreen === 1) {
       screenContent = (
-        <Modal.Body>
-          <span>
-            from <strong>{this.state.userAddress.slice(0,6) + '..'}</strong> to <strong></strong>
-          </span>
+        <Modal.Body style={{padding: '15px'}}>
+
+
+              From: Your address<strong>{this.state.userAddress.slice(0,6) + '..' + this.state.userAddress.slice(this.state.userAddress.length - 3)}</strong><br />
+              To: Bet address<strong>{this.state.contractAddress.slice(0,6) + '..' + this.state.contractAddress.slice(this.state.contractAddress.length - 3)}</strong>
+
+              <Card style={{display:'block', padding: '15px'}}>
+                New betting on <Badge variant={this.props.ethereum.arguments[0] === 0 ? 'danger' : (this.props.ethereum.arguments[0] === 1 ? 'success' : 'warning')}>{this.props.ethereum.arguments[0] === 0 ? 'NO' : (this.props.ethereum.arguments[0] === 1 ? 'YES' : 'DRAW')}</Badge>
+                <span style={{display: 'block', fontSize: '1.8rem'}}>
+                  {this.state.esTokensToBet} ES
+                </span>
+                + network fee of Ethereum
+                <span style={{display: 'block', fontSize: '1.8rem'}}>
+                  {Math.round(this.state.estimatedGas * ( this.state.ethGasStation[2] / 10 )) / 10**9} ETH
+                </span>
+              </Card>
+
+
+
         </Modal.Body>
       );
     } else {

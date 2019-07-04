@@ -31,7 +31,7 @@ const Sidebar = props => {
   }
 
   return (
-    <Accordion style={{margin: '15px'}}>
+    <Accordion style={props.style}>
       {listOfCategories}
     </Accordion>
   );
