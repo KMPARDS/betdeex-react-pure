@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Modal, Button, InputGroup, FormControl, Spinner, Alert, Badge, Card, ListGroup } from 'react-bootstrap';
+import { Modal, Button, InputGroup, FormControl, Spinner, Alert, Badge, Card, ListGroup, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 
 import { betdeex } from '../../env';
@@ -15,11 +15,13 @@ class TransactionModal extends Component {
     userAddress: '',
     contractAddress: '',
     currentScreen: 0,
-    esTokensToBet: 0,
+    esTokensToBet: '',
+    exaEsTokensToBet: '',
     estimating: false,
     estimationError: '',
     estimatedGas: 0,
-    ethGasStation: {}
+    ethGasStation: {},
+    selectedGwei: 0
   }
   // componentDidUpdate = async prevProps => {
   //   if(this.props.show && ( prevProps.show != this.props.show )) {
@@ -76,7 +78,9 @@ class TransactionModal extends Component {
         }
       }
 
-      const betTokensInExaEs = ethers.utils.bigNumberify(betTokensInExaEsString)//.mul(10**15).mul(10**3);
+      this.state.exaEsTokensToBet = betTokensInExaEsString;
+
+      const betTokensInExaEs = ethers.utils.bigNumberify(this.state.exaEsTokensToBet)//.mul(10**15).mul(10**3);
       const estimatedGas = (await this.props.ethereum.estimator(...this.props.ethereum.arguments, betTokensInExaEs)).toNumber();
       const ethGasStationResponse = (await axios.get('https://ethgasstation.info/json/ethgasAPI.json')).data;
       console.log(ethGasStationResponse);
@@ -87,13 +91,22 @@ class TransactionModal extends Component {
           ethGasStationResponse['fast'],
           ethGasStationResponse['fastest']
         ],
-        estimatedGas
+        estimatedGas,
+        selectedGwei: ethGasStationResponse['fast'] / 10,
+        currentScreen: 1
       });
 
       this.setState({ currentScreen: 1 });
     } catch (e) {
       this.setState({ estimating: false, estimationError: e.message })
     }
+  }
+
+  sendTransaction = async () => {
+    const start = new Date();
+    const betTokensInExaEs = ethers.utils.bigNumberify(this.state.exaEsTokensToBet);
+    const response = await this.props.ethereum.transactor(...this.props.ethereum.arguments, betTokensInExaEs);
+    console.log(response, `time taken: ${new Date() - start}`);
   }
 
 
@@ -116,7 +129,7 @@ class TransactionModal extends Component {
 
     else if(this.state.currentScreen === 0) {
       screenContent = (
-        <Modal.Body>
+        <Modal.Body>Confirm
           <h5>Enter the amount of ES to bet on {this.props.ethereum.arguments[0] === 0 ? 'NO' : (this.props.ethereum.arguments[0] === 1 ? 'YES' : 'DRAW')}</h5>
           <InputGroup className="mb-3">
             <FormControl onKeyUp={ ev => this.setState({ esTokensToBet: ev.target.value }) }
@@ -160,17 +173,26 @@ class TransactionModal extends Component {
           From: Your address <strong>{this.state.userAddress.slice(0,6) + '..' + this.state.userAddress.slice(this.state.userAddress.length - 3)}</strong><br />
           To: Bet address <strong>{this.state.contractAddress.slice(0,6) + '..' + this.state.contractAddress.slice(this.state.contractAddress.length - 3)}</strong>
 
-          <Card style={{display:'block', padding: '15px', marginTop: '5px'}}>
+          <Card style={{display:'block', padding: '15px 15px 30px', marginTop: '5px'}}>
             New betting on <Badge variant={this.props.ethereum.arguments[0] === 0 ? 'danger' : (this.props.ethereum.arguments[0] === 1 ? 'success' : 'warning')}>{this.props.ethereum.arguments[0] === 0 ? 'NO' : (this.props.ethereum.arguments[0] === 1 ? 'YES' : 'DRAW')}</Badge>
             <span style={{display: 'block', fontSize: '1.8rem'}}>
               {this.state.esTokensToBet}<strong>ES</strong>
             </span>
             + network fee of Ethereum
             <span style={{display: 'block', fontSize: '1.8rem'}}>
-              {Math.round(this.state.estimatedGas * ( this.state.ethGasStation[2] / 10 )) / 10**9}<strong>ETH</strong>
+              {Math.round(this.state.estimatedGas * ( this.state.selectedGwei )) / 10**9}<strong>ETH</strong>
             </span>
-            <span onClick={()=>this.setState({currentScreen: 2})} style={{display: 'block', textAlign:'right', fontSize: '0.8rem'}}>Advanced settings</span>
+            <span onClick={()=>this.setState({currentScreen: 2})} style={{display: 'inline-block', float:'right', fontSize: '0.8rem'}}>Advanced settings</span>
           </Card>
+
+          <Row style={{marginTop: '12px'}}>
+            <Col style={{paddingRight: '6px'}}>
+              <Button variant="secondary" size="lg" block>Reject</Button>
+            </Col>
+            <Col style={{paddingLeft: '6px'}}>
+              <Button variant="primary" size="lg" block onClick={this.sendTransaction}>Proceed</Button>
+            </Col>
+          </Row>
 
         </Modal.Body>
       );
@@ -182,17 +204,21 @@ class TransactionModal extends Component {
         <Modal.Body style={{padding: '15px'}}>
           <h5>Advanced gas settings</h5>
           {[
-            {name: 'Slow', eth: Math.round(this.state.estimatedGas * ( this.state.ethGasStation[0] / 10 )) / 10**9, time: 'around 30 mins to confirm'},
-            {name: 'Average', eth: Math.round(this.state.estimatedGas * ( this.state.ethGasStation[1] / 10 )) / 10**9, time: 'around 10 mins to confirm' },
-            {name: 'Fast', eth: Math.round(this.state.estimatedGas * ( this.state.ethGasStation[2] / 10 )) / 10**9, time: 'around 2 mins to confirm' },
-            {name: 'Faster', eth: Math.round(this.state.estimatedGas * ( this.state.ethGasStation[3] / 10 )) / 10**9, time: 'around 30 secs to conirm'}
+            {name: 'Slow', gwei: this.state.ethGasStation[0] / 10, time: 'around 30 mins to confirm'},
+            {name: 'Average', gwei: this.state.ethGasStation[1] / 10, time: 'around 10 mins to confirm' },
+            {name: 'Fast', gwei: this.state.ethGasStation[2] / 10, time: 'around 2 mins to confirm' },
+            {name: 'Faster', gwei: this.state.ethGasStation[3] / 10, time: 'around 30 secs to confirm'}
           ].map(plan => (
-            <Card key={'advanced-'+plan.name} onClick={() => {
+            <Card key={'advanced-'+plan.name} style={{margin: '10px 0', padding:'10px'}} onClick={() => {
               // update the gwei being used
               // change screen to 1
+              this.setState({
+                selectedGwei: plan.gwei,
+                currentScreen: 1
+              });
             }}>
               <Card.Title>{plan.name}</Card.Title>
-              <Card.Subtitle>{plan.eth}</Card.Subtitle>
+              <Card.Subtitle>{Math.round(this.state.estimatedGas * plan.gwei) / 10**9}</Card.Subtitle>
               <Card.Text>{plan.time}</Card.Text>
             </Card>
           ))}
