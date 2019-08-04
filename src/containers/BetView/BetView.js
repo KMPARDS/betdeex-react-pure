@@ -45,21 +45,19 @@ class BetView extends Component {
     const loadMy = async (property, outsideValue, shouldItloadAgain) => {
 
       // loads old data first then tries for updated values
-      if(shouldItloadAgain && this.props.store.betsMapping[address]!==undefined && this.props.store.betsMapping[address][property]!==undefined) {
+      if(this.props.store.betsMapping[address]!==undefined && this.props.store.betsMapping[address][property]!==undefined) {
         this.setState({ [property]: this.props.store.betsMapping[address][property] });
       }
-      if(Array.isArray(outsideValue)) {
-        outsideValue = [
-          await outsideValue[0],
-          await outsideValue[1],
-          await outsideValue[2]
-        ]
-        //console.log('Array.isArray',property, outsideValue);
-      }
+      // if(Array.isArray(outsideValue)) {
+      //   outsideValue = [
+      //     await outsideValue[0],
+      //     await outsideValue[1],
+      //     await outsideValue[2]
+      //   ]
+      // }
+      await Promise.all(outsideValue || []);
 
-      // console.log('fetch condition check- ' + property, this.props.store.betsMapping[address]===undefined, '||', this.props.store.betsMapping[address][property]===undefined, this.props.store.betsMapping[address]);
-
-      if(this.props.store.betsMapping[address]===undefined || this.props.store.betsMapping[address][property]===undefined) {
+      if(shouldItloadAgain || this.props.store.betsMapping[address]===undefined || this.props.store.betsMapping[address][property]===undefined) {
         this.props.dispatch({
           type: 'UPDATE-BETS-MAPPING-'+property.toUpperCase(),
           payload: {
@@ -87,7 +85,8 @@ class BetView extends Component {
 
     loadMy('pricePercentPerThousand', betInstance.pricePercentPerThousand());
 
-    loadMy('totalPrize', betInstance.totalPrize(), true);
+    // console.log(await betInstance.totalPrize());
+    // loadMy('totalPrize', betInstance.totalPrize(), true);
 
     loadMy('totalBetTokensInExaEsByChoice', [
       betInstance.totalBetTokensInExaEsByChoice(0),
@@ -166,11 +165,16 @@ class BetView extends Component {
             ? totalBetTokensInEsByChoice[0] + ' ES'
             : 'Loading..'
           }</p>
-          <p>Draw Amount: {
-            this.state.totalBetTokensInExaEsByChoice[2]
-            ? totalBetTokensInEsByChoice[2] + ' ES'
-            : 'Loading..'
-          }</p>
+          {
+            this.state.isDrawPossible
+            ?
+              (<p>Draw Amount: {
+              this.state.totalBetTokensInExaEsByChoice[2]
+              ? totalBetTokensInEsByChoice[2] + ' ES'
+              : 'Loading..'
+              }</p>)
+            : null
+          }
           Predict Now:&nbsp;
           <Button variant="success" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 1 })}}>Yes</Button>
           <Button variant="danger" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 0 })}}>No</Button>

@@ -15,13 +15,16 @@ class TransactionModal extends Component {
     userAddress: '',
     contractAddress: '',
     currentScreen: 0,
-    esTokensToBet: '',
-    exaEsTokensToBet: '',
+    exaEsTokensToBet: {},
     estimating: false,
     estimationError: '',
     estimatedGas: 0,
     ethGasStation: {},
-    selectedGwei: 0
+    selectedGwei: 0,
+    sendingTx: false,
+    txHash: '',
+    pending: true,
+    pendingTime: 0.0
   }
   // componentDidUpdate = async prevProps => {
   //   if(this.props.show && ( prevProps.show != this.props.show )) {
@@ -62,26 +65,7 @@ class TransactionModal extends Component {
     });
 
     try {
-      const amountStringArray = this.state.esTokensToBet.split('.');
-
-      let betTokensInExaEsString;
-      if(amountStringArray[0].length === this.state.esTokensToBet.length) {
-        // no decimal point
-        betTokensInExaEsString = this.state.esTokensToBet + '0'.repeat(18);
-      } else {
-        // decimal point is entered
-        if(amountStringArray[1].length > 18 || amountStringArray[2]) {
-          throw new Error('Can have only upto 18 decimal points');
-        } else {
-          // between 1 and 18 decimals
-          betTokensInExaEsString = amountStringArray[0] + amountStringArray[1] + '0'.repeat(18 - amountStringArray[1].length);
-        }
-      }
-
-      this.state.exaEsTokensToBet = betTokensInExaEsString;
-
-      const betTokensInExaEs = ethers.utils.bigNumberify(this.state.exaEsTokensToBet)//.mul(10**15).mul(10**3);
-      const estimatedGas = (await this.props.ethereum.estimator(...this.props.ethereum.arguments, betTokensInExaEs)).toNumber();
+      const estimatedGas = await this.props.ethereum.estimator(...this.props.ethereum.arguments, this.state.exaEsTokensToBet);
       const ethGasStationResponse = (await axios.get('https://ethgasstation.info/json/ethgasAPI.json')).data;
       console.log(ethGasStationResponse);
       this.setState({
@@ -98,15 +82,29 @@ class TransactionModal extends Component {
 
       this.setState({ currentScreen: 1 });
     } catch (e) {
-      this.setState({ estimating: false, estimationError: e.message })
+      this.setState({ estimating: false, estimationError: 'There was this error while estimating: ' + e.message })
     }
   }
 
   sendTransaction = async () => {
+    await this.setState({ sendingTx: true });
     const start = new Date();
     const betTokensInExaEs = ethers.utils.bigNumberify(this.state.exaEsTokensToBet);
     const response = await this.props.ethereum.transactor(...this.props.ethereum.arguments, betTokensInExaEs);
     console.log(response, `time taken: ${new Date() - start}`);
+    this.setState({
+      sendingTx: false,
+      currentScreen: 3,
+      txHash: response.hash,
+      pending: true,
+      pendingTime: 0.0
+    });
+    const intervalId = setInterval(() => {
+      this.setState({ pendingTime: this.state.pendingTime+0.01 })
+    }, 10);
+    await response.wait();
+    clearInterval(intervalId);
+    await this.setState({ pending: false });
   }
 
 
@@ -129,10 +127,16 @@ class TransactionModal extends Component {
 
     else if(this.state.currentScreen === 0) {
       screenContent = (
-        <Modal.Body>Confirm
+        <Modal.Body>
           <h5>Enter the amount of ES to bet on {this.props.ethereum.arguments[0] === 0 ? 'NO' : (this.props.ethereum.arguments[0] === 1 ? 'YES' : 'DRAW')}</h5>
           <InputGroup className="mb-3">
-            <FormControl onKeyUp={ ev => this.setState({ esTokensToBet: ev.target.value }) }
+            <FormControl onKeyUp={ ev => {
+              try {
+                this.setState({ exaEsTokensToBet: ethers.utils.parseEther(ev.target.value), estimationError: '' });
+              } catch(e) {
+                this.setState({ estimationError: 'Please enter the amount properly' })
+              }
+            } }
               placeholder={`Minimum is ${this.props.ethereum.minimumBetInEs} ES`}
             />
             <InputGroup.Append>
@@ -143,7 +147,7 @@ class TransactionModal extends Component {
           {
             this.state.estimationError
             ? <Alert variant="danger">
-                There was this error while estimating: {this.state.estimationError}
+                {this.state.estimationError}
               </Alert>
             : null
           }
@@ -168,6 +172,15 @@ class TransactionModal extends Component {
 
 
     else if(this.state.currentScreen === 1) {
+      let gasEtherString = ethers.utils.formatEther(this.state.estimatedGas.mul(
+        ethers.utils.parseUnits(String(this.state.selectedGwei), 'gwei')
+      ));
+
+      const decimalPos = gasEtherString.indexOf('.');
+      if(decimalPos !== -1 && gasEtherString.length > 9 && gasEtherString.length - 1 - decimalPos > 7) {
+        gasEtherString = gasEtherString.slice(0,10)
+      }
+
       screenContent = (
         <Modal.Body style={{padding: '15px'}}>
           From: Your address <strong>{this.state.userAddress.slice(0,6) + '..' + this.state.userAddress.slice(this.state.userAddress.length - 3)}</strong><br />
@@ -176,11 +189,11 @@ class TransactionModal extends Component {
           <Card style={{display:'block', padding: '15px 15px 30px', marginTop: '5px'}}>
             New betting on <Badge variant={this.props.ethereum.arguments[0] === 0 ? 'danger' : (this.props.ethereum.arguments[0] === 1 ? 'success' : 'warning')}>{this.props.ethereum.arguments[0] === 0 ? 'NO' : (this.props.ethereum.arguments[0] === 1 ? 'YES' : 'DRAW')}</Badge>
             <span style={{display: 'block', fontSize: '1.8rem'}}>
-              {this.state.esTokensToBet}<strong>ES</strong>
+              {ethers.utils.formatEther(this.state.exaEsTokensToBet)}<strong>ES</strong>
             </span>
-            + network fee of Ethereum
+            + estimated gas fee of network
             <span style={{display: 'block', fontSize: '1.8rem'}}>
-              {Math.round(this.state.estimatedGas * ( this.state.selectedGwei )) / 10**9}<strong>ETH</strong>
+            {gasEtherString}<strong style={{display: 'inline-block', wordBreak: 'keep-all'}}>ETH</strong>
             </span>
             <span onClick={()=>this.setState({currentScreen: 2})} style={{display: 'inline-block', float:'right', fontSize: '0.8rem'}}>Advanced settings</span>
           </Card>
@@ -190,7 +203,17 @@ class TransactionModal extends Component {
               <Button variant="secondary" size="lg" block>Reject</Button>
             </Col>
             <Col style={{paddingLeft: '6px'}}>
-              <Button variant="primary" size="lg" block onClick={this.sendTransaction}>Proceed</Button>
+              <Button variant="primary" size="lg" block onClick={this.sendTransaction} disabled={this.state.sendingTx}>
+              {this.state.sendingTx ?
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+                style={{marginRight: '2px'}}
+              /> : null}
+              Proceed</Button>
             </Col>
           </Row>
 
@@ -227,28 +250,24 @@ class TransactionModal extends Component {
     }
 
 
-    else {
+    else if(this.state.currentScreen === 3) {
+      // after the transaction is sent
+      const url = `https://rinkeby.etherscan.io/tx/${this.state.txHash}`;
+
       screenContent = (
         <div>
           <Modal.Body>
-            <p>
-              Ethereum Network Fee: <br />
-              Slow Safe: {Math.round(this.state.estimatedGas * ( this.state.ethGasStation[0] / 10 )) / 10**9} ETH
-              <br />
-              Average: {Math.round(this.state.estimatedGas * ( this.state.ethGasStation[1] / 10 )) / 10**9} ETH
-              <br />
-              Fast: {Math.round(this.state.estimatedGas * ( this.state.ethGasStation[2] / 10 )) / 10**9} ETH
-              <br />
-              Fastest: {Math.round(this.state.estimatedGas * ( this.state.ethGasStation[3] / 10 )) / 10**9} ETH
-              <br />
-              Click below button to sign your transaction and submit it to the blockchain.
-            </p>
-            <div style={{display:'block', textAlign: 'center'}}>
-              <Button>Sign and send to Blockchain</Button>
-            </div>
+            <p>{
+              this.state.pending
+              ? `Your transaction is pending... (${(Math.round(this.state.pendingTime * 100) / 100).toFixed(2)})`
+              : `Your transaction is confirmed! It took like ${(Math.round(this.state.pendingTime * 100) / 100)} seconds`
+            }</p>
+            <p>You can view your transaction on&nbsp;<a href={url} target="_blank" style={{wordBreak: 'keep-all'}}>Etherscan</a>.</p>
           </Modal.Body>
         </div>
       );
+    } else {
+
     }
 
 
