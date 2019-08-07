@@ -29,7 +29,10 @@ class BetsList extends Component {
   showBets = async () => {
     this.setState({ betsToDisplay: [], betsLoading: true });
     const newBetEventSig = ethers.utils.id("NewBetContract(address,address,uint8,uint8,string)");
-    const topics = [ newBetEventSig, null, null, null ];
+    console.log('newBetEventSig', newBetEventSig);
+    const topics = [
+      newBetEventSig, null, null, null
+    ];
     topics[2] = this.props.categoryId !== undefined ?
       '0x'+'0'.repeat(64-this.props.categoryId.toString(16).length)+this.props.categoryId.toString(16)
       : null;
@@ -37,7 +40,7 @@ class BetsList extends Component {
       '0x'+'0'.repeat(64-this.props.subCategoryId.toString(16).length)+this.props.subCategoryId.toString(16)
       : null;
 
-    const logs = await provider.getLogs({
+    const logs = await this.props.store.providerInstance.getLogs({
       address: betdeex.address,
       fromBlock: 0,
       toBlock: 'latest',

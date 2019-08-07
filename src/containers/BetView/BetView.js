@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, Tabs, Tab } from 'react-bootstrap';
 
 import TransactionModal from '../TransactionModal/TransactionModal';
 import { categoryArray, subCategoryArray } from '../../env';
-//import betdeexInstance from '../../ethereum/betdeexInstance';
+
 import createBetInstance from '../../ethereum/betInstance';
 const provider = require('../../ethereum/provider');
 const ethers = require('ethers');
-const BigNumber = require('bignumber.js');
+// const BigNumber = require('bignumber.js');
 
 class BetView extends Component {
 
@@ -27,7 +27,7 @@ class BetView extends Component {
     pauseTimestamp: undefined,
     endTimestamp: undefined,
     minimumBetInExaEs: undefined,
-    pricePercentPerThousand: undefined,
+    prizePercentPerThousand: undefined,
     totalPrize: undefined,
     totalBetTokensInExaEsByChoice: [undefined,undefined,undefined],
     getNumberOfChoiceBettors: [undefined,undefined,undefined],
@@ -35,70 +35,48 @@ class BetView extends Component {
     userChoice: undefined
   }
 
+  loadMy = async (property, outsideValue, shouldItloadAgain) => {
+    const address = this.props.match.params.address
+
+    // loads old data first then tries for updated values
+    if(this.props.store.betsMapping[address]!==undefined && this.props.store.betsMapping[address][property]!==undefined) {
+      this.setState({ [property]: this.props.store.betsMapping[address][property] });
+    }
+    let value;
+    if(Array.isArray(outsideValue)) {
+      outsideValue = [
+        await outsideValue[0],
+        await outsideValue[1],
+        await outsideValue[2]
+      ]
+      value = outsideValue;
+    } else {
+      await outsideValue;
+      value = outsideValue || await eval('betInstance.'+property+'()')
+    }
+
+    if(shouldItloadAgain || this.props.store.betsMapping[address]===undefined || this.props.store.betsMapping[address][property]===undefined) {
+      this.props.dispatch({
+        type: 'UPDATE-BETS-MAPPING-'+property.toUpperCase(),
+        payload: {
+          address: address,
+          value //await outsideValue || await eval('betInstance.'+property+'()')
+        }
+      });
+    }
+    !value || await this.setState({ [property]:
+        // this.props.store.betsMapping[address][property]
+      await value
+    });
+    console.log(property, value, this.state[property]);
+  };
+
   async componentDidMount() {
     const betdeexInstance = this.betdeexInstance;
     const betInstance = this.betInstance;
+    window.betInstance = betInstance;
 
     const address = this.props.match.params.address;
-
-
-    const loadMy = async (property, outsideValue, shouldItloadAgain) => {
-
-      // loads old data first then tries for updated values
-      if(this.props.store.betsMapping[address]!==undefined && this.props.store.betsMapping[address][property]!==undefined) {
-        this.setState({ [property]: this.props.store.betsMapping[address][property] });
-      }
-      // if(Array.isArray(outsideValue)) {
-      //   outsideValue = [
-      //     await outsideValue[0],
-      //     await outsideValue[1],
-      //     await outsideValue[2]
-      //   ]
-      // }
-      await Promise.all(outsideValue || []);
-
-      if(shouldItloadAgain || this.props.store.betsMapping[address]===undefined || this.props.store.betsMapping[address][property]===undefined) {
-        this.props.dispatch({
-          type: 'UPDATE-BETS-MAPPING-'+property.toUpperCase(),
-          payload: {
-            address: address,
-            value: await outsideValue || await eval('betInstance.'+property+'()')
-          }
-        });
-      }
-      this.setState({ [property]: this.props.store.betsMapping[address][property] });
-    }
-
-    loadMy('description');
-    loadMy('isDrawPossible');
-    loadMy('category');
-    loadMy('subCategory');
-
-    loadMy('finalResult');
-    loadMy('endedBy');
-
-    loadMy('creationTimestamp');
-    loadMy('pauseTimestamp');
-    loadMy('endTimestamp');
-    //
-    loadMy('minimumBetInExaEs', betInstance.minimumBetInExaEs());
-
-    loadMy('pricePercentPerThousand', betInstance.pricePercentPerThousand());
-
-    // console.log(await betInstance.totalPrize());
-    // loadMy('totalPrize', betInstance.totalPrize(), true);
-
-    loadMy('totalBetTokensInExaEsByChoice', [
-      betInstance.totalBetTokensInExaEsByChoice(0),
-      betInstance.totalBetTokensInExaEsByChoice(1),
-      betInstance.totalBetTokensInExaEsByChoice(2)
-    ], true);
-
-    loadMy('getNumberOfChoiceBettors', [
-      betInstance.getNumberOfChoiceBettors(0),
-      betInstance.getNumberOfChoiceBettors(1),
-      betInstance.getNumberOfChoiceBettors(2)
-    ], true);
 
     const isBetValid = await betdeexInstance.isBetValid(address);
     if(!isBetValid) {
@@ -106,24 +84,114 @@ class BetView extends Component {
       return;
     };
 
+    this.loadMy('description');
+    this.loadMy('isDrawPossible');
+    this.loadMy('category');
+    this.loadMy('subCategory');
+
+    this.loadMy('finalResult');
+    this.loadMy('endedBy', betInstance.endedBy(), true);
+
+    this.loadMy('creationTimestamp');
+    this.loadMy('pauseTimestamp');
+    this.loadMy('endTimestamp');
+
+    this.loadMy('minimumBetInExaEs');
+
+    // const priz = await betInstance.prizePercentPerThousand();
+    this.loadMy('prizePercentPerThousand');
+    // console.log('this.state.prizePercentPerThousand', this.state.prizePercentPerThousand, priz);
+    // console.log(await betInstance.totalPrize());
+    // loadMy('totalPrize', betInstance.totalPrize(), true);
+
+    await this.loadMy('totalBetTokensInExaEsByChoice', [
+      betInstance.totalBetTokensInExaEsByChoice(0),
+      betInstance.totalBetTokensInExaEsByChoice(1),
+      betInstance.totalBetTokensInExaEsByChoice(2)
+    ], true);
+    // console.log('this.state.totalBetTokensInExaEsByChoice', this.state.totalBetTokensInExaEsByChoice);
+    //
+    this.loadMy('getNumberOfChoiceBettors', [
+      betInstance.getNumberOfChoiceBettors(0),
+      betInstance.getNumberOfChoiceBettors(1),
+      betInstance.getNumberOfChoiceBettors(2)
+    ], true);
+
+
+
     setTimeout(()=> {
       localStorage.setItem('betdeex-betsMapping', JSON.stringify(this.props.store.betsMapping));
     }, 5000);
   }
 
+  seeChoiceBettors = async() => {
+    const newBettingEventSig = ethers.utils.id("NewBetting(address,address,uint8,uint256)");
+    console.log('newBettingEventSig', newBettingEventSig);
+    const topics = [
+      newBettingEventSig, null, ethers.utils.hexZeroPad(this.props.store.walletInstance.address, 32), null
+    ];
+    console.log('topics', topics);
+
+    const logs = await this.props.store.providerInstance.getLogs({
+      address: this.betdeexInstance.address,
+      fromBlock: 0,
+      toBlock: 'latest',
+      topics
+    });
+
+
+  }
+
   render() {
     window.betInstance = this.betInstance;
-    const fees = this.state.pricePercentPerThousand!==undefined  ? (1000 - ethers.utils.bigNumberify(this.state.pricePercentPerThousand).toNumber()) / 10 : undefined;
 
-    const minimumBetInEs = this.state.minimumBetInExaEs!==undefined ? (new BigNumber(ethers.utils.bigNumberify(this.state.minimumBetInExaEs))).dividedBy(10**18).toFixed() : undefined;
+console.log(this.state);
+    // Have to bigNumberify the this.state.prizePercentPerThousand in fees because
+    // it can be coming from local storage too.
+    const fees
+      = this.state.prizePercentPerThousand !== undefined
+        ? (1000 - ethers.utils.bigNumberify(this.state.prizePercentPerThousand).toNumber()) / 10
+        : undefined;
 
-    const totalPrizeInEs = this.state.totalPrize!==undefined ? (new BigNumber(ethers.utils.bigNumberify(this.state.totalPrize))).dividedBy(10**18).toFixed() : undefined;
+    const minimumBetInEs
+      = this.state.minimumBetInExaEs !== undefined
+        ? ethers.utils.formatEther(ethers.utils.bigNumberify(this.state.minimumBetInExaEs) || ethers.utils.bigNumberify(0))
+        : undefined;
+
+    // const totalPrizeInEs
+    //   = this.state.totalPrize !== undefined
+    //     ? ethers.utils.formatEther(ethers.utils.bigNumberify(this.state.totalPrize._hex) || ethers.utils.bigNumberify(0))
+    //     : undefined;
 
     const totalBetTokensInEsByChoice = [
-      this.state.totalBetTokensInExaEsByChoice[0]!==undefined ? (new BigNumber(ethers.utils.bigNumberify(this.state.totalBetTokensInExaEsByChoice[0]))).dividedBy(10**18).toFixed() : undefined,
-      this.state.totalBetTokensInExaEsByChoice[1]!==undefined ? (new BigNumber(ethers.utils.bigNumberify(this.state.totalBetTokensInExaEsByChoice[1]))).dividedBy(10**18).toFixed() : undefined,
-      this.state.totalBetTokensInExaEsByChoice[2]!==undefined ? (new BigNumber(ethers.utils.bigNumberify(this.state.totalBetTokensInExaEsByChoice[2]))).dividedBy(10**18).toFixed() : undefined
+      // Object.entries(this.state.totalBetTokensInExaEsByChoice[0])
+      this.state.totalBetTokensInExaEsByChoice[0] !== undefined
+        ? ethers.utils.formatEther(ethers.utils.bigNumberify(this.state.totalBetTokensInExaEsByChoice[0]) || ethers.utils.bigNumberify(0))
+        : undefined,
+      // Object.entries(this.state.totalBetTokensInExaEsByChoice[1])
+      this.state.totalBetTokensInExaEsByChoice[1] !== undefined
+        ? ethers.utils.formatEther(ethers.utils.bigNumberify(this.state.totalBetTokensInExaEsByChoice[1]) || ethers.utils.bigNumberify(0))
+        : undefined,
+      // Object.entries(this.state.totalBetTokensInExaEsByChoice[2])
+      this.state.totalBetTokensInExaEsByChoice[2] !== undefined
+        ? ethers.utils.formatEther(ethers.utils.bigNumberify(this.state.totalBetTokensInExaEsByChoice[2]) || ethers.utils.bigNumberify(0))
+        : undefined
     ];
+    //
+    const totalPrizePool //= 1
+      = this.state.totalBetTokensInExaEsByChoice[0] !== undefined
+      && this.state.totalBetTokensInExaEsByChoice[1] !== undefined
+      && this.state.totalBetTokensInExaEsByChoice[2] !== undefined
+        ? ethers.utils.formatEther(
+          ethers.utils.bigNumberify(this.state.totalBetTokensInExaEsByChoice[0] || 0)
+            .add(ethers.utils.bigNumberify(this.state.totalBetTokensInExaEsByChoice[1] || 0))
+            .add(ethers.utils.bigNumberify(this.state.totalBetTokensInExaEsByChoice[2] || 0))
+            .mul(ethers.utils.bigNumberify(this.state.prizePercentPerThousand || 0))
+            .div(1000)
+            || '0'
+        ) : null;
+
+
 
     let modalClose = () => this.setState({ showTransactionModal: false });
 
@@ -138,48 +206,56 @@ class BetView extends Component {
             : null
             }</p>
           <p>Description: {this.state.description}</p>
-          <p>Start Time: {new Date(this.state.creationTimestamp * 1000).toLocaleString() + ' (in your local timezone)'}</p>
-          <p>Pause Time: {new Date(this.state.pauseTimestamp * 1000).toLocaleString() + ' (in your local timezone)'}</p>
+          <p>Start Time: {this.state.creationTimestamp ? new Date(this.state.creationTimestamp * 1000).toLocaleString() + ' (in your local timezone)' : 'Loading...'}</p>
+          <p>Pause Time: {this.state.pauseTimestamp ? new Date(this.state.pauseTimestamp * 1000).toLocaleString() + ' (in your local timezone)' : 'Loading...'}</p>
           <p>Fees: {
-            this.state.pricePercentPerThousand
+            fees
             ? fees + '%'
             : 'Loading..'
           }</p>
           <p>Minimum: {
-            this.state.minimumBetInExaEs
-            ? minimumBetInEs
+            minimumBetInEs
+            ? minimumBetInEs + ' ES'
             : 'Loading..'
           }</p>
           <p>Total Prize Pool: {
-            this.state.totalPrize
-            ? totalPrizeInEs + ' ES'
+            totalPrizePool
+            ? totalPrizePool + ' ES'
             : 'Loading..'
           }</p>
           <p>Yes Amount: {
-            this.state.totalBetTokensInExaEsByChoice[1]
+            totalBetTokensInEsByChoice[1]
             ? totalBetTokensInEsByChoice[1] + ' ES'
             : 'Loading..'
           }</p>
           <p>No Amount: {
-            this.state.totalBetTokensInExaEsByChoice[0]
+            totalBetTokensInEsByChoice[0]
             ? totalBetTokensInEsByChoice[0] + ' ES'
             : 'Loading..'
           }</p>
           {
             this.state.isDrawPossible
-            ?
-              (<p>Draw Amount: {
-              this.state.totalBetTokensInExaEsByChoice[2]
-              ? totalBetTokensInEsByChoice[2] + ' ES'
-              : 'Loading..'
-              }</p>)
-            : null
+            ? (<p>Draw Amount: {
+              totalBetTokensInEsByChoice[2]
+                ? totalBetTokensInEsByChoice[2] + ' ES'
+                : 'Loading..'
+                }</p>)
+              : null
           }
-          Predict Now:&nbsp;
-          <Button variant="success" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 1 })}}>Yes</Button>
-          <Button variant="danger" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 0 })}}>No</Button>
-          <Button variant="warning" disabled={!this.state.isDrawPossible} onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</Button>
+          <>
+            Predict Now:&nbsp;
+            <Button variant="success" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 1 })}}>Yes</Button>
+            <Button variant="danger" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 0 })}}>No</Button>
+            <Button variant="warning" disabled={!this.state.isDrawPossible} onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</Button>
+          </>
 
+          <>
+            <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+              <Tab title="Yes">ye</Tab>
+              <Tab title="No"></Tab>
+              <Tab title="Draw"></Tab>
+            </Tabs>
+          </>
 
         </Card.Body>
         : 'This bet address is not valid'
@@ -193,7 +269,7 @@ class BetView extends Component {
             estimator: this.betInstance.estimate.enterBet,
             contract: this.betInstance,
             arguments: [this.state.userChoice],
-            minimumBetInEs: this.state.minimumBetInExaEs!==undefined ? (new BigNumber(ethers.utils.bigNumberify(this.state.minimumBetInExaEs))).dividedBy(10**18).toFixed() : undefined
+            minimumBetInEs
           }}
           />
       </Card>

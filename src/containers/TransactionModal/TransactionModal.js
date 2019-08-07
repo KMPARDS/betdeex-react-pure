@@ -24,37 +24,14 @@ class TransactionModal extends Component {
     sendingTx: false,
     txHash: '',
     pending: true,
-    pendingTime: 0.0
+    pendingTime: 0.0,
+    insufficientAllowance: false
   }
-  // componentDidUpdate = async prevProps => {
-  //   if(this.props.show && ( prevProps.show != this.props.show )) {
-  //     // const estimatedGas = (await this.props.ethereum.estimator(...this.props.ethereum.arguments)).toNumber();
-  //     // const ethGasStationResponse = (await axios.get('https://ethgasstation.info/json/ethgasAPI.json')).data;
-  //     // console.log(ethGasStationResponse);
-  //     // this.setState({
-  //     //   ethGasStation: [
-  //     //     ethGasStationResponse['safeLow'],
-  //     //     ethGasStationResponse['average'],
-  //     //     ethGasStationResponse['fast'],
-  //     //     ethGasStationResponse['fastest']
-  //     //   ],
-  //     //   estimatedGas
-  //     // });
-  //   }
-  //
-  //   //console.log(await this.props.estimator() );
-  //
-  //   //
-  //   // let data = ethers.utils.hexDataSlice(ethers.utils.id('fee()'), 0, 4);
-  //   //
-  //   // let transaction = {
-  //   //     to: address,
-  //   //     data: data
-  //   // }
-  //   //
-  //   // let callPromise = defaultProvider.call(transaction);
-  //
-  // }
+  componentDidUpdate = async prevProps => {
+    if(this.props.show && ( prevProps.show != this.props.show )) {
+      this.amountInput.focus();
+    }
+  }
 
   showEstimateGasScreen = async () => {
     this.setState({
@@ -82,6 +59,9 @@ class TransactionModal extends Component {
 
       this.setState({ currentScreen: 1 });
     } catch (e) {
+      if(e.message.includes('gas required exceeds allowance')) {
+        this.setState({ insufficientAllowance: true });
+      }
       this.setState({ estimating: false, estimationError: 'There was this error while estimating: ' + e.message })
     }
   }
@@ -97,10 +77,10 @@ class TransactionModal extends Component {
       currentScreen: 3,
       txHash: response.hash,
       pending: true,
-      pendingTime: 0.0
+      pendingTime: 0
     });
     const intervalId = setInterval(() => {
-      this.setState({ pendingTime: this.state.pendingTime+0.01 })
+      this.setState({ pendingTime: this.state.pendingTime+2 })
     }, 10);
     await response.wait();
     clearInterval(intervalId);
@@ -128,15 +108,17 @@ class TransactionModal extends Component {
     else if(this.state.currentScreen === 0) {
       screenContent = (
         <Modal.Body>
-          <h5>Enter the amount of ES to bet on {this.props.ethereum.arguments[0] === 0 ? 'NO' : (this.props.ethereum.arguments[0] === 1 ? 'YES' : 'DRAW')}</h5>
+          <h5>Enter the amount of ES to bet on {this.props.ethereum.arguments[0] === 0 ? 'NO' : (this.props.ethereum.arguments[0] === 1 ? 'YES' : 'DRAW')} option</h5>
           <InputGroup className="mb-3">
-            <FormControl onKeyUp={ ev => {
-              try {
-                this.setState({ exaEsTokensToBet: ethers.utils.parseEther(ev.target.value), estimationError: '' });
-              } catch(e) {
-                this.setState({ estimationError: 'Please enter the amount properly' })
-              }
-            } }
+            <FormControl
+              ref={input => this.amountInput = input}
+              onKeyUp={ ev => {
+                try {
+                  this.setState({ exaEsTokensToBet: ethers.utils.parseEther(ev.target.value), estimationError: '' });
+                } catch(e) {
+                  this.setState({ estimationError: 'Please enter the amount properly' })
+                }
+              } }
               placeholder={`Minimum is ${this.props.ethereum.minimumBetInEs} ES`}
             />
             <InputGroup.Append>
@@ -153,7 +135,20 @@ class TransactionModal extends Component {
           }
 
           <div style={{display:'block', textAlign: 'center'}}>
-          <Button onClick={this.showEstimateGasScreen} disabled={this.state.estimating}>
+          {this.state.insufficientAllowance
+            ? <>
+              <Button variant="success" onClick={() => this.props.history.push('/account')}>Increase Allowance</Button>
+              <Button onClick={
+                () => {
+                  this.amountInput.focus();
+                  this.setState({
+                    insufficientAllowance: false,
+                    estimationError: false
+                  });
+                }
+              }>Change bet amount</Button>
+            </>
+            : <Button onClick={this.showEstimateGasScreen} disabled={this.state.estimating}>
           {this.state.estimating ?
           <Spinner
             as="span"
@@ -165,6 +160,7 @@ class TransactionModal extends Component {
           /> : null}
             {this.state.estimating ? 'Estimating Gas' : 'Estimate Network Fees'}
           </Button>
+          }
           </div>
         </Modal.Body>
       );
@@ -200,7 +196,7 @@ class TransactionModal extends Component {
 
           <Row style={{marginTop: '12px'}}>
             <Col style={{paddingRight: '6px'}}>
-              <Button variant="secondary" size="lg" block>Reject</Button>
+              <Button variant="secondary" size="lg" block onClick={this.props.hideFunction}>Reject</Button>
             </Col>
             <Col style={{paddingLeft: '6px'}}>
               <Button variant="primary" size="lg" block onClick={this.sendTransaction} disabled={this.state.sendingTx}>
@@ -259,8 +255,8 @@ class TransactionModal extends Component {
           <Modal.Body>
             <p>{
               this.state.pending
-              ? `Your transaction is pending... (${(Math.round(this.state.pendingTime * 100) / 100).toFixed(2)})`
-              : `Your transaction is confirmed! It took like ${(Math.round(this.state.pendingTime * 100) / 100)} seconds`
+              ? `Your transaction is pending... (${(Math.round(this.state.pendingTime) / 100).toFixed(2)})`
+              : `Your transaction is confirmed! It took like ${(Math.round(this.state.pendingTime) / 100)} seconds`
             }</p>
             <p>You can view your transaction on&nbsp;<a href={url} target="_blank" style={{wordBreak: 'keep-all'}}>Etherscan</a>.</p>
           </Modal.Body>
