@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Button, Tabs, Tab } from 'react-bootstrap';
+import { Card, Button, Tabs, Tab, Table } from 'react-bootstrap';
 
 import TransactionModal from '../TransactionModal/TransactionModal';
+import ChoiceBettingsTable from './ChoiceBettingsTable';
 import { categoryArray, subCategoryArray } from '../../env';
 
 import createBetInstance from '../../ethereum/betInstance';
@@ -32,7 +33,8 @@ class BetView extends Component {
     totalBetTokensInExaEsByChoice: [undefined,undefined,undefined],
     getNumberOfChoiceBettors: [undefined,undefined,undefined],
     showTransactionModal: false,
-    userChoice: undefined
+    userChoice: undefined,
+    bettings: []
   }
 
   loadMy = async (property, outsideValue, shouldItloadAgain) => {
@@ -117,20 +119,30 @@ class BetView extends Component {
       betInstance.getNumberOfChoiceBettors(2)
     ], true);
 
-
+    this.seeChoiceBettings(1);
 
     setTimeout(()=> {
       localStorage.setItem('betdeex-betsMapping', JSON.stringify(this.props.store.betsMapping));
     }, 5000);
   }
 
-  seeChoiceBettors = async() => {
+  seeChoiceBettings = async choice => {
+    this.setState({ bettings: [] });
+
     const newBettingEventSig = ethers.utils.id("NewBetting(address,address,uint8,uint256)");
     console.log('newBettingEventSig', newBettingEventSig);
     const topics = [
-      newBettingEventSig, null, ethers.utils.hexZeroPad(this.props.store.walletInstance.address, 32), null
+      newBettingEventSig,
+      ethers.utils.hexZeroPad(this.betInstance.address, 32),
+      null,
+      ethers.utils.hexZeroPad(ethers.utils.bigNumberify(choice)._hex, 32)
     ];
     console.log('topics', topics);
+    // console.log('othertopic', [
+    //   newBettingEventSig,
+    //   ethers.utils.hexZeroPad(this.betInstance.address, 32),
+    //   ethers.utils.hexZeroPad(ethers.utils.bigNumberify(choice)._hex, 32), null
+    // ]);
 
     const logs = await this.props.store.providerInstance.getLogs({
       address: this.betdeexInstance.address,
@@ -139,7 +151,18 @@ class BetView extends Component {
       topics
     });
 
+    console.log('choice bettors', logs);
 
+    const bettings = [];
+
+    for(const log of logs) {
+      bettings.push({
+        address: ethers.utils.hexStripZeros(log.topics[2]),
+        amount: ethers.utils.formatEther(ethers.utils.bigNumberify(log.data))
+      });
+    }
+
+    this.setState({ bettings });
   }
 
   render() {
@@ -194,6 +217,17 @@ console.log(this.state);
 
 
     let modalClose = () => this.setState({ showTransactionModal: false });
+
+
+    const bettings = this.state.bettings.map(betting => (
+      <tr>
+        <td>{betting.address}</td>
+        <td>{betting.amount}</td>
+      </tr>
+    ));
+
+
+
 
     return (
       <Card>
@@ -250,10 +284,17 @@ console.log(this.state);
           </>
 
           <>
-            <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-              <Tab title="Yes">ye</Tab>
-              <Tab title="No"></Tab>
-              <Tab title="Draw"></Tab>
+            <Tabs defaultActiveKey="yes" id="uncontrolled-tab-example"
+            onSelect={key => this.seeChoiceBettings(key === 'yes' ? 1 : (key === 'no' ? 0 : 2))}>
+              <Tab title="Yes" eventKey="yes" onSelect={() => this.seeChoiceBettings(1)}>
+                {bettings.length ? <ChoiceBettingsTable>{bettings}</ChoiceBettingsTable> : 'Please wait fetching bettings on the contract from blockchain...'}
+              </Tab>
+              <Tab title="No" eventKey="no" onSelect={() => this.seeChoiceBettings(0)}>
+                {bettings.length ? <ChoiceBettingsTable>{bettings}</ChoiceBettingsTable> : 'Please wait fetching bettings on the contract from blockchain...'}
+              </Tab>
+              <Tab title="Draw" eventKey="draw" onSelect={() => this.seeChoiceBettings(2)}>
+                {bettings.length ? <ChoiceBettingsTable>{bettings}</ChoiceBettingsTable> : 'Please wait fetching bettings on the contract from blockchain...'}
+              </Tab>
             </Tabs>
           </>
 
