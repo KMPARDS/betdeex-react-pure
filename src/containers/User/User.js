@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { InputGroup, FormControl, Button, Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { betdeex } from '../../env.js';
-import TransactionModal from '../TransactionModal/TransactionModal';
+import TransactionModal from '../TransactionModal/TransactionModal2';
+
+import createBetInstance from '../../ethereum/betInstance';
 
 const ethers = require('ethers');
 
@@ -16,14 +18,17 @@ class User extends Component {
     newAllowance: undefined,
     badAllowanceValue: false,
     bettingsArray: [],
-    loadingBettingsArray: true
+    loadingBettingsArray: true,
+    showUpdateAllowanceTransactionModal: false,
+    showWithdrawTransactionModal: false,
+    // bettingWinnings:
   }
   componentDidMount = async () => {
     if(Object.entries(this.props.store.walletInstance).length) {
       window.walletInstance = this.props.store.walletInstance;
       this.setState({ userAddress: await this.props.store.walletInstance.getAddress() });
       this.refreshBalances();
-      this.showUserBettings();
+      // this.showUserBettings();
     }
 
   }
@@ -78,6 +83,9 @@ class User extends Component {
       const choice = choiceId === 0 ? 'No' : (
         choiceId === 1 ? 'Yes' : 'Draw'
       );
+      const betInstance = createBetInstance(betAddress);
+      const endTimestamp = await betInstance.functions.endTimestamp();
+      // console.log('endedBy', endedBy);
       bettingsArray.push(
         <tr key={'bettings-'+index}>
           <td>{index}</td>
@@ -85,7 +93,10 @@ class User extends Component {
           <td>{choice}</td>
           <td>{ethers.utils.formatEther(ethers.utils.bigNumberify(log.data))} ES</td>
           <td>{block.timestamp}</td>
-          <td>Not released</td>
+          <td>{endTimestamp.gt(0) ? 'Bet not ended yet'
+          : <>
+            <Button>See winning</Button>
+          </>}</td>
         </tr>
       );
     }
@@ -134,7 +145,9 @@ class User extends Component {
                     } : {}}
                   />
                   <InputGroup.Append>
-                    <Button variant="outline-primary">Update now</Button>
+                    <Button variant="outline-primary"
+                      onClick={() => this.setState({ showUpdateAllowanceTransactionModal: true })}
+                    >Update now</Button>
                     <Button
                       variant="outline-danger"
                       onClick={() => this.setState({ updateAllowance: false })}
@@ -145,31 +158,58 @@ class User extends Component {
                 </InputGroup>
               }
 
-              {this.state.loadingBettingsArray
-                ? 'Please wait loading your previous bettings...'
-                : <Table responsive>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Bet</th>
-                    <th>Choice</th>
-                    <th>Amount</th>
-                    <th>Betting time</th>
-                    <th>Result</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.state.bettingsArray}
-                </tbody>
-              </Table>
-              }
-
+              <Button
+                variant="outline-danger"
+                onClick={() => this.props.history.push('/user/history')}
+              >
+                View Betting History
+              </Button>
           </>
           : 'Please sign in by clicking on Era Swap Wallet'
         }
-        {/*<TransactionModal
+        <TransactionModal
+          show={this.state.showUpdateAllowanceTransactionModal}
+          hideFunction={() => this.setState({ showUpdateAllowanceTransactionModal: false })}
+          ethereum={{
+            transactor: this.props.store.esInstance.functions.approve,
+            estimator: this.props.store.esInstance.estimate.approve,
+            contract: this.props.store.esInstance,
+            contractName: 'EraSwap',
+            arguments: [
+              this.props.store.betdeexInstance.address, ethers.utils.parseEther(this.state.newAllowance || '0')
+            ],
+            ESAmount: this.state.newAllowance,
+            headingName: 'Approve Function',
+            functionName: 'Approve',
+            directGasScreen: true,
+            continueFunction: () => {
+              this.refreshBalances();
+              this.setState({ showUpdateAllowanceTransactionModal: false, updateAllowance: false });
+            }
+          }}
+          />
 
-        />*/}
+          <TransactionModal
+            show={this.state.showUpdateAllowanceTransactionModal}
+            hideFunction={() => this.setState({ showUpdateAllowanceTransactionModal: false })}
+            ethereum={{
+              transactor: this.props.store.esInstance.functions.approve,
+              estimator: this.props.store.esInstance.estimate.approve,
+              contract: this.props.store.esInstance,
+              contractName: 'EraSwap',
+              arguments: [
+                this.props.store.betdeexInstance.address, ethers.utils.parseEther(this.state.newAllowance || '0')
+              ],
+              ESAmount: this.state.newAllowance,
+              headingName: 'Approve Function',
+              functionName: 'Approve',
+              directGasScreen: true,
+              continueFunction: () => {
+                this.refreshBalances();
+                this.setState({ showUpdateAllowanceTransactionModal: false, updateAllowance: false });
+              }
+            }}
+            />
       </div>
     );
   }

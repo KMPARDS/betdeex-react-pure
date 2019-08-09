@@ -34,7 +34,8 @@ class BetView extends Component {
     getNumberOfChoiceBettors: [undefined,undefined,undefined],
     showTransactionModal: false,
     userChoice: undefined,
-    bettings: []
+    bettings: [],
+    fetchingBettings: true
   }
 
   loadMy = async (property, outsideValue, shouldItloadAgain) => {
@@ -127,7 +128,7 @@ class BetView extends Component {
   }
 
   seeChoiceBettings = async choice => {
-    this.setState({ bettings: [] });
+    this.setState({ fetchingBettings: true });
 
     const newBettingEventSig = ethers.utils.id("NewBetting(address,address,uint8,uint256)");
     console.log('newBettingEventSig', newBettingEventSig);
@@ -162,7 +163,7 @@ class BetView extends Component {
       });
     }
 
-    this.setState({ bettings });
+    this.setState({ bettings, fetchingBettings: false });
   }
 
   render() {
@@ -222,7 +223,7 @@ console.log(this.state);
     const bettings = this.state.bettings.map(betting => (
       <tr>
         <td>{betting.address}</td>
-        <td>{betting.amount}</td>
+        <td>{betting.amount} ES</td>
       </tr>
     ));
 
@@ -286,14 +287,14 @@ console.log(this.state);
           <>
             <Tabs defaultActiveKey="yes" id="uncontrolled-tab-example"
             onSelect={key => this.seeChoiceBettings(key === 'yes' ? 1 : (key === 'no' ? 0 : 2))}>
-              <Tab title="Yes" eventKey="yes" onSelect={() => this.seeChoiceBettings(1)}>
-                {bettings.length ? <ChoiceBettingsTable>{bettings}</ChoiceBettingsTable> : 'Please wait fetching bettings on the contract from blockchain...'}
+              <Tab title="Yes" eventKey="yes">
+                {!this.state.fetchingBettings ? <ChoiceBettingsTable>{Object.values(bettings).length ? bettings : 'There are no bettings on Yes'}</ChoiceBettingsTable> : 'Please wait fetching bettings on the contract from blockchain...'}
               </Tab>
-              <Tab title="No" eventKey="no" onSelect={() => this.seeChoiceBettings(0)}>
-                {bettings.length ? <ChoiceBettingsTable>{bettings}</ChoiceBettingsTable> : 'Please wait fetching bettings on the contract from blockchain...'}
+              <Tab title="No" eventKey="no">
+                {!this.state.fetchingBettings ? <ChoiceBettingsTable>{Object.values(bettings).length ? bettings : 'There are no bettings'}</ChoiceBettingsTable> : 'Please wait fetching bettings on the contract from blockchain...'}
               </Tab>
-              <Tab title="Draw" eventKey="draw" onSelect={() => this.seeChoiceBettings(2)}>
-                {bettings.length ? <ChoiceBettingsTable>{bettings}</ChoiceBettingsTable> : 'Please wait fetching bettings on the contract from blockchain...'}
+              <Tab title="Draw" eventKey="draw">
+                {!this.state.fetchingBettings ? <ChoiceBettingsTable>{Object.values(bettings).length ? bettings : 'There are no bettings'}</ChoiceBettingsTable> : 'Please wait fetching bettings on the contract from blockchain...'}
               </Tab>
             </Tabs>
           </>

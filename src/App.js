@@ -8,6 +8,7 @@ import Sidebar from './containers/Sidebar/Sidebar';
 import CreateWallet from './containers/CreateWallet/CreateWallet';
 import LoadWallet from './containers/LoadWallet/LoadWallet';
 import User from './containers/User/User';
+import History from './containers/User/History';
 import Logout from './containers/User/Logout';
 import BetsList from './containers/BetsList/BetsList';
 import BetView from './containers/BetView/BetView';
@@ -64,6 +65,7 @@ function App(props) {
               <Route path="/create-wallet" exact component={CreateWallet} />
               <Route path="/load-wallet" component={LoadWallet} />
               <Route path="/user" exact component={User} />
+              <Route path="/user/history" exact component={History} />
               <Route path="/logout" exact component={Logout} />
               <Route path="/bet/:address" exact component={BetView} />
               <Route path="/:category" exact render={props => {
