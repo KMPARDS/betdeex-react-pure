@@ -3,7 +3,7 @@ import { InputGroup, FormControl, Button, Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { betdeex } from '../../env.js';
 import TransactionModal from '../TransactionModal/TransactionModal2';
-
+import Bet from './Bet';
 import createBetInstance from '../../ethereum/betInstance';
 
 const ethers = require('ethers');
@@ -17,7 +17,7 @@ class User extends Component {
     updateAllowance: false,
     newAllowance: undefined,
     badAllowanceValue: false,
-    bettingsArray: [],
+    bettingBetAddressArray: [],
     loadingBettingsArray: true,
     showUpdateAllowanceTransactionModal: false,
     showWithdrawTransactionModal: false,
@@ -28,7 +28,7 @@ class User extends Component {
       window.walletInstance = this.props.store.walletInstance;
       this.setState({ userAddress: await this.props.store.walletInstance.getAddress() });
       this.refreshBalances();
-      // this.showUserBettings();
+      this.showUserBettings();
     }
 
   }
@@ -73,35 +73,18 @@ class User extends Component {
 
     console.log('fetching logs from blockchain', logs);
 
-    const bettingsArray = [];
+    const bettingBetAddressArray = [];
 
-    for(let index = 0; index < logs.length; index++) {
-      const log = logs[index];
-      const block = await this.props.store.providerInstance.getBlock(log.blockNumber);
+    for(const log of logs) {
       const betAddress = ethers.utils.hexStripZeros(log.topics[1]);
-      const choiceId = Number(log.topics[3]);
-      const choice = choiceId === 0 ? 'No' : (
-        choiceId === 1 ? 'Yes' : 'Draw'
-      );
-      const betInstance = createBetInstance(betAddress);
-      const endTimestamp = await betInstance.functions.endTimestamp();
-      // console.log('endedBy', endedBy);
-      bettingsArray.push(
-        <tr key={'bettings-'+index}>
-          <td>{index}</td>
-          <td onClick={() => this.props.history.push('/bet/'+betAddress)}>{betAddress.slice(0, 6) + '...' + betAddress.slice(betAddress.length - 2)}</td>
-          <td>{choice}</td>
-          <td>{ethers.utils.formatEther(ethers.utils.bigNumberify(log.data))} ES</td>
-          <td>{block.timestamp}</td>
-          <td>{endTimestamp.gt(0) ? 'Bet not ended yet'
-          : <>
-            <Button>See winning</Button>
-          </>}</td>
-        </tr>
-      );
+      if(!bettingBetAddressArray.includes(betAddress)) {
+        bettingBetAddressArray.push(betAddress);
+      }
     }
 
-    this.setState({ bettingsArray, loadingBettingsArray: false });
+    console.log('bettingBetAddressArray', bettingBetAddressArray);
+
+    this.setState({ bettingBetAddressArray, loadingBettingsArray: false });
   }
 
   render() {
@@ -164,6 +147,11 @@ class User extends Component {
               >
                 View Betting History
               </Button>
+
+              {this.state.bettingBetAddressArray.map(
+                address => <Bet address={address} />
+              )}
+
           </>
           : 'Please sign in by clicking on Era Swap Wallet'
         }
