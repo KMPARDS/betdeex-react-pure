@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Navbar, Nav, DropdownButton, Dropdown } from 'react-bootstrap';
 import { withRouter, Link } from 'react-router-dom';
+import { esContract, betdeex } from '../../env';
+
+const ethers = require('ethers');
 
 class NavbarComponent extends Component {
   state = {
@@ -16,6 +19,15 @@ class NavbarComponent extends Component {
           userAddress = await action.payload.getAddress();
         }
         this.setState({ userAddress });
+
+        const provider = userAddress ? action.payload : this.props.store.providerInstance;
+
+        // update es instance
+        this.props.dispatch({ type: 'LOAD-ES-INSTANCE', payload: new ethers.Contract(esContract.address, esContract.abi, provider) });
+
+        // update betdeex instance
+        this.props.dispatch({ type: 'LOAD-BETDEEX-INSTANCE', payload: new ethers.Contract(betdeex.address, betdeex.abi, provider) });
+
       }
     };
   }
