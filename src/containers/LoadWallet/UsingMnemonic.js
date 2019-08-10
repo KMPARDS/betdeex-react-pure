@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Card, Form, Button, Alert, Spinner } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 
-import { esContract } from '../../env';
+import { esContract, network } from '../../env';
 
 const bip39 = require('bip39');
 const hdkey = require('ethereumjs-wallet/hdkey');
@@ -46,9 +46,9 @@ class UsingMnemonic extends Component {
       ];
 
       const ethersWalletArray = [
-        new ethers.Wallet(privateKeys[0], new ethers.providers.InfuraProvider('rinkeby')),
-        new ethers.Wallet(privateKeys[1], new ethers.providers.InfuraProvider('rinkeby')),
-        new ethers.Wallet(privateKeys[2], new ethers.providers.InfuraProvider('rinkeby'))
+        new ethers.Wallet(privateKeys[0], new ethers.providers.InfuraProvider(network)),
+        new ethers.Wallet(privateKeys[1], new ethers.providers.InfuraProvider(network)),
+        new ethers.Wallet(privateKeys[2], new ethers.providers.InfuraProvider(network))
       ]
 
       console.log(ethersWalletArray);
@@ -85,7 +85,7 @@ class UsingMnemonic extends Component {
     console.log("m/44'/60'/0'/0/"+this.state.wallets.length);
     const newPrivateKey = this.state.hdWallet.derivePath("m/44'/60'/0'/0/"+this.state.wallets.length)._hdkey._privateKey;
     console.log(newPrivateKey);
-    const newWalletInstance = new ethers.Wallet(newPrivateKey, new ethers.providers.InfuraProvider('rinkeby'));
+    const newWalletInstance = new ethers.Wallet(newPrivateKey, new ethers.providers.InfuraProvider(network));
     console.log(newWalletInstance.getAddress());
     const newAddress = await newWalletInstance.getAddress();
     const ethBal = Number(await newWalletInstance.getBalance()) / (10**18);

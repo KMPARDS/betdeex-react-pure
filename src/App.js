@@ -17,7 +17,7 @@ import provider from './ethereum/provider';
 import betdeexInstance from './ethereum/betdeexInstance';
 
 import './App.css';
-import { esContract, betdeex, categoryArray, subCategoryArray } from './env.js';
+import { esContract, betdeex, categoryArray, subCategoryArray, network } from './env.js';
 
 const ethers = require('ethers');
 
@@ -42,7 +42,7 @@ function App(props) {
 
   // load es instance
   if(Object.entries(props.store.esInstance).length === 0) {
-    console.log(provider, new ethers.providers.InfuraProvider('rinkeby'));
+    console.log(provider, new ethers.providers.InfuraProvider(network));
     props.dispatch({ type: 'LOAD-ES-INSTANCE', payload: new ethers.Contract(esContract.address, esContract.abi, provider) });
   }
 

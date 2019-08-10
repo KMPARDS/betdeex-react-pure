@@ -4,6 +4,8 @@ import { Card, Form, Button, Alert, Spinner } from 'react-bootstrap';
 
 import { withRouter } from 'react-router-dom';
 
+import { network } from '../../env';
+
 const ethereumjs = require('ethereumjs-wallet');
 const ethers = require('ethers');
 
@@ -51,7 +53,7 @@ class UsingKeystoreFile extends Component {
       try {
         const hdWallet =  ethereumjs.fromV3(this.state.keystoreContent, this.state.password);
         const privateKey = hdWallet.getPrivateKey().toString('hex');
-        const wallet = new ethers.Wallet(privateKey, new ethers.providers.InfuraProvider('rinkeby'));
+        const wallet = new ethers.Wallet(privateKey, new ethers.providers.InfuraProvider(network));
         console.log(wallet.address);
 
         this.props.dispatch({ type: 'LOAD-WALLET-INSTANCE', payload: wallet });

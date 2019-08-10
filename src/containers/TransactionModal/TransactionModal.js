@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Modal, Button, InputGroup, FormControl, Spinner, Alert, Badge, Card, ListGroup, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 
-import { betdeex } from '../../env';
+import { betdeex, network } from '../../env';
 import createBetInstance from '../../ethereum/betInstance';
 
 const ethers = require('ethers');
@@ -248,7 +248,7 @@ class TransactionModal extends Component {
 
     else if(this.state.currentScreen === 3) {
       // after the transaction is sent
-      const url = `https://rinkeby.etherscan.io/tx/${this.state.txHash}`;
+      const url = `https://${network === 'homestead' ? '' : 'rinkeby.'}etherscan.io/tx/${this.state.txHash}`;
 
       screenContent = (
         <div>

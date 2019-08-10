@@ -20,7 +20,7 @@ class Bet extends Component {
     withdrawing: 0,
     withdrawErrorMessage: '',
     withdrawDone: false,
-    alreadyClaimed: false
+    alreadyClaimed: undefined
   };
 
   componentDidMount = async() => {
@@ -44,7 +44,7 @@ class Bet extends Component {
 
     const alreadyClaimed = await this.betInstance.functions.bettorHasClaimed(this.props.store.walletInstance.address);
 
-    // console.log('alreadyClaimed', alreadyClaimed);
+    console.log('alreadyClaimed', alreadyClaimed);
 
     this.setState({ alreadyClaimed });
 
