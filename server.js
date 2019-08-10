@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 
 app.use(function(req,res,next) {
   if(req.headers["x-forwarded-proto"] == "http") {
-    res.redirect("https://www.timeally.io" + req.url);
+    // res.redirect("https://www.betdeex.com" + req.url);
   } else {
     return next();
   }
