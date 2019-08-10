@@ -148,9 +148,10 @@ class User extends Component {
                 View Betting History
               </Button>
 
-              {this.state.bettingBetAddressArray.map(
+              {this.state.bettingBetAddressArray.length ?
+                this.state.bettingBetAddressArray.map(
                 address => <Bet address={address} />
-              )}
+              ) : 'Please wait loading your bettings...'}
 
           </>
           : 'Please sign in by clicking on Era Swap Wallet'
@@ -176,28 +177,6 @@ class User extends Component {
             }
           }}
           />
-
-          <TransactionModal
-            show={this.state.showUpdateAllowanceTransactionModal}
-            hideFunction={() => this.setState({ showUpdateAllowanceTransactionModal: false })}
-            ethereum={{
-              transactor: this.props.store.esInstance.functions.approve,
-              estimator: this.props.store.esInstance.estimate.approve,
-              contract: this.props.store.esInstance,
-              contractName: 'EraSwap',
-              arguments: [
-                this.props.store.betdeexInstance.address, ethers.utils.parseEther(this.state.newAllowance || '0')
-              ],
-              ESAmount: this.state.newAllowance,
-              headingName: 'Approve Function',
-              functionName: 'Approve',
-              directGasScreen: true,
-              continueFunction: () => {
-                this.refreshBalances();
-                this.setState({ showUpdateAllowanceTransactionModal: false, updateAllowance: false });
-              }
-            }}
-            />
       </div>
     );
   }
