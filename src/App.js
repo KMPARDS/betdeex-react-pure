@@ -5,6 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 
 import Navbar from './containers/Navbar/Navbar';
 import Sidebar from './containers/Sidebar/Sidebar';
+import Home from './containers/Home/Home';
 import CreateWallet from './containers/CreateWallet/CreateWallet';
 import LoadWallet from './containers/LoadWallet/LoadWallet';
 import User from './containers/User/User';
@@ -56,19 +57,21 @@ function App(props) {
       <div className="App">
         <Navbar />
         <Row>
-          <Col style={{margin: '15px 0 0 15px'}}>
+          {/*<Col style={{margin: '15px 0 0 15px'}}>
+          {console.log}
             <Sidebar />
-          </Col>
-          <Col xs="9" style={{margin: '15px 15px 0 0', paddingLeft: '0'}}>
+          </Col>*/}
+          <Col style={{margin: false ? '15px 15px 0 0' : '0', paddingLeft: '0'}}>
             <Switch>
-              <Route path="/" exact component={BetsList} />
+              <Route path="/" exact component={Home} />
               <Route path="/create-wallet" exact component={CreateWallet} />
               <Route path="/load-wallet" component={LoadWallet} />
               <Route path="/user" exact component={User} />
               <Route path="/user/history" exact component={History} />
               <Route path="/logout" exact component={Logout} />
               <Route path="/bet/:address" exact component={BetView} />
-              <Route path="/:category" exact render={props => {
+              <Route path="/explore" exact component={BetsList} />
+              <Route path="/explore/:category" exact render={props => {
                 let categoryWordArray = [];
                 for(const categoryWord of props.match.params.category.split('-')) {
                   categoryWordArray.push(categoryWord.charAt(0).toUpperCase() + categoryWord.slice(1));
@@ -77,7 +80,7 @@ function App(props) {
 
                 return <BetsList categoryId={categoryId} />;
               }} />
-              <Route path="/:category/:subCategory" exact render={props => {
+              <Route path="/explore/:category/:subCategory" exact render={props => {
                 let categoryWordArray = [];
                 for(const categoryWord of props.match.params.category.split('-')) {
                   categoryWordArray.push(categoryWord.charAt(0).toUpperCase() + categoryWord.slice(1));

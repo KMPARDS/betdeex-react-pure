@@ -10,7 +10,7 @@ const Sidebar = props => {
     const listOfSubCategories = [];
 
     for(const subCategoryId in subCategoryArray[categoryId]) {
-      const url = `/${categoryArray[categoryId].toLowerCase().split(' ').join('-')}/${subCategoryArray[categoryId][subCategoryId].toLowerCase().split(' ').join('-')}`;
+      const url = `/explore/${categoryArray[categoryId].toLowerCase().split(' ').join('-')}/${subCategoryArray[categoryId][subCategoryId].toLowerCase().split(' ').join('-')}`;
 
       listOfSubCategories.push(
         <Card.Body key={url} onClick={() => props.history.push(url)}>{subCategoryArray[categoryId][subCategoryId]}</Card.Body>
@@ -29,7 +29,9 @@ const Sidebar = props => {
       </Card>
     );
   }
-
+  console.log(props);
+  if(props.location.pathname === '/') return null;
+  
   return (
     <Accordion style={props.style}>
       {listOfCategories}
