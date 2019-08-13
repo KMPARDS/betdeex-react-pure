@@ -27,6 +27,13 @@ const Sidebar = props => {
         </Accordion.Collapse>
 
       </Card>
+      
+      
+      // <li>
+      //   <a href="main.html"><img src="/img/icon/s1.png" alt="" />{categoryArray[categoryId]}</a>
+      // </li>
+ 
+      
     );
   }
   console.log(props);

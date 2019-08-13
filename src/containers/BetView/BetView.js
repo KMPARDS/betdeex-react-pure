@@ -232,6 +232,215 @@ console.log(this.state);
 
     return (
       <Card>
+    <section>
+        <div className="se lp" style={{background:'#eee'}}>
+          <div className="row">
+            {/* TITLE */}
+            <div className="inn-title">
+              <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> View<span> Bets</span></h2>
+              {/* <p>Becoming a gym certified personal fitness trainer is your foundation for success. gym is the only
+                personal trainer certification program that integrates
+              </p> */}              
+            </div>            
+            {/* LEFT SIDE: SPORTS EVENTS */}
+            <div className="event-left col-md-12" >
+              {/*Sports Events in Dubai*/}
+              <ul>
+                <li style={{ borderBottomColor: '#eee'}}>
+                  <div className="betbox">
+                    <div className="market-basics-styles_MarketBasics__header mb-3">
+                      <div className="category-tag-trail-styles_CategoryTagTrail">
+                        <div className="word-trail-styles_WordTrail">
+                          <div className="word-trail-styles_WordTrail__label">Category</div>
+                          <button data-testid="Category-0" className="tag-trail-button">SPORTS</button>
+                        </div>                        
+                      </div>
+                    </div>
+                      <h3 style={{textAlign:'left', fontSize: '23px', fontWeight: '600', color: '#981802'}}>Bet Address: {this.props.match.params.address}</h3>    <h5 style={{textAlign:'left', fontSize: '15px', fontWeight: '100', color: '#981802', textTransform:'capitalize'}}>Description: {this.state.description}</h5>               
+                    <div className="market-preview-styles_MarketPreview__footer">
+                      <article>
+                        <section className="market-properties-styles_MarketProperties">
+                          <ul className="market-properties-styles_MarketProperties__meta">
+                            <li><span>Volume</span><span><span className="value_volume">2.0000
+                                  ETH</span></span>
+                            </li>
+                            <li><span>Minimum</span><span><span className="value_volume">0.03 ES</span></span>
+                            </li>
+                            <li><span>Est. Fee</span><span><span data-tip="0.01" data-event="click focus" className="value_fee">2%</span></span>
+                            </li>
+                            <li><span>Start Time</span><span className="value_expires">May 31,
+                                2019 7:00 AM (UTC 0)</span><span className="market-properties-styles_MarketProperties_value_small">May
+                                31, 2019 12:30 PM (GMT+5:30) (Your timezone)</span>
+                            </li>
+                            <li><span>Pause Time</span><span className="value_expires">May 31,
+                                2019 7:00 AM (UTC 0)</span><span className="market-properties-styles_MarketProperties_value_small">May
+                                31, 2019 12:30 PM (GMT+5:30) (Your timezone)</span>
+                            </li>
+                          </ul>
+                          {/* <div className="inn-tickers">
+                            <a href="booking.html" className="inn-reg-com inn-reg-book" data-toggle="modal" data-target="#betmodal"><i className="fa fa-exchange" aria-hidden="true" /> Place a Bet</a>
+                          </div> */}
+                        </section>
+                          <div class="inn-all-com">                                    
+                              <div class="inn-ev-date">
+                                  <div class="inn-ev-date-left">
+                                      <h4>28 th</h4>
+                                      <span>Total Prize Pool</span>
+                                  </div>
+                                  <div class="inn-ev-date-rig">
+                                      <ul>
+                                          <li> <h4>28 th</h4>
+                                        <span>Yes Amount</span>
+                                          </li>
+                                          <li> <h4>28 th</h4>
+                                        <span>No Amount</span>
+                                          </li>
+                                          <li> <h4>28 th</h4>
+                                        <span>Draw Amount</span>
+                                          </li>                               
+                                      </ul>
+                                  </div>
+                              </div>
+                          </div>
+
+                      </article>
+                    </div>
+                  </div>
+                </li>               
+              </ul>
+            </div>
+            {/* RIGHT SIDE: FEATURE EVENTS */}
+          </div>
+          <div className="inn-title">
+              <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}>Predict<span> Now</span></h2>
+              {/* <p>Becoming a gym certified personal fitness trainer is your foundation for success. gym is the only
+                personal trainer certification program that integrates
+              </p> */}              
+            </div> 
+          <div class="share-btn">
+            
+              <ul>
+                  <li><a style={{background:'#28a745', padding:'10px 30px 10px 30px'}} href="booking.html" class="inn-reg-com inn-reg-book" data-toggle="modal" data-target="#betmodal"> Yes</a>
+                  </li>
+                  <li><a style={{background:'#dc3545', padding:'10px 30px 10px 30px'}} href="booking.html" class="inn-reg-com inn-reg-book" data-toggle="modal" data-target="#betmodal">No</a>
+                  </li>
+                  <li><a style={{background:'#ffc107', padding:'10px 30px 10px 30px'}} href="booking.html" class="inn-reg-com inn-reg-book" data-toggle="modal" data-target="#betmodal">Draw</a>
+                  </li>
+              </ul>
+          </div>
+          <br></br>
+          <div>
+            <ul className="nav nav-tabs" role="tablist">
+              <li className="nav-item">
+                <a className="nav-link active" href="#profile" role="tab" data-toggle="tab">Yes</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#buzz" role="tab" data-toggle="tab">No</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#references" role="tab" data-toggle="tab">Draw</a>
+              </li>
+            </ul>
+            {/* Tab panes */}
+            <div className="tab-content">
+              <div role="tabpanel" className="tab-pane active" id="profile">
+                  <table className="myTable">
+                      <tbody>
+                        <tr>
+                          <th>Sr</th>
+                          <th>Address</th>            
+                          <th>Amount</th>
+                        </tr>
+                        <tr>
+                          <td>01</td>
+                          <td><img src="images/users/2.png" alt="" />
+                            <div className="h-tm-ra">
+                              <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
+                            </div>
+                          </td>           
+                          <td>2000.0 ES</td>
+                        </tr>
+                        <tr>
+                          <td>02</td>
+                          <td><img src="images/users/3.png" alt="" />
+                            <div className="h-tm-ra">
+                              <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
+                            </div>
+                          </td>
+                        
+                          <td>100.0 ES</td>
+                        </tr>         
+                      </tbody>
+                  </table>
+              </div>
+              <div role="tabpanel" className="tab-pane fade" id="buzz">
+              <table className="myTable">
+              <tbody>
+                <tr>
+                  <th>Sr</th>
+                  <th>Address</th>            
+                  <th>Amount</th>
+                </tr>
+                <tr>
+                  <td>01</td>
+                  <td><img src="images/users/2.png" alt="" />
+                    <div className="h-tm-ra">
+                      <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
+                    </div>
+                  </td>           
+                  <td>2000.0 ES</td>
+                </tr>
+                <tr>
+                  <td>02</td>
+                  <td><img src="images/users/3.png" alt="" />
+                    <div className="h-tm-ra">
+                      <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
+                    </div>
+                  </td>
+                
+                  <td>100.0 ES</td>
+                </tr>         
+              </tbody>
+            </table>
+
+              </div>
+              <div role="tabpanel" className="tab-pane fade" id="references">
+              <table className="myTable">
+              <tbody>
+                <tr>
+                  <th>Sr</th>
+                  <th>Address</th>            
+                  <th>Amount</th>
+                </tr>
+                <tr>
+                  <td>01</td>
+                  <td><img src="images/users/2.png" alt="" />
+                    <div className="h-tm-ra">
+                      <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
+                    </div>
+                  </td>           
+                  <td>2000.0 ES</td>
+                </tr>
+                <tr>
+                  <td>02</td>
+                  <td><img src="images/users/3.png" alt="" />
+                    <div className="h-tm-ra">
+                      <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
+                    </div>
+                  </td>
+                
+                  <td>100.0 ES</td>
+                </tr>         
+              </tbody>
+            </table>
+              </div>
+            </div>
+          </div>
+          <br></br>
+         
+        </div>
+        
+      </section>
         { this.state.isBetValid ?
         <Card.Body>
           <p>Bet Address: {this.props.match.params.address}</p>
@@ -288,7 +497,34 @@ console.log(this.state);
             <Tabs defaultActiveKey="yes" id="uncontrolled-tab-example"
             onSelect={key => this.seeChoiceBettings(key === 'yes' ? 1 : (key === 'no' ? 0 : 2))}>
               <Tab title="Yes" eventKey="yes">
-                {!this.state.fetchingBettings ? <ChoiceBettingsTable>{Object.values(bettings).length ? bettings : 'There are no bettings on Yes'}</ChoiceBettingsTable> : 'Please wait fetching bettings on the contract from blockchain...'}
+              <table className="myTable">
+              <tbody>
+                <tr>
+                  <th>Sr</th>
+                  <th>Address</th>            
+                  <th>Amount</th>
+                </tr>
+                <tr>
+                  <td>01</td>
+                  <td><img src="images/users/2.png" alt="" />
+                    <div className="h-tm-ra">
+                      <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
+                    </div>
+                  </td>           
+                  <td>2000.0 ES</td>
+                </tr>
+                <tr>
+                  <td>02</td>
+                  <td><img src="images/users/3.png" alt="" />
+                    <div className="h-tm-ra">
+                      <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
+                    </div>
+                  </td>
+                
+                  <td>100.0 ES</td>
+                </tr>         
+              </tbody>
+            </table>
               </Tab>
               <Tab title="No" eventKey="no">
                 {!this.state.fetchingBettings ? <ChoiceBettingsTable>{Object.values(bettings).length ? bettings : 'There are no bettings'}</ChoiceBettingsTable> : 'Please wait fetching bettings on the contract from blockchain...'}

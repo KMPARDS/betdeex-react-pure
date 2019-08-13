@@ -6969,7 +6969,7 @@ textarea,
 }
 
 [class~=myTable] th {
-    padding-bottom: 1.25pc;
+    padding-bottom: 6px;
 }
 
 [class~=myTable] td,
@@ -6978,7 +6978,7 @@ textarea,
 }
 
 [class~=myTable] th {
-    padding-top: 1.25pc;
+    padding-top: 6px;
 }
 
 [class~=myTable] td {
@@ -10306,10 +10306,10 @@ textarea {
 [class~=inn-ev-date] {
     padding-left: 0pc;
 }
-
+/* 
 [class~=inn-ev-date] {
     padding-bottom: 37.5pt;
-}
+} */
 
 [class~=inn-ev-date-left] span {
     letter-spacing: 1.5pt;
@@ -10328,10 +10328,10 @@ textarea {
 [class~=inn-ev-date-left] h4 {
     font-size: 4.125pc;
 }
-
+/* 
 [class~=inn-ev-date] {
     padding-top: 37.5pt;
-}
+} */
 
 [class~=inn-ev-date-rig] ul li {
     font-size: 31.5pt;
