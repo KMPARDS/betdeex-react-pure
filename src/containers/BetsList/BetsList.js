@@ -37,7 +37,7 @@ class BetsList extends Component {
     topics[2] = this.props.categoryId !== undefined ?
       '0x'+'0'.repeat(64-this.props.categoryId.toString(16).length)+this.props.categoryId.toString(16)
       : null;
-    topics[3] = this.props.categoryId !== undefined ?
+    topics[3] = this.props.subCategoryId !== undefined ?
       '0x'+'0'.repeat(64-this.props.subCategoryId.toString(16).length)+this.props.subCategoryId.toString(16)
       : null;
 

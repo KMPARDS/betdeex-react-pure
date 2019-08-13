@@ -26,6 +26,11 @@ class NavbarComponent extends Component {
         // update betdeex instance
         this.props.dispatch({ type: 'LOAD-BETDEEX-INSTANCE', payload: new ethers.Contract(betdeex.address, betdeex.abi, provider) });
 
+        const isManager = this.props.store.walletInstance.address
+        ? await this.props.store.betdeexInstance.functions.isManager(
+          this.props.store.walletInstance.address) : false;
+        // UPDATE-MANAGER-PRIVILEGES
+        this.props.dispatch({ type: 'UPDATE-MANAGER-PRIVILEGES', payload: isManager });
       }
     };
   }
@@ -46,6 +51,15 @@ class NavbarComponent extends Component {
           </Navbar.Brand>
         </Link>
 
+
+        <Nav.Link
+          style={{color:'#fff', fontWeight:'600'}}
+          onClick={() => this.props.history.push('/explore')}
+        >
+          Explore
+        </Nav.Link>
+
+
         <Navbar.Toggle />
 
         <Navbar.Collapse className="justify-content-end">
@@ -63,6 +77,9 @@ class NavbarComponent extends Component {
 
             {/* show if not signed in*/
             this.state.userAddress ? <Dropdown.Item onClick={() => this.props.history.push('/user')}>Account page</Dropdown.Item> : null}
+
+            {/* show if have manager privileges in*/
+            this.props.store.managerPrivileges ? <Dropdown.Item onClick={() => this.props.history.push('/manager-panel')}>Manager Panel</Dropdown.Item> : null}
 
             {/* show if not signed in*/
             this.state.userAddress ? <Dropdown.Item onClick={() => {

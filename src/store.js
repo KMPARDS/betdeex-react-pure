@@ -4,6 +4,7 @@ const initialState = {
   walletInstance: {},
   esInstance: {},
   betdeexInstance: {},
+  adminPrivileges: false,
   providerInstance: {},
   betsMapping: {}
 };
@@ -16,6 +17,8 @@ const reducer = (state, action) => {
       return {...state, esInstance: action.payload};
     case 'LOAD-BETDEEX-INSTANCE':
       return {...state, betdeexInstance: action.payload};
+    case 'UPDATE-MANAGER-PRIVILEGES':
+      return {...state, managerPrivileges: action.payload};
     case 'LOAD-PROVIDER-INSTANCE':
       return {...state, providerInstance: action.payload};
     case 'LOAD-BETS-MAPPING-FROM-LOCALSTORAGE':

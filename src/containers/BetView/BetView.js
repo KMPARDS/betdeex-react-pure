@@ -237,11 +237,11 @@ console.log(this.state);
           <div className="row">
             {/* TITLE */}
             <div className="inn-title">
-              <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> View<span> Bets</span></h2>
+              <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> View<span> {window.innerWidth > 1100 ? this.props.match.params.address : this.props.match.params.address.slice(0,6) + '...'+this.props.match.params.address.slice(38,42)}</span></h2>
               {/* <p>Becoming a gym certified personal fitness trainer is your foundation for success. gym is the only
                 personal trainer certification program that integrates
-              </p> */}              
-            </div>            
+              </p> */}
+            </div>
             {/* LEFT SIDE: SPORTS EVENTS */}
             <div className="event-left col-md-12" >
               {/*Sports Events in Dubai*/}
@@ -252,19 +252,42 @@ console.log(this.state);
                       <div className="category-tag-trail-styles_CategoryTagTrail">
                         <div className="word-trail-styles_WordTrail">
                           <div className="word-trail-styles_WordTrail__label">Category</div>
-                          <button data-testid="Category-0" className="tag-trail-button">SPORTS</button>
-                        </div>                        
+
+                            <button
+                              onClick={() => this.props.history.push(`/explore/${categoryArray[this.state.category].toLowerCase()}`)}
+                              className="tag-trail-button">{
+                              this.state.category !== undefined
+                              ? categoryArray[this.state.category]
+                              : 'Loading...'
+                            }</button>
+
+                            <button
+                            onClick={() => this.props.history.push(`/explore/${categoryArray[this.state.category].toLowerCase()}/${subCategoryArray[this.state.category][this.state.subCategory].toLowerCase()}`)}
+                            className="tag-trail-button">{
+                             this.state.subCategory !== undefined
+                              ? subCategoryArray[this.state.category][this.state.subCategory]
+                              : 'Loading...'
+                              }
+                            </button>
+
+                        </div>
                       </div>
                     </div>
-                      <h3 style={{textAlign:'left', fontSize: '23px', fontWeight: '600', color: '#981802'}}>Bet Address: {this.props.match.params.address}</h3>    <h5 style={{textAlign:'left', fontSize: '15px', fontWeight: '100', color: '#981802', textTransform:'capitalize'}}>Description: {this.state.description}</h5>               
+                    <h3 style={{textAlign:'left', fontSize: '2rem', fontWeight: '600', color: '#981802'}}>{this.state.description || 'Loading...'}</h3>
                     <div className="market-preview-styles_MarketPreview__footer">
                       <article>
                         <section className="market-properties-styles_MarketProperties">
                           <ul className="market-properties-styles_MarketProperties__meta">
-                            <li><span>Volume</span><span><span className="value_volume">2.0000
+                            {/*<li><span>Volume</span><span><span className="value_volume">2.0000
                                   ETH</span></span>
-                            </li>
-                            <li><span>Minimum</span><span><span className="value_volume">0.03 ES</span></span>
+                            </li>*/}
+                            <li><span>Minimum</span><span><span className="value_volume">
+                              {
+                                minimumBetInEs
+                                ? minimumBetInEs + ' ES'
+                                : 'Loading..'
+                              }
+                            </span></span>
                             </li>
                             <li><span>Est. Fee</span><span><span data-tip="0.01" data-event="click focus" className="value_fee">2%</span></span>
                             </li>
@@ -281,7 +304,7 @@ console.log(this.state);
                             <a href="booking.html" className="inn-reg-com inn-reg-book" data-toggle="modal" data-target="#betmodal"><i className="fa fa-exchange" aria-hidden="true" /> Place a Bet</a>
                           </div> */}
                         </section>
-                          <div class="inn-all-com">                                    
+                          <div class="inn-all-com">
                               <div class="inn-ev-date">
                                   <div class="inn-ev-date-left">
                                       <h4>28 th</h4>
@@ -297,7 +320,7 @@ console.log(this.state);
                                           </li>
                                           <li> <h4>28 th</h4>
                                         <span>Draw Amount</span>
-                                          </li>                               
+                                          </li>
                                       </ul>
                                   </div>
                               </div>
@@ -306,7 +329,7 @@ console.log(this.state);
                       </article>
                     </div>
                   </div>
-                </li>               
+                </li>
               </ul>
             </div>
             {/* RIGHT SIDE: FEATURE EVENTS */}
@@ -315,10 +338,10 @@ console.log(this.state);
               <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}>Predict<span> Now</span></h2>
               {/* <p>Becoming a gym certified personal fitness trainer is your foundation for success. gym is the only
                 personal trainer certification program that integrates
-              </p> */}              
-            </div> 
+              </p> */}
+            </div>
           <div class="share-btn">
-            
+
               <ul>
                   <li><a style={{background:'#28a745', padding:'10px 30px 10px 30px'}} href="booking.html" class="inn-reg-com inn-reg-book" data-toggle="modal" data-target="#betmodal"> Yes</a>
                   </li>
@@ -348,7 +371,7 @@ console.log(this.state);
                       <tbody>
                         <tr>
                           <th>Sr</th>
-                          <th>Address</th>            
+                          <th>Address</th>
                           <th>Amount</th>
                         </tr>
                         <tr>
@@ -357,7 +380,7 @@ console.log(this.state);
                             <div className="h-tm-ra">
                               <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
                             </div>
-                          </td>           
+                          </td>
                           <td>2000.0 ES</td>
                         </tr>
                         <tr>
@@ -367,9 +390,9 @@ console.log(this.state);
                               <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
                             </div>
                           </td>
-                        
+
                           <td>100.0 ES</td>
-                        </tr>         
+                        </tr>
                       </tbody>
                   </table>
               </div>
@@ -378,7 +401,7 @@ console.log(this.state);
               <tbody>
                 <tr>
                   <th>Sr</th>
-                  <th>Address</th>            
+                  <th>Address</th>
                   <th>Amount</th>
                 </tr>
                 <tr>
@@ -387,7 +410,7 @@ console.log(this.state);
                     <div className="h-tm-ra">
                       <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
                     </div>
-                  </td>           
+                  </td>
                   <td>2000.0 ES</td>
                 </tr>
                 <tr>
@@ -397,9 +420,9 @@ console.log(this.state);
                       <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
                     </div>
                   </td>
-                
+
                   <td>100.0 ES</td>
-                </tr>         
+                </tr>
               </tbody>
             </table>
 
@@ -409,7 +432,7 @@ console.log(this.state);
               <tbody>
                 <tr>
                   <th>Sr</th>
-                  <th>Address</th>            
+                  <th>Address</th>
                   <th>Amount</th>
                 </tr>
                 <tr>
@@ -418,7 +441,7 @@ console.log(this.state);
                     <div className="h-tm-ra">
                       <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
                     </div>
-                  </td>           
+                  </td>
                   <td>2000.0 ES</td>
                 </tr>
                 <tr>
@@ -428,18 +451,18 @@ console.log(this.state);
                       <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
                     </div>
                   </td>
-                
+
                   <td>100.0 ES</td>
-                </tr>         
+                </tr>
               </tbody>
             </table>
               </div>
             </div>
           </div>
           <br></br>
-         
+
         </div>
-        
+
       </section>
         { this.state.isBetValid ?
         <Card.Body>
@@ -501,7 +524,7 @@ console.log(this.state);
               <tbody>
                 <tr>
                   <th>Sr</th>
-                  <th>Address</th>            
+                  <th>Address</th>
                   <th>Amount</th>
                 </tr>
                 <tr>
@@ -510,7 +533,7 @@ console.log(this.state);
                     <div className="h-tm-ra">
                       <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
                     </div>
-                  </td>           
+                  </td>
                   <td>2000.0 ES</td>
                 </tr>
                 <tr>
@@ -520,9 +543,9 @@ console.log(this.state);
                       <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
                     </div>
                   </td>
-                
+
                   <td>100.0 ES</td>
-                </tr>         
+                </tr>
               </tbody>
             </table>
               </Tab>
