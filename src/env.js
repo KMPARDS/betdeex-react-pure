@@ -16,7 +16,7 @@ module.exports = {
     'Users Choice'
   ],
   subCategoryArray: [
-    ['Football', 'Cricket'],
+    ['Football', 'Cricket', 'Baseball'],
     ['Good Politics', 'Dirty Politics'],
     ['English', 'Hindi', 'Marathi'],
     ['Computers', 'Electronics', 'Mechanical'],

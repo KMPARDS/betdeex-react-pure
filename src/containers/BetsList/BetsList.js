@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Spinner, Card } from 'react-bootstrap';
+import { Spinner, Card, Row, Col } from 'react-bootstrap';
 
 import Bet from './Bet';
+import Sidebar from '../Sidebar/Sidebar';
 
 import { betdeex, categoryArray, subCategoryArray } from '../../env.js';
 import provider from '../../ethereum/provider';
@@ -129,25 +130,30 @@ class BetsList extends Component {
 
   render() {
     return (
-      <div>
-        <Card>Showing 5 bets
-        {
-          (this.props.categoryId !== undefined
-          ? ` of ${categoryArray[this.props.categoryId]}`
-          : null)
-        }{
-          (this.props.subCategoryId !== undefined
-          ? `/${subCategoryArray[this.props.categoryId][this.props.subCategoryId]}`
-          : null)
-        }</Card>
-        { this.state.betsLoading ?
-          <Spinner animation="border" role="status" style={{marginTop: '15px'}}>
-            <span className="sr-only">Loading...</span>
-          </Spinner>
-          : null
-        }
-        {this.state.betsToDisplay}
-      </div>
+      <Row>
+        <Col>
+          <Sidebar />
+        </Col>
+        <Col xs="9">
+          <Card>Showing 5 bets
+          {
+            (this.props.categoryId !== undefined
+            ? ` of ${categoryArray[this.props.categoryId]}`
+            : null)
+          }{
+            (this.props.subCategoryId !== undefined
+            ? `/${subCategoryArray[this.props.categoryId][this.props.subCategoryId]}`
+            : null)
+          }</Card>
+          { this.state.betsLoading ?
+            <Spinner animation="border" role="status" style={{marginTop: '15px'}}>
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+            : null
+          }
+          {this.state.betsToDisplay}
+        </Col>
+      </Row>
     );
   }
 }
