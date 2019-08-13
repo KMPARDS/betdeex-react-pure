@@ -237,13 +237,13 @@ class BetsList extends Component {
               <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> Show 5<span> Bets</span></h2>
               {/* <p>Becoming a gym certified personal fitness trainer is your foundation for success. gym is the only
                 personal trainer certification program that integrates
-              </p> */}              
-            </div>            
+              </p> */}
+            </div>
             {/* LEFT SIDE: SPORTS EVENTS */}
             <div className="event-left col-md-12">
               {/*Sports Events in Dubai*/}
               <ul>
-                <li>
+                {/*<li>
                   <div className="betbox">
                     <div className="market-basics-styles_MarketBasics__header mb-3">
                       <div className="category-tag-trail-styles_CategoryTagTrail">
@@ -259,7 +259,7 @@ class BetsList extends Component {
                     </div>
                     <h3 style={{textAlign:'left', fontSize: '23px', fontWeight: '600', color: '#54be58'}}>Will Liverpool win the UEFA Champions League title against Tottenham on
                       June 1st?
-                    </h3>                   
+                    </h3>
                     <div className="market-preview-styles_MarketPreview__footer">
                       <article>
                         <section className="market-properties-styles_MarketProperties">
@@ -301,7 +301,7 @@ class BetsList extends Component {
                     </div>
                     <h3 style={{textAlign:'left', fontSize: '23px', fontWeight: '600', color: '#54be58'}}>Will Liverpool win the UEFA Champions League title against Tottenham on
                       June 1st?
-                    </h3>                   
+                    </h3>
                     <div className="market-preview-styles_MarketPreview__footer">
                       <article>
                         <section className="market-properties-styles_MarketProperties">
@@ -326,13 +326,15 @@ class BetsList extends Component {
                       </article>
                     </div>
                   </div>
-                </li>
+                </li>*/}
+                {this.state.betsToDisplay}
               </ul>
             </div>
             {/* RIGHT SIDE: FEATURE EVENTS */}
           </div>
         </div>
       </section>
+        {/*<>
           <Card>Showing 5 bets
           <h2 style={{fontWeight:'800', textTransform:'uppercase'}}> Show <span>5 Bets</span></h2>
 
@@ -351,7 +353,8 @@ class BetsList extends Component {
             </Spinner>
             : null
           }
-          {this.state.betsToDisplay}
+          </>*/}
+
         </Col>
       </Row>
     );
