@@ -1110,7 +1110,8 @@ h6 {
 
 .lead {
 	font-size: 1.25rem;
-	font-weight: 300
+	font-weight: 300;
+	text-align: justify
 }
 
 .display-1 {
@@ -1134,7 +1135,7 @@ h6 {
 .display-4 {
 	font-size: 3.5rem;
 	font-weight: 300;
-	line-height: 1.2
+	line-height: 2.0
 }
 
 hr {
@@ -5466,6 +5467,7 @@ input[type=submit].btn-block {
 .card {
 	position: relative;
 	display: -ms-flexbox;
+	text-align: left;
 	display: flex;
 	-ms-flex-direction: column;
 	flex-direction: column;

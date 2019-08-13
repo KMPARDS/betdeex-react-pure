@@ -2,48 +2,165 @@ import React from 'react';
 
 const Home = () => (
   <>
-  <div>
-  <main>
+  <div>  
         {/* ./Page header */}
-        <header className="header online-payment-header section color-1 alpha-9">
-          <div id="stripes"><span /><span /><span /><span /><span /></div>
-          <div className="container overflow-hidden bring-to-front" style={{paddingBottom: 0}}>
+    <header className="header online-payment-header section color-1 alpha-9" style={{backgroundImage: 'url(/img/banner-bg.jpg)',
+    backgroundSize: 'cover', zIndex: '9', height: '500px', backgroundPositionY: 'center'}}>
+          {/* <div id="stripes"></div> */}
+          {/* <img src="/img/Bdx_web-02.jpg"></img> */}
+          <div className="container overflow-hidden bring-to-front" style={{paddingBottom: 0, }}>
             <div className="row">
-              <div className="col-lg-5 mx-auto text-center text-lg-left">
-                <h1 className="light display-4 color-1">Welcome to the  <span className="bold d-block">Future of Prediction</span></h1>
+              <div className="col-lg-5 mx-auto text-center text-lg-left" style={{margin:'50px'}}>
+                <h1 className="light display-4 color-1">Welcome to the  <span className="bold d-block" style={{fontSize:'42px', color:'#fff'}}>Future of Prediction</span></h1>
                 <p className="color-1 lead alpha-8 my-5">Come and Predict as your interest and capacity on any event on this planet for minimal charge.<br />
-                  {/* <br> No Login, No Hassle, No Limits.*/}</p>
-                <button disabled className="btn btn-3 btn-xl btn-rounded bold px-5">
-                  {/* Launching soon */}
-                  {/* Predict Now with BetdeEx */}
-                  Propose a prediction event
-                </button>
+                  {/* <br> No Login, No Hassle, No Limits.*/}</p>                
               </div>
-              <div className="col-lg-6 col-md-9 mx-md-auto mx-lg-0 pr-lg-0">
-               
-                <img src="img/betdeex-logo.png" alt="Dashcore" className="d-block" style={{margin: '70px 20px'}} />               
+              <div className="col-lg-6 col-md-9 mx-md-auto mx-lg-0 pr-lg-0" data-aos="fade-left">               
+                <img src="img/betdeex-logo.png" alt="Dashcore" className="d-block" style={{margin: '116px 16px -18px', height:'40%'}} />               
               </div>
              </div>
           </div>
-        </header>
+    </header>       
+        {/*Cycle  */}
+        
         <section>
-          <div className="container-wide bring-to-front" style={{paddingBottom: 0}}>
-            <div className="row gap-y align-items-center">
-              <div className="col-12 col-lg-12 mx-auto">
-                <div className="container" style={{textAlign: 'center'}}>
-                  <h2>Please follow these simple steps to start prediction with BetDeEx</h2>
+        <div className="lp spe-bot-red-3" style={{zIndex:'9', paddingLeft: '65px'}}>
+          <div className="inn-title">
+            <h2 style={{fontWeight:'800', textTransform:'uppercase'}}><i className="fa fa-check" aria-hidden="true" /> All sports <span>events 2019</span></h2>
+            <p>An 'event' is a prediction event. Now, you can choose an event from the list of multiple events</p>
+          </div>
+          <div className="hom-top-trends row">
+            {/*TOP TRENDINGS*/}
+            <div className="col-md-3">
+              <div className="hom-trend">
+                <div className="hom-trend-img">
+                  <img className="img-responsive" src="/img/trends/2.jpeg" alt="" />
+                </div>
+                <div className="hom-trend-con">
+                  <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span>
+                  <a href="#">
+                    <h4>SPORTS</h4>
+                  </a>
+                  {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
+                </div>
+              </div>
+            </div>
+            {/*TOP TRENDINGS*/}
+            <div className="col-md-3">
+              <div className="hom-trend">
+                <div className="hom-trend-img">
+                  <img className="img-responsive" src="/img/trends/3.jpg" alt="" />
+                </div>
+                <div className="hom-trend-con">
+                  <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span>
+                  <a href="canoe-slalom.html">
+                    <h4>POLITICS</h4>
+                  </a>
+                  {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
+                </div>
+              </div>
+            </div>
+            {/*TOP TRENDINGS*/}
+            <div className="col-md-3">
+              <div className="hom-trend">
+                <div className="hom-trend-img">
+                  <img className="img-responsive" src="/img/trends/4.jpg" alt="" />
+                </div>
+                <div className="hom-trend-con">
+                  <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span>
+                  <a href="yoga.html">
+                    <h4>yoga and meditation: Davidson at Massachusetts</h4>
+                  </a>
+                  {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
+                </div>
+              </div>
+            </div>
+            {/*TOP TRENDINGS*/}
+            <div className="col-md-3">
+              <div className="hom-trend">
+                <div className="hom-trend-img">
+                  <img className="img-responsive" src="/img/trends/5.jpg" alt="" />
+                </div>
+                <div className="hom-trend-con">
+                  <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span>
+                  <a href="body-building.html">
+                    <h4>bodybuilding: Davidson at Massachusetts</h4>
+                  </a>
+                  {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
               </div>
             </div>
           </div>
-        </section>
-        {/*Cycle  */}
+          <div className="hom-top-trends row">
+            {/*TOP TRENDINGS*/}
+            <div className="col-md-3">
+              <div className="hom-trend">
+                <div className="hom-trend-img">
+                  <img className="img-responsive" src="/img/trends/6.jpeg" alt="" />
+                </div>
+                <div className="hom-trend-con">
+                  <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span>
+                  <a href="tennis.html">
+                    <h4>Tennis: Davidson at Massachusetts</h4>
+                  </a>
+                  {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
+                </div>
+              </div>
+            </div>
+            {/*TOP TRENDINGS*/}
+            <div className="col-md-3">
+              <div className="hom-trend">
+                <div className="hom-trend-img">
+                  <img className="img-responsive" src="/img/trends/7.jpg" alt="" />
+                </div>
+                <div className="hom-trend-con">
+                  <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span>
+                  <a href="athletics.html">
+                    <h4>ATHLETICS: Davidson at Massachusetts</h4>
+                  </a>
+                  {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
+                </div>
+              </div>
+            </div>
+            {/*TOP TRENDINGS*/}
+            <div className="col-md-3">
+              <div className="hom-trend">
+                <div className="hom-trend-img">
+                  <img className="img-responsive" src="/img/trends/9.jpeg" alt="" />
+                </div>
+                <div className="hom-trend-con">
+                  <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span>
+                  <a href="surfing.html">
+                    <h4>surfings: Davidson at Massachusetts</h4>
+                  </a>
+                  {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
+                </div>
+              </div>
+            </div>
+            {/*TOP TRENDINGS*/}
+            <div className="col-md-3">
+              <div className="hom-trend pad-red-bot-0">
+                <div className="hom-trend-img">
+                  <img className="img-responsive" src="/img/trends/10.jpeg" alt="" />
+                </div>
+                <div className="hom-trend-con">
+                  <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span>
+                  <a href="cycling.html">
+                    <h4>cycling: Davidson at Massachusetts</h4>
+                  </a>
+                  {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+      </section>
         <section className="section singl-testimonial bg-1 edge top-left">
           <div className="shape-wrapper"><img src="img/shps/abs-shp-1.svg" className="absolute top right h-100" alt="..." /></div>
           <div className="container-wide bring-to-front">
             <div className="row gap-y align-items-center">
               <div className="col-12 col-lg-4 mx-auto">
-                <h2>Propose a prediction event and get rewards</h2>
+                <h2 style={{textAlign:'justify'}}>Propose a prediction event and get rewards</h2>
                 <p className="lead color-2">
                   You can propose an Event on Swappers Wall. Events will be voted by community for likes. Top 10 Event proposals with maximum number of likes upto 25 August 2019 on Swappers Wall will be selected with the Reward of 1000 ES in liquid and 1000 ES in TimeAlly to proposers of each of these 10 Events.
                 </p>
@@ -79,7 +196,7 @@ const Home = () => (
           <div className="container-wide bring-to-front">
             <div className="row gap-y align-items-center">
               <div className="col-12 col-lg-4 mx-auto">
-                <h2>Use your Skills to Win</h2>
+                <h2 style={{textAlign:'justify'}}>Use your Skills to Win</h2>
                 <p className="lead color-2">Once you have predicted the outcome and you got sucess, you can win. You can predict multiple events at the same time to win.</p>
               </div>
               <div className="col-10 col-lg-6 pr-0">
@@ -90,12 +207,7 @@ const Home = () => (
             </div>
           </div>
         </section>
-        <div className="section-heading text-center">
-          <button disabled className="btn btn-rounded btn-xl btn-accent text-center">
-            {/* Launching soon */}
-            Start Now by proposing a prediction event on Swappers Wall
-          </button>
-        </div>
+        
         {/* Use Cases for Betdeex */}
         <section className="section bg-6 bg-6-gradient edge bottom-right">
           <div className="container bring-to-front">
@@ -356,7 +468,7 @@ const Home = () => (
             </div>
           </div>
         </section>
-      </main>
+      
         {/* ./Footer - Simple */}
         <footer className="site-footer section bg-1 color-1 block bg-1">
           <div className="container py-4">

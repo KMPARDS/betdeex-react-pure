@@ -5,12 +5,10 @@ import { withRouter, Link } from 'react-router-dom';
 import { esContract, betdeex } from '../../env';
 
 const ethers = require('ethers');
-
 class NavbarComponent extends Component {
   state = {
     userAddress: ''
   };
-
   componentDidMount = () => {
     window.updateTheNavbar = async action => {
       if(action.type === 'LOAD-WALLET-INSTANCE') {
@@ -34,16 +32,16 @@ class NavbarComponent extends Component {
 
   render() {
     return (
-      <Navbar style={{backgroundColor: '#070707'}}>
+      <Navbar style={{background:'linear-gradient(to right, #270101 0%, #981802 100%)'}} >
 
         <Link to="/">
           <Navbar.Brand>
             <img
               src="/betdeex-logo.png"
-              width="100 "
-              height="30"
+              width="180 "
+              height="55"
               className="d-inline-block align-top"
-              alt="React Bootstrap logo"
+              alt="Logo"
             />
           </Navbar.Brand>
         </Link>
@@ -51,7 +49,7 @@ class NavbarComponent extends Component {
         <Navbar.Toggle />
 
         <Navbar.Collapse className="justify-content-end">
-          <Nav.Link style={{color: 'white'}}>How to Play?</Nav.Link>
+          <Nav.Link style={{color:'#fff', fontWeight:'600'}} >How to Play?</Nav.Link>
           <DropdownButton alignRight id="dropdown-basic-button" title={this.state.userAddress ? `Welcome ${String(this.state.userAddress).substr(0,6)}...` : 'Era Swap Wallet'} variant="outline-light" drop="down">
 
             {/*<Dropdown.Header>Your HD Accounts</Dropdown.Header>

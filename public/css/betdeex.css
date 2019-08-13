@@ -10401,7 +10401,7 @@ strong {
 }
 
 .color-1 {
-	color: #000!important;
+	color: #fff!important;
 }
 
 .color-1.alpha-1 {
@@ -14899,7 +14899,9 @@ section.shadow {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: linear-gradient(150deg, #ffffff 15%, #ffffff 70%, #f3f3f3 94%);
+	/* background: linear-gradient(150deg, #ffffff 15%, #ffffff 70%, #f3f3f3 94%); */
+	/* background-image: url(../img/Bdx_web-02.jpg); */
+	background-size: cover;
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	grid-template-rows: repeat(12, 1fr);
