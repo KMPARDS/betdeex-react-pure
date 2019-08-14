@@ -7720,9 +7720,7 @@ button.bg-dark:hover {
 	display: inline-block!important
 }
 
-.d-block {
-	display: block!important
-}
+
 
 .d-table {
 	display: table!important
@@ -7788,8 +7786,13 @@ button.bg-dark:hover {
 	.d-md-inline-block {
 		display: inline-block!important
 	}
+	.d-blocks {
+		display: block!important;
+		/* margin: -68px 42px 0px; */
+		margin: 116px 16px -18px !important;
+	}
 	.d-md-block {
-		display: block!important
+		display: block!important;
 	}
 	.d-md-table {
 		display: table!important
@@ -17378,6 +17381,11 @@ a.text-dark:hover {
 		margin-right: 10px;
 		display: block
 	}
+	.d-blocks {
+		display: block!important;
+		margin: -68px 42px 0px !important;
+		/* margin: 116px 16px -18px ; */
+	}	
 }
 
 [data-simplebar] {

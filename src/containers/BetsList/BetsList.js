@@ -138,36 +138,36 @@ class BetsList extends Component {
                 <ul>
                   {/* MAIN MENU */}
                   <li>
-                    <a href="main.html"><img src="/img/icon/s1.png" alt="" /> Home</a>
+                    <a href="/"><img src="/img/icon/s1.png" alt="" /> Home</a>
                   </li>
                   <li>
                     <a href="all-sports.html" className="menu-lef-act"><img src="/img/icon/f4.png" alt="" /> Sports</a>
                   </li>
                   <li>
-                    <a href="match-fixing.html"><img src="/img/icon/c7.png" alt="" /> Matchs</a>
+                    <a href="match-fixing.html"><img src="/img/icon/c7.png" alt="" /> Movies</a>
                   </li>
                   <li>
-                    <a href="events.html"><img src="/img/icon/f6.png" alt="" /> Events</a>
+                    <a href="events.html"><img src="/img/icon/f6.png" alt="" /> Tech</a>
                   </li>
                   <li>
-                    <a href="team-ranking.html"><img src="/img/icon/r1.png" alt="" /> Ranking</a>
+                    <a href="team-ranking.html"><img src="/img/icon/r1.png" alt="" /> Science</a>
                   </li>
                   <li>
-                    <a href="team-squad.html"><img src="/img/icon/f7.png" alt="" /> Squad</a>
+                    <a href="team-squad.html"><img src="/img/icon/f7.png" alt="" /> Entertainment</a>
                   </li>
                   <li>
-                    <a href="football.html"><img src="/img/icon/s7.png" alt="" /> Football</a>
+                    <a href="football.html"><img src="/img/icon/s7.png" alt="" /> Celebrities</a>
                   </li>
                   <li>
-                    <a href="soccer.html"><img src="/img/icon/f2.png" alt="" /> Soccer</a>
+                    <a href="soccer.html"><img src="/img/icon/f2.png" alt="" /> Current</a>
                   </li>
                   <li>
-                    <a href="cricket.html"><img src="/img/icon/c3.png" alt="" /> Cricket</a>
+                    <a href="cricket.html"><img src="/img/icon/c3.png" alt="" /> Global</a>
                   </li>
                   <li>
-                    <a href="body-building.html"><img src="/img/icon/g2.png" alt="" /> Bodybuild</a>
+                    <a href="body-building.html"><img src="/img/icon/g2.png" alt="" /> Users Choice</a>
                   </li>
-                  <li>
+                  {/* <li>
                     <a href="surfing.html"><img src="/img/icon/surf.png" alt="" /> Surfing</a>
                   </li>
                   <li>
@@ -214,7 +214,7 @@ class BetsList extends Component {
                   </li>
                   <li>
                     <a href="contact.html"><img src="/img/icon/contact.png" alt="" /> Contact Us</a>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
               {/* RIGHT SIDE NAVIGATION MENU */}

@@ -11,12 +11,12 @@ const Home = () => (
           <div className="container overflow-hidden bring-to-front" style={{paddingBottom: 0, }}>
             <div className="row">
               <div className="col-lg-5 mx-auto text-center text-lg-left" style={{margin:'50px'}}>
-                <h1 className="light display-4 color-1">Welcome to the  <span className="bold d-block" style={{fontSize:'42px', color:'#fff'}}>Future of Prediction</span></h1>
+                <h1 className="light display-4 color-1">Welcome to the  <span className="bold d-block" style={{fontSize:'42px', color:'#fff', lineHeight:'44px'}}>Future of Prediction</span></h1>
                 <p className="color-1 lead alpha-8 my-5">Come and Predict as your interest and capacity on any event on this planet for minimal charge.<br />
                   {/* <br> No Login, No Hassle, No Limits.*/}</p>                
               </div>
               <div className="col-lg-6 col-md-9 mx-md-auto mx-lg-0 pr-lg-0" data-aos="fade-left">               
-                <img src="img/betdeex-logo.png" alt="Dashcore" className="d-block" style={{margin: '116px 16px -18px', height:'40%'}} />               
+                <img src="img/betdeex-logo.png" alt="Dashcore" className="d-blocks" style={{height:'40%'}} />               
               </div>
              </div>
           </div>
