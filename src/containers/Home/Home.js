@@ -13,7 +13,8 @@ const Home = () => (
               <div className="col-lg-5 mx-auto text-center text-lg-left" style={{margin:'50px', paddingLeft: '27px'}}>
                 <h1 className="light display-4 color-1">Welcome to the  <span className="bold d-block" style={{fontSize:'42px', color:'#fff', lineHeight:'44px'}}>Future of Prediction</span></h1>
                 <p className="color-1 lead alpha-8 my-5">Come and Predict as your interest and capacity on any event on this planet for minimal charge.<br />
-                  {/* <br> No Login, No Hassle, No Limits.*/}</p>                
+                  {/* <br> No Login, No Hassle, No Limits.*/}</p>    
+                  <a href="https://dayswappers.org/" class="btn btn-rounded btn-lg btn-accent text-center ml-3" target="_blank"> View Bets now</a>            
               </div>
               <div className="col-lg-6 col-md-9 mx-md-auto mx-lg-0 pr-lg-0" data-aos="fade-left">               
                 <img src="img/betdeex-logo.png" alt="Dashcore" className="d-blocks" style={{height:'40%'}} />               

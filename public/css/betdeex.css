@@ -3521,8 +3521,8 @@ button:focus {
 
 .btn-accent:hover {
 	color: #fff;
-	background-color: #892fff;
-	border-color: #8222ff
+	background-color: #981802;
+	border-color: #981802
 }
 
 .btn-accent.focus,
