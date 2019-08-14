@@ -28,7 +28,8 @@ class TransactionModal extends Component {
     insufficientAllowance: false
   }
   componentDidUpdate = async prevProps => {
-    if(this.props.show && ( prevProps.show != this.props.show )) {
+    if(this.props.show && ( prevProps.show != this.props.show )
+    && Object.entries(this.props.store.walletInstance).length !== 0) {
       this.amountInput.focus();
     }
   }
@@ -62,7 +63,7 @@ class TransactionModal extends Component {
       if(e.message.includes('gas required exceeds allowance')) {
         this.setState({ insufficientAllowance: true });
       }
-      this.setState({ estimating: false, estimationError: 'There was this error while estimating: ' + e.message })
+      this.setState({ estimating: false, estimationError: 'There was this error while estimating gas: ' + e.message + '. Please check if you have enough allowance in your account page' })
     }
   }
 
@@ -137,7 +138,7 @@ class TransactionModal extends Component {
           <div style={{display:'block', textAlign: 'center'}}>
           {this.state.insufficientAllowance
             ? <>
-              <Button variant="success" onClick={() => this.props.history.push('/account')}>Increase Allowance</Button>
+              <Button variant="success" onClick={() => this.props.history.push('/user')}>Increase Allowance</Button>
               <Button onClick={
                 () => {
                   this.amountInput.focus();
