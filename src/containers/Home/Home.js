@@ -10,7 +10,7 @@ const Home = () => (
           {/* <img src="/img/Bdx_web-02.jpg"></img> */}
           <div className="container overflow-hidden bring-to-front" style={{paddingBottom: 0, }}>
             <div className="row">
-              <div className="col-lg-5 mx-auto text-center text-lg-left" style={{margin:'50px'}}>
+              <div className="col-lg-5 mx-auto text-center text-lg-left" style={{margin:'50px', paddingLeft: '27px'}}>
                 <h1 className="light display-4 color-1">Welcome to the  <span className="bold d-block" style={{fontSize:'42px', color:'#fff', lineHeight:'44px'}}>Future of Prediction</span></h1>
                 <p className="color-1 lead alpha-8 my-5">Come and Predict as your interest and capacity on any event on this planet for minimal charge.<br />
                   {/* <br> No Login, No Hassle, No Limits.*/}</p>                
@@ -34,10 +34,10 @@ const Home = () => (
             <div className="col-md-3">
               <div className="hom-trend">
                 <div className="hom-trend-img">
-                  <img className="img-responsive" src="/img/trends/2.jpeg" alt="" />
+                  <img className="img-responsive" src="/img/1.jpg" alt="" />
                 </div>
                 <div className="hom-trend-con">
-                  <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span>
+                  {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
                   <a href="#">
                     <h4>SPORTS</h4>
                   </a>
@@ -52,7 +52,7 @@ const Home = () => (
                   <img className="img-responsive" src="/img/trends/3.jpg" alt="" />
                 </div>
                 <div className="hom-trend-con">
-                  <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span>
+                  {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
                   <a href="canoe-slalom.html">
                     <h4>POLITICS</h4>
                   </a>
@@ -64,12 +64,12 @@ const Home = () => (
             <div className="col-md-3">
               <div className="hom-trend">
                 <div className="hom-trend-img">
-                  <img className="img-responsive" src="/img/trends/4.jpg" alt="" />
+                  <img className="img-responsive" src="/img/2.jpg" alt="" />
                 </div>
                 <div className="hom-trend-con">
-                  <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span>
+                  {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
                   <a href="yoga.html">
-                    <h4>yoga and meditation: Davidson at Massachusetts</h4>
+                    <h4>MOVIES</h4>
                   </a>
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
@@ -82,9 +82,9 @@ const Home = () => (
                   <img className="img-responsive" src="/img/trends/5.jpg" alt="" />
                 </div>
                 <div className="hom-trend-con">
-                  <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span>
+                  {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
                   <a href="body-building.html">
-                    <h4>bodybuilding: Davidson at Massachusetts</h4>
+                    <h4>TECH</h4>
                   </a>
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
@@ -99,9 +99,9 @@ const Home = () => (
                   <img className="img-responsive" src="/img/trends/6.jpeg" alt="" />
                 </div>
                 <div className="hom-trend-con">
-                  <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span>
+                  {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
                   <a href="tennis.html">
-                    <h4>Tennis: Davidson at Massachusetts</h4>
+                    <h4>SCIENCE</h4>
                   </a>
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
@@ -114,9 +114,9 @@ const Home = () => (
                   <img className="img-responsive" src="/img/trends/7.jpg" alt="" />
                 </div>
                 <div className="hom-trend-con">
-                  <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span>
+                  {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
                   <a href="athletics.html">
-                    <h4>ATHLETICS: Davidson at Massachusetts</h4>
+                    <h4>ENTERTAINMENT</h4>
                   </a>
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
@@ -129,9 +129,9 @@ const Home = () => (
                   <img className="img-responsive" src="/img/trends/9.jpeg" alt="" />
                 </div>
                 <div className="hom-trend-con">
-                  <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span>
+                  {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
                   <a href="surfing.html">
-                    <h4>surfings: Davidson at Massachusetts</h4>
+                    <h4>CELEBRATIES</h4>
                   </a>
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
@@ -144,9 +144,9 @@ const Home = () => (
                   <img className="img-responsive" src="/img/trends/10.jpeg" alt="" />
                 </div>
                 <div className="hom-trend-con">
-                  <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span>
+                  {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
                   <a href="cycling.html">
-                    <h4>cycling: Davidson at Massachusetts</h4>
+                    <h4>CURRENT</h4>
                   </a>
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>

@@ -10220,9 +10220,9 @@ textarea {
     padding-top: 0pc;
 }
 
-[class~=inn-reg-com] {
+/* [class~=inn-reg-com] {
     text-shadow: 0px 1px 0in rgba(255, 255, 255, .62);
-}
+} */
 
 [class~=inn-reg-com] {
     transition: all .5s ease;

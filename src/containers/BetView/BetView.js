@@ -238,9 +238,7 @@ console.log(this.state);
             {/* TITLE */}
             <div className="inn-title">
               <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> View<span> {window.innerWidth > 1100 ? this.props.match.params.address : this.props.match.params.address.slice(0,6) + '...'+this.props.match.params.address.slice(38,42)}</span></h2>
-              {/* <p>Becoming a gym certified personal fitness trainer is your foundation for success. gym is the only
-                personal trainer certification program that integrates
-              </p> */}
+             
             </div>
             {/* LEFT SIDE: SPORTS EVENTS */}
             <div className="event-left col-md-12" >
@@ -343,11 +341,11 @@ console.log(this.state);
           <div class="share-btn">
 
               <ul>
-                  <li><a style={{background:'#28a745', padding:'10px 30px 10px 30px'}} href="booking.html" class="inn-reg-com inn-reg-book" data-toggle="modal" data-target="#betmodal"> Yes</a>
+                  <li><a style={{background:'#28a745', padding:'10px 30px 10px 30px', color:'#fff'}} class="inn-reg-com inn-reg-book" data-toggle="modal" data-target="#betmodal"> Yes</a>
                   </li>
-                  <li><a style={{background:'#dc3545', padding:'10px 30px 10px 30px'}} href="booking.html" class="inn-reg-com inn-reg-book" data-toggle="modal" data-target="#betmodal">No</a>
+                  <li><a style={{background:'#dc3545', padding:'10px 30px 10px 30px', color:'#fff'}} class="inn-reg-com inn-reg-book" data-toggle="modal" data-target="#betmodal">No</a>
                   </li>
-                  <li><a style={{background:'#ffc107', padding:'10px 30px 10px 30px'}} href="booking.html" class="inn-reg-com inn-reg-book" data-toggle="modal" data-target="#betmodal">Draw</a>
+                  <li><a style={{background:'#ffc107', padding:'10px 30px 10px 30px', color:'#fff'}} class="inn-reg-com inn-reg-book" data-toggle="modal" data-target="#betmodal">Draw</a>
                   </li>
               </ul>
           </div>
