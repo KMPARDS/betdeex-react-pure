@@ -158,7 +158,7 @@ const Home = props => (
       </section>
         {/* Use Cases for Betdeex */}
         <section className="section bg-6 bg-6-gradient edge bottom-right">
-          <div className="container bring-to-front">
+          <div className="container bring-to-front" style={{padding:'0px'}}>
             <img src="/img/era-icon.png"/>
             <div id="demo" className="carousel slide" data-ride="carousel">
               {/* Indicators */}
@@ -172,7 +172,7 @@ const Home = props => (
                 <div className="carousel-item active">
                 <section className="section singl-testimonial bg-1 edge top-left">
                     <div className="shape-wrapper"><img src="img/shps/abs-shp-1.svg" className="absolute top right h-100" alt="..." /></div>
-                    <div className="container-wide bring-to-front">
+                    <div className="container-wide bring-to-front" > 
                       <div className="row gap-y align-items-center">
                         <div className="col-12 col-lg-7 mx-auto">
                           <h2 style={{textAlign:'justify'}}>Propose a prediction event and get rewards</h2>
