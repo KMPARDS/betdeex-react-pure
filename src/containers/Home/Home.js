@@ -18,7 +18,7 @@ const Home = props => (
                   {/* <br> No Login, No Hassle, No Limits.*/}</p>
                   <button onClick={() => props.history.push('/explore')} class="btn btn-rounded btn-lg btn-accent text-center ml-3"> Explore Events now</button>
               </div>
-              <div className="col-lg-6 col-md-9 mx-md-auto mx-lg-0 pr-lg-0" data-aos="fade-left">
+              <div className="col-lg-6 col-md-9 mx-md-auto mx-lg-0 pr-lg-0 pc" data-aos="fade-left">
                 <img src="img/betdeex-logo.png" alt="Dashcore" className="d-blocks" style={{height:'40%'}} />
                 <b style={{fontWeight:'800', fontStyle:'italic', marginBottom:'50px'}}>Powered by Era Swap</b>                
               </div>
@@ -161,7 +161,7 @@ const Home = props => (
       </section>
         {/* Use Cases for Betdeex */}
         <section className="section bg-6 bg-6-gradient edge bottom-right">
-          <div className="container bring-to-front" style={{padding:'0px'}}>
+          <div className="container bring-to-front">
             <img src="/img/era-icon.png"/>
             <div id="demo" className="carousel slide" data-ride="carousel">
               {/* Indicators */}

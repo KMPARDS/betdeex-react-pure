@@ -13277,6 +13277,9 @@ span {
         left: 180px;
         top: 2px;
     }
+    .pc {
+        display: none;
+    }
 }
 
 div.ex1 {    
