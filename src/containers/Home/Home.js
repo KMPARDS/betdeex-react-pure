@@ -26,7 +26,7 @@ const Home = () => (
         <section>
         <div className="lp spe-bot-red-3" style={{zIndex:'9', paddingLeft: '65px'}}>
           <div className="inn-title">
-            <h2 style={{fontWeight:'800', textTransform:'uppercase'}}><i className="fa fa-check" aria-hidden="true" /> All sports <span>events 2019</span></h2>
+            <h2 style={{fontWeight:'800', textTransform:'uppercase'}}><i className="fa fa-check" aria-hidden="true" /> All sports <img src="/img/era-icon.png"/><span>events 2019</span></h2>
             <p>An 'event' is a prediction event. Now, you can choose an event from the list of multiple events</p>
           </div>
           <div className="hom-top-trends row">
@@ -158,6 +158,7 @@ const Home = () => (
         {/* Use Cases for Betdeex */}
         <section className="section bg-6 bg-6-gradient edge bottom-right">
           <div className="container bring-to-front">
+            <img src="/img/era-icon.png"/>
             <div id="demo" className="carousel slide" data-ride="carousel">
               {/* Indicators */}
               <ul className="carousel-indicators">
@@ -182,7 +183,7 @@ const Home = () => (
                         </div>
                         <div className="col-10 col-lg-5 pr-0">
                           <div className="device browser" data-aos="fade-left">
-                            <div className="screen"><img src="img/screens/dash/1.png" alt="" className="img-responsive shadow" /></div>
+                            <div className="screen"><img src="img/screen1.jpg" alt="" className="img-responsive shadow" /></div>
                           </div>
                         </div>
                       </div>
@@ -200,7 +201,7 @@ const Home = () => (
                       </div>
                       <div className="col-10 col-lg-5 pr-0">
                         <div className="device browser" data-aos="fade-left">
-                          <div className="screen"><img src="img/screens/dash/3.png" alt="" className="img-responsive shadow" /></div>
+                          <div className="screen"><img src="img/screen1.jpg" alt="" className="img-responsive shadow" /></div>
                         </div>
                       </div>
                     </div>
@@ -218,7 +219,7 @@ const Home = () => (
                       </div>
                       <div className="col-10 col-lg-5 pr-0">
                         <div className="device browser" data-aos="fade-left">
-                          <div className="screen"><img src="img/screens/dash/3.png" alt="" className="img-responsive shadow" /></div>
+                          <div className="screen"><img src="img/screen1.jpg" alt="" className="img-responsive shadow" /></div>
                         </div>
                       </div>
                     </div>
@@ -244,7 +245,7 @@ const Home = () => (
         <section className="section bg-6 b-b edge" style={{zIndex:'1111111'}}>
           <div className="container">
             <div className="section-heading text-center">
-              <h2>Join The  <span className="bold" style={{fontSize:'48px'}}>Era Swap Ecosystem</span></h2>
+              <h2>Join The  <span className="bold" style={{fontSize:'48px'}}>Era  <img src="/img/era-icon.png"/> Swap Ecosystem</span></h2>
               <p className="color-2 lead">Era Swap Ecosystem includes interlinked multiple platforms where Era Swap Tokens can
                 be utilized for exchange of services, availing discounts, getting rewards and other utilities. Era Swap Team will identify and help build more such platforms
                 in future which are built for the community and willing to incorporate ES reward system.</p>

@@ -58,6 +58,83 @@ class History extends Component {
   render() {
     return (
       <>
+  
+
+        <section>
+        <div className="lp">
+          <div>
+            {/* TRAINING BENEFITS */}
+            <div className="events ev-po-2 ev-po-com">
+                <div className="row">
+                  <div className="inn-title">
+                      <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> View History of Betting Transactions:</h2>           
+                  </div>
+                <br></br> 
+                </div>
+              <table className="myTable">
+                <tbody>
+                  <tr>
+                    <th>Sr</th>
+                    <th>Bet Address</th>
+                    <th>Choice</th>
+                    <th>Amount</th>
+                    <th>Betting time</th>                    
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td><img src="images/coun/19.png" alt="" />
+                      <div className="h-tm-ra">
+                        <h4>The Alchemists</h4><span>Eric Bros School</span>
+                      </div>
+                    </td>
+                    <td>84</td>
+                    <td>36</td>
+                    <td>12</td>
+                    
+                  </tr>
+                  <tr>
+                    <td>02</td>
+                    <td><img src="images/coun/t2.png" alt="" />
+                      <div className="h-tm-ra">
+                        <h4>Bloody Wave</h4><span>Atlantic School</span>
+                      </div>
+                    </td>
+                    <td>84</td>
+                    <td>36</td>
+                    <td>12</td>
+                    
+                  </tr>
+                  <tr>
+                    <td>03</td>
+                    <td><img src="images/coun/t3.png" alt="" />
+                      <div className="h-tm-ra">
+                        <h4>L.A Pirates</h4><span>Bebop Institute</span>
+                      </div>
+                    </td>
+                    <td>84</td>
+                    <td>36</td>
+                    <td>12</td>
+                    
+                  </tr>
+                  <tr>
+                    <td>04</td>
+                    <td><img src="images/coun/t4.png" alt="" />
+                      <div className="h-tm-ra">
+                        <h4>The Alchemists</h4><span>Eric Bros School</span>
+                      </div>
+                    </td>
+                    <td>84</td>
+                    <td>36</td>
+                    <td>12</td>
+                    
+                  </tr>
+                 
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
       {this.state.loadingBettingsArray
         ? 'Please wait loading your previous bettings...'
         : <Table responsive>
