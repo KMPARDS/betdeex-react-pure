@@ -12,7 +12,7 @@ a:hover,
 }
 
 [class~=lp] {
-    padding-bottom: 45pt;
+    padding-bottom: 10pt;
 }
 
 [class~=hom-trend-img] img:hover {
@@ -345,16 +345,14 @@ h2,
 [class~=mob-close] i {
     color: #41494F;
 }
-
 .mob-menu i,
 .mob-menu i {
     cursor: pointer;
 }
-
 [class~=menu] ul li a {
     font-weight: 600;
+    color: #fff !important;
 }
-
 [class~=home] {
     overflow: hidden;
 }
@@ -13075,7 +13073,7 @@ span {
 }
 
 .market-preview-styles_MarketPreview__footer {
-    border-top: 1px solid #dfdfdf;
+    /* border-top: 1px solid #dfdfdf; */
     padding: 1rem 2rem;
 }
 

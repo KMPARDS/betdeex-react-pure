@@ -91,7 +91,7 @@ class User extends Component {
     return (
       
       <div>        
-          <section>
+    <section>
         <div className="se lp">
           <div className="row">
             {/* TITLE */}
@@ -106,29 +106,77 @@ class User extends Component {
                   <div className="betbox">                    
                     <h5 className="mt-2" style={{color:'#263846', textAlign:'left'}}>ETH balance : </h5>                    
                     <h5 className="mt-2" style={{color:'#263846', textAlign:'left'}}>User Main ES balance : </h5>                    
-                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left'}}>ES Allowance to BetDeEx : </h5>                    
-                    
+                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left'}}>ES Allowance to BetDeEx : </h5>                                        
                     <div className="market-preview-styles_MarketPreview__footer">
                       <article>
-                        <section className="market-properties-styles_MarketProperties">
-                          
+                        <section className="market-properties-styles_MarketProperties">                          
                           <div className="inn-tickers">                          
                             <a class="inn-reg-com inn-reg-book" style={{background: 'rgb(40, 167, 69)', padding: '10px 30px', margin:'10px', color: 'rgb(255, 255, 255)'}}> Update Allowance</a>
-                            <a class="inn-reg-com inn-reg-book" style={{background: 'rgb(40, 167, 69)', padding: '10px 30px', margin:'10px', color: 'rgb(255, 255, 255)'}}> View Betting History</a>                           
+                            <a class="inn-reg-com inn-reg-book" style={{background: '#981802', padding: '10px 30px', margin:'10px', color: 'rgb(255, 255, 255)'}}> View Betting History</a>                           
                           </div>
                         </section>
                       </article>
                     </div>
                   </div>
                 </li>
-               
-               
               </ul>
             </div>
-            {/* RIGHT SIDE: FEATURE EVENTS */}
+            {/* RIGHT SIDE: FEATURE EVENTS */}               
           </div>
         </div>
-      </section>
+    </section>
+    <section>
+        <div className="se lp">
+          <div className="row">
+            {/* TITLE */}
+            <div className="inn-title">
+            <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> User Address:</h2>           
+            </div>
+            <br></br> 
+            </div>
+            {/* LEFT SIDE: SPORTS EVENTS */}
+            <div className="row">
+            <div className="col-md-6">             
+                  <div className="betbox">                    
+                    <h5 className="mt-2" style={{color:'#28a745', textAlign:'left', fontWeight:'900'}}>c28affcc145f61cd68ff533f5e11b1a1d16e7559</h5>    
+                    <hr></hr>                     
+                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left', fontSize:'14px', fontWeight:'900', textTransform:'capitalize'}}>My Betting on Yes : </h5>                    
+                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left', fontSize:'14px', fontWeight:'900', textTransform:'capitalize'}}>My Betting on No : </h5>      
+                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left', fontSize:'14px', fontWeight:'900', textTransform:'capitalize'}}>My Betting on Draw : </h5>                                           
+                    <div className="market-preview-styles_MarketPreview__footer">
+                      <article>
+                        <section className="market-properties-styles_MarketProperties">                          
+                          <div className="inn-tickers">  
+                            <a class="inn-reg-com inn-reg-book" style={{background: '#981802', padding: '10px 30px', margin:'10px', color: 'rgb(255, 255, 255)'}}> You have already claimed this betting</a>                           
+                          </div>
+                        </section>
+                      </article>
+                    </div>
+                  </div>               
+              </div>
+              <div className="col-md-6">             
+                  <div className="betbox">                    
+                    <h5 className="mt-2" style={{color:'#28a745', textAlign:'left', fontWeight:'900'}}>c28affcc145f61cd68ff533f5e11b1a1d16e7559</h5>   
+                    <hr></hr>                 
+                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left', fontSize:'14px', fontWeight:'900', textTransform:'capitalize'}}>My Betting on Yes : </h5>                    
+                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left', fontSize:'14px', fontWeight:'900', textTransform:'capitalize'}}>My Betting on No : </h5>      
+                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left', fontSize:'14px', fontWeight:'900', textTransform:'capitalize'}}>My Betting on Draw : </h5>                                              
+                    <div className="market-preview-styles_MarketPreview__footer">
+                      <article>
+                        <section className="market-properties-styles_MarketProperties">                          
+                          <div className="inn-tickers"> 
+                            <a class="inn-reg-com inn-reg-book" style={{background: '#981802', padding: '10px 30px', margin:'10px', color: 'rgb(255, 255, 255)'}}> You have already claimed this betting</a>                           
+                          </div>
+                        </section>
+                      </article>
+                    </div>
+                  </div>               
+              </div>
+            </div>
+            {/* RIGHT SIDE: FEATURE EVENTS */}               
+          </div>        
+    </section>
+     
         {
           this.state.userAddress ?
           <>

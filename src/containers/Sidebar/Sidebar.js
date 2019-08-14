@@ -59,13 +59,7 @@ const Sidebar = props => {
                   onClick={() => props.history.push(`/explore`)}
                   className={props.location.pathname === '/explore' ? 'menu-lef-act' : null}><img src="/img/icon/s1.png" alt="" /> All</a>
               </li>
-              {listOfCategories}
-              <li>
-                <a href="about.html"><img src="/img/icon/about.png" alt="" /> About</a>
-              </li>
-              <li>
-                <a href="contact.html"><img src="/img/icon/contact.png" alt="" /> Contact Us</a>
-              </li>
+              {listOfCategories}             
             </ul>
           </div>
           {/* RIGHT SIDE NAVIGATION MENU */}

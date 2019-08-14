@@ -49,7 +49,7 @@ const Home = () => (
             <div className="col-md-3">
               <div className="hom-trend">
                 <div className="hom-trend-img">
-                  <img className="img-responsive" src="/img/trends/3.jpg" alt="" />
+                  <img className="img-responsive" src="/img/3.jpg" alt="" />
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
@@ -79,7 +79,7 @@ const Home = () => (
             <div className="col-md-3">
               <div className="hom-trend">
                 <div className="hom-trend-img">
-                  <img className="img-responsive" src="/img/trends/5.jpg" alt="" />
+                  <img className="img-responsive" src="/img/5.jpg" alt="" />
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
@@ -111,7 +111,7 @@ const Home = () => (
             <div className="col-md-3">
               <div className="hom-trend">
                 <div className="hom-trend-img">
-                  <img className="img-responsive" src="/img/trends/7.jpg" alt="" />
+                  <img className="img-responsive" src="/img/6.jpg" alt="" />
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
@@ -141,7 +141,7 @@ const Home = () => (
             <div className="col-md-3">
               <div className="hom-trend pad-red-bot-0">
                 <div className="hom-trend-img">
-                  <img className="img-responsive" src="/img/trends/10.jpeg" alt="" />
+                  <img className="img-responsive" src="/img/4.jpg" alt="" />
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
