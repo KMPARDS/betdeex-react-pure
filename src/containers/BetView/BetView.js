@@ -249,7 +249,7 @@ console.log(this.state);
           <div className="row">
             {/* TITLE */}
             <div className="inn-title">
-              <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> View<span> {window.innerWidth > 1100 ? this.props.match.params.address : this.props.match.params.address.slice(0,6) + '...'+this.props.match.params.address.slice(38,42)}</span></h2>
+              <h2 style={{textAlign:'left', fontSize:'15px', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> Address<span style={{fontSize:'15px'}}> {window.innerWidth > 1100 ? this.props.match.params.address : this.props.match.params.address.slice(0,6) + '...'+this.props.match.params.address.slice(38,42)}</span></h2>
 
             </div>
             {/* LEFT SIDE: SPORTS EVENTS */}

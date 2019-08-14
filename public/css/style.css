@@ -10138,7 +10138,7 @@ textarea {
 
 [class~=inn-reg-com],
 [class~=inn-reg-com] {
-    color: #000;
+    color: #fff;
 }
 
 [class~=inn-reg-com] {
@@ -10256,7 +10256,7 @@ textarea {
 }
 
 [class~=inn-reg-book] {
-    background: #ffc107;
+    background: #55a903;
 }
 
 [class~=inn-ev-date-rig] ul li,
@@ -13278,3 +13278,9 @@ span {
         top: 2px;
     }
 }
+
+div.ex1 {    
+    height: 550px;
+    width: 200px;
+    overflow-y: scroll;
+  }
