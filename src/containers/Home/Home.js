@@ -14,12 +14,13 @@ const Home = props => (
                 <h1 className="light display-4 color-1">Welcome to the  <span className="bold d-block" style={{fontSize:'42px', color:'#fff', lineHeight:'44px'}}>Future of Prediction</span></h1>
                 <p className="color-1 lead alpha-8 my-5" style={{fontSize:'18px',}}>"Luck Becomes Limitless Opportunity with Confident Preparation <br></br><br></br>
                 <b style={{fontWeight:'800', fontStyle:'italic'}}>Decentralized, Transparent & Trustless</b>
-                <br />
+                
                   {/* <br> No Login, No Hassle, No Limits.*/}</p>
                   <button onClick={() => props.history.push('/explore')} class="btn btn-rounded btn-lg btn-accent text-center ml-3"> Explore Events now</button>
               </div>
               <div className="col-lg-6 col-md-9 mx-md-auto mx-lg-0 pr-lg-0" data-aos="fade-left">
                 <img src="img/betdeex-logo.png" alt="Dashcore" className="d-blocks" style={{height:'40%'}} />
+                <b style={{fontWeight:'800', fontStyle:'italic', marginBottom:'50px'}}>Powered by Era Swap</b>                
               </div>
              </div>
           </div>
@@ -254,59 +255,59 @@ const Home = props => (
                 in future which are built for the community and willing to incorporate ES reward system.</p>
             </div>
             <div className="ecosystem row gap-y text-center text-md-left d-flex justify-content-center align-items-center ">
-              <div className="card shadow-lg off-left-background border-0 mr-3 mb-10 col-md-2 py-4 rounded shadow-hover">
-                <div className="card-body  text-center">
+            <div className="card shadow-lg off-left-background border-0 mr-3 mb-10 col-md-2 py-4 rounded shadow-hover">
+             <a href="https://eraswap.life/" target="_blank"><div className="card-body  text-center">
                   <img src="img/icons/9.png" />
                   <p className="bold"> Affiliate Program </p>
-                </div>
+                </div></a>
               </div>
               <div className="card shadow-lg off-left-background border-0 mr-3 mb-10 col-md-2 py-4 rounded shadow-hover">
-                <div className="card-body  text-center">
+              <a href="https://eraswap.life/" target="_blank">    <div className="card-body  text-center">
                   <img src="img/icons/3.png" />
                   <p className="bold"> Education</p>
-                </div>
+                </div></a>
               </div>
               <div className="card shadow-lg off-left-background border-0 mr-3 mb-10 col-md-2 py-4 rounded shadow-hover">
-                <div className="card-body  text-center">
+              <a href="https://eraswap.life/" target="_blank"><div className="card-body  text-center">
                   <img src="img/icons/2.png" />
                   <p className="bold"> Marketplace</p>
-                </div>
+                </div></a>
               </div>
               <div className="card shadow-lg off-left-background border-0 mr-3 mb-10 col-md-2 py-4 rounded shadow-hover">
-                <div className="card-body  text-center">
+              <a href="https://eraswap.life/" target="_blank"><div className="card-body  text-center">
                   <img src="img/icons/5.png" />
                   <p className="bold"> Prediction</p>
-                </div>
+                </div></a>
               </div>
               <div className="card shadow-lg off-left-background border-0 mr-3 mb-10 col-md-2 py-4 rounded shadow-hover">
-                <div className="card-body  text-center">
+              <a href="https://eraswap.life/" target="_blank"><div className="card-body  text-center">
                   <img src="img/icons/1.png" />
                   <p className="bold"> Peer to Peer</p>
-                </div>
+                </div></a>
               </div>
               <div className="card shadow-lg off-left-background border-0 mr-3 mb-10 col-md-2 py-4 rounded shadow-hover">
-                <div className="card-body  text-center">
+              <a href="https://eraswap.life/" target="_blank"> <div className="card-body  text-center">
                   <img src="img/icons/7.png" />
                   <p className="bold">Lend and Borrow </p>
-                </div>
+                </div></a>
               </div>
               <div className="card shadow-lg off-left-background border-0 mr-3 mb-10 col-md-2 py-4 rounded shadow-hover">
-                <div className="card-body text-center">
+              <a href="https://eraswap.life/" target="_blank"> <div className="card-body text-center">
                   <img src="img/icons/6.png" />
                   <p className="bold"> Multi Exchange Solution </p>
-                </div>
+                </div></a>
               </div>
               <div className="card shadow-lg off-left-background border-0 mr-3 mb-10 col-md-2 py-4 rounded shadow-hover">
-                <div className="card-body  text-center">
+              <a href="https://eraswap.life/" target="_blank"> <div className="card-body  text-center">
                   <img src="img/icons/11.png" />
                   <p className="bold"> Merchants and Shoppers</p>
-                </div>
+                </div></a>
               </div>
               <div className="card shadow-lg off-left-background border-0 mr-3 mb-10 col-md-2 py-4 rounded shadow-hover">
-                <div className="card-body text-center">
+              <a href="https://eraswap.life/" target="_blank">  <div className="card-body text-center">
                   <img src="img/icons/10.png" />
                   <p className="bold"> Token Vesting</p>
-                </div>
+                </div></a>
               </div>
               {/* <div class="card shadow-lg off-left-background border-0 mr-3 mb-10 col-md-2 py-4 rounded shadow-hover">
                      <div class="card-body  text-center">
@@ -315,10 +316,10 @@ const Home = props => (
                      </div>
                   </div> */}
               <div className="card shadow-lg off-left-background border-0 mr-3 mb-10 col-md-2 py-4 rounded shadow-hover">
-                <div className="card-body  text-center">
+              <a href="https://eraswap.life/" target="_blank"><div className="card-body  text-center">
                   <img src="img/icons/10.png" />
                   <p className="bold">  Decentralized Wallet</p>
-                </div>
+                </div></a>
               </div>
             </div>
           </div>
@@ -349,7 +350,7 @@ const Home = props => (
               <div className="col-md-2">
                 <h6 className="py-2 small">Follow us</h6>
                 <nav className="nav justify-content-between">
-                  <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" className="btn btn-circle btn-sm brand-facebook"><i className="fab fa-facebook" /></a>
+                  <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a>
                   {/* <a href="#" class="btn btn-circle btn-sm brand-twitter"><i class="fab fa-twitter"></i></a> */}
                 </nav>
               </div>

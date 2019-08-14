@@ -64,7 +64,7 @@ class NavbarComponent extends Component {
         <Navbar.Toggle />
 
         <Navbar.Collapse className="justify-content-end">
-          <Nav.Link style={{color:'#fff', fontWeight:'600'}} >How to Play?</Nav.Link>
+          {/* <Nav.Link style={{color:'#fff', fontWeight:'600'}} >How to Play?</Nav.Link> */}
           <DropdownButton alignRight id="dropdown-basic-button" title={this.state.userAddress ? `Welcome ${String(this.state.userAddress).substr(0,6)}...` : 'Connect to a wallet'} variant="outline-light" drop="down">
 
             {/*<Dropdown.Header>Your HD Accounts</Dropdown.Header>

@@ -238,10 +238,6 @@ console.log(this.state);
         </tr>
       </>
     ));
-
-
-
-
     return (
       <Card>
     <section>
