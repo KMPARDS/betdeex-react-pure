@@ -206,7 +206,7 @@ class User extends Component {
 
 
           </>
-          : 'Please sign in by clicking on Era Swap Wallet'
+          : 'Please sign in by clicking on Connect to wallet'
         }
         <TransactionModal
           show={this.state.showUpdateAllowanceTransactionModal}
