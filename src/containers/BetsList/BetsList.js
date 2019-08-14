@@ -112,7 +112,9 @@ class BetsList extends Component {
 
 
     this.setState({
-      betsToDisplay: betsArray.slice(0,5).map(
+      betsToDisplay: betsArray
+        // .slice(0,5) // shows only 5 latest bets
+        .map(
         address =>
           <Bet
             key={address}
@@ -139,9 +141,9 @@ class BetsList extends Component {
         <section>
         <div className="se lp">
           <div className="row">
-            {/* TITLE */}
+            {/* TITLE */}{console.log(this.props)}
             <div className="inn-title">
-              <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> Show 5<span> Bets</span></h2>
+              <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> {this.props.subCategoryId !== undefined ? subCategoryArray[this.props.categoryId][this.props.subCategoryId] : (this.props.categoryId !== undefined ? categoryArray[this.props.categoryId] : 'All')}<span> Bets</span></h2>
               {/* <p>Becoming a gym certified personal fitness trainer is your foundation for success. gym is the only
                 personal trainer certification program that integrates
               </p> */}
