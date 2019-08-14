@@ -122,7 +122,51 @@ class Bet extends Component {
               <article>
                 <section className="market-properties-styles_MarketProperties">
                   <div className="inn-tickers">
-                    <a class="inn-reg-com inn-reg-book" style={{background: '#981802', padding: '10px 30px', margin:'10px', color: 'rgb(255, 255, 255)'}}> You have already claimed this betting</a>
+                  {this.state.alreadyClaimed
+                    ? 'You have already claimed this betting'
+                    : <>{
+                  this.state.queryErrorMessage ?
+                    'Error from smart contract: ' + this.state.queryErrorMessage
+                  : (this.state.userPrize === undefined
+                    ? <Button
+                    disabled={this.state.querying}
+                    onClick={this.queryWinnings}
+                  >
+                    {this.state.querying ?
+                    <><Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                      style={{marginRight: '2px'}}
+                    />Querying</>: 'Query Winnings'}
+                  </Button>
+                    : ethers.utils.formatEther(this.state.userPrize || 0) + ' ES'
+                    )
+                  }
+
+                {  this.state.withdrawErrorMessage ?
+                    <><br />{'Error from smart contract: ' + this.state.withdrawErrorMessage}</>
+                  :
+                    (this.state.userPrize !== undefined
+                    ? <Button
+                      disabled={this.state.withdrawing}
+                      onClick={this.withdrawWinnings}
+                    >
+                      {this.state.withdrawing ?
+                      <><Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                        style={{marginRight: '2px'}}
+                      />Withdrawing</>
+                      : 'Withdraw Winnings'}
+                    </Button>
+                    : null)
+                  }</>}
                   </div>
                 </section>
               </article>
