@@ -319,7 +319,7 @@ console.log(this.state);
                           <div class="inn-all-com">
                               <div class="inn-ev-date">
                                   <div class="inn-ev-date-left">
-                                      <h4>{
+                                      <h4 style={{fontSize:'52px'}}>{
                                         totalPrizePool
                                         ? totalPrizePool + ' ES'
                                         : '...'

@@ -149,7 +149,7 @@ class BetsList extends Component {
               </p> */}
             </div>
             {/* LEFT SIDE: SPORTS EVENTS */}
-            <div className="event-left col-md-12">
+            <div className="event-left col-md-12" style={{overflowY:'scroll'}}>
               {/*Sports Events in Dubai*/}
               <ul>
                 {/*<li>
