@@ -108,7 +108,7 @@ class TransactionModal extends Component {
     else if(this.state.currentScreen === 0) {
       screenContent = (
         <Modal.Body>
-          <h5>Enter the amount of ES to bet on {this.props.ethereum.arguments[0] === 0 ? 'NO' : (this.props.ethereum.arguments[0] === 1 ? 'YES' : 'DRAW')} option</h5>
+          <h5>Enter the amount of ES to predict on {this.props.ethereum.arguments[0] === 0 ? 'NO' : (this.props.ethereum.arguments[0] === 1 ? 'YES' : 'DRAW')} option</h5>
           <InputGroup className="mb-3">
             <FormControl
               ref={input => this.amountInput = input}
@@ -146,7 +146,7 @@ class TransactionModal extends Component {
                     estimationError: false
                   });
                 }
-              }>Change bet amount</Button>
+              }>Change prediction amount</Button>
             </>
             : <Button onClick={this.showEstimateGasScreen} disabled={this.state.estimating}>
           {this.state.estimating ?
@@ -179,11 +179,11 @@ class TransactionModal extends Component {
 
       screenContent = (
         <Modal.Body style={{padding: '15px'}}>
-          From: Your address <strong>{this.state.userAddress.slice(0,6) + '..' + this.state.userAddress.slice(this.state.userAddress.length - 3)}</strong><br />
-          To: Bet address <strong>{this.state.contractAddress.slice(0,6) + '..' + this.state.contractAddress.slice(this.state.contractAddress.length - 3)}</strong>
+          From: <strong>{this.state.userAddress.slice(0,6) + '..' + this.state.userAddress.slice(this.state.userAddress.length - 3)}</strong><br />
+          To: <strong>{this.state.contractAddress.slice(0,6) + '..' + this.state.contractAddress.slice(this.state.contractAddress.length - 3)}</strong>
 
           <Card style={{display:'block', padding: '15px 15px 30px', marginTop: '5px'}}>
-            New betting on <Badge variant={this.props.ethereum.arguments[0] === 0 ? 'danger' : (this.props.ethereum.arguments[0] === 1 ? 'success' : 'warning')}>{this.props.ethereum.arguments[0] === 0 ? 'NO' : (this.props.ethereum.arguments[0] === 1 ? 'YES' : 'DRAW')}</Badge>
+            New Prediction on <Badge variant={this.props.ethereum.arguments[0] === 0 ? 'danger' : (this.props.ethereum.arguments[0] === 1 ? 'success' : 'warning')}>{this.props.ethereum.arguments[0] === 0 ? 'NO' : (this.props.ethereum.arguments[0] === 1 ? 'YES' : 'DRAW')}</Badge>
             <span style={{display: 'block', fontSize: '1.8rem'}}>
               {ethers.utils.formatEther(this.state.exaEsTokensToBet)}<strong>ES</strong>
             </span>
@@ -288,7 +288,7 @@ class TransactionModal extends Component {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Era Swap Wallet
+            New Prediction
           </Modal.Title>
         </Modal.Header>
 
