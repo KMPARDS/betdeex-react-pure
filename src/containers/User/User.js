@@ -89,8 +89,11 @@ class User extends Component {
 
   render() {
     return (
-      
-      <div>        
+
+      <div>
+      {
+        this.state.userAddress ?
+        <>
     <section>
         <div className="se lp">
           <div className="row">
@@ -174,7 +177,7 @@ class User extends Component {
 
               </ul>
             </div>
-            {/* RIGHT SIDE: FEATURE EVENTS */}               
+            {/* RIGHT SIDE: FEATURE EVENTS */}
           </div>
         </div>
     </section>
@@ -183,115 +186,24 @@ class User extends Component {
           <div className="row">
             {/* TITLE */}
             <div className="inn-title">
-            <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> User Address:</h2>           
+            <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> Your Participations in bets:</h2>
             </div>
-            <br></br> 
+            <br></br>
             </div>
             {/* LEFT SIDE: SPORTS EVENTS */}
             <div className="row">
-            <div className="col-md-6">             
-                  <div className="betbox">                    
-                    <h5 className="mt-2" style={{color:'#28a745', textAlign:'left', fontWeight:'900'}}>c28affcc145f61cd68ff533f5e11b1a1d16e7559</h5>    
-                    <hr></hr>                     
-                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left', fontSize:'14px', fontWeight:'900', textTransform:'capitalize'}}>My Betting on Yes : </h5>                    
-                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left', fontSize:'14px', fontWeight:'900', textTransform:'capitalize'}}>My Betting on No : </h5>      
-                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left', fontSize:'14px', fontWeight:'900', textTransform:'capitalize'}}>My Betting on Draw : </h5>                                           
-                    <div className="market-preview-styles_MarketPreview__footer">
-                      <article>
-                        <section className="market-properties-styles_MarketProperties">                          
-                          <div className="inn-tickers">  
-                            <a class="inn-reg-com inn-reg-book" style={{background: '#981802', padding: '10px 30px', margin:'10px', color: 'rgb(255, 255, 255)'}}> You have already claimed this betting</a>                           
-                          </div>
-                        </section>
-                      </article>
-                    </div>
-                  </div>               
-              </div>
-              <div className="col-md-6">             
-                  <div className="betbox">                    
-                    <h5 className="mt-2" style={{color:'#28a745', textAlign:'left', fontWeight:'900'}}>c28affcc145f61cd68ff533f5e11b1a1d16e7559</h5>   
-                    <hr></hr>                 
-                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left', fontSize:'14px', fontWeight:'900', textTransform:'capitalize'}}>My Betting on Yes : </h5>                    
-                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left', fontSize:'14px', fontWeight:'900', textTransform:'capitalize'}}>My Betting on No : </h5>      
-                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left', fontSize:'14px', fontWeight:'900', textTransform:'capitalize'}}>My Betting on Draw : </h5>                                              
-                    <div className="market-preview-styles_MarketPreview__footer">
-                      <article>
-                        <section className="market-properties-styles_MarketProperties">                          
-                          <div className="inn-tickers"> 
-                            <a class="inn-reg-com inn-reg-book" style={{background: '#981802', padding: '10px 30px', margin:'10px', color: 'rgb(255, 255, 255)'}}> You have already claimed this betting</a>                           
-                          </div>
-                        </section>
-                      </article>
-                    </div>
-                  </div>               
-              </div>
+            {this.state.loadingBettingsArray ? 'Please wait loading your bet participations...' : (this.state.bettingBetAddressArray.length ?
+              this.state.bettingBetAddressArray.map(
+              address => <Bet address={address} history={this.props.history} />
+            ) : 'No bet participations' )}
+
             </div>
-            {/* RIGHT SIDE: FEATURE EVENTS */}               
-          </div>        
+            {/* RIGHT SIDE: FEATURE EVENTS */}
+          </div>
     </section>
-     
-        {
-          this.state.userAddress ?
-          <>
-            <p>User address: {this.state.userAddress ? this.state.userAddress : 'Please sign in'}</p>
-            <p>ETH balance: {this.state.ethBalance ? this.state.ethBalance + ' ETH' : 'Loading...'}</p>
-            <p>User Main ES balance: {this.state.esBalance ? this.state.esBalance + ' ES' : 'Loading...'}</p>
-            {!this.state.updateAllowance
-              ? <p>
-                ES Allowance to BetDeEx:
-                {this.state.esAllowance
-                  ? <>
-                    {this.state.esAllowance + ' ES'}
-                    <Button onClick={() => this.setState({ updateAllowance: true })} variant="outline-primary">Update Allowance</Button>
-                  </>
-                  : 'Loading...'
-                }
-              </p>
-              : <InputGroup className="mb-3">
-                  <FormControl
-                    placeholder="Enter allowance in ES"
-                    aria-label="Enter allowance in ES"
-                    value={this.state.newAllowance}
-                    onChange={event => {
-                      let newAllowance;
-                      try {
-                        newAllowance = event.target.value;
-                        ethers.utils.parseEther(newAllowance);
-                        this.setState({ newAllowance, badAllowanceValue:false });
-                      } catch (e) {
-                        this.setState({ badAllowanceValue: true, newAllowance })
-                      }
 
-                    }}
-                    style={this.state.badAllowanceValue ? {
-                      border: '1px solid #f77'
-                    } : {}}
-                  />
-                  <InputGroup.Append>
-                    <Button variant="outline-primary"
-                      onClick={() => this.setState({ showUpdateAllowanceTransactionModal: true })}
-                    >Update now</Button>
-                    <Button
-                      variant="outline-danger"
-                      onClick={() => this.setState({ updateAllowance: false })}
-                    >
-                      Not now
-                    </Button>
-                  </InputGroup.Append>
-                </InputGroup>
-              }
 
-              <Button
-                variant="outline-danger"
-                onClick={() => this.props.history.push('/user/history')}
-              >
-                View Betting History
-              </Button>
 
-              {this.state.bettingBetAddressArray.length ?
-                this.state.bettingBetAddressArray.map(
-                address => <Bet address={address} />
-              ) : 'Please wait loading your bettings...'}
 
           </>
           : 'Please sign in by clicking on Era Swap Wallet'
