@@ -5,6 +5,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { esContract, betdeex } from '../../env';
 
 const ethers = require('ethers');
+
 class NavbarComponent extends Component {
   state = {
     userAddress: ''
@@ -52,12 +53,12 @@ class NavbarComponent extends Component {
         </Link>
 
 
-        <Nav.Link
+        {/*<Nav.Link
           style={{color:'#fff', fontWeight:'600'}}
           onClick={() => this.props.history.push('/explore')}
         >
           Explore
-        </Nav.Link>
+        </Nav.Link>*/}
 
 
         <Navbar.Toggle />
