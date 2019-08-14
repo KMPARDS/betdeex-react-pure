@@ -322,22 +322,7 @@ const Home = () => (
           </div>
         </section>       
         {/* ./CTA - Create Account */}
-        <section className="section bg-6 edge top-left b-b">
-          <div className="container pt-5">
-            <div className="row gap-y">
-              <div className="col-md-12">
-                <div className="d-flex align-items-center flex-column flex-md-row">
-                  <div className="text-center text-md-left">
-                    <h2 className="mt-0">Become Day Swappers Today</h2>
-                    <p className="lead">Day Swappers is an affiliate program for Era Swap Ecosystem,
-                      where every member is rewarded based on their contribution towards multiple interlinked platforms of the Ecosystem.</p>
-                    <p className="small">Get registered as Day Swappers now. <a href="https://dayswappers.org/" className="btn btn-rounded btn-lg btn-accent text-center ml-3" target="_blank"> Click Here</a></p>
-                  </div>
-                </div>
-              </div>                 
-            </div>
-          </div>
-        </section>      
+        
         {/* ./Footer - Simple */}
         <footer className="site-footer section bg-1 color-1 block bg-1">
           <div className="container py-4">

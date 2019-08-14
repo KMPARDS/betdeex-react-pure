@@ -57,7 +57,7 @@ const Sidebar = props => {
               <li>
                 <a
                   onClick={() => props.history.push(`/explore`)}
-                  className={props.location.pathname === '/explore' ? 'menu-lef-act' : null}><img src="/img/icon/s1.png" alt="" /> All</a>
+                  className={props.location.pathname === '/explore' ? 'menu-lef-act' : null}><img src="/img/icon/all.png" alt="" /> All</a>
               </li>
               {listOfCategories}             
             </ul>
