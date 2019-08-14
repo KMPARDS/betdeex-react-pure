@@ -79,7 +79,101 @@ class Bet extends Component {
 
   render() {
     return (
-      <Card>
+      <>
+      <div className="col-md-12 my-4">
+          <div className="betbox">
+            <h5 onClick={() => this.props.history.push('/bet/'+this.props.address)} className="mt-2" style={{color:'#28a745', textAlign:'left', fontWeight:'900'}}>Bet Address: {this.props.address}</h5>
+            <hr></hr>
+            <div class="inn-all-com">
+                <div class="inn-ev-date">
+                    <div class="inn-ev-date-left">
+                        <h4>{
+                          ethers.utils.formatEther(
+                            ethers.utils.parseEther(
+                              this.state.amountChoice[0] || '0.0'
+                            ).add(
+                              ethers.utils.parseEther(
+                                this.state.amountChoice[1] || '0.0'
+                              )
+                            ).add(
+                              ethers.utils.parseEther(
+                                this.state.amountChoice[2] || '0.0'
+                              )
+                            )
+                          )}</h4>
+                        <span>Total Invested in Bet</span>
+                    </div>
+                    <div class="inn-ev-date-rig">
+                        <ul>
+                            <li> <h4>{this.state.amountChoice[0] + ' ES' || 'Loading...'}</h4>
+                          <span>Yes Amount</span>
+                            </li>
+                            <li> <h4>{this.state.amountChoice[1] + ' ES' || 'Loading...'}</h4>
+                          <span>No Amount</span>
+                            </li>
+                            <li> <h4>{this.state.amountChoice[2] + ' ES' || 'Loading...'}</h4>
+                          <span>Draw Amount</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div className="market-preview-styles_MarketPreview__footer">
+              <article>
+                <section className="market-properties-styles_MarketProperties">
+                  <div className="inn-tickers">
+                  {this.state.alreadyClaimed
+                    ? 'You have already claimed this betting'
+                    : <>{
+                  this.state.queryErrorMessage ?
+                    'Error from smart contract: ' + this.state.queryErrorMessage
+                  : (this.state.userPrize === undefined
+                    ? <Button
+                    disabled={this.state.querying}
+                    onClick={this.queryWinnings}
+                  >
+                    {this.state.querying ?
+                    <><Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                      style={{marginRight: '2px'}}
+                    />Querying</>: 'Query Winnings'}
+                  </Button>
+                    : ethers.utils.formatEther(this.state.userPrize || 0) + ' ES'
+                    )
+                  }
+
+                {  this.state.withdrawErrorMessage ?
+                    <><br />{'Error from smart contract: ' + this.state.withdrawErrorMessage}</>
+                  :
+                    (this.state.userPrize !== undefined
+                    ? <Button
+                      disabled={this.state.withdrawing}
+                      onClick={this.withdrawWinnings}
+                    >
+                      {this.state.withdrawing ?
+                      <><Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                        style={{marginRight: '2px'}}
+                      />Withdrawing</>
+                      : 'Withdraw Winnings'}
+                    </Button>
+                    : null)
+                  }</>}
+                  </div>
+                </section>
+              </article>
+            </div>
+          </div>
+      </div>
+      {/*<Card>
         <p>{this.props.address}</p>
         <p>My Betting on Yes: {this.state.amountChoice[0] + ' ES' || 'Loading...'}</p>
         <p>My Betting on No: {this.state.amountChoice[1] + ' ES' || 'Loading...'}</p>
@@ -129,7 +223,8 @@ class Bet extends Component {
           </Button>
           : null)
         }</>}
-      </Card>
+      </Card>*/}
+      </>
     );
   }
 }
