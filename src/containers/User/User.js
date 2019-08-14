@@ -89,7 +89,46 @@ class User extends Component {
 
   render() {
     return (
-      <div>
+      
+      <div>        
+          <section>
+        <div className="se lp">
+          <div className="row">
+            {/* TITLE */}
+            <div className="inn-title">
+            <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> User Address: <span>{this.state.userAddress ? this.state.userAddress : 'Please sign in'}</span></h2>             
+            </div>
+            {/* LEFT SIDE: SPORTS EVENTS */}
+            <div className="event-left col-md-12">
+              {/*Sports Events in Dubai*/}
+              <ul>
+                <li>
+                  <div className="betbox">                    
+                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left'}}>ETH balance : </h5>                    
+                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left'}}>User Main ES balance : </h5>                    
+                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left'}}>ES Allowance to BetDeEx : </h5>                    
+                    
+                    <div className="market-preview-styles_MarketPreview__footer">
+                      <article>
+                        <section className="market-properties-styles_MarketProperties">
+                          
+                          <div className="inn-tickers">                          
+                            <a class="inn-reg-com inn-reg-book" style={{background: 'rgb(40, 167, 69)', padding: '10px 30px', margin:'10px', color: 'rgb(255, 255, 255)'}}> Update Allowance</a>
+                            <a class="inn-reg-com inn-reg-book" style={{background: 'rgb(40, 167, 69)', padding: '10px 30px', margin:'10px', color: 'rgb(255, 255, 255)'}}> View Betting History</a>                           
+                          </div>
+                        </section>
+                      </article>
+                    </div>
+                  </div>
+                </li>
+               
+               
+              </ul>
+            </div>
+            {/* RIGHT SIDE: FEATURE EVENTS */}
+          </div>
+        </div>
+      </section>
         {
           this.state.userAddress ?
           <>

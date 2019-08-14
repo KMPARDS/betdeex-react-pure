@@ -250,9 +250,7 @@ console.log(this.state);
             {/* TITLE */}
             <div className="inn-title">
               <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> View<span> {window.innerWidth > 1100 ? this.props.match.params.address : this.props.match.params.address.slice(0,6) + '...'+this.props.match.params.address.slice(38,42)}</span></h2>
-              {/* <p>Becoming a gym certified personal fitness trainer is your foundation for success. gym is the only
-                personal trainer certification program that integrates
-              </p> */}
+
             </div>
             {/* LEFT SIDE: SPORTS EVENTS */}
             <div className="event-left col-md-12" >
