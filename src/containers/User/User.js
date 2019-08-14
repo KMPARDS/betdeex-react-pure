@@ -96,29 +96,82 @@ class User extends Component {
           <div className="row">
             {/* TITLE */}
             <div className="inn-title">
-            <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> User Address: <span>{this.state.userAddress ? this.state.userAddress : 'Please sign in'}</span></h2>             
+            <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> User Address: <span>{this.state.userAddress ? this.state.userAddress : 'Please load your wallet'}</span></h2>
             </div>
             {/* LEFT SIDE: SPORTS EVENTS */}
             <div className="event-left col-md-12">
               {/*Sports Events in Dubai*/}
               <ul>
                 <li>
-                  <div className="betbox">                    
-                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left'}}>ETH balance : </h5>                    
-                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left'}}>User Main ES balance : </h5>                    
-                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left'}}>ES Allowance to BetDeEx : </h5>                                        
+                  <div className="betbox">
+                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left'}}>ETH balance: {this.state.userAddress ? (this.state.ethBalance ? this.state.ethBalance + ' ETH' : 'Loading...') : 'Please load wallet to see your ETH balance'}</h5>
+                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left'}}>User Main ES balance: {this.state.userAddress ? (this.state.esBalance ? this.state.esBalance + ' ES' : 'Loading...') : 'Please load wallet to see your ES balance'}</h5>
+                    <h5 className="mt-2" style={{color:'#263846', textAlign:'left'}}>{ (!this.state.updateAllowance
+                      ? <>
+                        ES Allowance to BetDeEx:
+                        {this.state.userAddress ? (this.state.esAllowance
+                          ? <>
+                            {' ' + this.state.esAllowance + ' ES '}
+                            <Button onClick={() => this.setState({ updateAllowance: true })} variant="outline-primary">Update Allowance</Button>
+                          </>
+                          : ' Loading...') : ' Please load wallet to see your BetDeEx allowance'
+                        }
+                      </>
+                      : <InputGroup className="mb-3">
+                          <InputGroup.Prepend>
+                            <InputGroup.Text>
+                              EDIT ES ALLOWANCE AND PRESS UPDATE
+                            </InputGroup.Text>
+                          </InputGroup.Prepend>
+                          <FormControl
+                            placeholder="Enter allowance in ES"
+                            aria-label="Enter allowance in ES"
+                            value={this.state.newAllowance}
+                            onChange={event => {
+                              let newAllowance;
+                              try {
+                                newAllowance = event.target.value;
+                                ethers.utils.parseEther(newAllowance);
+                                this.setState({ newAllowance, badAllowanceValue:false });
+                              } catch (e) {
+                                this.setState({ badAllowanceValue: true, newAllowance })
+                              }
+
+                            }}
+                            style={this.state.badAllowanceValue ? {
+                              border: '1px solid #f77'
+                            } : {}}
+                          />
+
+                          <InputGroup.Append>
+                            <Button variant="outline-primary"
+                              onClick={() => this.setState({ showUpdateAllowanceTransactionModal: true })}
+                            >Update now</Button>
+                            <Button
+                              variant="outline-danger"
+                              onClick={() => this.setState({ updateAllowance: false })}
+                            >
+                              Not now
+                            </Button>
+                          </InputGroup.Append>
+                        </InputGroup>)
+                      }</h5>
+
                     <div className="market-preview-styles_MarketPreview__footer">
                       <article>
-                        <section className="market-properties-styles_MarketProperties">                          
-                          <div className="inn-tickers">                          
-                            <a class="inn-reg-com inn-reg-book" style={{background: 'rgb(40, 167, 69)', padding: '10px 30px', margin:'10px', color: 'rgb(255, 255, 255)'}}> Update Allowance</a>
-                            <a class="inn-reg-com inn-reg-book" style={{background: '#981802', padding: '10px 30px', margin:'10px', color: 'rgb(255, 255, 255)'}}> View Betting History</a>                           
+                        <section className="market-properties-styles_MarketProperties">
+
+                          <div className="inn-tickers">
+                            {/*<a class="inn-reg-com inn-reg-book" style={{background: 'rgb(40, 167, 69)', padding: '10px 30px', margin:'10px', color: 'rgb(255, 255, 255)'}}> Update Allowance</a>*/}
+                            <button onClick={() => this.props.history.push('/user/history')} className="inn-reg-com inn-reg-book" style={{background: 'rgb(40, 167, 69)', padding: '10px 30px', margin:'10px', color: 'rgb(255, 255, 255)'}}>View History of Betting transactions</button>
                           </div>
                         </section>
                       </article>
                     </div>
                   </div>
                 </li>
+
+
               </ul>
             </div>
             {/* RIGHT SIDE: FEATURE EVENTS */}               

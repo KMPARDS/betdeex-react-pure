@@ -220,11 +220,23 @@ console.log(this.state);
     let modalClose = () => this.setState({ showTransactionModal: false });
 
 
-    const bettings = this.state.bettings.map(betting => (
-      <tr>
+    const bettings = this.state.bettings.map((betting, index) => (
+      <>
+      {/*<tr>
         <td>{betting.address}</td>
         <td>{betting.amount} ES</td>
-      </tr>
+      </tr>*/}
+        <tr>
+          <td>{index + 1}</td>
+          <td>
+            <div className="h-tm-ra">
+              <h4>{betting.address}</h4>
+              {/*<span>specials: active, fast run, Good stamina</span>*/}
+            </div>
+          </td>
+          <td>{betting.amount} ES</td>
+        </tr>
+      </>
     ));
 
 
@@ -238,7 +250,7 @@ console.log(this.state);
             {/* TITLE */}
             <div className="inn-title">
               <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> View<span> {window.innerWidth > 1100 ? this.props.match.params.address : this.props.match.params.address.slice(0,6) + '...'+this.props.match.params.address.slice(38,42)}</span></h2>
-             
+
             </div>
             {/* LEFT SIDE: SPORTS EVENTS */}
             <div className="event-left col-md-12" >
@@ -287,15 +299,17 @@ console.log(this.state);
                               }
                             </span></span>
                             </li>
-                            <li><span>Est. Fee</span><span><span data-tip="0.01" data-event="click focus" className="value_fee">2%</span></span>
+                            <li><span>Est. Fee</span><span><span className="value_fee">{
+                              fees
+                              ? fees + '%'
+                              : 'Loading..'
+                            }</span></span>
                             </li>
-                            <li><span>Start Time</span><span className="value_expires">May 31,
-                                2019 7:00 AM (UTC 0)</span><span className="market-properties-styles_MarketProperties_value_small">May
-                                31, 2019 12:30 PM (GMT+5:30) (Your timezone)</span>
+                            <li><span>Start Time</span><span className="value_expires">{this.state.creationTimestamp ? new Date(this.state.creationTimestamp * 1000).toLocaleString() : 'Loading...'}</span>{/*<span className="market-properties-styles_MarketProperties_value_small">May
+                                31, 2019 12:30 PM (GMT+5:30) (Your timezone)</span>*/}
                             </li>
-                            <li><span>Pause Time</span><span className="value_expires">May 31,
-                                2019 7:00 AM (UTC 0)</span><span className="market-properties-styles_MarketProperties_value_small">May
-                                31, 2019 12:30 PM (GMT+5:30) (Your timezone)</span>
+                            <li><span>Pause Time</span><span className="value_expires">{this.state.pauseTimestamp ? new Date(this.state.pauseTimestamp * 1000).toLocaleString() : 'Loading...'}</span>{/*<span className="market-properties-styles_MarketProperties_value_small">May
+                                31, 2019 12:30 PM (GMT+5:30) (Your timezone)</span>*/}
                             </li>
                           </ul>
                           {/* <div className="inn-tickers">
@@ -305,18 +319,34 @@ console.log(this.state);
                           <div class="inn-all-com">
                               <div class="inn-ev-date">
                                   <div class="inn-ev-date-left">
-                                      <h4>28 th</h4>
+                                      <h4>{
+                                        totalPrizePool
+                                        ? totalPrizePool + ' ES'
+                                        : '...'
+                                      }</h4>
                                       <span>Total Prize Pool</span>
                                   </div>
                                   <div class="inn-ev-date-rig">
                                       <ul>
-                                          <li> <h4>28 th</h4>
+                                          <li> <h4>{
+                                            totalBetTokensInEsByChoice[1]
+                                            ? totalBetTokensInEsByChoice[1] + ' ES'
+                                            : 'Loading..'
+                                          }</h4>
                                         <span>Yes Amount</span>
                                           </li>
-                                          <li> <h4>28 th</h4>
+                                          <li> <h4>{
+                                            totalBetTokensInEsByChoice[0]
+                                            ? totalBetTokensInEsByChoice[0] + ' ES'
+                                            : 'Loading..'
+                                          }</h4>
                                         <span>No Amount</span>
                                           </li>
-                                          <li> <h4>28 th</h4>
+                                          <li> <h4>{
+                                            totalBetTokensInEsByChoice[2]
+                                            ? totalBetTokensInEsByChoice[2] + ' ES'
+                                            : 'Loading..'
+                                          }</h4>
                                         <span>Draw Amount</span>
                                           </li>
                                       </ul>
@@ -341,119 +371,65 @@ console.log(this.state);
           <div class="share-btn">
 
               <ul>
-                  <li><a style={{background:'#28a745', padding:'10px 30px 10px 30px', color:'#fff'}} class="inn-reg-com inn-reg-book" data-toggle="modal" data-target="#betmodal"> Yes</a>
+                  <li><button style={{background:'#28a745', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 1 })}}> Yes</button>
                   </li>
-                  <li><a style={{background:'#dc3545', padding:'10px 30px 10px 30px', color:'#fff'}} class="inn-reg-com inn-reg-book" data-toggle="modal" data-target="#betmodal">No</a>
+                  <li><button style={{background:'#dc3545', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 0 })}}>No</button>
                   </li>
-                  <li><a style={{background:'#ffc107', padding:'10px 30px 10px 30px', color:'#fff'}} class="inn-reg-com inn-reg-book" data-toggle="modal" data-target="#betmodal">Draw</a>
+                  <li><button style={{background:'#ffc107', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</button>
                   </li>
               </ul>
           </div>
           <br></br>
           <div>
             <ul className="nav nav-tabs" role="tablist">
-              <li className="nav-item">
+              <li className="nav-item" onClick={() => this.seeChoiceBettings(1)}>
                 <a className="nav-link active" href="#profile" role="tab" data-toggle="tab">Yes</a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onClick={() => this.seeChoiceBettings(0)}>
                 <a className="nav-link" href="#buzz" role="tab" data-toggle="tab">No</a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onClick={() => this.seeChoiceBettings(2)}>
                 <a className="nav-link" href="#references" role="tab" data-toggle="tab">Draw</a>
               </li>
             </ul>
             {/* Tab panes */}
             <div className="tab-content">
               <div role="tabpanel" className="tab-pane active" id="profile">
-                  <table className="myTable">
-                      <tbody>
-                        <tr>
-                          <th>Sr</th>
-                          <th>Address</th>
-                          <th>Amount</th>
-                        </tr>
-                        <tr>
-                          <td>01</td>
-                          <td><img src="images/users/2.png" alt="" />
-                            <div className="h-tm-ra">
-                              <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
-                            </div>
-                          </td>
-                          <td>2000.0 ES</td>
-                        </tr>
-                        <tr>
-                          <td>02</td>
-                          <td><img src="images/users/3.png" alt="" />
-                            <div className="h-tm-ra">
-                              <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
-                            </div>
-                          </td>
-
-                          <td>100.0 ES</td>
-                        </tr>
-                      </tbody>
-                  </table>
-              </div>
-              <div role="tabpanel" className="tab-pane fade" id="buzz">
-              <table className="myTable">
+              {!this.state.fetchingBettings ? <table className="myTable">
               <tbody>
                 <tr>
                   <th>Sr</th>
                   <th>Address</th>
                   <th>Amount</th>
                 </tr>
+                {Object.values(bettings).length ? bettings : 'There are no bettings on Yes choice'}
+                </tbody>
+                </table> : 'Please wait fetching bettings on the contract from blockchain...'}
+              </div>
+              <div role="tabpanel" className="tab-pane fade" id="buzz">
+              {!this.state.fetchingBettings ? <table className="myTable">
+              <tbody>
                 <tr>
-                  <td>01</td>
-                  <td><img src="images/users/2.png" alt="" />
-                    <div className="h-tm-ra">
-                      <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
-                    </div>
-                  </td>
-                  <td>2000.0 ES</td>
+                  <th>Sr</th>
+                  <th>Address</th>
+                  <th>Amount</th>
                 </tr>
-                <tr>
-                  <td>02</td>
-                  <td><img src="images/users/3.png" alt="" />
-                    <div className="h-tm-ra">
-                      <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
-                    </div>
-                  </td>
-
-                  <td>100.0 ES</td>
-                </tr>
-              </tbody>
-            </table>
+                {Object.values(bettings).length ? bettings : 'There are no bettings on No choice'}
+                </tbody>
+                </table> : 'Please wait fetching bettings on the contract from blockchain...'}
 
               </div>
               <div role="tabpanel" className="tab-pane fade" id="references">
-              <table className="myTable">
+              {!this.state.fetchingBettings ? <table className="myTable">
               <tbody>
                 <tr>
                   <th>Sr</th>
                   <th>Address</th>
                   <th>Amount</th>
                 </tr>
-                <tr>
-                  <td>01</td>
-                  <td><img src="images/users/2.png" alt="" />
-                    <div className="h-tm-ra">
-                      <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
-                    </div>
-                  </td>
-                  <td>2000.0 ES</td>
-                </tr>
-                <tr>
-                  <td>02</td>
-                  <td><img src="images/users/3.png" alt="" />
-                    <div className="h-tm-ra">
-                      <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
-                    </div>
-                  </td>
-
-                  <td>100.0 ES</td>
-                </tr>
-              </tbody>
-            </table>
+                {Object.values(bettings).length ? bettings : 'There are no bettings on Draw choice'}
+                </tbody>
+                </table> : 'Please wait fetching bettings on the contract from blockchain...'}
               </div>
             </div>
           </div>
@@ -462,103 +438,7 @@ console.log(this.state);
         </div>
 
       </section>
-        { this.state.isBetValid ?
-        <Card.Body>
-          <p>Bet Address: {this.props.match.params.address}</p>
-          <p>Category: {
-            this.state.category !== undefined && this.state.subCategory !== undefined
-            ? `${categoryArray[this.state.category]} / ${subCategoryArray[this.state.category][this.state.subCategory]}`
-            : null
-            }</p>
-          <p>Description: {this.state.description}</p>
-          <p>Start Time: {this.state.creationTimestamp ? new Date(this.state.creationTimestamp * 1000).toLocaleString() + ' (in your local timezone)' : 'Loading...'}</p>
-          <p>Pause Time: {this.state.pauseTimestamp ? new Date(this.state.pauseTimestamp * 1000).toLocaleString() + ' (in your local timezone)' : 'Loading...'}</p>
-          <p>Fees: {
-            fees
-            ? fees + '%'
-            : 'Loading..'
-          }</p>
-          <p>Minimum: {
-            minimumBetInEs
-            ? minimumBetInEs + ' ES'
-            : 'Loading..'
-          }</p>
-          <p>Total Prize Pool: {
-            totalPrizePool
-            ? totalPrizePool + ' ES'
-            : 'Loading..'
-          }</p>
-          <p>Yes Amount: {
-            totalBetTokensInEsByChoice[1]
-            ? totalBetTokensInEsByChoice[1] + ' ES'
-            : 'Loading..'
-          }</p>
-          <p>No Amount: {
-            totalBetTokensInEsByChoice[0]
-            ? totalBetTokensInEsByChoice[0] + ' ES'
-            : 'Loading..'
-          }</p>
-          {
-            this.state.isDrawPossible
-            ? (<p>Draw Amount: {
-              totalBetTokensInEsByChoice[2]
-                ? totalBetTokensInEsByChoice[2] + ' ES'
-                : 'Loading..'
-                }</p>)
-              : null
-          }
-          <>
-            Predict Now:&nbsp;
-            <Button variant="success" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 1 })}}>Yes</Button>
-            <Button variant="danger" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 0 })}}>No</Button>
-            <Button variant="warning" disabled={!this.state.isDrawPossible} onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</Button>
-          </>
 
-          <>
-            <Tabs defaultActiveKey="yes" id="uncontrolled-tab-example"
-            onSelect={key => this.seeChoiceBettings(key === 'yes' ? 1 : (key === 'no' ? 0 : 2))}>
-              <Tab title="Yes" eventKey="yes">
-              <table className="myTable">
-              <tbody>
-                <tr>
-                  <th>Sr</th>
-                  <th>Address</th>
-                  <th>Amount</th>
-                </tr>
-                <tr>
-                  <td>01</td>
-                  <td><img src="images/users/2.png" alt="" />
-                    <div className="h-tm-ra">
-                      <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
-                    </div>
-                  </td>
-                  <td>2000.0 ES</td>
-                </tr>
-                <tr>
-                  <td>02</td>
-                  <td><img src="images/users/3.png" alt="" />
-                    <div className="h-tm-ra">
-                      <h4>0xc8e1f3b9a0cdfcef9ffd2343b943989a22517b26</h4><span>specials: active, fast run, Good stamina</span>
-                    </div>
-                  </td>
-
-                  <td>100.0 ES</td>
-                </tr>
-              </tbody>
-            </table>
-              </Tab>
-              <Tab title="No" eventKey="no">
-                {!this.state.fetchingBettings ? <ChoiceBettingsTable>{Object.values(bettings).length ? bettings : 'There are no bettings'}</ChoiceBettingsTable> : 'Please wait fetching bettings on the contract from blockchain...'}
-              </Tab>
-              <Tab title="Draw" eventKey="draw">
-                {!this.state.fetchingBettings ? <ChoiceBettingsTable>{Object.values(bettings).length ? bettings : 'There are no bettings'}</ChoiceBettingsTable> : 'Please wait fetching bettings on the contract from blockchain...'}
-              </Tab>
-            </Tabs>
-          </>
-
-        </Card.Body>
-        : 'This bet address is not valid'
-        }
 
         <TransactionModal
           show={this.state.showTransactionModal}
