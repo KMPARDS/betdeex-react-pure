@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Home = () => (
+const Home = props => (
   <>
-  <div>  
+  <div>
         {/* ./Page header */}
     <header className="header online-payment-header section color-1 alpha-9" style={{backgroundImage: 'url(/img/banner-bg.jpg)',
     backgroundSize: 'cover', zIndex: '9', height: '500px', backgroundPositionY: 'center'}}>
@@ -13,21 +13,21 @@ const Home = () => (
               <div className="col-lg-5 mx-auto text-center text-lg-left" style={{margin:'50px', paddingLeft: '27px'}}>
                 <h1 className="light display-4 color-1">Welcome to the  <span className="bold d-block" style={{fontSize:'42px', color:'#fff', lineHeight:'44px'}}>Future of Prediction</span></h1>
                 <p className="color-1 lead alpha-8 my-5">Come and Predict as your interest and capacity on any event on this planet for minimal charge.<br />
-                  {/* <br> No Login, No Hassle, No Limits.*/}</p>    
-                  <a href="https://dayswappers.org/" class="btn btn-rounded btn-lg btn-accent text-center ml-3" target="_blank"> View Bets now</a>            
+                  {/* <br> No Login, No Hassle, No Limits.*/}</p>
+                  <button onClick={() => props.history.push('/explore')} class="btn btn-rounded btn-lg btn-accent text-center ml-3"> Explore Events now</button>
               </div>
-              <div className="col-lg-6 col-md-9 mx-md-auto mx-lg-0 pr-lg-0" data-aos="fade-left">               
-                <img src="img/betdeex-logo.png" alt="Dashcore" className="d-blocks" style={{height:'40%'}} />               
+              <div className="col-lg-6 col-md-9 mx-md-auto mx-lg-0 pr-lg-0" data-aos="fade-left">
+                <img src="img/betdeex-logo.png" alt="Dashcore" className="d-blocks" style={{height:'40%'}} />
               </div>
              </div>
           </div>
-    </header>       
+    </header>
         {/*Cycle  */}
-        
+
         <section>
         <div className="lp spe-bot-red-3" style={{zIndex:'9', paddingLeft: '65px'}}>
           <div className="inn-title">
-            <h2 style={{fontWeight:'800', textTransform:'uppercase'}}><i className="fa fa-check" aria-hidden="true" /> All sports <img src="/img/era-icon.png"/><span>events 2019</span></h2>
+            <h2 style={{fontWeight:'800', textTransform:'uppercase'}}><i className="fa fa-check" aria-hidden="true" /> All predictions <img src="/img/era-icon.png"/><span>events 2019</span></h2>
             <p>An 'event' is a prediction event. Now, you can choose an event from the list of multiple events</p>
           </div>
           <div className="hom-top-trends row">
@@ -239,7 +239,7 @@ const Home = () => (
           </div>
         </section>
         {/*Currencies of Betdeex */}
-      
+
         {/* Benefits of Betdeex*/}
        <hr></hr>
         {/*Join The Betdeex Ecosystem*/}
@@ -320,7 +320,7 @@ const Home = () => (
               </div>
             </div>
           </div>
-        </section>       
+        </section>
         {/* ./CTA - Create Account */}
         <section className="section bg-6 edge top-left b-b">
           <div className="container pt-5">
@@ -334,10 +334,10 @@ const Home = () => (
                     <p className="small">Get registered as Day Swappers now. <a href="https://dayswappers.org/" className="btn btn-rounded btn-lg btn-accent text-center ml-3" target="_blank"> Click Here</a></p>
                   </div>
                 </div>
-              </div>                 
+              </div>
             </div>
           </div>
-        </section>      
+        </section>
         {/* ./Footer - Simple */}
         <footer className="site-footer section bg-1 color-1 block bg-1">
           <div className="container py-4">
