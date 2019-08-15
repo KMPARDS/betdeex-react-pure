@@ -7,7 +7,7 @@ const ethers = require('ethers');
 
 class Bet extends Component {
   betInstance = createBetInstance(
-    this.props.address,
+    ethers.utils.getAddress(this.props.address),
     this.props.store.walletInstance
   );
 
@@ -82,7 +82,7 @@ class Bet extends Component {
       <>
       <div className="col-md-12 my-4">
           <div className="betbox">
-            <h5 onClick={() => this.props.history.push('/bet/'+this.props.address)} className="mt-2" style={{color:'#28a745', textAlign:'left', fontWeight:'900'}}>Bet Address: {this.props.address}</h5>
+            <h5 onClick={() => this.props.history.push('/bet/'+ethers.utils.getAddress(this.props.address))} className="mt-2" style={{color:'#28a745', textAlign:'left', fontWeight:'900'}}>Bet Address: {this.props.address}</h5>
             <hr></hr>
             <div class="inn-all-com">
                 <div class="inn-ev-date">
@@ -105,13 +105,13 @@ class Bet extends Component {
                     </div>
                     <div class="inn-ev-date-rig">
                         <ul>
-                            <li> <h4>{this.state.amountChoice[0] + ' ES' || 'Loading...'}</h4>
+                            <li> <h4>{this.state.amountChoice[1] ? this.state.amountChoice[1] + ' ES' : 'Loading...'}</h4>
                           <span>Yes Amount</span>
                             </li>
-                            <li> <h4>{this.state.amountChoice[1] + ' ES' || 'Loading...'}</h4>
+                            <li> <h4>{this.state.amountChoice[0] ? this.state.amountChoice[0] + ' ES' : 'Loading...'}</h4>
                           <span>No Amount</span>
                             </li>
-                            <li> <h4>{this.state.amountChoice[2] + ' ES' || 'Loading...'}</h4>
+                            <li> <h4>{this.state.amountChoice[2] ? this.state.amountChoice[2] + ' ES' : 'Loading...'}</h4>
                           <span>Draw Amount</span>
                             </li>
                         </ul>

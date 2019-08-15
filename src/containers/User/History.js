@@ -44,7 +44,7 @@ class History extends Component {
       bettingsArray.push(
         <tr key={'bettings-'+index}>
           <td>{index}</td>
-          <td onClick={() => this.props.history.push('/bet/'+betAddress)}>{betAddress.slice(0, 6) + '...' + betAddress.slice(betAddress.length - 2)}</td>
+          <td onClick={() => this.props.history.push('/bet/'+ethers.utils.getAddress(betAddress))}>{betAddress.slice(0, 6) + '...' + betAddress.slice(betAddress.length - 2)}</td>
           <td>{choice}</td>
           <td>{ethers.utils.formatEther(ethers.utils.bigNumberify(log.data))} ES</td>
 
@@ -58,7 +58,7 @@ class History extends Component {
   render() {
     return (
       <>
-  
+
 
         <section>
         <div className="lp">
@@ -67,9 +67,9 @@ class History extends Component {
             <div className="events ev-po-2 ev-po-com">
                 <div className="row">
                   <div className="inn-title">
-                      <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> View History of Betting Transactions:</h2>           
+                      <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> View History of Betting Transactions:</h2>
                   </div>
-                <br></br> 
+                <br></br>
                 </div>
               <table className="myTable">
                 <tbody>
@@ -78,7 +78,7 @@ class History extends Component {
                     <th>Bet Address</th>
                     <th>Choice</th>
                     <th>Amount</th>
-                    <th>Betting time</th>                    
+                    <th>Betting time</th>
                   </tr>
                   <tr>
                     <td>01</td>
@@ -90,7 +90,7 @@ class History extends Component {
                     <td>84</td>
                     <td>36</td>
                     <td>12</td>
-                    
+
                   </tr>
                   <tr>
                     <td>02</td>
@@ -102,7 +102,7 @@ class History extends Component {
                     <td>84</td>
                     <td>36</td>
                     <td>12</td>
-                    
+
                   </tr>
                   <tr>
                     <td>03</td>
@@ -114,7 +114,7 @@ class History extends Component {
                     <td>84</td>
                     <td>36</td>
                     <td>12</td>
-                    
+
                   </tr>
                   <tr>
                     <td>04</td>
@@ -126,9 +126,9 @@ class History extends Component {
                     <td>84</td>
                     <td>36</td>
                     <td>12</td>
-                    
+
                   </tr>
-                 
+
                 </tbody>
               </table>
             </div>

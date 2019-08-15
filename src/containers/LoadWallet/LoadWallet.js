@@ -6,7 +6,7 @@ import ScanFromApp from './ScanFromApp';
 import UsingKeystoreFile from './UsingKeystoreFile';
 import UsingPrivateKey from './UsingPrivateKey';
 import UsingMnemonic from './UsingMnemonic';
-
+import UsingMetamask from './UsingMetamask';
 
 class LoadWallet extends Component {
   render() {
@@ -22,6 +22,8 @@ class LoadWallet extends Component {
         <Route path ="/load-wallet/using-private-key" exact component={UsingPrivateKey} />
 
         <Route path ="/load-wallet/using-mnemonic" exact component={UsingMnemonic} />
+
+        <Route path ="/load-wallet/using-metamask" exact component={UsingMetamask} />
 
       </div>
     );

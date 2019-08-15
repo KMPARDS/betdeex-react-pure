@@ -76,7 +76,7 @@ class User extends Component {
     const bettingBetAddressArray = [];
 
     for(const log of logs) {
-      const betAddress = ethers.utils.hexStripZeros(log.topics[1]);
+      const betAddress = ethers.utils.hexZeroPad(ethers.utils.hexStripZeros(log.topics[1]), 20);
       if(!bettingBetAddressArray.includes(betAddress)) {
         bettingBetAddressArray.push(betAddress);
       }

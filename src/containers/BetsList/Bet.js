@@ -149,7 +149,7 @@ class Bet extends Component {
                     </li>
                   </ul>
                   <div className="inn-tickers">
-                    <button onClick={() => this.props.history.push(`/bet/${this.props.address}`)} className="inn-reg-com inn-reg-book"><i className="fa fa-info-circle" aria-hidden="true" />View</button>
+                    <button onClick={() => this.props.history.push(`/bet/${ethers.utils.getAddress(this.props.address)}`)} className="inn-reg-com inn-reg-book"><i className="fa fa-info-circle" aria-hidden="true" />View</button>
                   </div>
                 </section>
               </article>
