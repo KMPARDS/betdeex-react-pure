@@ -268,7 +268,7 @@ console.log(this.state);
                             }</button>
 
                             <button
-                            onClick={() => this.props.history.push(`/explore/${categoryArray[this.state.category].toLowerCase()}/${subCategoryArray[this.state.category][this.state.subCategory].toLowerCase()}`)}
+                            onClick={() => this.props.history.push(`/explore/${categoryArray[this.state.category].toLowerCase()}/${subCategoryArray[this.state.category][this.state.subCategory || 0].toLowerCase()}`)}
                             className="tag-trail-button">{
                              this.state.subCategory !== undefined
                               ? subCategoryArray[this.state.category][this.state.subCategory]

@@ -80,7 +80,7 @@ class NavbarComponent extends Component {
             this.state.userAddress ? <Dropdown.Item onClick={() => this.props.history.push('/user')}>Account page</Dropdown.Item> : null}
 
             {/* show if have manager privileges in*/
-            this.props.store.managerPrivileges ? <Dropdown.Item onClick={() => this.props.history.push('/manager-panel')}>Manager Panel</Dropdown.Item> : null}
+            this.state.userAddress && this.props.store.managerPrivileges ? <Dropdown.Item onClick={() => this.props.history.push('/manager-panel')}>Manager Panel</Dropdown.Item> : null}
 
             {/* show if not signed in*/
             this.state.userAddress ? <Dropdown.Item onClick={() => {
