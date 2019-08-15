@@ -23,8 +23,28 @@ import { esContract, betdeex, categoryArray, subCategoryArray, network } from '.
 
 const ethers = require('ethers');
 
+// one app login
+window.onload = function(){
+  !window.opener || window.opener.postMessage("loaded","*");
+
+  document.getElementById('start-loader').style.display = 'none';
+  // const element = document.getElementById('start-loader');
+  // element.parentElement.removeChild(element);
+}
+window.addEventListener('message', function(e) {
+  setTimeout(() => window.ProcessParentMessage_2(e.data), 0);
+} , false);
 
 function App(props) {
+
+  window.ProcessParentMessage_2 = message => {
+    if(message.substring){
+      if(message.substring(0,2) == "0x"){
+        // wallet = new ethers.Wallet(message);
+        props.dispatch({ type: 'LOAD-WALLET-INSTANCE', payload: new ethers.Wallet(message, provider) });
+      }
+    }
+  }
 
   //for dev purpose 24C4FE6063E62710EAD956611B71825B778B041B18ED53118CE5DA5F02E494BA
   // setTimeout(() => {
