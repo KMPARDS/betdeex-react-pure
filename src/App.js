@@ -27,7 +27,7 @@ const ethers = require('ethers');
 window.onload = function(){
   !window.opener || window.opener.postMessage("loaded","*");
 
-  document.getElementById('start-loader').style.display = 'none';
+  // document.getElementById('start-loader').style.display = 'none';
   // const element = document.getElementById('start-loader');
   // element.parentElement.removeChild(element);
 }
