@@ -332,13 +332,13 @@ const Home = props => (
                 <img src="img/betdeex-logo.png" alt="" className="logo" />
                 <p>Please read the Disclaimer, Terms and Conditions, Legal Terms carefully before strating with BetdeEx.</p>
               </div>
-              <div className="col-md-3">
+              {/* <div className="col-md-3">
                 <nav className="nav flex-column">
                   <a className="nav-item py-2 color-1" href="index.html">Home</a>
                   <a className="nav-item py-2 color-1" href="faqs.html">FAQ</a>
                   <a className="nav-item py-2 color-1" href="disclaimer.html">Disclaimer</a>
                 </nav>
-              </div>
+              </div> */}
               <div className="col-md-3">
                 <nav className="nav flex-column">
                   <a className="nav-item py-2 color-1" href="/pdf/t&c.pdf" target="_blank"><span style={{color:'#848080'}}>Terms &amp; Conditions</span></a>
@@ -356,7 +356,7 @@ const Home = props => (
               <div className="col-md-8">
                  <nav className="nav ">
                   <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a> | 
-                  <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-github"><i className="fa fa-github" /></a>
+                  <a href="https://github.com/KMPARDS/betdeex-react.git" target="_blank" className="btn btn-circle btn-sm brand-github"><i className="fa fa-github" /></a>
                 </nav>
               </div>
             </div>
