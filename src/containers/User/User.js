@@ -194,7 +194,7 @@ class User extends Component {
             <div className="row">
             {this.state.loadingBettingsArray ? 'Please wait loading your bet participations...' : (this.state.bettingBetAddressArray.length ?
               this.state.bettingBetAddressArray.map(
-              address => <Bet address={address} history={this.props.history} />
+              address => <Bet address={address} history={this.props.history} refreshBalances={this.refreshBalances} />
             ) : 'No bet participations' )}
 
             </div>
