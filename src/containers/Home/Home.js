@@ -35,67 +35,66 @@ const Home = props => (
           </div>
           <div className="hom-top-trends row">
             {/*TOP TRENDINGS*/}
-            <div className="col-md-3">
+            <div onClick={() => props.history.push('/explore/sports')}  className="col-md-3">
               <div className="hom-trend">
                 <div className="hom-trend-img">
                   <img className="img-responsive" src="/img/1.jpg" alt="" />
                 </div>
-                <div className="hom-trend-con">
+                <div className="hom-trend-con inn-title">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-                  <a href="#">
-                    <h4>SPORTS</h4>
-                  </a>
+                 
+                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>SPORTS</h2>
+                  
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
               </div>
             </div>
             {/*TOP TRENDINGS*/}
-            <div className="col-md-3">
+            <div  onClick={() => props.history.push('/explore/politics')}   className="col-md-3">
               <div className="hom-trend">
                 <div className="hom-trend-img">
                   <img className="img-responsive" src="/img/3.jpg" alt="" />
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-                  <a href="canoe-slalom.html">
-                    <h4>POLITICS</h4>
-                  </a>
+                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>POLITICS</h2>
+
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
               </div>
             </div>
             {/*TOP TRENDINGS*/}
-            <div className="col-md-3">
+            <div  onClick={() => props.history.push('/explore/movies')}   className="col-md-3">
               <div className="hom-trend">
                 <div className="hom-trend-img">
                   <img className="img-responsive" src="/img/2.jpg" alt="" />
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-                  <a href="yoga.html">
-                    <h4>MOVIES</h4>
-                  </a>
+                  
+                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>MOVIES</h2>
+                  
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
               </div>
             </div>
             {/*TOP TRENDINGS*/}
-            <div className="col-md-3">
+            <div  onClick={() => props.history.push('/explore/tech')}   className="col-md-3">
               <div className="hom-trend">
                 <div className="hom-trend-img">
                   <img className="img-responsive" src="/img/5.jpg" alt="" />
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-                  <a href="body-building.html">
-                    <h4>TECH</h4>
-                  </a>
+                  
+                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>TECH</h2>
+                  
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
               </div>
             </div>
           </div>
-          <div className="hom-top-trends row">
+          <div  onClick={() => props.history.push('/explore/science')}   className="hom-top-trends row">
             {/*TOP TRENDINGS*/}
             <div className="col-md-3">
               <div className="hom-trend">
@@ -104,54 +103,53 @@ const Home = props => (
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-                  <a href="tennis.html">
-                    <h4>SCIENCE</h4>
-                  </a>
+                  
+                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>SCIENCE</h2>
+                  
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
               </div>
             </div>
             {/*TOP TRENDINGS*/}
-            <div className="col-md-3">
+            <div  onClick={() => props.history.push('/explore/entertainment')}   className="col-md-3">
               <div className="hom-trend">
                 <div className="hom-trend-img">
                   <img className="img-responsive" src="/img/6.jpg" alt="" />
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-                  <a href="athletics.html">
-                    <h4>ENTERTAINMENT</h4>
-                  </a>
+                  
+                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}} >ENTERTAINMENT</h2>
+                  
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
               </div>
             </div>
             {/*TOP TRENDINGS*/}
-            <div className="col-md-3">
+            <div  onClick={() => props.history.push('/explore/celebrities')}   className="col-md-3">
               <div className="hom-trend">
                 <div className="hom-trend-img">
                   <img className="img-responsive" src="/img/trends/9.jpeg" alt="" />
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-                  <a href="surfing.html">
-                    <h4>CELEBRATIES</h4>
-                  </a>
+                  
+                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>CELEBRATIES</h2>
+                  
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
               </div>
             </div>
             {/*TOP TRENDINGS*/}
-            <div className="col-md-3">
+            <div  onClick={() => props.history.push('/explore/current')}   className="col-md-3">
               <div className="hom-trend pad-red-bot-0">
                 <div className="hom-trend-img">
                   <img className="img-responsive" src="/img/4.jpg" alt="" />
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-                  <a href="cycling.html">
-                    <h4>CURRENT</h4>
-                  </a>
+                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>CURRENT</h2>
+
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
               </div>
@@ -246,7 +244,7 @@ const Home = props => (
         {/* Benefits of Betdeex*/}
        <hr></hr>
         {/*Join The Betdeex Ecosystem*/}
-        <section className="section bg-6 b-b edge" style={{zIndex:'1111111'}}>
+        <section className="section bg-6 b-b edge" style={{zIndex:'1111111', marginTop: '-93px'}}>
           <div className="container">
             <div className="section-heading text-center">
               <h2>Join The  <span className="bold" style={{fontSize:'48px'}}>Era  <img src="/img/era-icon.png"/> Swap Ecosystem</span></h2>
@@ -350,7 +348,7 @@ const Home = props => (
               <div className="col-md-2">
                 <h6 className="py-2 small">Follow us</h6>
                 <nav className="nav justify-content-between">
-                  <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a>
+                  <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a>
                   {/* <a href="#" class="btn btn-circle btn-sm brand-twitter"><i class="fab fa-twitter"></i></a> */}
                 </nav>
               </div>
