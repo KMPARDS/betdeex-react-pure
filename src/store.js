@@ -4,7 +4,7 @@ const initialState = {
   walletInstance: {},
   esInstance: {},
   betdeexInstance: {},
-  adminPrivileges: false,
+  managerPrivileges: false,
   providerInstance: {},
   betsMapping: {}
 };

@@ -33,6 +33,7 @@ class Bet extends Component {
 
       if(this.props.store.betsMapping[this.props.address].creationTimestamp!==undefined) {
         creationTimestamp = this.props.store.betsMapping[this.props.address].creationTimestamp;
+        // console.log(creationTimestamp);
       } else {
         creationTimestamp = Number(await betInstance.creationTimestamp());
         console.log('fetching creationTimestamp from blockchain', creationTimestamp);
@@ -45,6 +46,10 @@ class Bet extends Component {
           }
         });
       }
+
+      // if (typeof(creationTimestamp) === 'object') {
+      //   creationTimestamp
+      // }
 
       this.setState({ creationTime: new Date(creationTimestamp * 1000).toLocaleString() + ' (in your local timezone)' });
 

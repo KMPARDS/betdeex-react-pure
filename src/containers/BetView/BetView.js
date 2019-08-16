@@ -35,7 +35,9 @@ class BetView extends Component {
     showTransactionModal: false,
     userChoice: undefined,
     bettings: [],
-    fetchingBettings: true
+    fetchingBettings: true,
+    managerChoice: undefined,
+    managerMessage: ''
   }
 
   loadMy = async (property, outsideValue, shouldItloadAgain) => {
@@ -125,6 +127,7 @@ class BetView extends Component {
     setTimeout(()=> {
       localStorage.setItem('betdeex-betsMapping', JSON.stringify(this.props.store.betsMapping));
     }, 5000);
+
   }
 
   seeChoiceBettings = async choice => {
@@ -240,6 +243,22 @@ console.log(this.state);
     ));
     return (
       <Card>
+      {this.props.store.managerPrivileges ? <div className="se lp">
+        <h4>Manager section</h4>
+        <input type="text" placeholder="ChoiceId (0/1/2)" onKeyUp={event => this.setState({ managerChoice: event.target.value })} />
+        <button onClick={async() => {
+          this.setState({ managerMessage: 'Sending transaction...' });
+          try {
+            const tx = await this.betInstance.functions.endBet(+this.state.managerChoice);
+            this.setState({ managerMessage: 'Tx send waiting for confirmation...' });
+            await tx.wait();
+            this.setState({ managerMessage: 'Success!' });
+          } catch (err) {
+            this.setState({ managerMessage: 'Error: '+err.message });
+          }
+        }}>End this bet</button>
+        {this.state.managerMessage && <p>{this.state.managerMessage}</p>}
+      </div> : null}
     <section>
         <div className="se lp" style={{background:'#eee'}}>
           <div className="row">
@@ -268,9 +287,9 @@ console.log(this.state);
                             }</button>
 
                             <button
-                            onClick={() => this.props.history.push(`/explore/${categoryArray[this.state.category].toLowerCase()}/${subCategoryArray[this.state.category][this.state.subCategory || 0].toLowerCase()}`)}
-                            className="tag-trail-button">{
-                             this.state.subCategory !== undefined
+                              onClick={() => this.props.history.push(`/explore/${categoryArray[this.state.category || 0].toLowerCase()}/${subCategoryArray[this.state.category || 0][this.state.subCategory || 0].toLowerCase()}`)}
+                              className="tag-trail-button">{
+                             this.state.category !== undefined && this.state.subCategory !== undefined
                               ? subCategoryArray[this.state.category][this.state.subCategory]
                               : 'Loading...'
                               }
@@ -301,10 +320,10 @@ console.log(this.state);
                               : 'Loading..'
                             }</span></span>
                             </li>
-                            <li><span>Start Time</span><span className="value_expires">{this.state.creationTimestamp ? new Date(this.state.creationTimestamp * 1000).toLocaleString() : 'Loading...'}</span>{/*<span className="market-properties-styles_MarketProperties_value_small">May
+                            <li><span>Start Time</span><span className="value_expires">{this.state.creationTimestamp ? new Date((typeof(this.state.creationTimestamp) === 'object' ? +this.state.creationTimestamp._hex : this.state.creationTimestamp) * 1000).toLocaleString() : 'Loading...'}</span>{/*<span className="market-properties-styles_MarketProperties_value_small">May
                                 31, 2019 12:30 PM (GMT+5:30) (Your timezone)</span>*/}
                             </li>
-                            <li><span>Pause Time</span><span className="value_expires">{this.state.pauseTimestamp ? new Date(this.state.pauseTimestamp * 1000).toLocaleString() : 'Loading...'}</span>{/*<span className="market-properties-styles_MarketProperties_value_small">May
+                            <li><span>Pause Time</span><span className="value_expires">{this.state.pauseTimestamp ? new Date((typeof(this.state.pauseTimestamp) === 'object' ? +this.state.pauseTimestamp._hex : this.state.pauseTimestamp) * 1000).toLocaleString() : 'Loading...'}</span>{/*<span className="market-properties-styles_MarketProperties_value_small">May
                                 31, 2019 12:30 PM (GMT+5:30) (Your timezone)</span>*/}
                             </li>
                           </ul>
