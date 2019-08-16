@@ -5224,6 +5224,7 @@ textarea.form-control.form-control-rounded {
 
 .brand-facebook {
 	color: #fff;
+	font-size: 18px !important;
 	background-color: #3b5998;
 	border-color: #3b5998
 }
@@ -5232,6 +5233,19 @@ textarea.form-control.form-control-rounded {
 	color: #fff;
 	background-color: #30497c;
 	border-color: #2d4373
+}
+.brand-github {
+	color: #fff;
+	font-size: 18px !important;
+	background-color: #333;
+	border-color: #333
+}
+
+.brand-github:hover {
+	color: #fff;
+	font-size: 14px;
+	background-color: #656565;
+	border-color: #656565
 }
 
 .brand-facebook.focus,

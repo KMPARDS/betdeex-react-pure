@@ -10,7 +10,7 @@ const Home = props => (
           {/* <img src="/img/Bdx_web-02.jpg"></img> */}
           <div className="container overflow-hidden bring-to-front" style={{paddingBottom: 0, }}>
             <div className="row">
-              <div className="col-lg-6 mx-auto text-center text-lg-left" style={{margin:'50px', paddingLeft: '27px'}}>
+              <div className="col-lg-6 mx-auto text-center text-lg-left" style={{margin:'50px'}}>
                 <h1 className="light display-4 color-1">Welcome to the  <span className="bold d-block" style={{fontSize:'42px', color:'#fff', lineHeight:'44px'}}>Future of Prediction</span></h1>
                 <p className="color-1 lead alpha-8 my-5" style={{fontSize:'18px',}}>"Luck Becomes Limitless Opportunity with Confident Preparation <br></br><br></br>
                 <b style={{fontWeight:'800', fontStyle:'italic'}}>Decentralized, Transparent & Trustless</b>
@@ -341,22 +341,23 @@ const Home = props => (
               </div>
               <div className="col-md-3">
                 <nav className="nav flex-column">
-                  <a className="nav-item py-2 color-1" href="pdf/terms-and-condition.pdf" target="_blank">Terms &amp; Conditions</a>
-                  <a className="nav-item py-2 color-1" href="pdf/privacy-policy.pdf" target="_blank">Privacy Policy</a>
+                  <a className="nav-item py-2 color-1" href="/pdf/t&c.pdf" target="_blank"><span style={{color:'#848080'}}>Terms &amp; Conditions</span></a>
+                  <a className="nav-item py-2 color-1" href="/pdf/privacy.pdf" target="_blank"><span style={{color:'#848080'}}>Privacy Policy</span></a>
+                  <a className="nav-item py-2 color-1" href="https://etherscan.io/address/0x42225682113E6Ed3616B36B4A72BbaE376041D7c#code" target="_blank"><span style={{color:'#848080'}}>BetDeEx DApp</span></a>
                 </nav>
               </div>
-              <div className="col-md-2">
-                <h6 className="py-2 small">Follow us</h6>
-                <nav className="nav justify-content-between">
-                  <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a>
-                  {/* <a href="#" class="btn btn-circle btn-sm brand-twitter"><i class="fab fa-twitter"></i></a> */}
-                </nav>
-              </div>
+             
             </div>
             <hr className="mt-5 bg-2 op-5" />
             <div className="row small align-items-center">
               <div className="col-md-4">
                 <p className="mt-2 mb-0">© 2019 Betdeex. All Rights Reserved</p>
+              </div>
+              <div className="col-md-8">
+                 <nav className="nav ">
+                  <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a> | 
+                  <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-github"><i className="fa fa-github" /></a>
+                </nav>
               </div>
             </div>
           </div>

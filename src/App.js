@@ -82,7 +82,7 @@ function App(props) {
           {console.log}
             <Sidebar />
           </Col>*/}
-          <Col style={{margin: false ? '15px 15px 0 0' : '0', paddingLeft: '0'}}>
+          <Col style={{margin: false ? '15px 15px 0 0' : '0'}}>
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/create-wallet" exact component={CreateWallet} />
