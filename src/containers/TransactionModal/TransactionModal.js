@@ -85,6 +85,7 @@ class TransactionModal extends Component {
     }, 10);
     await response.wait();
     clearInterval(intervalId);
+    // this.props.ethereum.continueFunction();
     await this.setState({ pending: false });
   }
 

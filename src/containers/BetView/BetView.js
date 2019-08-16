@@ -463,7 +463,8 @@ console.log(this.state);
             estimator: this.betInstance.estimate.enterBet,
             contract: this.betInstance,
             arguments: [this.state.userChoice],
-            minimumBetInEs
+            minimumBetInEs,
+            continueFunction: this.componentDidMount
           }}
           />
       </Card>

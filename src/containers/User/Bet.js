@@ -17,7 +17,7 @@ class Bet extends Component {
     querying: false,
     userPrize: undefined,
     queryErrorMessage: '',
-    withdrawing: 0,
+    withdrawing: 0, // 3 => done
     withdrawErrorMessage: '',
     withdrawDone: false,
     alreadyClaimed: undefined
@@ -71,10 +71,11 @@ class Bet extends Component {
       this.setState({ withdrawing: 2 });
       tx.wait();
       this.setState({ withdrawing: 3 });
+      this.props.refreshBalances();
     } catch (err) {
       this.setState({ withdrawErrorMessage: err });
     }
-    this.setState({ withdrawing: 0 });
+    // this.setState({ withdrawing: 4 });
   }
 
   render() {
@@ -150,21 +151,30 @@ class Bet extends Component {
                     <><br />{'Error from smart contract: ' + this.state.withdrawErrorMessage}</>
                   :
                     (this.state.userPrize !== undefined
-                    ? <Button
+                    ? (this.state.withdrawing === 3 ? <Button
                       disabled={this.state.withdrawing}
                       onClick={this.withdrawWinnings}
                     >
-                      {this.state.withdrawing ?
-                      <><Spinner
+                      <>
+
+                      {this.state.withdrawing && this.state.withdrawing !== 3 ? <Spinner
                         as="span"
                         animation="border"
                         size="sm"
                         role="status"
                         aria-hidden="true"
                         style={{marginRight: '2px'}}
-                      />Withdrawing</>
-                      : 'Withdraw Winnings'}
-                    </Button>
+                      /> : null}
+
+                      {this.state.withdrawing === 0 ? 'Withdraw'
+                        : (this.state.withdrawing === 1 ? 'Sending tx...'
+                          : (this.state.withdrawing === 2 ? 'Waiting for confirmation...'
+                            : 'Done!'
+                        )
+                        )}
+                      </>
+
+                    </Button> : <p>Your withdrawl is successful!</p>)
                     : null)
                   }</>}
                   </div>
