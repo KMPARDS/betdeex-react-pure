@@ -32,24 +32,43 @@ class History extends Component {
 
     for(let index = 0; index < logs.length; index++) {
       const log = logs[index];
-      const block = await this.props.store.providerInstance.getBlock(log.blockNumber);
-      const betAddress = ethers.utils.hexStripZeros(log.topics[1]);
+      let block;
+      const betAddress = ethers.utils.hexZeroPad(ethers.utils.hexStripZeros(log.topics[1]), 20);
       const choiceId = Number(log.topics[3]);
       const choice = choiceId === 0 ? 'No' : (
         choiceId === 1 ? 'Yes' : 'Draw'
       );
-      // const betInstance = createBetInstance(betAddress);
+      const betInstance = createBetInstance(ethers.utils.getAddress(betAddress.toLowerCase()));
+      let description;
+      // await Promise.all([
+        description = await betInstance.functions.description()
+        block = await this.props.store.providerInstance.getBlock(log.blockNumber)
+      // ]);
       // const endTimestamp = await betInstance.functions.endTimestamp();
       // console.log('endedBy', endedBy);
       bettingsArray.push(
-        <tr key={'bettings-'+index}>
+        <>
+        {/*<tr key={'bettings-'+index}>
           <td>{index}</td>
           <td onClick={() => this.props.history.push('/bet/'+ethers.utils.getAddress(betAddress))}>{betAddress.slice(0, 6) + '...' + betAddress.slice(betAddress.length - 2)}</td>
           <td>{choice}</td>
           <td>{ethers.utils.formatEther(ethers.utils.bigNumberify(log.data))} ES</td>
 
           <td>{new Date(block.timestamp * 1000).toLocaleString()}</td>
+        </tr>*/}
+        <tr>
+          <td>{index}</td>
+          <td><img src="images/coun/t3.png" alt="" />
+            <div className="h-tm-ra">
+              <h4>{description}</h4><span>{betAddress}</span>
+            </div>
+          </td>
+          <td>{choice}</td>
+          <td>{ethers.utils.formatEther(ethers.utils.bigNumberify(log.data))} ES</td>
+          <td>{new Date(block.timestamp * 1000).toLocaleString()}</td>
+
         </tr>
+        </>
       );
       this.setState({ bettingsArray });
     }
@@ -71,8 +90,10 @@ class History extends Component {
                   </div>
                 <br></br>
                 </div>
-              <table className="myTable">
-                <tbody>
+              {this.state.loadingBettingsArray
+                ? 'Please wait loading your previous predictions...'
+                : <Table responsive className="myTable">
+                <thead>
                   <tr>
                     <th>Sr</th>
                     <th>Bet Address</th>
@@ -80,64 +101,16 @@ class History extends Component {
                     <th>Amount</th>
                     <th>Betting time</th>
                   </tr>
-                  <tr>
-                    <td>01</td>
-                    <td><img src="images/coun/19.png" alt="" />
-                      <div className="h-tm-ra">
-                        <h4>The Alchemists</h4><span>Eric Bros School</span>
-                      </div>
-                    </td>
-                    <td>84</td>
-                    <td>36</td>
-                    <td>12</td>
-
-                  </tr>
-                  <tr>
-                    <td>02</td>
-                    <td><img src="images/coun/t2.png" alt="" />
-                      <div className="h-tm-ra">
-                        <h4>Bloody Wave</h4><span>Atlantic School</span>
-                      </div>
-                    </td>
-                    <td>84</td>
-                    <td>36</td>
-                    <td>12</td>
-
-                  </tr>
-                  <tr>
-                    <td>03</td>
-                    <td><img src="images/coun/t3.png" alt="" />
-                      <div className="h-tm-ra">
-                        <h4>L.A Pirates</h4><span>Bebop Institute</span>
-                      </div>
-                    </td>
-                    <td>84</td>
-                    <td>36</td>
-                    <td>12</td>
-
-                  </tr>
-                  <tr>
-                    <td>04</td>
-                    <td><img src="images/coun/t4.png" alt="" />
-                      <div className="h-tm-ra">
-                        <h4>The Alchemists</h4><span>Eric Bros School</span>
-                      </div>
-                    </td>
-                    <td>84</td>
-                    <td>36</td>
-                    <td>12</td>
-
-                  </tr>
-
+                </thead>
+                <tbody>
+                  {this.state.bettingsArray}
                 </tbody>
-              </table>
+              </Table>}
             </div>
           </div>
         </div>
       </section>
-      {this.state.loadingBettingsArray
-        ? 'Please wait loading your previous bettings...'
-        : <Table responsive>
+      {/*<Table responsive>
         <thead>
           <tr>
             <th>#</th>
@@ -150,8 +123,7 @@ class History extends Component {
         <tbody>
           {this.state.bettingsArray}
         </tbody>
-      </Table>
-      }
+      </Table>*/}
       </>
     );
   }
