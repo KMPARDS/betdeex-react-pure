@@ -355,8 +355,7 @@ const Home = props => (
                       </div>
                     </div>
                   </div>
-                </section>
-             
+                </section>             
             </div>
           </div>
         </section>
