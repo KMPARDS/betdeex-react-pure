@@ -10,7 +10,7 @@ const Home = props => (
           {/* <img src="/img/Bdx_web-02.jpg"></img> */}
           <div className="container overflow-hidden bring-to-front" style={{paddingBottom: 0, }}>
             <div className="row">
-              <div className="col-lg-6 mx-auto text-center text-lg-left" style={{margin:'50px', paddingLeft: '27px'}}>
+              <div className="col-lg-6 mx-auto text-center text-lg-left" style={{margin:'50px'}}>
                 <h1 className="light display-4 color-1">Welcome to the  <span className="bold d-block" style={{fontSize:'42px', color:'#fff', lineHeight:'44px'}}>Future of Prediction</span></h1>
                 <p className="color-1 lead alpha-8 my-5" style={{fontSize:'18px',}}>"Luck Becomes Limitless Opportunity with Confident Preparation <br></br><br></br>
                 <b style={{fontWeight:'800', fontStyle:'italic'}}>Decentralized, Transparent & Trustless</b>
@@ -99,7 +99,7 @@ const Home = props => (
             <div className="col-md-3">
               <div className="hom-trend">
                 <div className="hom-trend-img">
-                  <img className="img-responsive" src="/img/trends/6.jpeg" alt="" />
+                  <img className="img-responsive" src="/img/7.jpg" alt="" />
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
@@ -129,7 +129,7 @@ const Home = props => (
             <div  onClick={() => props.history.push('/explore/celebrities')}   className="col-md-3">
               <div className="hom-trend">
                 <div className="hom-trend-img">
-                  <img className="img-responsive" src="/img/trends/9.jpeg" alt="" />
+                  <img className="img-responsive" src="/img/8.jpg" alt="" />
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
@@ -322,7 +322,44 @@ const Home = props => (
             </div>
           </div>
         </section>
+        <br></br><br></br><br></br>
         {/* ./CTA - Create Account */}
+        <section className="section bg-6 b-b edge" style={{zIndex:'1111111', marginTop: '-93px'}}>
+          <div className="container">
+            <div className="section-heading text-center">
+              <h2>FAQ's</h2>
+              {/* <p className="color-2 lead">Era Swap Ecosystem includes interlinked multiple platforms where Era Swap Tokens can
+                be utilized for exchange of services, availing discounts, getting rewards and other utilities. Era Swap Team will identify and help build more such platforms
+                in future which are built for the community and willing to incorporate ES reward system.</p> */}
+            </div>
+            <div className="">
+                
+                <section className="section bg-6">
+                  <div className="container" style={{marginTop:'-64px'}}>
+                    <div className="row gap-y">
+                      <div className="col-md-12">                 
+                        <div className="accordion accordion-clean" id="faqs-accordion">
+                          <div className="card mb-3">
+                            <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q1">Do you store my private keys, Keystore or mnemonic?</a></div>
+                            <div id="v1-q1" className="collapse" data-parent="#faqs-accordion">
+                              <div className="card-body">When you load Wallet in the BetDeEx ÐApp, your private keys stay only on your computer. The BetDeEx ÐApp directly talks with blockchain hence any centralized intermediate server is not at all required and hence any of your data is NOT sent to our servers (we are also not recording any usage data). Your computer signs any transactions you authorise and only the signed transaction is submitted to blockchain for being included in blocks by miners who are mining in Ethereum. When you logout or even refresh page your private keys are erased from computer’s memory. The BetDeEx ÐApp source code is open source and anyone can check what is happening.</div>
+                            </div>
+                          </div>
+                          <div className="card mb-3">
+                            <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q2">What is Gas Fee / Network Fee?</a></div>
+                            <div id="v1-q2" className="collapse" data-parent="#faqs-accordion">
+                              <div className="card-body">Ethereum is a decentralized and immutable platform. Tens of thousands of miners dedicate their computers to maintain the Ethereum network. For compensation, the concept of the gas fee is there. All transactions on Ethereum Network cost gas and this fee is transferred to miners in ETH. Users can choose to pay less or more gas to miners. A miner can choose which transactions to mine, and generally, they give priority to those transactions which give them more fees. You can customize your gas fees in the advanced settings while making staking, withdrawal or any transaction.</div>
+                            </div>
+                          </div>                         
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+             
+            </div>
+          </div>
+        </section>
         
         {/* ./Footer - Simple */}
         <footer className="site-footer section bg-1 color-1 block bg-1">
@@ -330,33 +367,34 @@ const Home = props => (
             <div className="row gap-y text-center text-md-left">
               <div className="col-md-4 mr-auto">
                 <img src="img/betdeex-logo.png" alt="" className="logo" />
-                <p>Please read the Disclaimer, Terms and Conditions, Legal Terms carefully before strating with BetdeEx.</p>
+                <p>Please read the Disclaimer, Terms and Conditions, Legal Terms carefully before strating with BetDeEx.</p>
               </div>
-              <div className="col-md-3">
+              {/* <div className="col-md-3">
                 <nav className="nav flex-column">
                   <a className="nav-item py-2 color-1" href="index.html">Home</a>
                   <a className="nav-item py-2 color-1" href="faqs.html">FAQ</a>
                   <a className="nav-item py-2 color-1" href="disclaimer.html">Disclaimer</a>
                 </nav>
-              </div>
+              </div> */}
               <div className="col-md-3">
                 <nav className="nav flex-column">
-                  <a className="nav-item py-2 color-1" href="pdf/terms-and-condition.pdf" target="_blank">Terms &amp; Conditions</a>
-                  <a className="nav-item py-2 color-1" href="pdf/privacy-policy.pdf" target="_blank">Privacy Policy</a>
+                  <a className="nav-item py-2 color-1" href="/pdf/t&c.pdf" target="_blank"><span style={{color:'#848080'}}>Terms &amp; Conditions</span></a>
+                  <a className="nav-item py-2 color-1" href="/pdf/privacy.pdf" target="_blank"><span style={{color:'#848080'}}>Privacy Policy</span></a>
+                  <a className="nav-item py-2 color-1" href="https://etherscan.io/address/0x42225682113E6Ed3616B36B4A72BbaE376041D7c#code" target="_blank"><span style={{color:'#848080'}}>BetDeEx DApp Smart Contract</span></a>
                 </nav>
               </div>
-              <div className="col-md-2">
-                <h6 className="py-2 small">Follow us</h6>
-                <nav className="nav justify-content-between">
-                  <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a>
-                  {/* <a href="#" class="btn btn-circle btn-sm brand-twitter"><i class="fab fa-twitter"></i></a> */}
-                </nav>
-              </div>
+             
             </div>
             <hr className="mt-5 bg-2 op-5" />
             <div className="row small align-items-center">
               <div className="col-md-4">
-                <p className="mt-2 mb-0">© 2019 Betdeex. All Rights Reserved</p>
+                <p className="mt-2 mb-0">© 2019 BetDeEx. All Rights Reserved</p>
+              </div>
+              <div className="col-md-8">
+                 <nav className="nav ">
+                  <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a> | 
+                  <a href="https://github.com/KMPARDS/betdeex-react.git" target="_blank" className="btn btn-circle btn-sm brand-github"><i className="fa fa-github" /></a>
+                </nav>
               </div>
             </div>
           </div>
