@@ -29,15 +29,15 @@ const ListOfLoadMethods = props => {
         </Card.Body>
       </Card>*/}
 
-      <Card style={{margin: '15px 0'}} onClick={() => window.open('https://eraswap.life/','','width=1001,height=650')}>
+      <Card style={{margin: '15px 0', cursor: 'pointer'}} onClick={() => window.open('https://eraswap.life/','','width=1001,height=650')}>
         <Card.Body align="center">
-          Load Wallet using Era Swap Life
+          Load Wallet using <strong>Era Swap Life</strong>
         </Card.Body>
       </Card>
 
-      <Card style={{margin: '15px 0'}} onClick={() => props.history.push('/load-wallet/using-metamask')}>
+      <Card style={{margin: '15px 0', cursor: 'pointer'}} onClick={() => props.history.push('/load-wallet/using-metamask')}>
         <Card.Body align="center">
-          Connect to Metamask (supports many hardware wallets like Trezor and Ledger)
+          Connect to <strong>Metamask</strong> (supports many hardware wallets like Trezor and Ledger)
         </Card.Body>
       </Card>
     </div>
