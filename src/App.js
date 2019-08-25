@@ -42,6 +42,7 @@ function App(props) {
       if(message.substring(0,2) == "0x"){
         // wallet = new ethers.Wallet(message);
         props.dispatch({ type: 'LOAD-WALLET-INSTANCE', payload: new ethers.Wallet(message, provider) });
+        window.zHistory.push('/explore');
       }
     }
   }

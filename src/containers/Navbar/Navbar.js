@@ -12,6 +12,7 @@ class NavbarComponent extends Component {
   };
   componentDidMount = () => {
     window.updateTheNavbar = async action => {
+      window.zHistory = this.props.history;
       if(action.type === 'LOAD-WALLET-INSTANCE') {
         let userAddress = '';
         if(Object.entries(action.payload).length) {
