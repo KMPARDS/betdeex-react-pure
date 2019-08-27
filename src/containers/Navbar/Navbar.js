@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Navbar, Nav, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Navbar, Nav, DropdownButton, Dropdown, Button } from 'react-bootstrap';
 import { withRouter, Link } from 'react-router-dom';
 import { esContract, betdeex } from '../../env';
 
@@ -66,13 +66,17 @@ class NavbarComponent extends Component {
 
         <Navbar.Collapse className="justify-content-end">
           {/* <Nav.Link style={{color:'#fff', fontWeight:'600'}} >How to Play?</Nav.Link> */}
+          {!this.state.userAddress
+            ? <Button variant="outline-light" onClick={() => this.props.history.push('/load-wallet')}>Connect to a wallet</Button>
+          :
           <DropdownButton alignRight id="dropdown-basic-button" title={this.state.userAddress ? `Welcome ${String(this.state.userAddress).substr(0,6)}...` : 'Connect to a wallet'} variant="outline-light" drop="down">
 
             {/*<Dropdown.Header>Your HD Accounts</Dropdown.Header>
             <Dropdown.Item>Signed in as 0x124B7... (23.75 ES)</Dropdown.Item>*/}
 
             {/* show if not signed in*/
-            !this.state.userAddress ? <Dropdown.Item onClick={() => this.props.history.push('/create-wallet')}>Create Wallet</Dropdown.Item> : null}
+            /*
+            !this.state.userAddress  ? <Dropdown.Item onClick={() => this.props.history.push('/create-wallet')}>Create Wallet</Dropdown.Item> : null*/}
 
             {/* show if not signed in*/
             !this.state.userAddress ? <Dropdown.Item onClick={() => this.props.history.push('/load-wallet')}>Load Wallet</Dropdown.Item> : null}
@@ -89,7 +93,9 @@ class NavbarComponent extends Component {
               window.historyy = this.props.history;
               this.props.history.push('/logout');
             }}>Log out</Dropdown.Item> : null}
-          </DropdownButton>
+          </DropdownButton>}
+
+
         </Navbar.Collapse>
 
       </Navbar>
