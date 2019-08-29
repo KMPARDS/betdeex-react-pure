@@ -151,7 +151,7 @@ class Bet extends Component {
                     <><br />{'Error from smart contract: ' + this.state.withdrawErrorMessage}</>
                   :
                     (this.state.userPrize !== undefined
-                    ? (this.state.withdrawing === 3 ? <Button
+                    ? (this.state.withdrawing !== 3 ? <Button
                       disabled={this.state.withdrawing}
                       onClick={this.withdrawWinnings}
                     >
