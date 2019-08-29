@@ -15611,7 +15611,7 @@ hr[class*=bg] {
 	transform: translate3d(0, 0, 0);
 	-webkit-transition: all .4s ease;
 	transition: all .4s ease;
-	min-height: 169px;
+	/* min-height: 169px; */
 }
 
 .off-left-background:hover {
@@ -15840,13 +15840,12 @@ hr[class*=bg] {
 .section [class^=container], section [class^=container] {
     padding-top: 40px !important;
     padding-bottom: 70px;
+	}
 }
-}
-
-.ecosystem .card-body {
+/* .ecosystem .card-body {
     padding: 20px 0 6px 38px !important;
 
-}
+} */
 .ecosystem  .card-body p{
     font-size: 14px !important;
 }

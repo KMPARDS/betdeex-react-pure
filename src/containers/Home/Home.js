@@ -245,10 +245,10 @@ const Home = props => (
        <hr></hr>
         {/*Join The Betdeex Ecosystem*/}
         <section className="section bg-6 b-b edge" style={{zIndex:'1111111', marginTop: '-93px'}}>
-          <div className="container">
+          <div className="container-fluid">
             <div className="section-heading text-center">
               <h2>Join The  <span className="bold" style={{fontSize:'48px'}}>Era  <img src="/img/era-icon.png"/> Swap Ecosystem</span></h2>
-              <p className="color-2 lead">Era Swap Ecosystem includes interlinked multiple platforms where Era Swap Tokens can
+              <p className="color-2 lead" style={{padding:'0px 50px 0px 50px'}}>Era Swap Ecosystem includes interlinked multiple platforms where Era Swap Tokens can
                 be utilized for exchange of services, availing discounts, getting rewards and other utilities. Era Swap Team will identify and help build more such platforms
                 in future which are built for the community and willing to incorporate ES reward system.</p>
             </div>
@@ -380,6 +380,7 @@ const Home = props => (
                   <a className="nav-item py-2 color-1" href="/pdf/t&c.pdf" target="_blank"><span style={{color:'#848080'}}>Terms &amp; Conditions</span></a>
                   <a className="nav-item py-2 color-1" href="/pdf/privacy.pdf" target="_blank"><span style={{color:'#848080'}}>Privacy Policy</span></a>
                   <a className="nav-item py-2 color-1" href="https://etherscan.io/address/0x42225682113E6Ed3616B36B4A72BbaE376041D7c#code" target="_blank"><span style={{color:'#848080'}}>BetDeEx DApp Smart Contract</span></a>
+                  <a className="nav-item py-2 color-1" href="/pdf/user_guide.pdf" target="_blank"><span style={{color:'#848080'}}>User Guide</span></a>
                 </nav>
               </div>
              

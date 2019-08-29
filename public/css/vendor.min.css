@@ -1109,7 +1109,7 @@ h6 {
 }
 
 .lead {
-	font-size: 1.25rem;
+	font-size: 18px;
 	font-weight: 300;
 	text-align: justify
 }
@@ -5497,7 +5497,8 @@ input[type=submit].btn-block {
 .card-body {
 	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
-	padding: 1.25rem
+	/* padding: 1.25rem */
+	padding:10px;
 }
 
 .card-title {
