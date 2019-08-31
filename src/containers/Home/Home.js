@@ -14,13 +14,13 @@ const Home = props => (
                 <h1 className="light display-4 color-1">Welcome to the  <span className="bold d-block" style={{fontSize:'42px', color:'#fff', lineHeight:'44px'}}>Future of Prediction</span></h1>
                 <p className="color-1 lead alpha-8 my-5" style={{fontSize:'18px',}}>"Luck Becomes Limitless Opportunity with Confident Preparation <br></br><br></br>
                 <b style={{fontWeight:'800', fontStyle:'italic'}}>Decentralized, Transparent & Trustless</b>
-                
+
                   {/* <br> No Login, No Hassle, No Limits.*/}</p>
                   <button onClick={() => props.history.push('/explore')} class="btn btn-rounded btn-lg btn-accent text-center ml-3"> Explore Events now</button>
               </div>
               <div className="col-lg-6 col-md-9 mx-md-auto mx-lg-0 pr-lg-0 pc" data-aos="fade-left">
                 <img src="img/betdeex-logo.png" alt="Dashcore" className="d-blocks" style={{height:'40%'}} />
-                <b style={{fontWeight:'800', fontStyle:'italic', marginBottom:'50px'}}>Powered by Era Swap</b>                
+                <b style={{fontWeight:'800', fontStyle:'italic', marginBottom:'50px'}}>Powered by Era Swap</b>
               </div>
              </div>
           </div>
@@ -42,9 +42,9 @@ const Home = props => (
                 </div>
                 <div className="hom-trend-con inn-title">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-                 
+
                     <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>SPORTS</h2>
-                  
+
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
               </div>
@@ -71,9 +71,9 @@ const Home = props => (
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-                  
+
                     <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>MOVIES</h2>
-                  
+
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
               </div>
@@ -86,9 +86,9 @@ const Home = props => (
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-                  
+
                     <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>TECH</h2>
-                  
+
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
               </div>
@@ -103,9 +103,9 @@ const Home = props => (
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-                  
+
                     <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>SCIENCE</h2>
-                  
+
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
               </div>
@@ -118,9 +118,9 @@ const Home = props => (
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-                  
+
                     <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}} >ENTERTAINMENT</h2>
-                  
+
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
               </div>
@@ -133,9 +133,9 @@ const Home = props => (
                 </div>
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-                  
+
                     <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>CELEBRATIES</h2>
-                  
+
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
               </div>
@@ -173,7 +173,7 @@ const Home = props => (
                 <div className="carousel-item active">
                 <section className="section singl-testimonial bg-1 edge top-left">
                     <div className="shape-wrapper"><img src="img/shps/abs-shp-1.svg" className="absolute top right h-100" alt="..." /></div>
-                    <div className="container-wide bring-to-front" > 
+                    <div className="container-wide bring-to-front" >
                       <div className="row gap-y align-items-center">
                         <div className="col-12 col-lg-7 mx-auto">
                           <h2 style={{textAlign:'justify'}}>Propose a prediction event and get rewards</h2>
@@ -255,11 +255,11 @@ const Home = props => (
                 in future which are built for the community and willing to incorporate ES reward system.</p> */}
             </div>
             <div className="">
-                
+
                 <section className="section bg-6">
                   <div className="container" style={{marginTop:'-64px'}}>
                     <div className="row gap-y">
-                      <div className="col-md-12">                 
+                      <div className="col-md-12">
                         <div className="accordion accordion-clean" id="faqs-accordion">
                           <div className="card mb-3">
                             <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q1">Do you store my private keys, Keystore or mnemonic?</a></div>
@@ -272,16 +272,16 @@ const Home = props => (
                             <div id="v1-q2" className="collapse" data-parent="#faqs-accordion">
                               <div className="card-body">Ethereum is a decentralized and immutable platform. Tens of thousands of miners dedicate their computers to maintain the Ethereum network. For compensation, the concept of the gas fee is there. All transactions on Ethereum Network cost gas and this fee is transferred to miners in ETH. Users can choose to pay less or more gas to miners. A miner can choose which transactions to mine, and generally, they give priority to those transactions which give them more fees. You can customize your gas fees in the advanced settings while making staking, withdrawal or any transaction.</div>
                             </div>
-                          </div>                         
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </section>             
+                </section>
             </div>
           </div>
         </section>
-        
+
         {/* ./Footer - Simple */}
         <footer className="site-footer section bg-1 color-1 block bg-1">
           <div className="container py-4">
@@ -304,7 +304,7 @@ const Home = props => (
                   <a className="nav-item py-2 color-1" href="https://etherscan.io/address/0x42225682113E6Ed3616B36B4A72BbaE376041D7c#code" target="_blank"><span style={{color:'#848080'}}>BetDeEx DApp Smart Contract</span></a>
                 </nav>
               </div>
-             
+
             </div>
             <hr className="mt-5 bg-2 op-5" />
             <div className="row small align-items-center">
@@ -313,7 +313,7 @@ const Home = props => (
               </div>
               <div className="col-md-8">
                  <nav className="nav ">
-                  <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a> | 
+                  <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a> |
                   <a href="https://github.com/KMPARDS/betdeex-react.git" target="_blank" className="btn btn-circle btn-sm brand-github"><i className="fa fa-github" /></a>
                 </nav>
               </div>
