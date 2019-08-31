@@ -37,6 +37,8 @@ window.addEventListener('message', function(e) {
 
 function App(props) {
 
+  document.getElementById('site-loader').style.display = 'none';
+
   window.ProcessParentMessage_2 = message => {
     if(message.substring){
       if(message.substring(0,2) == "0x"){
