@@ -390,8 +390,8 @@ console.log(this.state);
                   </li>
                   <li><button style={{background:'#dc3545', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 0 })}}>No</button>
                   </li>
-                  <li><button style={{background:'#ffc107', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</button>
-                  </li>
+                  {this.state.isDrawPossible === false ? null : <li><button style={{background:'#ffc107', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</button>
+                  </li>}
               </ul>
           </div>
           <br></br>

@@ -13,14 +13,14 @@ module.exports = {
     'Celebrities',
     'Current',
     'Global',
-    'Users Choice'
+    'Users Choice',
   ],
   subCategoryArray: [
     ['Football', 'Cricket', 'Baseball'],
     ['Good Politics', 'Dirty Politics'],
     ['English', 'Hindi', 'Marathi'],
     ['Computers', 'Electronics', 'Mechanical'],
-    ['Physics', 'Chemistry', 'Biology'],
+    ['Physics', 'Chemistry', 'Biology', 'Mathematics', 'Astronomy'],
     ['Traveling','TV'],
     ['Actors', 'Actresses', 'Singers'],
     ['News', 'Issues'],

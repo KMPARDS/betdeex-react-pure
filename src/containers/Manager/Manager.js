@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
+import DateTimePicker from 'react-datetime-picker';
+import { categoryArray, subCategoryArray } from '../../env';
 
 const ethers = require('ethers');
 
 class ManagerPanel extends Component {
   state = {
     description: '',
-    categoryId: '',
-    subCategoryId: '',
+    categoryId: null,
+    subCategoryId: null,
     minimumBet: '',
     prizePercentPerThousand: '',
     isDrawPossible: '',
-    pauseTimestamp: '',
+    pauseTimestamp: new Date(),
     message: '',
     isSuperManager: false,
     inputAddress: '',
@@ -68,9 +70,10 @@ class ManagerPanel extends Component {
         subCategoryId: +this.state.subCategoryId,
         minimumBet: ethers.utils.parseEther(this.state.minimumBet),
         prizePercentPerThousand: +this.state.prizePercentPerThousand,
-        isDrawPossible: !!this.state.isDrawPossible,
-        pauseTimestamp: +this.state.pauseTimestamp
+        isDrawPossible: eval(this.state.isDrawPossible),
+        pauseTimestamp: Math.floor(+this.state.pauseTimestamp/1000)
       };
+      console.log(args);
       this.setState({ message: 'Sending to blockchain...' });
       const tx = await this.props.store.betdeexInstance.functions.createBet(...Object.values(args));
       this.setState({ message: 'Sent to blockchain...' });
@@ -111,44 +114,68 @@ class ManagerPanel extends Component {
         </> : null}
 
         <p>This is ManagerPanel:</p>
-        <input
-          type="text"
-          placeholder="Enter Bet Question"
-          onKeyUp={event => this.setState({ description: event.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Enter Category Id"
-          onKeyUp={event => this.setState({ categoryId: event.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Enter subCategory Id"
-          onKeyUp={event => this.setState({ subCategoryId: event.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Enter Minimum Bet In ES"
-          onKeyUp={event => this.setState({ minimumBet: event.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Enter Prize percent per thousand (980 for 2%)"
-          onKeyUp={event => this.setState({ prizePercentPerThousand: event.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Is draw possible?"
-          onKeyUp={event => this.setState({ isDrawPossible: event.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Pause timestamp"
-          onKeyUp={event => this.setState({ pauseTimestamp: event.target.value })}
-        />
-        <br />
-        {this.state.message ? <p>{this.state.message}</p> : null}
-        <Button onClick={this.deployBet}>Deploy bet</Button>
+        <div style={{maxWidth: '400px', width:'90%', margin: 'auto'}}>
+          <input
+            style={{display: 'block', width: '100%'}}
+            type="text"
+            placeholder="Enter Bet Question"
+            onKeyUp={event => this.setState({ description: event.target.value })}
+          />
+          {/*<input
+            type="text"
+            placeholder="Enter Category Id"
+            onKeyUp={event => this.setState({ categoryId: event.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Enter subCategory Id"
+            onKeyUp={event => this.setState({ subCategoryId: event.target.value })}
+          />*/}
+          <select style={{display: 'block', width: '100%'}} onChange={event => this.setState({ categoryId: event.target.value })}>
+            <option disabled selected>Select Category</option>
+            {categoryArray.map((categoryName, index) => (
+              <option key={index+'-'+categoryName} value={index}>{categoryName}</option>
+            ))}
+          </select>
+          <select style={{display: 'block', width: '100%'}} onChange={event => this.setState({ subCategoryId: event.target.value })}>
+            <option disabled selected>{this.state.categoryId !== null ? 'Select SubCategory' : 'First select Category from above'}</option>
+            {this.state.categoryId !== null ? subCategoryArray[this.state.categoryId].map((subCategoryName, index) => (
+              <option key={index+'-'+subCategoryName} value={index}>{subCategoryName}</option>
+            )) : null}
+          </select>
+          <input
+            style={{display: 'block', width: '100%'}}
+            type="text"
+            placeholder="Enter Minimum Bet In ES"
+            onKeyUp={event => this.setState({ minimumBet: event.target.value })}
+          />
+          <input
+            style={{display: 'block', width: '100%'}}
+            type="text"
+            placeholder="Enter Prize percent per thousand (980 for 2%)"
+            onKeyUp={event => this.setState({ prizePercentPerThousand: event.target.value })}
+          />
+          <input
+            style={{display: 'block', width: '100%'}}
+            type="text"
+            placeholder="Is draw possible? Enter true or false in small alphabets"
+            onKeyUp={event => this.setState({ isDrawPossible: event.target.value })}
+          />
+          <div style={{padding: '10px', backgroundColor:'#fafafa'}}>
+            Select Pause Time:
+            <DateTimePicker
+              onChange={date => this.setState({ pauseTimestamp: date })}
+              value={this.state.pauseTimestamp}
+            />
+            <h6 style={{marginTop: '10px'}}>Your selected pause time:</h6>
+            Time (IST): {this.state.pauseTimestamp.toLocaleString('en-US', {timeZone: 'Asia/Kolkata'})}
+            <br />
+            Time (UTC): {this.state.pauseTimestamp.toUTCString()}
+          </div>
+          <br />
+          {this.state.message ? <p>{this.state.message}</p> : null}
+          <Button style={{display: 'block', margin: 'auto'}} onClick={this.deployBet}>Deploy bet</Button>
+        </div>
       </>
     );
   }
