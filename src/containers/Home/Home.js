@@ -313,8 +313,9 @@ const Home = props => (
               </div>
               <div className="col-md-8">
                  <nav className="nav ">
-                  <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a> |
-                  <a href="https://github.com/KMPARDS/betdeex-react.git" target="_blank" className="btn btn-circle btn-sm brand-github"><i className="fa fa-github" /></a>
+                  <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a> | 
+                  <a href="https://github.com/KMPARDS/betdeex-react.git" target="_blank" className="btn btn-circle btn-sm brand-github"><i className="fa fa-github" /></a> | 
+                  <a href="https://twitter.com/BetDeEx" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-twitter" /></a>
                 </nav>
               </div>
             </div>
