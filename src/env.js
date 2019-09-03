@@ -14,9 +14,10 @@ module.exports = {
     'Current',
     'Global',
     'Users Choice',
+    'Market'
   ],
   subCategoryArray: [
-    ['Football', 'Cricket', 'Baseball'],
+    ['Football', 'Cricket', 'Baseball', 'Racing'],
     ['Good Politics', 'Dirty Politics'],
     ['English', 'Hindi', 'Marathi'],
     ['Computers', 'Electronics', 'Mechanical'],
@@ -25,7 +26,8 @@ module.exports = {
     ['Actors', 'Actresses', 'Singers'],
     ['News', 'Issues'],
     ['Problems', 'Good things'],
-    ['Career', 'Life Partner']
+    ['Career', 'Life Partner'],
+    ['Stock Exchange', 'Crypto', 'Forex', 'Commodity']
   ],
   network,
   esContract: {
