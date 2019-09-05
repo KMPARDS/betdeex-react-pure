@@ -56,7 +56,8 @@ class BetsList extends Component {
     for (let i = logs.length - 1; i >=0; i--) {
       const log = logs[i];
       const address = '0x'+log.data.slice(26,66);
-      const description = ethers.utils.toUtf8String('0x'+log.data.slice(192)).replace(/[^A-Za-z 0-9?]/g, "");
+      const description = ethers.utils.toUtf8String('0x'+log.data.slice(193)).replace(/[^A-Za-z 0-9?]/g, "");
+      console.log('sohamzemse', ethers.utils.toUtf8String('0x'+log.data.slice(192)), description);
       const categoryId = +log.topics[2];
       const subCategoryId = +log.topics[3];
       //const blockNumber = log.blockNumber;
@@ -139,7 +140,7 @@ class BetsList extends Component {
         </Col>
         <Col xs="11">
         <section>
-        <div className="se lp">
+        <div className="col-md-12 mt-30">
           <div className="row">
             {/* TITLE */}{console.log(this.props)}
             <div className="inn-title">

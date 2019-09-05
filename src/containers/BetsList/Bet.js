@@ -51,7 +51,7 @@ class Bet extends Component {
       //   creationTimestamp
       // }
 
-      this.setState({ creationTime: new Date(creationTimestamp * 1000).toLocaleString() + ' (in your local timezone)' });
+      this.setState({ creationTime: new Date(creationTimestamp * 1000).toLocaleString() });
 
 
       let pauseTimestamp;
@@ -71,7 +71,7 @@ class Bet extends Component {
         });
       }
 
-      this.setState({ pauseTime: new Date(pauseTimestamp * 1000).toLocaleString() + ' (in your local timezone)' });
+      this.setState({ pauseTime: new Date(pauseTimestamp * 1000).toLocaleString() });
 
       localStorage.setItem('betdeex-betsMapping', JSON.stringify(this.props.store.betsMapping));
 
@@ -146,11 +146,13 @@ class Bet extends Component {
                   <ul className="market-properties-styles_MarketProperties__meta">
                     <li><span>Volume</span><span><span className="value_volume">{this.state.totalBetTokensInExaEs}</span></span>
                     </li>
-                    <li><span>Est. Fee</span><span><span data-tip="0.01" data-event="click focus" className="value_fee">{this.state.fees || 'Loading...'}</span><span className="value-denomination-styles_ValueDenomination__denomination">{!this.state.fees || '%'}</span></span>
+                    <li><span>Platform Fee</span><span><span data-tip="0.01" data-event="click focus" className="value_fee">{this.state.fees || 'Loading...'}</span><span className="value-denomination-styles_ValueDenomination__denomination">{!this.state.fees || '%'}</span></span>
                     </li>
                     <li><span>Reporting Start Time</span><span className="value_expires">{this.state.creationTime}</span>
+                    <span style={{display: 'block'}}>(in your local timezone)</span>
                     </li>
-                    <li><span>Reporting Start Time</span><span className="value_expires">{this.state.pauseTime}</span>
+                    <li><span>Reporting End Time</span><span className="value_expires">{this.state.pauseTime}</span>
+                    <span style={{display: 'block'}}>(in your local timezone)</span>
                     </li>
                   </ul>
                   <div className="inn-tickers">
