@@ -152,6 +152,59 @@ class BetsList extends Component {
             <div className="event-left ex1 col-md-12">
               {/*Sports Events in Dubai*/}
               <ul>
+              <li>
+                  <div className="betbox">
+                    <div className="market-basics-styles_MarketBasics__header mb-3">
+                      <div className="category-tag-trail-styles_CategoryTagTrail">
+                        <div className="word-trail-styles_WordTrail">
+                          <div className="word-trail-styles_WordTrail__label">Category</div>
+                          <button data-testid="Category-0" className="tag-trail-button">SPORTS</button>
+                        </div>
+                        <div className="word-trail-styles_WordTrail">
+                          <div className="word-trail-styles_WordTrail__label">Tags</div>
+                          <button data-testid="Tags-0" className="tag-trail-button">UEFA</button><button data-testid="Tags-1" className="tag-trail-button">SOCCER</button>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <h3 style={{textAlign:'left', fontSize: '23px', fontWeight: '600', color: '#54be58'}}>Will Liverpool win the UEFA Champions League title against Tottenham on
+                      June 1st?
+                    </h3>
+                    <div className="market-preview-styles_MarketPreview__footer">
+                      <article>
+                        <section className="market-properties-styles_MarketProperties">
+                          <div className="row">
+                            <div className="col-md-3"><span>Volume</span><span><span className="value_volume">2.0000
+                                  ETH</span></span></div>
+                            <div className="col-md-3"><span>Volume</span><span><span className="value_volume">2.0000
+                                  ETH</span></span></div>
+                            <div className="col-md-3"><span>Volume</span><span><span className="value_volume">2.0000
+                                  ETH</span></span></div>
+                            <div className="col-md-3"><span>Volume</span><span><span className="value_volume">2.0000
+                                  ETH</span></span></div>
+                          </div>
+                          {/* <ul className="market-properties-styles_MarketProperties__meta">
+                            <li><span>Volume</span><span><span className="value_volume">2.0000
+                                  ETH</span></span>
+                            </li>
+                            <li><span>Open Interest</span><span><span className="value_volume">2.0000
+                                  ETH</span></span>
+                            </li>
+                            <li><span>Est. Fee</span><span><span data-tip="0.01" data-event="click focus" className="value_fee">0.0100</span><span className="value-denomination-styles_ValueDenomination__denomination">%</span></span>
+                            </li>
+                            <li><span>Reporting Start Time</span><span className="value_expires">May 31,
+                                2019 7:00 AM (UTC 0)</span><span className="market-properties-styles_MarketProperties_value_small">May
+                                31, 2019 12:30 PM (GMT+5:30) (Your timezone)</span>
+                            </li>
+                          </ul> */}
+                          <div className="inn-tickers">
+                            <a href="booking.html" className="inn-reg-com inn-reg-book" data-toggle="modal" data-target="#betmodal"><i className="fa fa-exchange" aria-hidden="true" /> Place a Bet</a>
+                          </div>
+                        </section>
+                      </article>
+                    </div>
+                  </div>
+                </li>
                 {/*<li>
                   <div className="betbox">
                     <div className="market-basics-styles_MarketBasics__header mb-3">

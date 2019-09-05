@@ -384,15 +384,21 @@ console.log(this.state);
               </p> */}
             </div>
           <div class="share-btn">
-
-              <ul>
+            <div className="col-md-12">
+            <div className="row ">
+              <div className="col-md-12"><button style={{background:'#28a745', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 1 })}}> Yes</button></div>
+              <div className="col-md-3"><button style={{background:'#dc3545', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 0 })}}>No</button></div>
+              <div className="col-md-3"><button style={{background:'#ffc107', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</button></div>
+            </div>
+            </div>
+              {/* <ul>
                   <li><button style={{background:'#28a745', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 1 })}}> Yes</button>
                   </li>
                   <li><button style={{background:'#dc3545', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 0 })}}>No</button>
                   </li>
                   <li><button style={{background:'#ffc107', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</button>
                   </li>
-              </ul>
+              </ul> */}
           </div>
           <br></br>
           <div>

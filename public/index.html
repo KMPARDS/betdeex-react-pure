@@ -90,6 +90,16 @@
     opacity: 0;
   }
 }
+.loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('http://www.downgraf.com/wp-content/uploads/2014/09/01-progress.gif?e44397') 50% 50% no-repeat rgb(249,249,249);
+          }
+
 
 /* loader */
   </style>
@@ -126,6 +136,12 @@
 </head>
 
 <body>
+    <div id="start-loader" style="position: fixed; background-color: #eee; z-index:9999; width: 100vw; height: 100vh; text-align: center">
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);">
+        <img style="width: 30vw;margin-bottom: 0.5rem" src="/images/talogo.png" />
+        <p>Loading the ÐApp in a moment, please wait...</p>
+      </div>
+    </div>
     <div style="background:linear-gradient(90deg, rgb(107, 17, 17) 0%, rgb(23, 3, 1) 100%);" class="loader" id="site-loader">Loading</div>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
