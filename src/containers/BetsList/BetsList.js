@@ -140,7 +140,7 @@ class BetsList extends Component {
         </Col>
         <Col xs="11">
         <section>
-        <div className="se lp">
+        <div className="col-md-12 mt-30">
           <div className="row">
             {/* TITLE */}{console.log(this.props)}
             <div className="inn-title">
