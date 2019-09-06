@@ -136,21 +136,21 @@ class BetsList extends Component {
     return (
       <Row>
         <Col>
-          <Sidebar />
+          <Sidebar/>
         </Col>
-        <Col xs="11">
+        <Col xs="12">
         <section>
-        <div className="col-md-12 mt-30">
+        <div className="sp lp">
           <div className="row">
             {/* TITLE */}{console.log(this.props)}
             <div className="inn-title">
-              <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> {this.props.subCategoryId !== undefined ? subCategoryArray[this.props.categoryId][this.props.subCategoryId] : (this.props.categoryId !== undefined ? categoryArray[this.props.categoryId] : 'All')}<span> Events</span></h2>
+              <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true"/> {this.props.subCategoryId !== undefined ? subCategoryArray[this.props.categoryId][this.props.subCategoryId] : (this.props.categoryId !== undefined ? categoryArray[this.props.categoryId] : 'All')}<span> Events</span></h2>
               {/* <p>Becoming a gym certified personal fitness trainer is your foundation for success. gym is the only
                 personal trainer certification program that integrates
               </p> */}
-            </div>
+           </div>
             {/* LEFT SIDE: SPORTS EVENTS */}
-            <div className="event-left ex1 col-md-12">
+            <div className="event-left  ex1">
               {/*Sports Events in Dubai*/}
               <ul>
                 {/*<li>
@@ -243,7 +243,7 @@ class BetsList extends Component {
             {/* RIGHT SIDE: FEATURE EVENTS */}
           </div>
         </div>
-      </section>
+        </section>
         {/*<>
           <Card>Showing 5 bets
           <h2 style={{fontWeight:'800', textTransform:'uppercase'}}> Show <span>5 Bets</span></h2>

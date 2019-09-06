@@ -39,7 +39,7 @@ class NavbarComponent extends Component {
 
   render() {
     return (
-      <Navbar style={{background:'linear-gradient(to right, #270101 0%, #981802 100%)'}} >
+      <Navbar style={{background:'linear-gradient(to right, #000 0%, #981802 100%)'}} >
 
         <Link to="/">
           <Navbar.Brand>

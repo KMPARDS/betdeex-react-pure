@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Button, Tabs, Tab, Table } from 'react-bootstrap';
-
+import { Card, Button, Tabs, Tab, Table, Row, Col } from 'react-bootstrap';
+import Sidebar from '../Sidebar/Sidebar';
 import TransactionModal from '../TransactionModal/TransactionModal';
 import ChoiceBettingsTable from './ChoiceBettingsTable';
 import { categoryArray, subCategoryArray } from '../../env';
@@ -242,6 +242,11 @@ console.log(this.state);
       </>
     ));
     return (
+      <Row>
+      <Col>
+          <Sidebar/>
+        </Col>
+     <Col xs="12">
       <Card>
       {this.props.store.managerPrivileges ? <div className="se lp">
         <h4>Manager section</h4>
@@ -268,7 +273,7 @@ console.log(this.state);
 
             </div>
             {/* LEFT SIDE: SPORTS EVENTS */}
-            <div className="event-left col-md-12" >
+            <div className="event-left ex1" >
               {/*Sports Events in Dubai*/}
               <ul>
                 <li style={{ borderBottomColor: '#eee'}}>
@@ -410,7 +415,7 @@ console.log(this.state);
             {/* Tab panes */}
             <div className="tab-content">
               <div role="tabpanel" className="tab-pane active" id="profile">
-              {!this.state.fetchingBettings ? <table className="myTable">
+              {!this.state.fetchingBettings ? <table className="myTable table-responsive">
               <tbody>
                 <tr>
                   <th>Sr</th>
@@ -422,7 +427,7 @@ console.log(this.state);
                 </table> : 'Please wait fetching bettings on the contract from blockchain...'}
               </div>
               <div role="tabpanel" className="tab-pane fade" id="buzz">
-              {!this.state.fetchingBettings ? <table className="myTable">
+              {!this.state.fetchingBettings ? <table className="myTable table-responsive">
               <tbody>
                 <tr>
                   <th>Sr</th>
@@ -435,7 +440,7 @@ console.log(this.state);
 
               </div>
               <div role="tabpanel" className="tab-pane fade" id="references">
-              {!this.state.fetchingBettings ? <table className="myTable">
+              {!this.state.fetchingBettings ? <table className="myTable table-responsive">
               <tbody>
                 <tr>
                   <th>Sr</th>
@@ -468,6 +473,8 @@ console.log(this.state);
           }}
           />
       </Card>
+      </Col>
+      </Row>
     );
   }
 }

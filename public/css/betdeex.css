@@ -15933,3 +15933,46 @@ ul#top_menu .dropdown-toggle:empty::after {
        display: inherit;
    }
 }
+
+
+/*sanket css start here*/
+.hom-trend-con h2{
+	font-weight: 600 !important;
+}
+.banner .logo{
+  	max-width: 100%;
+}
+.play-slider .carousel-control-next, .play-slider .carousel-control-prev {
+    top: -34px !important;
+}
+.play-slider h2 {
+    letter-spacing: 0.116px;
+    text-align: left !important;
+}
+.play-slider #demo{
+    margin-top: 65px;
+}
+@media screen and (max-width: 992px)  {
+  .banner p{
+		text-align:center;
+	}
+  .banner .banner-text{
+  	margin: 0px !important;
+  }
+  .banner .logo{
+  	max-width: 100%;
+  	display: none !important;
+  }
+  .market-preview-styles_MarketPreview__footer {
+	    /* border-top: 1px solid #dfdfdf; */
+	    padding: 1rem 0 !important;
+	}
+}
+
+@media screen and (max-width: 992px)  {
+  .market-properties-styles_MarketProperties__meta {
+	    display: inline-table;
+	    flex-wrap: unset;
+	    width: 80%;
+	}
+}

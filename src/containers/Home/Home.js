@@ -8,18 +8,18 @@ const Home = props => (
     backgroundSize: 'cover', zIndex: '9', height: '500px', backgroundPositionY: 'center'}}>
           {/* <div id="stripes"></div> */}
           {/* <img src="/img/Bdx_web-02.jpg"></img> */}
-          <div className="container overflow-hidden bring-to-front" style={{paddingBottom: 0, }}>
+          <div className="container overflow-hidden bring-to-front banner" style={{paddingBottom: 0, }}>
             <div className="row">
-              <div className="col-lg-6 mx-auto text-center text-lg-left" style={{margin:'50px'}}>
-                <h1 className="light display-4 color-1">Welcome to the  <span className="bold d-block" style={{fontSize:'42px', color:'#fff', lineHeight:'44px'}}>Future of Prediction</span></h1>
-                <p className="color-1 lead alpha-8 my-5" style={{fontSize:'18px',}}>"Luck Becomes Limitless Opportunity with Confident Preparation <br></br><br></br>
+              <div className="col-lg-6 mx-auto text-center text-lg-left banner-text" style={{margin:'50px'}}>
+                <h1 className="light display-4 color-1">Welcome to the  <span className="bold d-block" style={{fontSize:'48px', color:'#fff', lineHeight:'44px'}}>Future of Prediction</span></h1>
+                <p className="color-1 lead alpha-8 my-5" style={{fontSize:'18px',}}>"Luck Becomes Limitless Opportunity with Confident Preparation <br></br>
                 <b style={{fontWeight:'800', fontStyle:'italic'}}>Decentralized, Transparent & Trustless</b>
 
                   {/* <br> No Login, No Hassle, No Limits.*/}</p>
-                  <button onClick={() => props.history.push('/explore')} class="btn btn-rounded btn-lg btn-accent text-center ml-3"> Explore Events now</button>
+                  <button onClick={() => props.history.push('/explore')} class="btn btn-rounded btn-lg btn-accent text-center ml-0 my-3"> Explore Events now</button>
               </div>
               <div className="col-lg-6 col-md-9 mx-md-auto mx-lg-0 pr-lg-0 pc" data-aos="fade-left">
-                <img src="img/betdeex-logo.png" alt="Dashcore" className="d-blocks" style={{height:'40%'}} />
+                <img src="img/betdeex-logo.png" alt="Dashcore" className="d-blocks img-responsive logo" />
                 <b style={{fontWeight:'800', fontStyle:'italic', marginBottom:'50px'}}>Powered by Era Swap</b>
               </div>
              </div>
@@ -158,7 +158,7 @@ const Home = props => (
           </div>
       </section>
         {/* Use Cases for Betdeex */}
-        <section className="section bg-6 bg-6-gradient edge bottom-right">
+        <section className="section bg-6 bg-6-gradient edge bottom-right play-slider">
           <div className="container bring-to-front">
             <img src="/img/era-icon.png"/>
             <div id="demo" className="carousel slide" data-ride="carousel">
@@ -175,7 +175,7 @@ const Home = props => (
                     <div className="shape-wrapper"><img src="img/shps/abs-shp-1.svg" className="absolute top right h-100" alt="..." /></div>
                     <div className="container-wide bring-to-front" >
                       <div className="row gap-y align-items-center">
-                        <div className="col-12 col-lg-7 mx-auto">
+                        <div className="col-12 col-lg-6 mx-auto">
                           <h2 style={{textAlign:'justify'}}>Propose a prediction event and get rewards</h2>
                           <p className="lead color-2">
                             You can propose an Event on Swappers Wall. Events will be voted by community for likes. Top 10 Event proposals with maximum number of likes upto 25 August 2019 on Swappers Wall will be selected with the Reward of 1000 ES in liquid and 1000 ES in TimeAlly to proposers of each of these 10 Events.
@@ -215,7 +215,7 @@ const Home = props => (
                   <div className="shape-wrapper"><img src="img/shps/abs-shp-1.svg" className="absolute top right h-100" alt="..." /></div>
                   <div className="container-wide bring-to-front">
                     <div className="row gap-y align-items-center">
-                      <div className="col-12 col-lg-7 mx-auto">
+                      <div className="col-12 col-lg-6 mx-auto">
                         <h2 style={{textAlign:'justify'}}>Use your Skills to Win</h2>
                         <p className="lead color-2">Once you have predicted the outcome and you got sucess, you can win. You can predict multiple events at the same time to win.</p>
                       </div>
