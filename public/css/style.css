@@ -13342,7 +13342,12 @@ button{
     }
 }
 div.ex1 {    
+<<<<<<< HEAD
     height: auto;
+=======
+    /* height: 550px; */
+    /* width: 200px; */
+>>>>>>> 35e86a4806dff9564e15c8ca029059d936a9fe1f
     overflow-y: scroll;
   }
 .event-left{
