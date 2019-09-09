@@ -391,9 +391,9 @@ console.log(this.state);
           <div class="share-btn">
             <div className="col-md-12">
             <div className="row ">
-              <div className="col-md-12"><button style={{background:'#28a745', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 1 })}}> Yes</button></div>
-              <div className="col-md-3"><button style={{background:'#dc3545', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 0 })}}>No</button></div>
-              <div className="col-md-3"><button style={{background:'#ffc107', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</button></div>
+              <div className="col-sm-1"><button style={{background:'#28a745', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 1 })}}> Yes</button></div>
+              <div className="col-sm-1"><button style={{background:'#dc3545', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 0 })}}>No</button></div>
+              <div className="col-sm-1"><button style={{background:'#ffc107', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</button></div>
             </div>
             </div>
               {/* <ul>
