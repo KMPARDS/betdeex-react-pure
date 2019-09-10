@@ -39,7 +39,7 @@ class NavbarComponent extends Component {
 
   render() {
     return (
-      <Navbar style={{background:'linear-gradient(to right, #000 0%, #981802 100%)'}} >
+      <Navbar class="headerbtn" style={{background:'linear-gradient(to right, #000 0%, #981802 100%)'}} >
 
         <Link to="/">
           <Navbar.Brand>
@@ -52,8 +52,42 @@ class NavbarComponent extends Component {
             />
           </Navbar.Brand>
         </Link>
+       
+          <Dropdown class="dropdown">
+            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+             <i class="fa fa-th dropbtn fadropbtn"></i>
+            </Dropdown.Toggle>
 
-
+            <Dropdown.Menu>
+              <Dropdown.Item href="https://timeswappers.com/swapperswall" target="blank">
+              <img src="/img/icons/12.png" className="d-inline-block align-top" alt="Logo"/>
+              Social Community Platform
+              </Dropdown.Item>
+              <Dropdown.Item href="https://www.timeally.io/" target="blank">
+              <img src="/img/icons/12.png" className="d-inline-block align-top" alt="Logo"/> Decentralized Token Vesting </Dropdown.Item>
+              <Dropdown.Item href="https://eraswapwallet.com/" target="blank"> 
+              <img src="/img/icons/10.png" className="d-inline-block align-top" alt="Logo"/> Decentralized Wallet</Dropdown.Item>
+              <Dropdown.Item href="https://timeswappers.com/" target="blank"> 
+              <img src="/img/icons/2.png" className="d-inline-block align-top" alt="Logo"/> P2P Marketplace Platform</Dropdown.Item>
+              <Dropdown.Item href="http://dayswappers.com/" target="blank">
+              <img src="/img/icons/9.png" className="d-inline-block align-top" alt="Logo"/> Affiliate Programme</Dropdown.Item>
+              <Dropdown.Item href="https://buzcafe.com/" target="blank"> 
+              <img src="/img/icons/11.png" className="d-inline-block align-top" alt="Logo"/> Merchants &amp; Shoppers e-Retail</Dropdown.Item>
+              <Dropdown.Item href="https://eraswap.academy/" target="blank">
+               <img src="/img/icons/3.png" className="d-inline-block align-top" alt="Logo"/> eLearning Platform</Dropdown.Item>
+              <Dropdown.Item href="https://www.betdeex.com/" target="blank">
+              <img src="/img/icons/5.png" className="d-inline-block align-top" alt="Logo"/> Decentralized Prediction Platform </Dropdown.Item>
+              <Dropdown.Item href="https://computeex.net/" target="blank">
+              <img src="/img/icons/7.png" className="d-inline-block align-top" alt="Logo"/> P2P Lend &amp; Borrow </Dropdown.Item>
+              <Dropdown.Item href="https://computeex.net/" target="blank">
+              <img src="/img/icons/6.png" className="d-inline-block align-top" alt="Logo"/>  Multi Exchange Solution</Dropdown.Item>
+              <Dropdown.Item href="http://valueoffarmers.org/" target="blank">
+              <img src="/img/icons/12.png" className="d-inline-block align-top" alt="Logo"/>  Farming Community </Dropdown.Item>
+              <Dropdown.Item href="http://dateswappers.com/" target="blank">
+              <img src="/img/icons/12.png" className="d-inline-block align-top" alt="Logo"/>  Next Gen Dating and Match-Making</Dropdown.Item>
+             
+            </Dropdown.Menu>
+          </Dropdown>
         {/*<Nav.Link
           style={{color:'#fff', fontWeight:'600'}}
           onClick={() => this.props.history.push('/explore')}
