@@ -178,7 +178,7 @@ const Home = props => (
                         <div className="col-12 col-lg-6 mx-auto">
                           <h2 style={{textAlign:'justify'}}>Propose a prediction event and get rewards</h2>
                           <p className="lead color-2">
-                            You can propose an Event on Swappers Wall. Events will be voted by community for likes. Top 10 Event proposals with maximum number of likes upto 25 August 2019 on Swappers Wall will be selected with the Reward of 1000 ES in liquid and 1000 ES in TimeAlly to proposers of each of these 10 Events.
+                            You can propose an Event on Swappers Wall. Events will be voted by community for likes. Top 10 Event proposals with maximum number of likes on Swappers Wall will be selected with the Reward of 1000 ES in liquid and 1000 ES in TimeAlly to proposers of each of these 10 Events.
                           </p>
                           <p>
                           </p>
@@ -313,8 +313,8 @@ const Home = props => (
               </div>
               <div className="col-md-8">
                  <nav className="nav ">
-                  <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a> | 
-                  <a href="https://github.com/KMPARDS/betdeex-react.git" target="_blank" className="btn btn-circle btn-sm brand-github"><i className="fa fa-github" /></a> | 
+                  <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a> |
+                  <a href="https://github.com/KMPARDS/betdeex-react.git" target="_blank" className="btn btn-circle btn-sm brand-github"><i className="fa fa-github" /></a> |
                   <a href="https://twitter.com/BetDeEx" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-twitter" /></a>
                 </nav>
               </div>

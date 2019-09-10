@@ -48,7 +48,8 @@ window.onload = function () {
 }
 
 window.addEventListener('message', function (e) {
-  setTimeout(() => window.ProcessParentMessage_2 || window.ProcessParentMessage_2(e.data), 0);
+  // console.log('message', e.data);
+  setTimeout(() => window.ProcessParentMessage_2 && window.ProcessParentMessage_2(e.data), 0);
 }, false);
 
 function App(props) {
