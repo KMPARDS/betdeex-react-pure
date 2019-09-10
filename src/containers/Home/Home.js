@@ -299,6 +299,7 @@ const Home = props => (
               </div> */}
               <div className="col-md-3">
                 <nav className="nav flex-column">
+                  <a className="nav-item py-2 color-1" href="/pdf/betdeex-user-guide.pdf" target="_blank"><span style={{color:'#848080'}}>User Guide</span></a>
                   <a className="nav-item py-2 color-1" href="/pdf/t&c.pdf" target="_blank"><span style={{color:'#848080'}}>Terms &amp; Conditions</span></a>
                   <a className="nav-item py-2 color-1" href="/pdf/privacy.pdf" target="_blank"><span style={{color:'#848080'}}>Privacy Policy</span></a>
                   <a className="nav-item py-2 color-1" href="https://etherscan.io/address/0x42225682113E6Ed3616B36B4A72BbaE376041D7c#code" target="_blank"><span style={{color:'#848080'}}>BetDeEx DApp Smart Contract</span></a>
