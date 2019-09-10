@@ -346,7 +346,7 @@ console.log(this.state);
                                       }</h4>
                                       <span>Total Prize Pool</span>
                                   </div>
-                                  <div class="inn-ev-date-rig">
+                                  <div class="inn-ev-date-rig total-amount">
                                       <ul>
                                           <li> <h4>{
                                             totalBetTokensInEsByChoice[1]
@@ -389,25 +389,25 @@ console.log(this.state);
               </p> */}
             </div>
           <div class="share-btn">
-            <div className="col-md-12">
-            <div className="row ">
-              <div className="col-sm-1"><button style={{background:'#28a745', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 1 })}}> Yes</button></div>
-              <div className="col-sm-1"><button style={{background:'#dc3545', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 0 })}}>No</button></div>
-              <div className="col-sm-1"><button style={{background:'#ffc107', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</button></div>
+              {/*<div className="col-md-12">
+            <div className="row">
+              <div className="col-md-3"><button style={{background:'#28a745', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 1 })}}> Yes</button></div>
+              <div className="col-md-3"><button style={{background:'#dc3545', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 0 })}}>No</button></div>
+              <div className="col-md-3"><button style={{background:'#ffc107', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</button></div>
             </div>
-            </div>
-              {/* <ul>
+            </div>*/}
+             <ul>
                   <li><button style={{background:'#28a745', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 1 })}}> Yes</button>
                   </li>
                   <li><button style={{background:'#dc3545', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 0 })}}>No</button>
                   </li>
                   <li><button style={{background:'#ffc107', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</button>
                   </li>
-              </ul> */}
+              </ul> 
           </div>
           <br></br>
           <div>
-            <ul className="nav nav-tabs" role="tablist">
+            <ul className="nav nav-tabs com-tab" role="tablist">
               <li className="nav-item" onClick={() => this.seeChoiceBettings(1)}>
                 <a className="nav-link active" href="#profile" role="tab" data-toggle="tab">Yes</a>
               </li>

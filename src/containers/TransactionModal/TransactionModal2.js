@@ -326,6 +326,7 @@ class TransactionModal extends Component {
     return (
       <Modal
         {...this.props}
+        size="lg"
         onHide={() => {
           this.props.hideFunction();
           setTimeout(() => {
