@@ -176,16 +176,16 @@ const Home = props => (
                     <div className="container-wide bring-to-front" >
                       <div className="row gap-y align-items-center">
                         <div className="col-12 col-lg-6 mx-auto">
-                          <h2 style={{textAlign:'justify'}}>Propose a prediction event and get rewards</h2>
+                          <h2 style={{textAlign:'justify'}}>Step 1: Explore</h2>
                           <p className="lead color-2">
-                            You can propose an Event on Swappers Wall. Events will be voted by community for likes. Top 10 Event proposals with maximum number of likes on Swappers Wall will be selected with the Reward of 1000 ES in liquid and 1000 ES in TimeAlly to proposers of each of these 10 Events.
+                            There will be multiple events to predict from multiple domains like Sports, Politics, Movies, Tech, Science, Entertainment, Celebrities, Current Affairs and more.
                           </p>
                           <p>
                           </p>
                         </div>
                         <div className="col-10 col-lg-5 pr-0">
                           <div className="device browser" data-aos="fade-left">
-                            <div className="screen"><img src="img/screen1.jpg" alt="" className="img-responsive shadow" /></div>
+                            <div className="screen"><img src="img/betdeex1.png" alt="" className="img-responsive shadow" /></div>
                           </div>
                         </div>
                       </div>
@@ -198,12 +198,12 @@ const Home = props => (
                   <div className="container-wide bring-to-front">
                     <div className="row gap-y align-items-center">
                       <div className="col-12 col-lg-6 mx-auto">
-                        <h2 style={{textAlign:'justify'}}>Predict on Events</h2>
-                        <p className="lead color-2">Once there are events on BetDeEx, you can select your favourite event(s) and start prediction based on your skills.</p>
+                        <h2 style={{textAlign:'justify'}}>Step 2: Choose an Event</h2>
+                        <p className="lead color-2">An 'event' is a prediction event which you can choose from the list of multiple events on BetDeEx platform. You can select your favorite event(s) and start prediction based on your skills.</p>
                       </div>
                       <div className="col-10 col-lg-5 pr-0">
                         <div className="device browser" data-aos="fade-left">
-                          <div className="screen"><img src="img/screen1.jpg" alt="" className="img-responsive shadow" /></div>
+                          <div className="screen"><img src="img/betdeex2.png" alt="" className="img-responsive shadow" /></div>
                         </div>
                       </div>
                     </div>
@@ -216,12 +216,12 @@ const Home = props => (
                   <div className="container-wide bring-to-front">
                     <div className="row gap-y align-items-center">
                       <div className="col-12 col-lg-6 mx-auto">
-                        <h2 style={{textAlign:'justify'}}>Use your Skills to Win</h2>
-                        <p className="lead color-2">Once you have predicted the outcome and you got sucess, you can win. You can predict multiple events at the same time to win.</p>
+                        <h2 style={{textAlign:'justify'}}>Step 3: Predict!</h2>
+                        <p className="lead color-2">Predict using ES on the outcome of the event and wait for results. If you are lucky to win, you will get rewarded through the BetDeEx Smart Contract.</p>
                       </div>
                       <div className="col-10 col-lg-5 pr-0">
                         <div className="device browser" data-aos="fade-left">
-                          <div className="screen"><img src="img/screen1.jpg" alt="" className="img-responsive shadow" /></div>
+                          <div className="screen"><img src="img/betdeex3.png" alt="" className="img-responsive shadow" /></div>
                         </div>
                       </div>
                     </div>
@@ -261,15 +261,51 @@ const Home = props => (
                     <div className="row gap-y">
                       <div className="col-md-12">
                         <div className="accordion accordion-clean" id="faqs-accordion">
+
+                        <div className="card mb-3">
+                          <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q1">What is Era Swap Token?</a></div>
+                          <div id="v1-q1" className="collapse" data-parent="#faqs-accordion">
+                            <div className="card-body">Era Swap Token or ES is a decentralized utility token currently based on Ethereum blockchain (ERC20) which will be used on multiple platforms for exchange of services(P2P), avail discounts, get rewards and many more utility.</div>
+
+
+                          </div>
+                        </div>
+
+                        <div className="card mb-3">
+                          <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q2">What is BetDeEx?</a></div>
+                          <div id="v1-q2" className="collapse" data-parent="#faqs-accordion">
+                            <div className="card-body">BetDeEx is a Decentralized App (DApp) which is based on pre-defined set of rules enforced through Smart Contracts to govern the prediction activity and distribution of winnings.</div>
+                            <div className="offset-md-4 col-md-4">
+                              <div style={{position: 'relative', height: 0, overflow: 'hidden', maxWidth: '100%', paddingBottom: '56.25%', marginBottom:'20px'}}>
+                                    <iframe src="https://www.youtube.com/embed/8CHlAVPbONo" style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}} frameBorder={0} allowFullScreen />
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+
+
+                        <div className="card mb-3">
+                          <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q3">How to use BetDeEx?</a></div>
+                          <div id="v1-q3" className="collapse" data-parent="#faqs-accordion">
+                            <div className="offset-md-4 col-md-4">
+                              <div style={{position: 'relative', height: 0, overflow: 'hidden', maxWidth: '100%', paddingBottom: '56.25%', marginBottom:'20px'}}>
+                                    <iframe src="https://www.youtube.com/embed/z000Kv_PeYQ" style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}} frameBorder={0} allowFullScreen />
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+
                           <div className="card mb-3">
-                            <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q1">Do you store my private keys, Keystore or mnemonic?</a></div>
-                            <div id="v1-q1" className="collapse" data-parent="#faqs-accordion">
+                            <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q4">Do you store my private keys, Keystore or mnemonic?</a></div>
+                            <div id="v1-q4" className="collapse" data-parent="#faqs-accordion">
                               <div className="card-body">When you load Wallet in the BetDeEx ÐApp, your private keys stay only on your computer. The BetDeEx ÐApp directly talks with blockchain hence any centralized intermediate server is not at all required and hence any of your data is NOT sent to our servers (we are also not recording any usage data). Your computer signs any transactions you authorise and only the signed transaction is submitted to blockchain for being included in blocks by miners who are mining in Ethereum. When you logout or even refresh page your private keys are erased from computer’s memory. The BetDeEx ÐApp source code is open source and anyone can check what is happening.</div>
                             </div>
                           </div>
                           <div className="card mb-3">
-                            <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q2">What is Gas Fee / Network Fee?</a></div>
-                            <div id="v1-q2" className="collapse" data-parent="#faqs-accordion">
+                            <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q5">What is Gas Fee / Network Fee?</a></div>
+                            <div id="v1-q5" className="collapse" data-parent="#faqs-accordion">
                               <div className="card-body">Ethereum is a decentralized and immutable platform. Tens of thousands of miners dedicate their computers to maintain the Ethereum network. For compensation, the concept of the gas fee is there. All transactions on Ethereum Network cost gas and this fee is transferred to miners in ETH. Users can choose to pay less or more gas to miners. A miner can choose which transactions to mine, and generally, they give priority to those transactions which give them more fees. You can customize your gas fees in the advanced settings while making staking, withdrawal or any transaction.</div>
                             </div>
                           </div>
