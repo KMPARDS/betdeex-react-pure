@@ -319,7 +319,7 @@ console.log(this.state);
                               }
                             </span></span>
                             </li>
-                            <li><span>Est. Fee</span><span><span className="value_fee">{
+                            <li><span>Platfrom Fee</span><span><span className="value_fee">{
                               fees
                               ? fees + '%'
                               : 'Loading..'
@@ -382,6 +382,8 @@ console.log(this.state);
             </div>
             {/* RIGHT SIDE: FEATURE EVENTS */}
           </div>
+          {console.log('this.state.pauseTimestamp',this.state.pauseTimestamp)}
+          {this.state.pauseTimestamp ? (Number(this.state.pauseTimestamp._hex) * 1000 > Date.now() ? <>
           <div className="inn-title">
               <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}>Predict<span> Now</span></h2>
               {/* <p>Becoming a gym certified personal fitness trainer is your foundation for success. gym is the only
@@ -403,8 +405,10 @@ console.log(this.state);
                   </li>
                   <li><button style={{background:'#ffc107', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</button>
                   </li>
-              </ul> 
-          </div>
+              </ul>
+            </div>
+          </> : <p>The prediction time for this event has expired, now it is not possible to place a prediction.</p>) : <p>Please wait loading...</p>}
+
           <br></br>
           <div>
             <ul className="nav nav-tabs com-tab" role="tablist">
