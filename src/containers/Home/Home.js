@@ -134,7 +134,7 @@ const Home = props => (
                 <div className="hom-trend-con">
                   {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
 
-                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>CELEBRATIES</h2>
+                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>CELEBRITIES</h2>
 
                   {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
                 </div>
