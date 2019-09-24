@@ -299,13 +299,13 @@ const Home = props => (
                         </div>
 
                           <div className="card mb-3">
-                            <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q4">Do you store my private keys, Keystore or mnemonic?</a></div>
+                            <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q4">Do you store my private keys, Keystore or mnemonic in BetDeEx?</a></div>
                             <div id="v1-q4" className="collapse" data-parent="#faqs-accordion">
                               <div className="card-body">When you load Wallet in the BetDeEx ÐApp, your private keys stay only on your computer. The BetDeEx ÐApp directly talks with blockchain hence any centralized intermediate server is not at all required and hence any of your data is NOT sent to our servers (we are also not recording any usage data). Your computer signs any transactions you authorise and only the signed transaction is submitted to blockchain for being included in blocks by miners who are mining in Ethereum. When you logout or even refresh page your private keys are erased from computer’s memory. The BetDeEx ÐApp source code is open source and anyone can check what is happening.</div>
                             </div>
                           </div>
                           <div className="card mb-3">
-                            <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q5">What is Gas Fee / Network Fee?</a></div>
+                            <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q5">What is Gas Fee / Network Fee in BetDeEx?</a></div>
                             <div id="v1-q5" className="collapse" data-parent="#faqs-accordion">
                               <div className="card-body">Ethereum is a decentralized and immutable platform. Tens of thousands of miners dedicate their computers to maintain the Ethereum network. For compensation, the concept of the gas fee is there. All transactions on Ethereum Network cost gas and this fee is transferred to miners in ETH. Users can choose to pay less or more gas to miners. A miner can choose which transactions to mine, and generally, they give priority to those transactions which give them more fees. You can customize your gas fees in the advanced settings while making staking, withdrawal or any transaction.</div>
                             </div>
