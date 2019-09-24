@@ -52,40 +52,40 @@ class NavbarComponent extends Component {
             />
           </Navbar.Brand>
         </Link>
-       
+
           <Dropdown class="dropdown">
             <Dropdown.Toggle variant="secondary" id="dropdown-basic">
              <i class="fa fa-th dropbtn fadropbtn"></i>
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item href="https://timeswappers.com/swapperswall" target="blank">
+              <Dropdown.Item href="https://timeswappers.com/swapperswall" target="_blank">
               <img src="/img/icons/12.png" className="d-inline-block align-top" alt="Logo"/>
               Social Community Platform
               </Dropdown.Item>
-              <Dropdown.Item href="https://www.timeally.io/" target="blank">
+              <Dropdown.Item href="https://www.timeally.io/" target="_blank">
               <img src="/img/icons/12.png" className="d-inline-block align-top" alt="Logo"/> Decentralized Token Vesting </Dropdown.Item>
-              <Dropdown.Item href="https://eraswapwallet.com/" target="blank"> 
+              <Dropdown.Item href="https://eraswapwallet.com/" target="_blank">
               <img src="/img/icons/10.png" className="d-inline-block align-top" alt="Logo"/> Decentralized Wallet</Dropdown.Item>
-              <Dropdown.Item href="https://timeswappers.com/" target="blank"> 
+              <Dropdown.Item href="https://timeswappers.com/" target="_blank">
               <img src="/img/icons/2.png" className="d-inline-block align-top" alt="Logo"/> P2P Marketplace Platform</Dropdown.Item>
-              <Dropdown.Item href="http://dayswappers.com/" target="blank">
+              <Dropdown.Item href="http://dayswappers.com/" target="_blank">
               <img src="/img/icons/9.png" className="d-inline-block align-top" alt="Logo"/> Affiliate Programme</Dropdown.Item>
-              <Dropdown.Item href="https://buzcafe.com/" target="blank"> 
+              <Dropdown.Item href="https://buzcafe.com/" target="_blank">
               <img src="/img/icons/11.png" className="d-inline-block align-top" alt="Logo"/> Merchants &amp; Shoppers e-Retail</Dropdown.Item>
-              <Dropdown.Item href="https://eraswap.academy/" target="blank">
+              <Dropdown.Item href="https://eraswap.academy/" target="_blank">
                <img src="/img/icons/3.png" className="d-inline-block align-top" alt="Logo"/> eLearning Platform</Dropdown.Item>
-              <Dropdown.Item href="https://www.betdeex.com/" target="blank">
+              <Dropdown.Item href="https://www.betdeex.com/" target="_blank">
               <img src="/img/icons/5.png" className="d-inline-block align-top" alt="Logo"/> Decentralized Prediction Platform </Dropdown.Item>
-              <Dropdown.Item href="https://computeex.net/" target="blank">
+              <Dropdown.Item href="https://computeex.net/" target="_blank">
               <img src="/img/icons/7.png" className="d-inline-block align-top" alt="Logo"/> P2P Lend &amp; Borrow </Dropdown.Item>
-              <Dropdown.Item href="https://computeex.net/" target="blank">
+              <Dropdown.Item href="https://computeex.net/" target="_blank">
               <img src="/img/icons/6.png" className="d-inline-block align-top" alt="Logo"/>  Multi Exchange Solution</Dropdown.Item>
-              <Dropdown.Item href="http://valueoffarmers.org/" target="blank">
+              <Dropdown.Item href="http://valueoffarmers.org/" target="_blank">
               <img src="/img/icons/12.png" className="d-inline-block align-top" alt="Logo"/>  Farming Community </Dropdown.Item>
-              <Dropdown.Item href="http://dateswappers.com/" target="blank">
+              <Dropdown.Item href="http://dateswappers.com/" target="_blank">
               <img src="/img/icons/12.png" className="d-inline-block align-top" alt="Logo"/>  Next Gen Dating and Match-Making</Dropdown.Item>
-             
+
             </Dropdown.Menu>
           </Dropdown>
         {/*<Nav.Link
