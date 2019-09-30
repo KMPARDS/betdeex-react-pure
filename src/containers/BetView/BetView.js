@@ -319,7 +319,7 @@ console.log(this.state);
                               }
                             </span></span>
                             </li>
-                            <li><span>Platfrom Fee</span><span><span className="value_fee">{
+                            <li><span>Platform Fee</span><span><span className="value_fee">{
                               fees
                               ? fees + '%'
                               : 'Loading..'
@@ -428,7 +428,7 @@ console.log(this.state);
               {!this.state.fetchingBettings ? <table className="myTable table-responsive">
               <tbody>
                 <tr>
-                  <th>Sr</th>
+                  <th>Sr.No</th>
                   <th>Address</th>
                   <th>Amount</th>
                 </tr>
