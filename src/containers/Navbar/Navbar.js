@@ -59,6 +59,8 @@ class NavbarComponent extends Component {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
+              <Dropdown.Item href="https://eraswaptoken.io" target="_blank">
+              <img width="32px" src="/img/es-green.png" className="d-inline-block align-top" alt="Logo" style={{margin:'0 3px 0 0'}} />Decentralized Utility Token</Dropdown.Item>
               <Dropdown.Item href="https://timeswappers.com/swapperswall" target="_blank">
               <img src="/img/icons/12.png" className="d-inline-block align-top" alt="Logo"/>
               Social Community Platform
