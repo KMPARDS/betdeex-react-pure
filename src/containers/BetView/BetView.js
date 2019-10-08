@@ -362,13 +362,13 @@ console.log(this.state);
                                           }</h4>
                                         <span>No Amount</span>
                                           </li>
-                                          <li> <h4>{
+                                          {this.state.isDrawPossible ? <li> <h4>{
                                             totalBetTokensInEsByChoice[2]
                                             ? totalBetTokensInEsByChoice[2] + ' ES'
                                             : 'Loading..'
                                           }</h4>
                                         <span>Draw Amount</span>
-                                          </li>
+                                          </li> : null}
                                       </ul>
                                   </div>
                               </div>
@@ -403,8 +403,8 @@ console.log(this.state);
                   </li>
                   <li><button style={{background:'#dc3545', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 0 })}}>No</button>
                   </li>
-                  <li><button style={{background:'#ffc107', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</button>
-                  </li>
+                  {this.state.isDrawPossible ? <li><button style={{background:'#ffc107', padding:'10px 30px 10px 30px'}} class="inn-reg-com inn-reg-book" onClick={()=>{this.setState({ showTransactionModal: true, userChoice: 2 })}}>Draw</button>
+                  </li> : null}
               </ul>
             </div>
           </> : <p>The prediction time for this event has expired, now it is not possible to place a prediction.</p>) : <p>Please wait loading...</p>}
