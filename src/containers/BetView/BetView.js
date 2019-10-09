@@ -4,6 +4,8 @@ import { Card, Button, Tabs, Tab, Table, Row, Col } from 'react-bootstrap';
 import Sidebar from '../Sidebar/Sidebar';
 import TransactionModal from '../TransactionModal/TransactionModal';
 import ChoiceBettingsTable from './ChoiceBettingsTable';
+import DayswapperView from './DayswapperView';
+
 import { categoryArray, subCategoryArray } from '../../env';
 
 import createBetInstance from '../../ethereum/betInstance';
@@ -172,7 +174,7 @@ class BetView extends Component {
   render() {
     window.betInstance = this.betInstance;
 
-console.log(this.state);
+    console.log(this.state);
     // Have to bigNumberify the this.state.prizePercentPerThousand in fees because
     // it can be coming from local storage too.
     const fees
@@ -277,7 +279,7 @@ console.log(this.state);
               {/*Sports Events in Dubai*/}
               <ul>
                 <li style={{ borderBottomColor: '#eee'}}>
-                  <div className="betbox">
+                  {this.state.category != 11 ? <div className="betbox">
                     <div className="market-basics-styles_MarketBasics__header mb-3">
                       <div className="category-tag-trail-styles_CategoryTagTrail">
                         <div className="word-trail-styles_WordTrail">
@@ -376,7 +378,19 @@ console.log(this.state);
 
                       </article>
                     </div>
-                  </div>
+                   </div>
+                  : <DayswapperView
+                      description={this.state.description || ''}
+                      categoryId={this.state.category}
+                      subCategoryId={this.state.subCategory}
+                      minimumBetInEs={minimumBetInEs}
+                      fees={fees}
+                      totalPrizePool={totalPrizePool}
+                      totalBetTokensInEsByChoice={totalBetTokensInEsByChoice}
+                      creationTimestamp={this.state.creationTimestamp}
+                      pauseTimestamp={this.state.pauseTimestamp}
+                      isDrawPossible={this.state.isDrawPossible}
+                    />}
                 </li>
               </ul>
             </div>

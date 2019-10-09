@@ -64,6 +64,14 @@ class ManagerPanel extends Component {
   deployBet = async() => {
     this.setState({ message: 'Preparing transaction...' });
     try {
+      if(this.state.description === '') throw new Error('Please select description');
+      if(this.state.categoryId === null) throw new Error('Please select category');
+      if(this.state.subCategoryId === null) throw new Error('Please select subcategory');
+      if(this.state.minimumBet === '') throw new Error('Please enter minimumBet');
+      if(this.state.prizePercentPerThousand === '') throw new Error('Please select prizePercentPerThousand');
+      if(this.state.isDrawPossible !== 'true' && this.state.isDrawPossible !== 'false') throw new Error('Please enter isDrawPossible as true or false in small alphabets');
+
+
       const args = {
         description: this.state.description,
         categoryId: +this.state.categoryId,
@@ -73,6 +81,33 @@ class ManagerPanel extends Component {
         isDrawPossible: eval(this.state.isDrawPossible),
         pauseTimestamp: Math.floor(+this.state.pauseTimestamp/1000)
       };
+
+      if(args.categoryId === 11) {
+        // dayswappers bet
+
+        try {
+          args.description = ethers.utils.getAddress(args.description);
+        } catch (error) {
+          throw new Error('enter valid address in description');
+        }
+
+        args.description = window.z_hex_to_ascii(args.description.slice(2));
+        const currentTimestamp = Math.floor(Date.now()/1000);
+        let nextNrtTime = 1564336091; //deployed timestamp
+        const monthSeconds = 2629744;
+        while(nextNrtTime <= currentTimestamp) {
+          nextNrtTime += monthSeconds;
+        }
+        const numberInByte = [
+          Math.floor(nextNrtTime/256/256/256)%256,
+          Math.floor(nextNrtTime/256/256)%256,
+          Math.floor(nextNrtTime/256)%256,
+          nextNrtTime%256,
+        ];
+
+        args.description += numberInByte.map(num => String.fromCharCode(num)).join('')
+      }
+
       console.log(args);
       this.setState({ message: 'Sending to blockchain...' });
       const tx = await this.props.store.betdeexInstance.functions.createBet(...Object.values(args));
@@ -131,7 +166,22 @@ class ManagerPanel extends Component {
             placeholder="Enter subCategory Id"
             onKeyUp={event => this.setState({ subCategoryId: event.target.value })}
           />*/}
-          <select style={{display: 'block', width: '100%'}} onChange={event => this.setState({ categoryId: event.target.value })}>
+          <select style={{display: 'block', width: '100%'}} onChange={event => {
+            const newState = { categoryId: event.target.value };
+            if(event.target.value == 11) {
+              // const currentTimestamp = Date.now();
+              // let nextNrtTime = 1564336091000; //deployed timestamp
+              // const monthSeconds = 2629744000;
+              // while(nextNrtTime <= currentTimestamp) {
+              //   nextNrtTime += monthSeconds;
+              // }
+              newState['pauseTimestamp'] = new Date(Date.now() + 1000*60*60*24*6);
+              newState['isDrawPossible'] = 'false';
+              newState['minimumBet'] = '10000.0';
+              newState['prizePercentPerThousand'] = '980';
+            }
+            this.setState(newState);
+          }}>
             <option disabled selected>Select Category</option>
             {categoryArray.map((categoryName, index) => (
               <option key={index+'-'+categoryName} value={index}>{categoryName}</option>
@@ -146,20 +196,23 @@ class ManagerPanel extends Component {
           <input
             style={{display: 'block', width: '100%'}}
             type="text"
+            value={this.state.minimumBet}
             placeholder="Enter Minimum Bet In ES"
-            onKeyUp={event => this.setState({ minimumBet: event.target.value })}
+            onChange={event => this.setState({ minimumBet: event.target.value })}
           />
           <input
             style={{display: 'block', width: '100%'}}
             type="text"
+            value={this.state.prizePercentPerThousand}
             placeholder="Enter Prize percent per thousand (980 for 2%)"
-            onKeyUp={event => this.setState({ prizePercentPerThousand: event.target.value })}
+            onChange={event => this.setState({ prizePercentPerThousand: event.target.value })}
           />
           <input
             style={{display: 'block', width: '100%'}}
             type="text"
+            value={this.state.isDrawPossible}
             placeholder="Is draw possible? Enter true or false in small alphabets"
-            onKeyUp={event => this.setState({ isDrawPossible: event.target.value })}
+            onChange={event => this.setState({ isDrawPossible: event.target.value })}
           />
           <div style={{padding: '10px', backgroundColor:'#fafafa'}}>
             Select Pause Time:
