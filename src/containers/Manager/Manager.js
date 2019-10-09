@@ -153,7 +153,7 @@ class ManagerPanel extends Component {
           <input
             style={{display: 'block', width: '100%'}}
             type="text"
-            placeholder="Enter Bet Question"
+            placeholder={this.state.categoryId != 11 ? 'Enter Bet Question' : 'Enter address of challenger'}
             onKeyUp={event => this.setState({ description: event.target.value })}
           />
           {/*<input
