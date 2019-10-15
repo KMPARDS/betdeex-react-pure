@@ -110,6 +110,9 @@ class ManagerPanel extends Component {
 
       console.log(args);
       this.setState({ message: 'Sending to blockchain...' });
+      if(!window.confirm(JSON.stringify(args))) {
+        throw new Error('declined by user');
+      }
       const tx = await this.props.store.betdeexInstance.functions.createBet(...Object.values(args));
       this.setState({ message: 'Sent to blockchain...' });
       console.log(tx);

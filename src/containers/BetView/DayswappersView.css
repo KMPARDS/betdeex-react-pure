@@ -1,0 +1,26 @@
+.dayswapper-card {
+  background-color: #f3f3f3;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+}
+
+.dayswapper-data {
+  margin-left: 10px;
+}
+
+.dayswapper-image {
+  border-radius: 1rem;
+}
+
+.dayswapper-name {
+  margin-top: 0.3rem;
+  font-weight: 800;
+  color: #263846;
+}
+
+.dayswapper-address {
+  color: #8c8c8c;
+  text-transform: uppercase;
+  font-weight: 600;
+}

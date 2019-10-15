@@ -3,6 +3,9 @@ const network =
   // 'homestead'
   ;
 module.exports = {
+  timeswappersServerUrl: network === 'homestead'
+    ? 'https://apis.timeswappers.com'
+    : 'http://3.19.158.222:8010',
   categoryArray: [
     'Sports',
     'Politics',
@@ -26,7 +29,7 @@ module.exports = {
     ['Traveling','TV'],
     ['Actors', 'Actresses', 'Singers'],
     ['News', 'Issues'],
-    ['Problems', 'Good things'],
+    ['Earth', 'Matters', 'Good things', 'Problems'],
     ['Career', 'Life Partner'],
     ['Stock Exchange', 'Crypto', 'Forex', 'Commodity'],
     ['White', 'Yellow', 'Orange', 'Green', 'Blue', 'Brown', 'Red', 'Black']

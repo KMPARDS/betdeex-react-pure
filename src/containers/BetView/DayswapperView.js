@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { categoryArray, subCategoryArray } from '../../env';
-
+import axios from 'axios';
+import { categoryArray, subCategoryArray, timeswappersServerUrl } from '../../env';
+import './DayswappersView.css';
 const ethers = require('ethers');
 
 class DayswapperView extends Component {
@@ -8,10 +9,12 @@ class DayswapperView extends Component {
     description: '',
     untilTimestamp: 0,
     pauseTimeRemaining: 0,
-    currentTimestamp: Math.floor(Date.now()/1000)
+    currentTimestamp: Math.floor(Date.now()/1000),
+    name: '',
+    avatar: ''
   }
 
-  componentDidMount = () => {
+  componentDidMount = async() => {
     const description = this.props.description.slice(0,this.props.description.length-4);
     const untilTimestampArray = this.props.description.substr(this.props.description.length-4,4).split('').map(char => char.charCodeAt(0));
     let untilTimestamp = 0;
@@ -27,6 +30,11 @@ class DayswapperView extends Component {
 
     this.setState({ description, untilTimestamp, pauseTimeRemaining });
 
+    const formData = new FormData();
+    formData.append('user',window.z_ascii_to_hex(description).toLowerCase());
+    const response = await axios.post(timeswappersServerUrl+'/api/users/by-walletaddress', formData);
+    this.setState({ name: response.data.name, imageUrl: response.data.avatar && (timeswappersServerUrl + '/' +response.data.avatar.slice(0)) });
+
     setInterval(() => this.setState({ currentTimestamp: Math.floor(Date.now()/1000) }), 1000);
   }
 
@@ -38,12 +46,35 @@ class DayswapperView extends Component {
     const minutes = Math.floor((pauseTimeRemaining - days * 60 * 60 * 24 - hours * 60 * 60) / 60);
     const seconds = pauseTimeRemaining - days * 60 * 60 * 24 - hours * 60 * 60 - minutes * 60;
 
+    const leaderAddress = window.z_ascii_to_hex(this.state.description).toUpperCase();
+
     return (
       <div className="betbox">
-        <img src="https://via.placeholder.com/150" style={{borderRadius: '100%'}} />
-        <h3 style={{textAlign:'left', fontSize: '2rem', fontWeight: '600', color: '#981802'}}>{(this.props.description ? `Will ${this.state.description ? window.z_ascii_to_hex(this.state.description) : 'Loading...'} have 3 ${this.props.categoryId !== undefined && this.props.subCategoryId !== undefined
+      <div className="media dayswapper-card" style={{cursor: 'pointer'}} onClick={() => window.open('https://timeswappers.com/swapperswall/'+leaderAddress.toLowerCase(),'_blank')}>
+          <a className="media-left media-middle" href="#">
+            <img width="60px" height="60px" className="dayswapper-image" src={this.state.imageUrl || 'https://via.placeholder.com/60'} />
+          </a>
+          <div className="dayswapper-data">
+            <div className="dayswapper-name">
+              {this.state.name === '' ? 'Loading...' : (
+                this.state.name === 'User' ? leaderAddress
+                : this.state.name.split(' ').map(word => {
+                  const charactersArray = word.split('');
+                  charactersArray[0] = charactersArray[0].toUpperCase();
+                  return charactersArray.join('');
+                }).join(' ')
+              )}
+              &nbsp;<span style={{fontWeight: '400'}}>(profile on SwappersWall)</span>
+            </div>
+            <div className="dayswapper-address">
+              {this.state.description ? window.z_ascii_to_hex(this.state.description) : 'Loading...'}
+            </div>
+          </div>
+        </div>
+        <h3 style={{textAlign:'left', fontSize: '2rem', fontWeight: '600', color: '#981802'}}>{(this.props.description ? `Will ${this.state.description ? (this.state.name && this.state.name !== 'User' ? `${this.state.name} (${leaderAddress})` : leaderAddress) : 'Loading...'} have 3 ${this.props.categoryId !== undefined && this.props.subCategoryId !== undefined
        ? subCategoryArray[this.props.categoryId][this.props.subCategoryId]
-       : 'Loading...'} level directs in Dayswappers by ${new Date(this.state.untilTimestamp*1000)}` : 'Loading...')}</h3>
+       : 'Loading...'} levels in dayswapper directs by ${new Date(this.state.untilTimestamp*1000)} ?` : 'Loading...')}</h3>
+
       <div className="market-preview-styles_MarketPreview__footer">
         <article>
           <section className="market-properties-styles_MarketProperties">
@@ -67,7 +98,7 @@ class DayswapperView extends Component {
               </li>
               <li><span>Time Remaining</span><span className="value_expires">
               {console.log('this.state.pauseTimeRemaining',this.state.pauseTimeRemaining)}
-                {this.state.pauseTimeRemaining ? `${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds` : 'Calculating...'}
+                {this.state.pauseTimeRemaining ? (this.state.pauseTimeRemaining > 0 ? `${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds` : `Finished on ${new Date(Number(this.props.pauseTimestamp ? this.props.pauseTimestamp._hex : 0) * 1000)}`) : 'Calculating...'}
               </span>
               </li>
             </ul>

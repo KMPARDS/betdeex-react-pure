@@ -2,21 +2,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { Card, Button } from 'react-bootstrap';
-import { categoryArray, subCategoryArray } from '../../env';
+import { categoryArray, subCategoryArray, timeswappersServerUrl } from '../../env';
 import createBetInstance from '../../ethereum/betInstance';
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 
 const ethers = require('ethers');
 
 class Bet extends Component {
   state = {
+    description: '',
     creationTime: 'Loading...',
     pauseTime: 'Loading...',
+    pauseTimestamp: 0,
+    currentTimestamp: Math.floor(Date.now()/1000),
+    untilTimestamp: 0,
     fees: undefined,
     totalBetTokensInExaEs: 'Loading...'
   }
 
   async componentDidMount() {
+    // console.log(this.props)
 
     if(Object.entries(this.props.store.betsMapping).length === 0) {
       // if redux store is empty then try to copy the local storage if there is any data. otherwise do nothing.
@@ -27,6 +33,29 @@ class Bet extends Component {
     }
 
     const betInstance = createBetInstance(this.props.address);
+
+    (async() => {
+      const description = await betInstance.description();
+
+      if(this.props.category == 11) {
+        const untilTimestampArray = description.substr(description.length-4,4).split('').map(char => char.charCodeAt(0));
+        let untilTimestamp = 0;
+        let power = 3;
+        console.log(untilTimestampArray);
+        untilTimestampArray.forEach(number => {
+          untilTimestamp += number * 256 ** power--;
+        });
+        console.log('untilTimestamp',untilTimestamp);
+        this.setState({ description: description.slice(0, description.length - 4), untilTimestamp })
+
+        const formData = new FormData();
+        formData.append('user',window.z_ascii_to_hex(description.slice(0, description.length - 4)).toLowerCase());
+        const response = await axios.post(timeswappersServerUrl+'/api/users/by-walletaddress', formData);
+        this.setState({ name: response.data.name, imageUrl: response.data.avatar && (timeswappersServerUrl + '/' +response.data.avatar.slice(0)) });
+      } else {
+        this.setState({ description });
+      }
+    })();
 
     (async()=>{
       let creationTimestamp;
@@ -71,7 +100,7 @@ class Bet extends Component {
         });
       }
 
-      this.setState({ pauseTime: new Date(pauseTimestamp * 1000).toLocaleString() });
+      this.setState({ pauseTimestamp, pauseTime: new Date(pauseTimestamp * 1000).toLocaleString() });
 
       localStorage.setItem('betdeex-betsMapping', JSON.stringify(this.props.store.betsMapping));
 
@@ -100,9 +129,18 @@ class Bet extends Component {
       });
     })();
 
+    setInterval(() => this.setState({ currentTimestamp: Math.floor(Date.now()/1000) }), 1000);
   }
 
   render() {
+    const parsedDescription = this.props.category == 11 ? window.z_ascii_to_hex(this.props.description.slice(0, this.props.description.length - 4)) : this.props.description;
+
+    const pauseTimeRemaining =  Number(this.state.pauseTimestamp) - this.state.currentTimestamp;
+
+    const days = Math.floor(pauseTimeRemaining/60/60/24);
+    const hours = Math.floor((pauseTimeRemaining - days * 60 * 60 * 24) / 60 / 60);
+    const minutes = Math.floor((pauseTimeRemaining - days * 60 * 60 * 24 - hours * 60 * 60) / 60);
+    const seconds = pauseTimeRemaining - days * 60 * 60 * 24 - hours * 60 * 60 - minutes * 60;
     return (
       <>
         {/*<Card bg="light" style={{margin: '15px 0'}}>
@@ -139,7 +177,9 @@ class Bet extends Component {
                 </div>
               </div>
             </div>
-            <h3 style={{textAlign:'left', fontSize: '23px', fontWeight: '600', color: '#54be58'}}>{this.props.description}</h3>
+            <h3 style={{textAlign:'left', fontSize: '23px', fontWeight: '600', color: '#54be58'}}>{this.props.category == 11 ? (this.state.description ? `Will ${this.state.description ? (this.state.name && this.state.name !== 'User' ? `${this.state.name} (${window.z_ascii_to_hex(this.state.description).toUpperCase()})` : window.z_ascii_to_hex(this.state.description).toUpperCase()) : 'Loading...'} have 3 ${this.props.category !== undefined && this.props.subCategory !== undefined
+           ? subCategoryArray[this.props.category][this.props.subCategory]
+           : 'Loading...'} levels in dayswapper directs by ${new Date(this.state.untilTimestamp*1000)} ?` : 'Loading...') : this.props.description}</h3>
             <div className="market-preview-styles_MarketPreview__footer">
               <article>
                 <section className="market-properties-styles_MarketProperties">
@@ -148,11 +188,7 @@ class Bet extends Component {
                     </li>
                     <li><span>Platform Fee</span><span><span data-tip="0.01" data-event="click focus" className="value_fee">{this.state.fees || 'Loading...'}</span><span className="value-denomination-styles_ValueDenomination__denomination">{!this.state.fees || '%'}</span></span>
                     </li>
-                    <li><span>Reporting Start Time</span><span className="value_expires">{this.state.creationTime}</span>
-                    <span style={{display: 'block'}}>(in your local timezone)</span>
-                    </li>
-                    <li><span>Reporting End Time</span><span className="value_expires">{this.state.pauseTime}</span>
-                    <span style={{display: 'block'}}>(in your local timezone)</span>
+                    <li><span>Time Remaining</span><span className="value_expires">{pauseTimeRemaining ? (pauseTimeRemaining > 0 ? `${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds` : 'Finished') : 'Calculating...'}</span>
                     </li>
                   </ul>
                   <div className="inn-tickers">
