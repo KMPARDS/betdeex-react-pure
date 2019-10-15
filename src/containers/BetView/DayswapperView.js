@@ -57,14 +57,14 @@ class DayswapperView extends Component {
           <div className="dayswapper-data">
             <div className="dayswapper-name">
               {this.state.name === '' ? 'Loading...' : (
-                this.state.name === 'User' ? leaderAddress
+                this.state.name === 'User' ? 'Anonymous Leader'
                 : this.state.name.split(' ').map(word => {
                   const charactersArray = word.split('');
                   charactersArray[0] = charactersArray[0].toUpperCase();
                   return charactersArray.join('');
                 }).join(' ')
               )}
-              &nbsp;<span style={{fontWeight: '400'}}>(profile on SwappersWall)</span>
+              &nbsp;<span style={{fontWeight: '400'}}>({this.state.name === '' ? 'fetching from' : (this.state.name === 'User' ? 'Leader can update their profile on' : 'profile on')} SwappersWall)</span>
             </div>
             <div className="dayswapper-address">
               {this.state.description ? window.z_ascii_to_hex(this.state.description) : 'Loading...'}
@@ -97,8 +97,7 @@ class DayswapperView extends Component {
               }</span></span>
               </li>
               <li><span>Time Remaining</span><span className="value_expires">
-              {console.log('this.state.pauseTimeRemaining',this.state.pauseTimeRemaining)}
-                {this.state.pauseTimeRemaining ? (this.state.pauseTimeRemaining > 0 ? `${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds` : `Finished on ${new Date(Number(this.props.pauseTimestamp ? this.props.pauseTimestamp._hex : 0) * 1000)}`) : 'Calculating...'}
+                {pauseTimeRemaining ? (pauseTimeRemaining > 0 ? `${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds` : `Finished on ${new Date(Number(this.props.pauseTimestamp ? this.props.pauseTimestamp._hex : 0) * 1000)}`) : 'Calculating...'}
               </span>
               </li>
             </ul>
