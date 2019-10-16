@@ -11,11 +11,17 @@ class DayswapperView extends Component {
     pauseTimeRemaining: 0,
     currentTimestamp: Math.floor(Date.now()/1000),
     name: '',
-    avatar: ''
+    avatar: '',
+    details: null,
+    loadingDayswappers: true
   }
 
   componentDidMount = async() => {
     const description = this.props.description.slice(0,this.props.description.length-4);
+    (async() => {
+      const response = await axios.get((true?'https://eraswap.technology':'http://localhost:3000')+'/dayswappers/getDetailsOfLeader?input='+window.z_ascii_to_hex(description).toLowerCase());
+      this.setState({ details: response.data.data.details ? response.data.data.details : null, loadingDayswappers: false });
+    })();
     const untilTimestampArray = this.props.description.substr(this.props.description.length-4,4).split('').map(char => char.charCodeAt(0));
     let untilTimestamp = 0;
     let power = 3;
@@ -71,9 +77,17 @@ class DayswapperView extends Component {
             </div>
           </div>
         </div>
-        <h3 style={{textAlign:'left', fontSize: '2rem', fontWeight: '600', color: '#981802'}}>{(this.props.description ? `Will ${this.state.description ? (this.state.name && this.state.name !== 'User' ? `${this.state.name} (${leaderAddress})` : leaderAddress) : 'Loading...'} have 3 ${this.props.categoryId !== undefined && this.props.subCategoryId !== undefined
+        <h3 style={{textAlign:'left', fontSize: '2rem', fontWeight: '600', color: '#981802'}}>
+          {(
+            this.props.description
+              ? <>
+                Will {
+                  this.state.description
+                    ? (
+                      this.state.name && this.state.name !== 'User'
+                        ? <>{this.state.name} ({leaderAddress}) </> : <>{leaderAddress}</>) : <>Loading...</>} have <font style={{textDecoration: 'underline'}}>3 {this.props.categoryId !== undefined && this.props.subCategoryId !== undefined
        ? subCategoryArray[this.props.categoryId][this.props.subCategoryId]
-       : 'Loading...'} levels in dayswapper directs by ${new Date(this.state.untilTimestamp*1000)} ?` : 'Loading...')}</h3>
+       : <>Loading...</>} levels</font> in dayswapper directs by <em>{String(new Date(this.state.untilTimestamp*1000))}</em>?</> : <>Loading...</>)}</h3>
 
       <div className="market-preview-styles_MarketPreview__footer">
         <article>
@@ -90,12 +104,12 @@ class DayswapperView extends Component {
                 }
               </span></span>
               </li>
-              <li><span>Platform Fee</span><span><span className="value_fee">{
+              {/*<li><span>Platform Fee</span><span><span className="value_fee">{
                 this.props.fees
                 ? this.props.fees + '%'
                 : 'Loading..'
               }</span></span>
-              </li>
+              </li>*/}
               <li><span>Time Remaining</span><span className="value_expires">
                 {pauseTimeRemaining ? (pauseTimeRemaining > 0 ? `${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds` : `Finished on ${new Date(Number(this.props.pauseTimestamp ? this.props.pauseTimestamp._hex : 0) * 1000)}`) : 'Calculating...'}
               </span>
@@ -105,9 +119,27 @@ class DayswapperView extends Component {
               <a href="booking.html" className="inn-reg-com inn-reg-book" data-toggle="modal" data-target="#betmodal"><i className="fa fa-exchange" aria-hidden="true" /> Place a Bet</a>
             </div> */}
           </section>
+          <div className="dayswapper-card2" style={{overflow:'scroll',maxHeight:'8rem'}}>
+            <p style={{margin:'0'}}>Live Progress of Leader's Team in Dayswappers:</p>
+            {this.state.loadingDayswappers
+              ? <p>Please wait loading...</p>
+              : (this.state.details.length ? <>
+                  <p style={{marginTop:'0'}}>Only KYC Approved Direct Team members are shown:</p>
+                  {this.state.details.map(detail => {
+                  return <div style={{padding:'.5rem'}}>
+                    {detail.name === detail.address
+                      ? <><strong>Direct's Address:</strong> {detail.address}</>
+                      : <><strong>Direct's Name & Address:</strong> {detail.name} ({detail.address})</>
+                    }<br/>
+                    <strong>Team Count:</strong> {detail.teamCount}, <strong>KYCs:</strong> {detail.kycCount}, <strong>Actives:</strong> {detail.activeCount}
+
+                  </div>
+                })}</> : 'No directs with KYC approved'
+              )}
+          </div>
             <div class="inn-all-com">
                 <div class="inn-ev-date">
-                    <div class="inn-ev-date-left">
+                    <div class="inn-ev-date-left" style={{paddingTop: '.7rem'}}>
                         <h4 style={{fontSize:'52px'}}>{
                           this.props.totalPrizePool
                           ? this.props.totalPrizePool + ' ES'
@@ -122,14 +154,14 @@ class DayswapperView extends Component {
                               ? this.props.totalBetTokensInEsByChoice[1] + ' ES'
                               : 'Loading..'
                             }</h4>
-                          <span>Yes Amount</span>
+                          <span>Yes Amount</span><span style={{marginTop:0}}>(Supporting)</span>
                             </li>
                             <li> <h4>{
                               this.props.totalBetTokensInEsByChoice[0]
                               ? this.props.totalBetTokensInEsByChoice[0] + ' ES'
                               : 'Loading..'
                             }</h4>
-                          <span>No Amount</span>
+                          <span>No Amount</span><span style={{marginTop:0}}>(Against)</span>
                             </li>
                             {this.props.isDrawPossible ? <li> <h4>{
                               this.props.totalBetTokensInEsByChoice[2]
@@ -145,6 +177,21 @@ class DayswapperView extends Component {
 
         </article>
       </div>
+      <p >To learn more about the DSBELT Challenge, please read the <a style={{textDecoration: 'underline'}} target="_blank" href="/pdf/dsbelt.pdf">announcement</a>. There is 2% platform fee of BetDeEx.</p>
+      <div>
+        <a href={'whatsapp://send?text='+window.location.href} target="_blank"><img src="/img/share/whatsapp.png" width="32" /></a>
+
+        <a href={'https://twitter.com/intent/tweet?text='+window.location.href} target="_blank" ><img src="/img/share/twitter.png" /></a>
+
+        <a href={'https://plus.google.com/share?text='+window.location.href} target="_blank" ><img src="/img/share/google+.jpg" width="32" /></a>
+
+        <a href={'https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u='+window.location.href} target="_blank" ><img src="/img/share/facebook.png" /></a>
+
+        <a href={'https://www.linkedin.com/cws/share/?url='+window.location.href} target="_blank" ><img src="/img/share/linkedin.png" /></a>
+
+        <a href={'https://telegram.me/share/url?url='+window.location.href} target="_blank"><img src="/img/share/telegram.png" height="36" /></a>
+      </div>
+
      </div>
     );
   }

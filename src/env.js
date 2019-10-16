@@ -18,7 +18,7 @@ module.exports = {
     'Global',
     'Users Choice',
     'Market',
-    'Dayswappers' //categoryId: 11
+    'Dsbelt',
   ],
   subCategoryArray: [
     ['Football', 'Cricket', 'Baseball', 'Racing'],
@@ -32,7 +32,7 @@ module.exports = {
     ['Earth', 'Matters', 'Good things', 'Problems'],
     ['Career', 'Life Partner'],
     ['Stock Exchange', 'Crypto', 'Forex', 'Commodity'],
-    ['White', 'Yellow', 'Orange', 'Green', 'Blue', 'Brown', 'Red', 'Black']
+    ['White', 'Yellow', 'Orange', 'Green', 'Blue', 'Brown', 'Red', 'Black'],
   ],
   network,
   esContract: {

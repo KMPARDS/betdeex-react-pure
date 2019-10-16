@@ -176,6 +176,7 @@ function App(props) {
         for (const categoryWord of props.match.params.category.split('-')) {
           categoryWordArray.push(categoryWord.charAt(0).toUpperCase() + categoryWord.slice(1));
         }
+        console.log(categoryWordArray, categoryArray);
         const categoryId = categoryArray.indexOf(categoryWordArray.join(' '));
 
         return <BetsList categoryId = {

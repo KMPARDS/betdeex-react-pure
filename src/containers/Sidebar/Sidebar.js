@@ -27,13 +27,13 @@ const Sidebar = props => {
           <Card>{listOfSubCategories}</Card>
         </Accordion.Collapse>
 
-      </Card>*/}{console.log(props)}
+      </Card>*/}
       <li>
         <a
-          onClick={() => props.history.push(`/explore/${categoryArray[categoryId].toLowerCase()}`)}
+          onClick={() => props.history.push(`/explore/${categoryArray[categoryId].toLowerCase().split(' ').join('-')}`)}
           className={props.match.params.category === categoryArray[categoryId].toLowerCase()
             ? 'menu-lef-act' : null}>
-          <img src={`/img/icon/${categoryArray[categoryId].toLowerCase()}.png`} alt="" />
+          <img src={`/img/icon/${categoryArray[categoryId].toLowerCase().split(' ').join('-')}.png`} alt="" />
           {categoryArray[categoryId]}
         </a>
       </li>
@@ -41,7 +41,7 @@ const Sidebar = props => {
       </>
     );
   }
-  console.log(props);
+  console.log('listOfCategories', listOfCategories);
   if(props.location.pathname === '/') return null;
 
   return (
@@ -59,7 +59,7 @@ const Sidebar = props => {
                   onClick={() => props.history.push(`/explore`)}
                   className={props.location.pathname === '/explore' ? 'menu-lef-act' : null}><img src="/img/icon/all.png" alt="" /> All</a>
               </li>
-              {listOfCategories}             
+              {listOfCategories}
             </ul>
           </div>
           {/* RIGHT SIDE NAVIGATION MENU */}

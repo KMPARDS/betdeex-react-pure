@@ -24,3 +24,10 @@
   text-transform: uppercase;
   font-weight: 600;
 }
+
+.dayswapper-card2 {
+  border: #eee solid;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+}

@@ -169,11 +169,11 @@ class Bet extends Component {
               <div className="category-tag-trail-styles_CategoryTagTrail">
                 <div className="word-trail-styles_WordTrail">
                   <div className="word-trail-styles_WordTrail__label">Category</div>
-                  <button onClick={() => this.props.history.push(`/explore/${categoryArray[this.props.category]}`)} className="tag-trail-button">{categoryArray[this.props.category]}</button>
+                  <button onClick={() => this.props.history.push(`/explore/${categoryArray[this.props.category].toLowerCase().split(' ').join('-')}`)} className="tag-trail-button">{categoryArray[this.props.category]}</button>
                 </div>
                 <div className="word-trail-styles_WordTrail">
                   <div className="word-trail-styles_WordTrail__label">Sub Category</div>
-                  <button onClick={() => this.props.history.push(`/explore/${categoryArray[this.props.category]}/${subCategoryArray[this.props.category][this.props.subCategory]}`)} className="tag-trail-button">{subCategoryArray[this.props.category][this.props.subCategory]}</button>
+                  <button onClick={() => this.props.history.push(`/explore/${categoryArray[this.props.category].toLowerCase().split(' ').join('-')}/${subCategoryArray[this.props.category][this.props.subCategory].toLowerCase().split(' ').join('-')}`)} className="tag-trail-button">{subCategoryArray[this.props.category][this.props.subCategory]}</button>
                 </div>
               </div>
             </div>
