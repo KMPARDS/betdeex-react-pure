@@ -246,7 +246,7 @@ const Home = props => (
         {/*Join The Betdeex Ecosystem*/}
 
         {/* ./CTA - Create Account */}
-        <section className="section bg-6 b-b edge" style={{zIndex:'1111111', marginTop: '-93px'}}>
+        <section className="section bg-6 b-b edge" style={{zIndex:'100', marginTop: '-93px'}}>
           <div className="container">
             <div className="section-heading text-center">
               <h2>FAQ's</h2>

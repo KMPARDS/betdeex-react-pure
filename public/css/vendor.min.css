@@ -3967,6 +3967,12 @@ input[type=submit].btn-block {
 	border: 1px solid rgba(0, 0, 0, .15);
 	border-radius: .25rem
 }
+@media (max-width: 768px) {
+  .dropdown-menu {
+    top: 145%;
+    left: -200px;
+  }
+}
 
 .dropdown-menu-left {
 	right: auto;

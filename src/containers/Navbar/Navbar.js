@@ -53,7 +53,7 @@ class NavbarComponent extends Component {
           </Navbar.Brand>
         </Link>
 
-          <Dropdown class="dropdown">
+          <Dropdown class="dropdown custom-left">
             <Dropdown.Toggle variant="secondary" id="dropdown-basic">
              <i class="fa fa-th dropbtn fadropbtn"></i>
             </Dropdown.Toggle>

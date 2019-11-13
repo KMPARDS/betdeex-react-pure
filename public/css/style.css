@@ -219,7 +219,7 @@ h1 {
 }
 
 [class~=menu] {
-    height: 100%;
+    height: 90%;
 }
 
 .mob-menu i {
@@ -13419,7 +13419,7 @@ div.ex1 {
 @media screen and (max-width: 767px) {
     .mob-menu {
         display: block;
-        left: 200px;
+        left: 197px;
         top: 11px;
     }
     .pc {
@@ -13464,4 +13464,35 @@ div.ex1 {
     [class~=lp] {
         padding-top: 23px !important;
     }
+}
+
+/* UI changes by PG */
+
+html {
+  scrollbar-width: none;
+}
+.navbar.navbar-expand.navbar-light {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 101;
+}
+.custom-margin-top {
+  margin-top: 80px;
+}
+.menu.moz-scroll-width {
+  scrollbar-width: none;
+}
+
+
+@media (max-width: 768px) {
+  .custom-margin-top {
+    margin-top: 65px;
+  }
+  .dropdown.custom-left {
+    left: -5px;
+  }
+  .navbar .dropdown a {
+    padding: 5px 16px;
+  }
 }

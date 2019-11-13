@@ -51,7 +51,7 @@ const Sidebar = props => {
     </Accordion>*/}
     <section>
           {/* LEFT SIDE NAVIGATION MENU */}
-          <div className="menu">
+          <div className="menu moz-scroll-width">
             <ul>
               {/* MAIN MENU */}
               <li>

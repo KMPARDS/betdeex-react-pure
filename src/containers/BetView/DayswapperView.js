@@ -123,7 +123,7 @@ class DayswapperView extends Component {
             <p style={{margin:'0'}}>Live Progress of Leader's Team in Dayswappers:</p>
             {this.state.loadingDayswappers
               ? <p>Please wait loading...</p>
-              : (this.state.details.length ? <>
+              : (this.state.details && this.state.details.length ? <>
                   <p style={{marginTop:'0'}}>Only KYC Approved Direct Team members are shown:</p>
                   {this.state.details.map(detail => {
                   return <div style={{padding:'.5rem'}}>
@@ -179,7 +179,7 @@ class DayswapperView extends Component {
       </div>
       <p >To learn more about the DSBELT Challenge, please read the <a style={{textDecoration: 'underline'}} target="_blank" href="/pdf/dsbelt.pdf">announcement</a>. There is 2% platform fee of BetDeEx.</p>
       <div>
-        <a href={'whatsapp://send?text='+window.location.href} target="_blank"><img src="/img/share/whatsapp.png" width="32" /></a>
+        <a href={'https://wa.me/?text='+window.location.href} target="_blank"><img src="/img/share/whatsapp.png" width="32" /></a>
 
         <a href={'https://twitter.com/intent/tweet?text='+window.location.href} target="_blank" ><img src="/img/share/twitter.png" /></a>
 

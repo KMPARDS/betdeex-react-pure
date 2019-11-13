@@ -177,7 +177,7 @@ class Bet extends Component {
                 </div>
               </div>
             </div>
-            <h3 style={{textAlign:'left', fontSize: '23px', fontWeight: '600', color: '#54be58'}}>{this.props.category == 11 ? (this.state.description ? `Will ${this.state.description ? (this.state.name && this.state.name !== 'User' ? `${this.state.name} (${window.z_ascii_to_hex(this.state.description).toUpperCase()})` : window.z_ascii_to_hex(this.state.description).toUpperCase()) : 'Loading...'} have 3 ${this.props.category !== undefined && this.props.subCategory !== undefined
+            <h3 style={{textAlign:'left', fontSize: '23px', fontWeight: '600', color: '#54be58', 'word-break': 'break-word'}}>{this.props.category == 11 ? (this.state.description ? `Will ${this.state.description ? (this.state.name && this.state.name !== 'User' ? `${this.state.name} (${window.z_ascii_to_hex(this.state.description).toUpperCase()})` : window.z_ascii_to_hex(this.state.description).toUpperCase()) : 'Loading...'} have 3 ${this.props.category !== undefined && this.props.subCategory !== undefined
            ? subCategoryArray[this.props.category][this.props.subCategory]
            : 'Loading...'} levels in dayswapper directs by ${new Date(this.state.untilTimestamp*1000)} ?` : 'Loading...') : this.props.description}</h3>
             <div className="market-preview-styles_MarketPreview__footer">

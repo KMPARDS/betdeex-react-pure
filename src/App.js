@@ -110,7 +110,7 @@ function App(props) {
     <
     Navbar / >
     <
-    Row > {
+    Row className="custom-margin-top"> {
       /*<Col style={{margin: '15px 0 0 15px'}}>
                 {console.log}
                   <Sidebar />
