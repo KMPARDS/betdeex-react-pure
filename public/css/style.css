@@ -13475,7 +13475,6 @@ html {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 101;
 }
 .custom-margin-top {
   margin-top: 80px;

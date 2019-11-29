@@ -10802,7 +10802,7 @@ h6 {
 	text-rendering: auto;
 	line-height: 1;
 	font-weight: 900;
-	content: "\f107";
+	content: "+";
 	-webkit-transition: -webkit-transform .3s ease;
 	transition: -webkit-transform .3s ease;
 	transition: transform .3s ease;
@@ -10811,6 +10811,7 @@ h6 {
 }
 
 [data-toggle=collapse].collapsed:before {
+  content: "+";
 	-webkit-transform: rotate(-90deg);
 	transform: rotate(-90deg)
 }
