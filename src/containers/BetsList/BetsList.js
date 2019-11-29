@@ -56,8 +56,8 @@ class BetsList extends Component {
     for (let i = logs.length - 1; i >=0; i--) {
       const log = logs[i];
       const address = '0x'+log.data.slice(26,66);
-      const description = ethers.utils.toUtf8String('0x'+log.data.slice(193)).replace(/[^A-Za-z 0-9?]/g, "");
-      console.log('sohamzemse', ethers.utils.toUtf8String('0x'+log.data.slice(192)), description);
+      // const description = ethers.utils.toUtf8String('0x'+log.data.slice(193)).replace(/[^A-Za-z 0-9?]/g, "");
+      // console.log('sohamzemse', ethers.utils.toUtf8String('0x'+log.data.slice(192)), description);
       const categoryId = +log.topics[2];
       const subCategoryId = +log.topics[3];
       //const blockNumber = log.blockNumber;
@@ -75,15 +75,15 @@ class BetsList extends Component {
         });
       }
 
-      if(this.props.store.betsMapping[address].description===undefined) {
-        this.props.dispatch({
-          type: 'UPDATE-BETS-MAPPING-DESCRIPTION',
-          payload: {
-            address,
-            value: description
-          }
-        });
-      }
+      // if(this.props.store.betsMapping[address].description===undefined) {
+      //   this.props.dispatch({
+      //     type: 'UPDATE-BETS-MAPPING-DESCRIPTION',
+      //     payload: {
+      //       address,
+      //       value: description
+      //     }
+      //   });
+      // }
 
       if(this.props.store.betsMapping[address].category===undefined) {
         this.props.dispatch({
@@ -120,7 +120,6 @@ class BetsList extends Component {
           <Bet
             key={address}
             address={address}
-            description={this.props.store.betsMapping[address].description}
             category={this.props.store.betsMapping[address].category}
             subCategory={this.props.store.betsMapping[address].subCategory}
           />
