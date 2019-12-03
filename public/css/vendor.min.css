@@ -4164,7 +4164,12 @@ input[type=submit].btn-block {
 }
 
 .dropdown-menu.show {
-	display: block
+  display: block;
+}
+
+.dropdown-menu.show.custom-overflow {
+  height: 80vh;
+  overflow-y: auto;
 }
 
 .dropdown-header {
