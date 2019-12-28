@@ -133,7 +133,7 @@ class Bet extends Component {
   }
 
   render() {
-    const parsedDescription = this.props.category == 11 ? window.z_ascii_to_hex(this.state.description.slice(0, this.state.description.length - 4)) : this.state.description;
+    let parsedDescription = this.props.category == 11 ? window.z_ascii_to_hex(this.state.description.slice(0, this.state.description.length - 4)) : this.state.description;
 
     const pauseTimeRemaining =  Number(this.state.pauseTimestamp) - this.state.currentTimestamp;
 
@@ -179,7 +179,7 @@ class Bet extends Component {
             </div>
             <h3 style={{textAlign:'left', fontSize: '23px', fontWeight: '600', color: '#54be58', 'word-break': 'break-word'}}>{this.props.category == 11 ? (this.state.description ? `Will ${this.state.description ? (this.state.name && this.state.name !== 'User' ? `${this.state.name} (${window.z_ascii_to_hex(this.state.description).toUpperCase()})` : window.z_ascii_to_hex(this.state.description).toUpperCase()) : 'Loading...'} have 3 ${this.props.category !== undefined && this.props.subCategory !== undefined
            ? subCategoryArray[this.props.category][this.props.subCategory]
-           : 'Loading...'} levels in dayswapper directs by ${new Date(this.state.untilTimestamp*1000)} ?` : 'Loading...') : this.state.description}</h3>
+           : 'Loading...'} levels in dayswapper directs by ${new Date(this.state.untilTimestamp*1000)} ?` : 'Loading...') : (this.props.address.toLowerCase() === '0x8F7f501f399323239C61449bE99b4ee9A02E2E4e'.toLowerCase() ? 'Will India win the ODI Cricket Series against Australia scheduled from 14th January 2020 to 19th January 2020?' : this.state.description)}</h3>
             <div className="market-preview-styles_MarketPreview__footer">
               <article>
                 <section className="market-properties-styles_MarketProperties">

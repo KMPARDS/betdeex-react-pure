@@ -305,7 +305,7 @@ class BetView extends Component {
                         </div>
                       </div>
                     </div>
-                    <h3 style={{textAlign:'left', fontSize: '2rem', fontWeight: '600', color: '#981802'}}>{this.state.description || 'Loading...'}</h3>
+                    <h3 style={{textAlign:'left', fontSize: '2rem', fontWeight: '600', color: '#981802'}}>{this.state.description ? (this.props.match.params.address.toLowerCase() === '0x8F7f501f399323239C61449bE99b4ee9A02E2E4e'.toLowerCase() ? 'Will India win the ODI Cricket Series against Australia scheduled from 14th January 2020 to 19th January 2020?' : this.state.description) : 'Loading...'}</h3>
                     <div className="market-preview-styles_MarketPreview__footer">
                       <article>
                         <section className="market-properties-styles_MarketProperties">
