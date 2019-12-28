@@ -71,25 +71,6 @@ class TransactionModal extends Component {
     });
 
     try {
-      //const amountStringArray = this.state.esTokensToBet.split('.');
-      //
-      // let betTokensInExaEsString;
-      // if(amountStringArray[0].length === this.state.esTokensToBet.length) {
-      //   // no decimal point
-      //   betTokensInExaEsString = this.state.esTokensToBet + '0'.repeat(18);
-      // } else {
-      //   // decimal point is entered
-      //   if(amountStringArray[1].length > 18 || amountStringArray[2]) {
-      //     throw new Error('Can have only upto 18 decimal points');
-      //   } else {
-      //     // between 1 and 18 decimals
-      //     betTokensInExaEsString = amountStringArray[0] + amountStringArray[1] + '0'.repeat(18 - amountStringArray[1].length);
-      //   }
-      // }
-      //
-      // this.state.exaEsTokensToBet = betTokensInExaEsString;
-      //
-      // const betTokensInExaEs = ethers.utils.bigNumberify(this.state.exaEsTokensToBet)//.mul(10**15).mul(10**3);
       const args =  this.props.ethereum.directGasScreen ? this.props.ethereum.arguments : [this.state.stakingPlan];
       const estimatedGas = (await this.props.ethereum.estimator( ...args )).toNumber();
       let ethGasStationResponse;
@@ -113,7 +94,7 @@ class TransactionModal extends Component {
       }
       this.setState({
         estimatedGas,
-        selectedGwei: ethGasStationResponse['fast'],
+        selectedGwei: 1,
         currentScreen: 1
       });
 
@@ -129,7 +110,7 @@ class TransactionModal extends Component {
     // const betTokensInExaEs = ethers.utils.bigNumberify(this.state.exaEsTokensToBet);
     try {
       const args =  this.props.ethereum.directGasScreen ? this.props.ethereum.arguments : [this.state.stakingPlan];
-      const response = await this.props.ethereum.transactor( ...args );
+      const response = await this.props.ethereum.transactor(...args, { gasPrice: ethers.utils.parseUnits(String(this.state.selectedGwei), 'gwei') });
       console.log(response, `time taken: ${new Date() - start}`);
       this.setState({ transactionStatus: 2, hash: response.hash });
       await response.wait();
@@ -144,7 +125,7 @@ class TransactionModal extends Component {
 
   render() {
     let screenContent;
-    console.log(this.props);
+    console.log('this.props.store.walletInstance._ethersType !== \'Signer\'', this.props.store.walletInstance._ethersType !== 'Signer');
     if(Object.entries(this.props.store.walletInstance).length === 0) {
       screenContent = (
         <Modal.Body style={{textAlign: 'center'}}>
@@ -155,12 +136,18 @@ class TransactionModal extends Component {
           <Button onClick={() => this.props.history.push('/create-wallet')}>Create wallet</Button>
         </Modal.Body>
       );
-    }
-    else if(this.state.currentScreen === 0) {
+    } else if(this.props.store.walletInstance._ethersType !== 'Signer') {
+      screenContent = (
+        <Modal.Body style={{textAlign: 'center'}}>
+          You are trying to do a transaction using an address. For a transaction on behalf of an address to be accepted by the blockchain, the private key corresponding to the address is required to sign the transaction. Without a private key, tranasaction cannot be signed. The private key can be in the form of a mnemonic, keystore or stored inside your hardware wallet or metamask. You can load your wallet to make transaction.
+          <Button onClick={() => {window.redirectHereAfterLoadWallet=this.props.location.pathname;this.props.history.push('/load-wallet')}}>Go to load wallet page</Button>
+        </Modal.Body>
+      );
+    } else if(this.state.currentScreen === 0) {
       screenContent = (
         <Modal.Body>
           {this.props.ethereum.directGasScreen ? null : <><h5>Please select a staking plan to create a new staking.</h5>
-          <Form.Control as="select" onChange={event =>this.setState({ stakingPlan: event.target.value })}>
+          <Form.Control as="select" style={{width:'100%'}} onChange={event =>this.setState({ stakingPlan: event.target.value })}>
             <option selected disabled>Please click to select a plan</option>
             <option value="0">1 Year</option>
             <option value="1">2 Year</option>
@@ -217,7 +204,7 @@ class TransactionModal extends Component {
             <span style={{display: 'block', fontSize: '1.8rem'}}>
               {this.props.ethereum.reward || this.props.ethereum.ESAmount}<strong>ES</strong>
             </span>
-            + network fee of Ethereum
+            Network fee of Ethereum:
             <span style={{display: 'block', fontSize: '1.8rem'}}>
               {Math.round(this.state.estimatedGas * ( this.state.selectedGwei )) / 10**9}<strong>ETH</strong>
             </span>
@@ -229,6 +216,7 @@ class TransactionModal extends Component {
               <Button variant="secondary" size="lg" block>Reject</Button>
             </Col>
             <Col>
+
             </Col>
           </Row>*/}
         </Modal.Body>
@@ -239,10 +227,10 @@ class TransactionModal extends Component {
         <Modal.Body style={{padding: '15px'}}>
           <h5>Advanced gas settings</h5>
           {[
-            {name: 'Slow', gwei: this.state.ethGasStation[0] / 10, time: 'around 30 mins to confirm'},
-            {name: 'Average', gwei: this.state.ethGasStation[1] / 10, time: 'around 10 mins to confirm' },
-            {name: 'Fast', gwei: this.state.ethGasStation[2] / 10, time: 'around 2 mins to confirm' },
-            {name: 'Faster', gwei: this.state.ethGasStation[3] / 10, time: 'around 30 secs to confirm'}
+            {name: 'Slow', gwei: this.state.ethGasStation[0], time: 'around 30 mins to confirm'},
+            {name: 'Average', gwei: this.state.ethGasStation[1], time: 'around 10 mins to confirm' },
+            {name: 'Fast', gwei: this.state.ethGasStation[2], time: 'around 2 mins to confirm' },
+            {name: 'Faster', gwei: this.state.ethGasStation[3], time: 'around 30 secs to confirm'}
           ].map(plan => (
             <Card key={'advanced-'+plan.name} style={{margin: '10px 0', padding:'10px'}} onClick={() => {
               // update the gwei being used
@@ -296,6 +284,7 @@ class TransactionModal extends Component {
             )
           )}</p>
           <p>You can view your transaction on <a href={`https://${network === 'homestead' ? '' : 'kovan.' }etherscan.io/tx/${this.state.hash}`} style={{color: 'black'}} target="_blank" rel="noopener noreferrer">EtherScan</a></p>
+
         {this.state.transactionStatus === 3 ? <Button style={{margin:'0'}} variant="primary" size="lg" block onClick={this.props.ethereum.continueFunction ? this.props.ethereum.continueFunction.bind(this, this.state.hash) : () => this.props.history.push('/stakings')}>{this.props.ethereum.continueFunction ? 'Continue' : 'Go to Stakings Page'}</Button> : null}
         </Modal.Body>
       );
@@ -326,7 +315,6 @@ class TransactionModal extends Component {
     return (
       <Modal
         {...this.props}
-        size="lg"
         onHide={() => {
           this.props.hideFunction();
           setTimeout(() => {
@@ -345,7 +333,10 @@ class TransactionModal extends Component {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
+          <Modal.Title id="contained-modal-title-vcenter" style={{
+            wordBreak:this.props.ethereum.headingName && this.props.ethereum.headingName.split(' ')
+            .filter(word => word.length >= 10).length > 0 ? 'break-all' : 'break-word'
+          }}>
             {this.props.ethereum.headingName || 'New Staking'}
           </Modal.Title>
         </Modal.Header>
