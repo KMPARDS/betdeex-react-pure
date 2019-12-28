@@ -39,7 +39,7 @@ class NavbarComponent extends Component {
 
   render() {
     return (
-      <Navbar class="headerbtn" style={{background:'linear-gradient(to right, #000 0%, #981802 100%)'}} >
+      <Navbar class="headerbtn" style={{background:'linear-gradient(to right, #000 0%, #981802 100%)', zIndex: 999}} >
 
         <Link to="/">
           <Navbar.Brand>
@@ -54,11 +54,11 @@ class NavbarComponent extends Component {
         </Link>
 
           <Dropdown class="dropdown custom-left">
-            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+            <Dropdown.Toggle variant="secondary" id="dropdown-basic" >
              <i class="fa fa-th dropbtn fadropbtn"></i>
             </Dropdown.Toggle>
 
-            <Dropdown.Menu>
+            <Dropdown.Menu className="custom-overflow">
               <Dropdown.Item href="https://eraswaptoken.io" target="_blank">
               <img width="32px" src="/img/es-green.png" className="d-inline-block align-top" alt="Logo" style={{margin:'0 3px 0 0'}} />Decentralized Utility Token</Dropdown.Item>
               <Dropdown.Item href="https://timeswappers.com/swapperswall" target="_blank">

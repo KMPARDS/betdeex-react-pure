@@ -10817,7 +10817,7 @@ h6 {
 	text-rendering: auto;
 	line-height: 1;
 	font-weight: 900;
-	content: "\f107";
+	content: "+";
 	-webkit-transition: -webkit-transform .3s ease;
 	transition: -webkit-transform .3s ease;
 	transition: transform .3s ease;
@@ -10826,6 +10826,7 @@ h6 {
 }
 
 [data-toggle=collapse].collapsed:before {
+  content: "+";
 	-webkit-transform: rotate(-90deg);
 	transform: rotate(-90deg)
 }
@@ -15838,7 +15839,7 @@ hr[class*=bg] {
 }
 @media (min-width: 768px){
 .section [class^=container], section [class^=container] {
-    padding-top: 40px !important;
+    padding-top: 40px;
     padding-bottom: 70px;
 	}
 }

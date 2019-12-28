@@ -277,7 +277,7 @@ const Home = props => (
                             <div className="card-body">BetDeEx is a Decentralized App (DApp) which is based on pre-defined set of rules enforced through Smart Contracts to govern the prediction activity and distribution of winnings.</div>
                             <div className="offset-md-4 col-md-4">
                               <div style={{position: 'relative', height: 0, overflow: 'hidden', maxWidth: '100%', paddingBottom: '56.25%', marginBottom:'20px'}}>
-                                    <iframe src="https://www.youtube.com/embed/z000Kv_PeYQ" style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}} frameBorder={0} allowFullScreen />
+                                    <iframe src="https://www.youtube.com/embed/reKG7T8ciGs" style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}} frameBorder={0} allowFullScreen />
                               </div>
                             </div>
 
@@ -286,12 +286,12 @@ const Home = props => (
 
 
                         <div className="card mb-3">
-                          <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q3">How to To Predict On Events on BetDeEx?</a></div>
+                          <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q3">How to Predict On Events on BetDeEx?</a></div>
                           <div id="v1-q3" className="collapse" data-parent="#faqs-accordion">
                             <div className="card-body">Please watch this video to understand "Walkthrough On BetDeEx & How To Predict On Events"</div>
                             <div className="offset-md-4 col-md-4">
                               <div style={{position: 'relative', height: 0, overflow: 'hidden', maxWidth: '100%', paddingBottom: '56.25%', marginBottom:'20px'}}>
-                                    <iframe src="https://www.youtube.com/embed/8CHlAVPbONo" style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}} frameBorder={0} allowFullScreen />
+                                    <iframe src="https://www.youtube.com/embed/j2a8Una4lEw" style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}} frameBorder={0} allowFullScreen />
                               </div>
                             </div>
 
