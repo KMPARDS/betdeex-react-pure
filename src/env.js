@@ -34,6 +34,9 @@ module.exports = {
     ['Stock Exchange', 'Crypto', 'Forex', 'Commodity'],
     ['White', 'Yellow', 'Orange', 'Green', 'Blue', 'Brown', 'Red', 'Black'],
   ],
+  links: {
+    '0x8f7f501f399323239c61449be99b4ee9a02e2e4e': 'https://www.cricbuzz.com/cricket-series/2849/australia-tour-of-india-2020/matches'
+  },
   network,
   esContract: {
     address: network === 'homestead'
