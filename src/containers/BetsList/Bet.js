@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { Card, Button } from 'react-bootstrap';
-import { categoryArray, subCategoryArray, timeswappersServerUrl } from '../../env';
+import { categoryArray, subCategoryArray, timeswappersServerUrl, links } from '../../env';
 import createBetInstance from '../../ethereum/betInstance';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
@@ -191,8 +191,15 @@ class Bet extends Component {
                     <li><span>Time Remaining</span><span className="value_expires">{pauseTimeRemaining ? (pauseTimeRemaining > 0 ? `${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds` : 'Finished') : 'Calculating...'}</span>
                     </li>
                   </ul>
-                  <div className="inn-tickers">
-                    <button onClick={() => this.props.history.push(`/bet/${ethers.utils.getAddress(this.props.address)}`)} className="inn-reg-com inn-reg-book"><i className="fa fa-info-circle" aria-hidden="true" />View</button>
+                  <div className="stats-view">
+                    <div className="statsinline">
+                      {links[this.props.address.toLowerCase()] ? <div className="inn-tickers aligned">
+                        <button onClick={window.open.bind(null, links[this.props.address.toLowerCase()])} className="inn-reg-com inn-reg-book"><i className="fa fa-info-circle" aria-hidden="true" />Stats</button>
+                      </div> : null}
+                      <div className="inn-tickers">
+                        <button onClick={() => this.props.history.push(`/bet/${ethers.utils.getAddress(this.props.address)}`)} className="inn-reg-com inn-reg-book"><i className="fa fa-info-circle" aria-hidden="true" />View</button>
+                      </div>
+                    </div>
                   </div>
                 </section>
               </article>

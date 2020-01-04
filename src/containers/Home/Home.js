@@ -351,7 +351,7 @@ class Home extends Component {
               <hr className="mt-5 bg-2 op-5" />
               <div className="row small align-items-center">
                 <div className="col-md-4">
-                  <p className="mt-2 mb-0">© 2019 BetDeEx. All Rights Reserved</p>
+                  <p className="mt-2 mb-0">© {new Date().getFullYear()} BetDeEx. All Rights Reserved</p>
                 </div>
                 <div className="col-md-8">
                    <nav className="nav ">

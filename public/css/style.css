@@ -10276,6 +10276,7 @@ textarea {
     margin-top: .229166667in;
     display: flex;
     justify-content: flex-end;
+    margin-right: 15px;
 }
 
 [class~=inn-reg-com] i {
@@ -13414,7 +13415,17 @@ div.ex1 {
 
 .navbar .dropdown  a:hover {background-color: #ddd;}
 
+.aligned {
+  position: relative;
+}
 
+.stats-view {
+  justify-content: space-between;
+}
+
+.statsinline {
+  display: flex;
+}
 
 @media screen and (max-width: 767px) {
     .mob-menu {
@@ -13430,6 +13441,10 @@ div.ex1 {
         padding: 0 6px;
     }
     
+    .aligned {
+      left: 0%;
+      margin-right: 5px;
+    }
 }
 @media screen and (max-width: 992px) {
 .betbox [class~=inn-ev-date-left] {
