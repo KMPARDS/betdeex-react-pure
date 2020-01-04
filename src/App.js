@@ -23,6 +23,7 @@ import ManagerPanel from './containers/Manager/Manager';
 import Logout from './containers/User/Logout';
 import BetsList from './containers/BetsList/BetsList';
 import BetView from './containers/BetView/BetView';
+import Results from './containers/Results/Results';
 
 import provider from './ethereum/provider';
 import betdeexInstance from './ethereum/betdeexInstance';
@@ -167,6 +168,11 @@ function App(props) {
     Route path = "/explore"
     exact component = {
       BetsList
+    }
+    /> <
+    Route path = "/results"
+    exact component = {
+      Results
     }
     /> <
     Route path = "/explore/:category"
