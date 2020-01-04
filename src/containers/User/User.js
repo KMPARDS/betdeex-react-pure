@@ -166,7 +166,7 @@ class User extends Component {
 
                           <div className="inn-tickers">
                             {/*<a class="inn-reg-com inn-reg-book" style={{background: 'rgb(40, 167, 69)', padding: '10px 30px', margin:'10px', color: 'rgb(255, 255, 255)'}}> Update Allowance</a>*/}
-                            <button onClick={() => this.props.history.push('/user/history')} className="inn-reg-com inn-reg-book" style={{background: 'rgb(40, 167, 69)', padding: '10px 30px', margin:'10px', color: 'rgb(255, 255, 255)'}}>View History of Betting transactions</button>
+                            <button onClick={() => this.props.history.push('/user/history')} className="inn-reg-com inn-reg-book" style={{background: 'rgb(40, 167, 69)', padding: '10px 30px', margin:'10px', color: 'rgb(255, 255, 255)'}}>View History of Prediction transactions</button>
                           </div>
                         </section>
                       </article>
@@ -186,16 +186,16 @@ class User extends Component {
           <div className="row">
             {/* TITLE */}
             <div className="inn-title">
-            <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> Your Participations in bets:</h2>
+            <h2 style={{textAlign:'left', textTransform:'uppercase', fontWeight:'600'}}><i className="fa fa-check" aria-hidden="true" /> Your Participated Events:</h2>
             </div>
             <br></br>
             </div>
             {/* LEFT SIDE: SPORTS EVENTS */}
             <div className="row">
-            {this.state.loadingBettingsArray ? 'Please wait loading your bet participations...' : (this.state.bettingBetAddressArray.length ?
+            {this.state.loadingBettingsArray ? 'Please wait loading your event participations...' : (this.state.bettingBetAddressArray.length ?
               this.state.bettingBetAddressArray.map(
               address => <Bet address={address} history={this.props.history} refreshBalances={this.refreshBalances} />
-            ) : 'No bet participations' )}
+            ) : 'No event participations' )}
 
             </div>
             {/* RIGHT SIDE: FEATURE EVENTS */}
