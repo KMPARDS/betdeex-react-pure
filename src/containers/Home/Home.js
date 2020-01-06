@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
-const Home = props => (
-  <>
+class Home extends Component {
+  render = () => (
+    <>
   <div>
         {/* ./Page header */}
     <header className="header online-payment-header section color-1 alpha-9" style={{backgroundImage: 'url(/img/banner-bg.jpg)',
@@ -18,7 +19,7 @@ const Home = props => (
                 <b style={{fontWeight:'800', fontStyle:'italic'}}>Decentralized, Transparent & Trustless</b>
 
                   {/* <br> No Login, No Hassle, No Limits.*/}</p>
-                  <button onClick={() => props.history.push('/explore')} class="btn btn-rounded btn-lg btn-accent text-center ml-0 my-3"> Explore Events now</button>
+                  <button onClick={() => this.props.history.push('/explore')} class="btn btn-rounded btn-lg btn-accent text-center ml-0 my-3"> Explore Events now</button>
               </div>
               <div className="col-lg-6 col-md-9 mx-md-auto mx-lg-0 pr-lg-0 pc" data-aos="fade-left">
                 <img src="img/betdeex-logo.png" alt="Dashcore" className="d-blocks img-responsive logo" />
@@ -37,359 +38,361 @@ const Home = props => (
               <Carousel infiniteLoop autoPlay emulateTouch={true} showArrows={false} >
                 <div >
                   <img src="/img/BetDeEx_Infographic_01.jpg"  />
-                  <button className="legend" onClick={() => props.history.push('/bet/0x8F7f501f399323239C61449bE99b4ee9A02E2E4e')}>Click here to go to the event</button>
+                  <button className="legend" onClick={() => this.props.history.push('/bet/0x8F7f501f399323239C61449bE99b4ee9A02E2E4e')}>Click here to go to the event</button>
                 </div>
                 <div>
                   <img src="/img/BetDeEx_Infographic_02.jpg" />
-                  <button className="legend" onClick={() => props.history.push('/bet/0x8F7f501f399323239C61449bE99b4ee9A02E2E4e')}>Click here to go to the event</button>
+                  <button className="legend" onClick={() => this.props.history.push('/bet/0x8F7f501f399323239C61449bE99b4ee9A02E2E4e')}>Click here to go to the event</button>
                 </div>
                 <div>
                   <img src="/img/BetDeEx_Infographic_03.jpg" />
-                  <button className="legend" onClick={() => props.history.push('/bet/0x8F7f501f399323239C61449bE99b4ee9A02E2E4e')}>Click here to go to the event</button>
+                  <button className="legend" onClick={() => this.props.history.push('/bet/0x8F7f501f399323239C61449bE99b4ee9A02E2E4e')}>Click here to go to the event</button>
                 </div>
                 <div>
                   <img src="/img/BetDeEx_Infographic_04.jpg" />
-                  <button className="last-img legend" onClick={() => props.history.push('/bet/0x8F7f501f399323239C61449bE99b4ee9A02E2E4e')}>Click here to go to the event</button>
+                  <button className="last-img legend" onClick={() => this.props.history.push('/bet/0x8F7f501f399323239C61449bE99b4ee9A02E2E4e')}>Click here to go to the event</button>
                 </div>
               </Carousel>
           </div>
         </section>
 
-        <section>
-        <div className="lp spe-bot-red-3" style={{zIndex:'9', paddingLeft: '65px'}}>
-          <div className="inn-title">
-            <h2 style={{fontWeight:'800', textTransform:'uppercase'}}><i className="fa fa-check" aria-hidden="true" /> All predictions <img src="/img/era-icon.png"/><span>events 2020</span></h2>
-            <p>An 'event' is a prediction event. Now, you can choose an event from the list of multiple events</p>
-          </div>
-          <div className="hom-top-trends row">
-            {/*TOP TRENDINGS*/}
-            <div onClick={() => props.history.push('/explore/sports')}  className="col-md-3">
-              <div className="hom-trend">
-                <div className="hom-trend-img">
-                  <img className="img-responsive" src="/img/1.jpg" alt="" />
+          <section>
+          <div className="lp spe-bot-red-3" style={{zIndex:'9', paddingLeft: '65px'}}>
+            <div className="inn-title">
+              <h2 style={{fontWeight:'800', textTransform:'uppercase'}}><i className="fa fa-check" aria-hidden="true" /> All predictions <img src="/img/era-icon.png"/><span>events 2019</span></h2>
+              <p>An 'event' is a prediction event. Now, you can choose an event from the list of multiple events</p>
+            </div>
+            <div className="hom-top-trends row">
+              {/*TOP TRENDINGS*/}
+              <div onClick={() => this.props.history.push('/explore/sports')}  className="col-md-3">
+                <div className="hom-trend">
+                  <div className="hom-trend-img">
+                    <img className="img-responsive" src="/img/1.jpg" alt="" />
+                  </div>
+                  <div className="hom-trend-con inn-title">
+                    {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
+
+                      <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>SPORTS</h2>
+
+                    {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
+                  </div>
                 </div>
-                <div className="hom-trend-con inn-title">
-                  {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
+              </div>
+              {/*TOP TRENDINGS*/}
+              <div  onClick={() => this.props.history.push('/explore/politics')}   className="col-md-3">
+                <div className="hom-trend">
+                  <div className="hom-trend-img">
+                    <img className="img-responsive" src="/img/3.jpg" alt="" />
+                  </div>
+                  <div className="hom-trend-con">
+                    {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
+                      <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>POLITICS</h2>
 
-                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>SPORTS</h2>
+                    {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
+                  </div>
+                </div>
+              </div>
+              {/*TOP TRENDINGS*/}
+              <div  onClick={() => this.props.history.push('/explore/movies')}   className="col-md-3">
+                <div className="hom-trend">
+                  <div className="hom-trend-img">
+                    <img className="img-responsive" src="/img/2.jpg" alt="" />
+                  </div>
+                  <div className="hom-trend-con">
+                    {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
 
-                  {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
+                      <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>MOVIES</h2>
+
+                    {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
+                  </div>
+                </div>
+              </div>
+              {/*TOP TRENDINGS*/}
+              <div  onClick={() => this.props.history.push('/explore/tech')}   className="col-md-3">
+                <div className="hom-trend">
+                  <div className="hom-trend-img">
+                    <img className="img-responsive" src="/img/5.jpg" alt="" />
+                  </div>
+                  <div className="hom-trend-con">
+                    {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
+
+                      <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>TECH</h2>
+
+                    {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
+                  </div>
                 </div>
               </div>
             </div>
-            {/*TOP TRENDINGS*/}
-            <div  onClick={() => props.history.push('/explore/politics')}   className="col-md-3">
-              <div className="hom-trend">
-                <div className="hom-trend-img">
-                  <img className="img-responsive" src="/img/3.jpg" alt="" />
-                </div>
-                <div className="hom-trend-con">
-                  {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>POLITICS</h2>
+            <div  onClick={() => this.props.history.push('/explore/science')}   className="hom-top-trends row">
+              {/*TOP TRENDINGS*/}
+              <div className="col-md-3">
+                <div className="hom-trend">
+                  <div className="hom-trend-img">
+                    <img className="img-responsive" src="/img/7.jpg" alt="" />
+                  </div>
+                  <div className="hom-trend-con">
+                    {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
 
-                  {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
+                      <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>SCIENCE</h2>
+
+                    {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
+                  </div>
+                </div>
+              </div>
+              {/*TOP TRENDINGS*/}
+              <div  onClick={() => this.props.history.push('/explore/entertainment')}   className="col-md-3">
+                <div className="hom-trend">
+                  <div className="hom-trend-img">
+                    <img className="img-responsive" src="/img/6.jpg" alt="" />
+                  </div>
+                  <div className="hom-trend-con">
+                    {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
+
+                      <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}} >ENTERTAINMENT</h2>
+
+                    {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
+                  </div>
+                </div>
+              </div>
+              {/*TOP TRENDINGS*/}
+              <div  onClick={() => this.props.history.push('/explore/celebrities')}   className="col-md-3">
+                <div className="hom-trend">
+                  <div className="hom-trend-img">
+                    <img className="img-responsive" src="/img/8.jpg" alt="" />
+                  </div>
+                  <div className="hom-trend-con">
+                    {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
+
+                      <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>CELEBRITIES</h2>
+
+                    {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
+                  </div>
+                </div>
+              </div>
+              {/*TOP TRENDINGS*/}
+              <div  onClick={() => this.props.history.push('/explore/current')}   className="col-md-3">
+                <div className="hom-trend pad-red-bot-0">
+                  <div className="hom-trend-img">
+                    <img className="img-responsive" src="/img/4.jpg" alt="" />
+                  </div>
+                  <div className="hom-trend-con">
+                    {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
+                      <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>CURRENT</h2>
+
+                    {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
+                  </div>
                 </div>
               </div>
             </div>
-            {/*TOP TRENDINGS*/}
-            <div  onClick={() => props.history.push('/explore/movies')}   className="col-md-3">
-              <div className="hom-trend">
-                <div className="hom-trend-img">
-                  <img className="img-responsive" src="/img/2.jpg" alt="" />
-                </div>
-                <div className="hom-trend-con">
-                  {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-
-                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>MOVIES</h2>
-
-                  {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
-                </div>
-              </div>
             </div>
-            {/*TOP TRENDINGS*/}
-            <div  onClick={() => props.history.push('/explore/tech')}   className="col-md-3">
-              <div className="hom-trend">
-                <div className="hom-trend-img">
-                  <img className="img-responsive" src="/img/5.jpg" alt="" />
-                </div>
-                <div className="hom-trend-con">
-                  {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-
-                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>TECH</h2>
-
-                  {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div  onClick={() => props.history.push('/explore/science')}   className="hom-top-trends row">
-            {/*TOP TRENDINGS*/}
-            <div className="col-md-3">
-              <div className="hom-trend">
-                <div className="hom-trend-img">
-                  <img className="img-responsive" src="/img/7.jpg" alt="" />
-                </div>
-                <div className="hom-trend-con">
-                  {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-
-                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>SCIENCE</h2>
-
-                  {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
-                </div>
-              </div>
-            </div>
-            {/*TOP TRENDINGS*/}
-            <div  onClick={() => props.history.push('/explore/entertainment')}   className="col-md-3">
-              <div className="hom-trend">
-                <div className="hom-trend-img">
-                  <img className="img-responsive" src="/img/6.jpg" alt="" />
-                </div>
-                <div className="hom-trend-con">
-                  {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-
-                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}} >ENTERTAINMENT</h2>
-
-                  {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
-                </div>
-              </div>
-            </div>
-            {/*TOP TRENDINGS*/}
-            <div  onClick={() => props.history.push('/explore/celebrities')}   className="col-md-3">
-              <div className="hom-trend">
-                <div className="hom-trend-img">
-                  <img className="img-responsive" src="/img/8.jpg" alt="" />
-                </div>
-                <div className="hom-trend-con">
-                  {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-
-                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>CELEBRITIES</h2>
-
-                  {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
-                </div>
-              </div>
-            </div>
-            {/*TOP TRENDINGS*/}
-            <div  onClick={() => props.history.push('/explore/current')}   className="col-md-3">
-              <div className="hom-trend pad-red-bot-0">
-                <div className="hom-trend-img">
-                  <img className="img-responsive" src="/img/4.jpg" alt="" />
-                </div>
-                <div className="hom-trend-con">
-                  {/* <span><i className="fa fa-futbol-o" aria-hidden="true" /> 2rd augest 2017</span> */}
-                    <h2 style={{fontWeight: '800', textTransform: 'uppercase', fontSize: '16px'}}>CURRENT</h2>
-
-                  {/* <p>The Sports Games also celebrated and showcased sport, thanks to the city’s stunning setting</p> */}
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
-      </section>
-        {/* Use Cases for Betdeex */}
-        <section className="section bg-6 bg-6-gradient edge bottom-right play-slider">
-          <div className="container bring-to-front">
-            <img src="/img/era-icon.png"/>
-            <div id="demo" className="carousel slide" data-ride="carousel">
-              {/* Indicators */}
-              <ul className="carousel-indicators">
-                <li data-target="#demo" data-slide-to={0} className="active" />
-                <li data-target="#demo" data-slide-to={1} />
-                <li data-target="#demo" data-slide-to={2} />
-              </ul>
-              {/* The slideshow */}
-              <div className="carousel-inner">
-                <div className="carousel-item active">
-                <section className="section singl-testimonial bg-1 edge top-left">
+        </section>
+          {/* Use Cases for Betdeex */}
+          <section className="section bg-6 bg-6-gradient edge bottom-right play-slider">
+            <div className="container bring-to-front">
+              <img src="/img/era-icon.png"/>
+              <div id="demo" className="carousel slide" data-ride="carousel">
+                {/* Indicators */}
+                <ul className="carousel-indicators">
+                  <li data-target="#demo" data-slide-to={0} className="active" />
+                  <li data-target="#demo" data-slide-to={1} />
+                  <li data-target="#demo" data-slide-to={2} />
+                </ul>
+                {/* The slideshow */}
+                <div className="carousel-inner">
+                  <div className="carousel-item active">
+                  <section className="section singl-testimonial bg-1 edge top-left">
+                      <div className="shape-wrapper"><img src="img/shps/abs-shp-1.svg" className="absolute top right h-100" alt="..." /></div>
+                      <div className="container-wide bring-to-front" >
+                        <div className="row gap-y align-items-center">
+                          <div className="col-12 col-lg-6 mx-auto">
+                            <h2 style={{textAlign:'justify'}}>Step 1: Explore</h2>
+                            <p className="lead color-2">
+                              There will be multiple events to predict from multiple domains like Sports, Politics, Movies, Tech, Science, Entertainment, Celebrities, Current Affairs and more.
+                            </p>
+                            <p>
+                            </p>
+                          </div>
+                          <div className="col-10 col-lg-5 pr-0">
+                            <div className="device browser" data-aos="fade-left">
+                              <div className="screen"><img src="img/betdeex1.png" alt="" className="img-responsive shadow" /></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                  <div className="carousel-item">
+                  <section className="section singl-testimonial bg-1 edge top-left">
                     <div className="shape-wrapper"><img src="img/shps/abs-shp-1.svg" className="absolute top right h-100" alt="..." /></div>
-                    <div className="container-wide bring-to-front" >
+                    <div className="container-wide bring-to-front">
                       <div className="row gap-y align-items-center">
                         <div className="col-12 col-lg-6 mx-auto">
-                          <h2 style={{textAlign:'justify'}}>Step 1: Explore</h2>
-                          <p className="lead color-2">
-                            There will be multiple events to predict from multiple domains like Sports, Politics, Movies, Tech, Science, Entertainment, Celebrities, Current Affairs and more.
-                          </p>
-                          <p>
-                          </p>
+                          <h2 style={{textAlign:'justify'}}>Step 2: Choose an Event</h2>
+                          <p className="lead color-2">An 'event' is a prediction event which you can choose from the list of multiple events on BetDeEx platform. You can select your favorite event(s) and start prediction based on your skills.</p>
                         </div>
                         <div className="col-10 col-lg-5 pr-0">
                           <div className="device browser" data-aos="fade-left">
-                            <div className="screen"><img src="img/betdeex1.png" alt="" className="img-responsive shadow" /></div>
+                            <div className="screen"><img src="img/betdeex2.png" alt="" className="img-responsive shadow" /></div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </section>
-                </div>
-                <div className="carousel-item">
-                <section className="section singl-testimonial bg-1 edge top-left">
-                  <div className="shape-wrapper"><img src="img/shps/abs-shp-1.svg" className="absolute top right h-100" alt="..." /></div>
-                  <div className="container-wide bring-to-front">
-                    <div className="row gap-y align-items-center">
-                      <div className="col-12 col-lg-6 mx-auto">
-                        <h2 style={{textAlign:'justify'}}>Step 2: Choose an Event</h2>
-                        <p className="lead color-2">An 'event' is a prediction event which you can choose from the list of multiple events on BetDeEx platform. You can select your favorite event(s) and start prediction based on your skills.</p>
-                      </div>
-                      <div className="col-10 col-lg-5 pr-0">
-                        <div className="device browser" data-aos="fade-left">
-                          <div className="screen"><img src="img/betdeex2.png" alt="" className="img-responsive shadow" /></div>
+                  </div>
+                  <div className="carousel-item">
+                  <section className="section singl-testimonial bg-1 edge top-left">
+                    <div className="shape-wrapper"><img src="img/shps/abs-shp-1.svg" className="absolute top right h-100" alt="..." /></div>
+                    <div className="container-wide bring-to-front">
+                      <div className="row gap-y align-items-center">
+                        <div className="col-12 col-lg-6 mx-auto">
+                          <h2 style={{textAlign:'justify'}}>Step 3: Predict!</h2>
+                          <p className="lead color-2">Predict using ES on the outcome of the event and wait for results. If you are lucky to win, you will get rewarded through the BetDeEx Smart Contract.</p>
+                        </div>
+                        <div className="col-10 col-lg-5 pr-0">
+                          <div className="device browser" data-aos="fade-left">
+                            <div className="screen"><img src="img/betdeex3.png" alt="" className="img-responsive shadow" /></div>
+                          </div>
                         </div>
                       </div>
                     </div>
+                  </section>
                   </div>
-                </section>
                 </div>
-                <div className="carousel-item">
-                <section className="section singl-testimonial bg-1 edge top-left">
-                  <div className="shape-wrapper"><img src="img/shps/abs-shp-1.svg" className="absolute top right h-100" alt="..." /></div>
-                  <div className="container-wide bring-to-front">
-                    <div className="row gap-y align-items-center">
-                      <div className="col-12 col-lg-6 mx-auto">
-                        <h2 style={{textAlign:'justify'}}>Step 3: Predict!</h2>
-                        <p className="lead color-2">Predict using ES on the outcome of the event and wait for results. If you are lucky to win, you will get rewarded through the BetDeEx Smart Contract.</p>
-                      </div>
-                      <div className="col-10 col-lg-5 pr-0">
-                        <div className="device browser" data-aos="fade-left">
-                          <div className="screen"><img src="img/betdeex3.png" alt="" className="img-responsive shadow" /></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-                </div>
+                {/* Left and right controls */}
+                <a className="carousel-control-prev" style={{color:'#000'}} href="#demo" data-slide="prev">
+                  <span className="carousel-control-prev-icon" />
+                </a>
+                <a className="carousel-control-next" href="#demo" data-slide="next">
+                  <span className="carousel-control-next-icon" />
+                </a>
               </div>
-              {/* Left and right controls */}
-              <a className="carousel-control-prev" style={{color:'#000'}} href="#demo" data-slide="prev">
-                <span className="carousel-control-prev-icon" />
-              </a>
-              <a className="carousel-control-next" href="#demo" data-slide="next">
-                <span className="carousel-control-next-icon" />
-              </a>
             </div>
-          </div>
-        </section>
-        {/*Currencies of Betdeex */}
+          </section>
+          {/*Currencies of Betdeex */}
 
-        {/* Benefits of Betdeex*/}
-       <hr></hr>
-        {/*Join The Betdeex Ecosystem*/}
+          {/* Benefits of Betdeex*/}
+         <hr></hr>
+          {/*Join The Betdeex Ecosystem*/}
 
-        {/* ./CTA - Create Account */}
-        <section className="section bg-6 b-b edge" style={{zIndex:'100', marginTop: '-93px'}}>
-          <div className="container">
-            <div className="section-heading text-center">
-              <h2>FAQ's</h2>
-              {/* <p className="color-2 lead">Era Swap Ecosystem includes interlinked multiple platforms where Era Swap Tokens can
-                be utilized for exchange of services, availing discounts, getting rewards and other utilities. Era Swap Team will identify and help build more such platforms
-                in future which are built for the community and willing to incorporate ES reward system.</p> */}
-            </div>
-            <div className="">
+          {/* ./CTA - Create Account */}
+          <section className="section bg-6 b-b edge" style={{zIndex:'100', marginTop: '-93px'}}>
+            <div className="container">
+              <div className="section-heading text-center">
+                <h2>FAQ's</h2>
+                {/* <p className="color-2 lead">Era Swap Ecosystem includes interlinked multiple platforms where Era Swap Tokens can
+                  be utilized for exchange of services, availing discounts, getting rewards and other utilities. Era Swap Team will identify and help build more such platforms
+                  in future which are built for the community and willing to incorporate ES reward system.</p> */}
+              </div>
+              <div className="">
 
-                <section className="section bg-6">
-                  <div className="container" style={{marginTop:'-64px'}}>
-                    <div className="row gap-y">
-                      <div className="col-md-12">
-                        <div className="accordion accordion-clean" id="faqs-accordion">
-
-                        <div className="card mb-3">
-                          <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q1">What is Era Swap Token?</a></div>
-                          <div id="v1-q1" className="collapse" data-parent="#faqs-accordion">
-                            <div className="card-body">Era Swap Token or ES is a decentralized utility token currently based on Ethereum blockchain (ERC20) which will be used on multiple platforms for exchange of services(P2P), avail discounts, get rewards and many more utility.</div>
-
-
-                          </div>
-                        </div>
-
-                        <div className="card mb-3">
-                          <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q2">What is BetDeEx?</a></div>
-                          <div id="v1-q2" className="collapse" data-parent="#faqs-accordion">
-                            <div className="card-body">BetDeEx is a Decentralized App (DApp) which is based on pre-defined set of rules enforced through Smart Contracts to govern the prediction activity and distribution of winnings.</div>
-                            <div className="offset-md-4 col-md-4">
-                              <div style={{position: 'relative', height: 0, overflow: 'hidden', maxWidth: '100%', paddingBottom: '56.25%', marginBottom:'20px'}}>
-                                    <iframe src="https://www.youtube.com/embed/reKG7T8ciGs" style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}} frameBorder={0} allowFullScreen />
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
-
-
-                        <div className="card mb-3">
-                          <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q3">How to Predict On Events on BetDeEx?</a></div>
-                          <div id="v1-q3" className="collapse" data-parent="#faqs-accordion">
-                            <div className="card-body">Please watch this video to understand "Walkthrough On BetDeEx & How To Predict On Events"</div>
-                            <div className="offset-md-4 col-md-4">
-                              <div style={{position: 'relative', height: 0, overflow: 'hidden', maxWidth: '100%', paddingBottom: '56.25%', marginBottom:'20px'}}>
-                                    <iframe src="https://www.youtube.com/embed/j2a8Una4lEw" style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}} frameBorder={0} allowFullScreen />
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
+                  <section className="section bg-6">
+                    <div className="container" style={{marginTop:'-64px'}}>
+                      <div className="row gap-y">
+                        <div className="col-md-12">
+                          <div className="accordion accordion-clean" id="faqs-accordion">
 
                           <div className="card mb-3">
-                            <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q4">Do you store my private keys, Keystore or mnemonic in BetDeEx?</a></div>
-                            <div id="v1-q4" className="collapse" data-parent="#faqs-accordion">
-                              <div className="card-body">When you load Wallet in the BetDeEx ÐApp, your private keys stay only on your computer. The BetDeEx ÐApp directly talks with blockchain hence any centralized intermediate server is not at all required and hence any of your data is NOT sent to our servers (we are also not recording any usage data). Your computer signs any transactions you authorise and only the signed transaction is submitted to blockchain for being included in blocks by miners who are mining in Ethereum. When you logout or even refresh page your private keys are erased from computer’s memory. The BetDeEx ÐApp source code is open source and anyone can check what is happening.</div>
+                            <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q1">What is Era Swap Token?</a></div>
+                            <div id="v1-q1" className="collapse" data-parent="#faqs-accordion">
+                              <div className="card-body">Era Swap Token or ES is a decentralized utility token currently based on Ethereum blockchain (ERC20) which will be used on multiple platforms for exchange of services(P2P), avail discounts, get rewards and many more utility.</div>
+
+
                             </div>
                           </div>
+
                           <div className="card mb-3">
-                            <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q5">What is Gas Fee / Network Fee in BetDeEx?</a></div>
-                            <div id="v1-q5" className="collapse" data-parent="#faqs-accordion">
-                              <div className="card-body">Ethereum is a decentralized and immutable platform. Tens of thousands of miners dedicate their computers to maintain the Ethereum network. For compensation, the concept of the gas fee is there. All transactions on Ethereum Network cost gas and this fee is transferred to miners in ETH. Users can choose to pay less or more gas to miners. A miner can choose which transactions to mine, and generally, they give priority to those transactions which give them more fees. You can customize your gas fees in the advanced settings while making staking, withdrawal or any transaction.</div>
+                            <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q2">What is BetDeEx?</a></div>
+                            <div id="v1-q2" className="collapse" data-parent="#faqs-accordion">
+                              <div className="card-body">BetDeEx is a Decentralized App (DApp) which is based on pre-defined set of rules enforced through Smart Contracts to govern the prediction activity and distribution of winnings.</div>
+                              <div className="offset-md-4 col-md-4">
+                                <div style={{position: 'relative', height: 0, overflow: 'hidden', maxWidth: '100%', paddingBottom: '56.25%', marginBottom:'20px'}}>
+                                      <iframe src="https://www.youtube.com/embed/reKG7T8ciGs" style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}} frameBorder={0} allowFullScreen />
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+
+
+                          <div className="card mb-3">
+                            <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q3">How to Predict On Events on BetDeEx?</a></div>
+                            <div id="v1-q3" className="collapse" data-parent="#faqs-accordion">
+                              <div className="card-body">Please watch this video to understand "Walkthrough On BetDeEx & How To Predict On Events"</div>
+                              <div className="offset-md-4 col-md-4">
+                                <div style={{position: 'relative', height: 0, overflow: 'hidden', maxWidth: '100%', paddingBottom: '56.25%', marginBottom:'20px'}}>
+                                      <iframe src="https://www.youtube.com/embed/j2a8Una4lEw" style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}} frameBorder={0} allowFullScreen />
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+
+                            <div className="card mb-3">
+                              <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q4">Do you store my private keys, Keystore or mnemonic in BetDeEx?</a></div>
+                              <div id="v1-q4" className="collapse" data-parent="#faqs-accordion">
+                                <div className="card-body">When you load Wallet in the BetDeEx ÐApp, your private keys stay only on your computer. The BetDeEx ÐApp directly talks with blockchain hence any centralized intermediate server is not at all required and hence any of your data is NOT sent to our servers (we are also not recording any usage data). Your computer signs any transactions you authorise and only the signed transaction is submitted to blockchain for being included in blocks by miners who are mining in Ethereum. When you logout or even refresh page your private keys are erased from computer’s memory. The BetDeEx ÐApp source code is open source and anyone can check what is happening.</div>
+                              </div>
+                            </div>
+                            <div className="card mb-3">
+                              <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q5">What is Gas Fee / Network Fee in BetDeEx?</a></div>
+                              <div id="v1-q5" className="collapse" data-parent="#faqs-accordion">
+                                <div className="card-body">Ethereum is a decentralized and immutable platform. Tens of thousands of miners dedicate their computers to maintain the Ethereum network. For compensation, the concept of the gas fee is there. All transactions on Ethereum Network cost gas and this fee is transferred to miners in ETH. Users can choose to pay less or more gas to miners. A miner can choose which transactions to mine, and generally, they give priority to those transactions which give them more fees. You can customize your gas fees in the advanced settings while making staking, withdrawal or any transaction.</div>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </section>
-            </div>
-          </div>
-        </section>
-
-        {/* ./Footer - Simple */}
-        <footer className="site-footer section bg-1 color-1 block bg-1">
-          <div className="container py-4">
-            <div className="row gap-y text-center text-md-left">
-              <div className="col-md-4 mr-auto">
-                <img src="img/betdeex-logo.png" alt="" className="logo" />
-                <p>Please read the Disclaimer, Terms and Conditions, Legal Terms carefully before strating with BetDeEx.</p>
-              </div>
-              {/* <div className="col-md-3">
-                <nav className="nav flex-column">
-                  <a className="nav-item py-2 color-1" href="index.html">Home</a>
-                  <a className="nav-item py-2 color-1" href="faqs.html">FAQ</a>
-                  <a className="nav-item py-2 color-1" href="disclaimer.html">Disclaimer</a>
-                </nav>
-              </div> */}
-              <div className="col-md-3">
-                <nav className="nav flex-column">
-                  <a className="nav-item py-2 color-1" href="/pdf/betdeex-user-guide.pdf" target="_blank"><span style={{color:'#848080'}}>User Guide</span></a>
-                  <a className="nav-item py-2 color-1" href="/pdf/t&c.pdf" target="_blank"><span style={{color:'#848080'}}>Terms &amp; Conditions</span></a>
-                  <a className="nav-item py-2 color-1" href="/pdf/privacy.pdf" target="_blank"><span style={{color:'#848080'}}>Privacy Policy</span></a>
-                  <a className="nav-item py-2 color-1" href="https://etherscan.io/address/0x42225682113E6Ed3616B36B4A72BbaE376041D7c#code" target="_blank"><span style={{color:'#848080'}}>BetDeEx DApp Smart Contract</span></a>
-                  <a className="nav-item py-2 color-1" href="https://eraswaptoken.io/era-swap-howey-test-letter-august7-2018.php" target="_blank"><span style={{color:'#848080'}}>Howey Test</span></a>
-                </nav>
-              </div>
-
-            </div>
-            <hr className="mt-5 bg-2 op-5" />
-            <div className="row small align-items-center">
-              <div className="col-md-4">
-                <p className="mt-2 mb-0">© {new Date().getFullYear()} BetDeEx. All Rights Reserved</p>
-              </div>
-              <div className="col-md-8">
-                 <nav className="nav ">
-                  <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a> |
-                  <a href="https://github.com/KMPARDS/betdeex-react.git" target="_blank" className="btn btn-circle btn-sm brand-github"><i className="fa fa-github" /></a> |
-                  <a href="https://twitter.com/BetDeEx" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-twitter" /></a>
-                </nav>
+                  </section>
               </div>
             </div>
-          </div>
-        </footer>
-      </div>
-  </>
-);
+          </section>
 
-export default Home
+          {/* ./Footer - Simple */}
+          <footer className="site-footer section bg-1 color-1 block bg-1">
+            <div className="container py-4">
+              <div className="row gap-y text-center text-md-left">
+                <div className="col-md-4 mr-auto">
+                  <img src="img/betdeex-logo.png" alt="" className="logo" />
+                  <p>Please read the Disclaimer, Terms and Conditions, Legal Terms carefully before strating with BetDeEx.</p>
+                </div>
+                {/* <div className="col-md-3">
+                  <nav className="nav flex-column">
+                    <a className="nav-item py-2 color-1" href="index.html">Home</a>
+                    <a className="nav-item py-2 color-1" href="faqs.html">FAQ</a>
+                    <a className="nav-item py-2 color-1" href="disclaimer.html">Disclaimer</a>
+                  </nav>
+                </div> */}
+                <div className="col-md-3">
+                  <nav className="nav flex-column">
+                    <a className="nav-item py-2 color-1" href="/pdf/betdeex-user-guide.pdf" target="_blank"><span style={{color:'#848080'}}>User Guide</span></a>
+                    <a className="nav-item py-2 color-1" onClick={() => this.props.history.push('/results')} style={{cursor:'pointer'}} target="_blank"><span style={{color:'#848080'}}>Results</span></a>
+                    <a className="nav-item py-2 color-1" href="/pdf/t&c.pdf" target="_blank"><span style={{color:'#848080'}}>Terms &amp; Conditions</span></a>
+                    <a className="nav-item py-2 color-1" href="/pdf/privacy.pdf" target="_blank"><span style={{color:'#848080'}}>Privacy Policy</span></a>
+                    <a className="nav-item py-2 color-1" href="https://etherscan.io/address/0x42225682113E6Ed3616B36B4A72BbaE376041D7c#code" target="_blank"><span style={{color:'#848080'}}>BetDeEx DApp Smart Contract</span></a>
+                    <a className="nav-item py-2 color-1" href="https://eraswaptoken.io/era-swap-howey-test-letter-august7-2018.php" target="_blank"><span style={{color:'#848080'}}>Howey Test</span></a>
+                  </nav>
+                </div>
+
+              </div>
+              <hr className="mt-5 bg-2 op-5" />
+              <div className="row small align-items-center">
+                <div className="col-md-4">
+                  <p className="mt-2 mb-0">© {new Date().getFullYear()} BetDeEx. All Rights Reserved</p>
+                </div>
+                <div className="col-md-8">
+                   <nav className="nav ">
+                    <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a> |
+                    <a href="https://github.com/KMPARDS/betdeex-react.git" target="_blank" className="btn btn-circle btn-sm brand-github"><i className="fa fa-github" /></a> |
+                    <a href="https://twitter.com/BetDeEx" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-twitter" /></a>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+    </>
+  );
+}
+
+export default Home;

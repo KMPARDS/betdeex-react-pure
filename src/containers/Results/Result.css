@@ -1,0 +1,15 @@
+/* 
+
+@media only screen
+and (max-device-width : 767px) {
+  .result-key {
+    display: inline;
+    color: black;
+  }
+}
+@media only screen
+and (min-device-width : 768px) {
+  .result-key {
+    display: none;
+  }
+} */

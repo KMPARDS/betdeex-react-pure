@@ -101,7 +101,7 @@ class NavbarComponent extends Component {
         <Navbar.Toggle />
 
         <Navbar.Collapse className="justify-content-end">
-          {/* <Nav.Link style={{color:'#fff', fontWeight:'600'}} >How to Play?</Nav.Link> */}
+          <Nav.Link style={{color:'#fff', fontWeight:'600'}} onClick={() => this.props.history.push('/results')}>RESULTS</Nav.Link>
           {!this.state.userAddress
             ? <Button variant="outline-light" onClick={() => this.props.history.push('/load-wallet')}>Connect to a wallet</Button>
           :
