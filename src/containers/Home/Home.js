@@ -1,4 +1,6 @@
 import React from 'react';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
 const Home = props => (
   <>
@@ -28,9 +30,35 @@ const Home = props => (
         {/*Cycle  */}
 
         <section>
+          <div className="inn-title" style={{'margin-top':'50px'}}>
+            <h2 style={{fontWeight:'800', textTransform:'uppercase'}}><i className="fa fa-check" aria-hidden="true" /> Hot Events <img src="/img/era-icon.png"/><span>events 2020</span></h2>
+          </div>
+          <div className="container-fluid" style={{'margin-top':'40px', padding: '0'}}>
+              <Carousel infiniteLoop autoPlay emulateTouch={true} showArrows={false} >
+                <div >
+                  <img src="/img/BetDeEx_Infographic_01.jpg"  />
+                  <button className="legend" onClick={() => props.history.push('/bet/0x8F7f501f399323239C61449bE99b4ee9A02E2E4e')}>Click here to go to the event</button>
+                </div>
+                <div>
+                  <img src="/img/BetDeEx_Infographic_02.jpg" />
+                  <button className="legend" onClick={() => props.history.push('/bet/0x8F7f501f399323239C61449bE99b4ee9A02E2E4e')}>Click here to go to the event</button>
+                </div>
+                <div>
+                  <img src="/img/BetDeEx_Infographic_03.jpg" />
+                  <button className="legend" onClick={() => props.history.push('/bet/0x8F7f501f399323239C61449bE99b4ee9A02E2E4e')}>Click here to go to the event</button>
+                </div>
+                <div>
+                  <img src="/img/BetDeEx_Infographic_04.jpg" />
+                  <button className="last-img legend" onClick={() => props.history.push('/bet/0x8F7f501f399323239C61449bE99b4ee9A02E2E4e')}>Click here to go to the event</button>
+                </div>
+              </Carousel>
+          </div>
+        </section>
+
+        <section>
         <div className="lp spe-bot-red-3" style={{zIndex:'9', paddingLeft: '65px'}}>
           <div className="inn-title">
-            <h2 style={{fontWeight:'800', textTransform:'uppercase'}}><i className="fa fa-check" aria-hidden="true" /> All predictions <img src="/img/era-icon.png"/><span>events 2019</span></h2>
+            <h2 style={{fontWeight:'800', textTransform:'uppercase'}}><i className="fa fa-check" aria-hidden="true" /> All predictions <img src="/img/era-icon.png"/><span>events 2020</span></h2>
             <p>An 'event' is a prediction event. Now, you can choose an event from the list of multiple events</p>
           </div>
           <div className="hom-top-trends row">
