@@ -35,7 +35,8 @@ class Results extends Component {
       betResultArray: logs.map(log => {
         const betAddress = ethers.utils.hexZeroPad(ethers.utils.hexStripZeros(log.topics[2]), 20);
         const result = Number(log.data.slice(0,66));
-        const prizePool = ethers.utils.bigNumberify('0x'+log.data.slice(2).slice(64,64*2));
+        const prizePool = ethers.utils.bigNumberify('0x'+log.data.slice(2).slice(64,64*2))
+          .sub(ethers.utils.bigNumberify('0x'+log.data.slice(2).slice(64*2,64*3)));
 
         return {
           betAddress, result, prizePoolString: ethers.utils.formatEther(prizePool)
@@ -69,7 +70,7 @@ class Results extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                {this.state.betResultArray.map(
+                {this.state.betResultArray.reverse().map(
                   betResult => <ResultElement
                     betAddress={betResult.betAddress}
                     result={betResult.result}
