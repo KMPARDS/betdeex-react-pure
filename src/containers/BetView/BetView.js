@@ -421,7 +421,7 @@ class BetView extends Component {
                   </li> : null}
               </ul>
             </div>
-          </> : (this.state.endTimestamp && ethers.utils.bigNumberify(this.state.endTimestamp).gt(0) ? <p>This event has already expired and the result is {typeof this.state.finalResult === 'number' || typeof this.state.finalResult === 'object'? (this.state.finalResult === 0 ? 'No' : (this.state.finalResult === 1 ? 'Yes' : 'Draw')) : 'Unknown'}. Winners are requested to withdraw their winnings from Participated Events in their account page.</p> : <p>The prediction time for this event has expired, now it is not possible to place a prediction.</p>)) : <p>Please wait loading...</p>}
+          </> : (this.state.endTimestamp && ethers.utils.bigNumberify(this.state.endTimestamp).gt(0) ? <p>This event has already expired and the result is {typeof this.state.finalResult === 'number' || typeof this.state.finalResult === 'object'? (this.state.finalResult === 0 ? 'No' : (this.state.finalResult === 1 ? 'Yes' : 'Draw')) : `(from smart contract: ${this.state.finalResult})`}. Winners are requested to withdraw their winnings from Participated Events in their account page.</p> : <p>The prediction time for this event has expired, now it is not possible to place a prediction.</p>)) : <p>Please wait loading...</p>}
 
           <br></br>
           <div>
