@@ -24,6 +24,7 @@ import Logout from './containers/User/Logout';
 import BetsList from './containers/BetsList/BetsList';
 import BetView from './containers/BetView/BetView';
 import Results from './containers/Results/Results';
+import PastEvents from './containers/PastEvents/PastEvents';
 
 import provider from './ethereum/provider';
 import betdeexInstance from './ethereum/betdeexInstance';
@@ -173,6 +174,11 @@ function App(props) {
     Route path = "/results"
     exact component = {
       Results
+    }
+    /> <
+    Route path = "/past-events"
+    exact component = {
+      PastEvents
     }
     /> <
     Route path = "/explore/:category"
