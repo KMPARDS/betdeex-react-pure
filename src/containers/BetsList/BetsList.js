@@ -62,7 +62,7 @@ class BetsList extends Component {
       const subCategoryId = +log.topics[3];
       //const blockNumber = log.blockNumber;
 
-      betsArray.push(address);
+      betsArray.push(address.toLowerCase());
 
       // storing for reusing it in bet page
       // initialising bet object in our mapping
@@ -113,7 +113,7 @@ class BetsList extends Component {
 
 
     this.setState({
-      betsToDisplay: betsArray
+      betsToDisplay: betsArray.filter(address => !['0xc4c4af52d6cb8595be40c1f61f0d65110423ce3d'].includes(address))
         // .slice(0,5) // shows only 5 latest bets
         .map(
         address =>
