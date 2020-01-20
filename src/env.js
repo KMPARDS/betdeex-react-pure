@@ -21,7 +21,7 @@ module.exports = {
     'Dsbelt',
   ],
   subCategoryArray: [
-    ['Football', 'Cricket', 'Baseball', 'Racing'],
+    ['Football', 'Cricket', 'Baseball', 'Racing', 'Wrestling'],
     ['Good Politics', 'Dirty Politics'],
     ['English', 'Hindi', 'Marathi'],
     ['Computers', 'Electronics', 'Mechanical'],
