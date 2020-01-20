@@ -18,7 +18,8 @@ class Bet extends Component {
     currentTimestamp: Math.floor(Date.now()/1000),
     untilTimestamp: 0,
     fees: undefined,
-    totalBetTokensInExaEs: 'Loading...'
+    totalBetTokensInExaEs: 'Loading...',
+    finalResult: null
   }
 
   async componentDidMount() {
@@ -107,6 +108,26 @@ class Bet extends Component {
     })();
 
     (async() => {
+      const endTimestamp = await betInstance.functions.endTimestamp();
+      if(endTimestamp.gt(0)) {
+        const finalResult = await betInstance.functions.finalResult();
+        let finalResultString = null;
+        switch (finalResult) {
+          case 0:
+            finalResultString = 'No';
+            break;
+          case 1:
+            finalResultString = 'Yes';
+            break;
+          case 2:
+            finalResultString = 'Draw';
+            break;
+        }
+        this.setState({ finalResult: finalResultString })
+      }
+    })();
+
+    (async() => {
       let fees = await betInstance.functions.prizePercentPerThousand();
       this.setState({ fees: String((1000 - fees.toNumber())/10) });
     })();
@@ -190,6 +211,8 @@ class Bet extends Component {
                     </li>
                     <li><span>Time Remaining</span><span className="value_expires">{pauseTimeRemaining ? (pauseTimeRemaining > 0 ? `${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds` : 'Finished') : 'Calculating...'}</span>
                     </li>
+                    {this.state.finalResult !== null ? <li><span>Final Result</span><span className="value_expires">{this.state.finalResult}</span>
+                    </li> : null}
                   </ul>
                   <div className="stats-view">
                     <div className="statsinline">
