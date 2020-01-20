@@ -22,7 +22,7 @@ export default () => (
     </div>
     <div>
       <img src="/img/wildfire.jpg" />
-      <button className="last-img legend" onClick={() => this.props.history.push('/bet/0X685E784D7D91E5CB15D8A0FDE64625BC83B4159B')}>Click here to go to the event</button>
+      <button className="last-img legend" onClick={() => this.props.history.push('/bet/0x685e784d7d91e5cb15d8a0fde64625bc83b4159b')}>Click here to go to the event</button>
     </div>
   </Carousel>
 );
