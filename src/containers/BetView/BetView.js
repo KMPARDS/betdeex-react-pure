@@ -478,7 +478,7 @@ class BetView extends Component {
             </div>
           </div>
           <br></br>
-
+          {!this.state.fetchingBettings ? <p>On BetDeEx, you can use your skills to leverage the power of data and previous statistics to predict the outcome of events. All guaranteed Era Swap are stored in smart contract which ensures transparent & fair distribution of Era Swap to winning group.  Era Swap Token is subject to Market Risk. Please read Era Swap Utility Token Whitepaper, Era Swap Life T & C* before participating</p> : null}
         </div>
 
       </section>
