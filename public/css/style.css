@@ -13427,6 +13427,22 @@ div.ex1 {
   display: flex;
 }
 
+.thumbs.animated,
+.carousel-status {
+  display: none;
+}
+
+.carousel .slide .legend {
+  width: 25% !important;
+  margin-left: -45% !important;
+  bottom: 110px !important;
+  font-size: 16px !important;
+}
+
+.carousel .slide .last-img.legend {
+  margin-left: 15% !important;
+}
+
 @media screen and (max-width: 767px) {
     .mob-menu {
         display: block;
@@ -13444,6 +13460,14 @@ div.ex1 {
     .aligned {
       left: 0%;
       margin-right: 5px;
+    }
+
+    .carousel .slide .legend,
+    .carousel .slide .last-img.legend {
+      width: 90% !important;
+      bottom: 0px !important;
+      font-size: 12px !important;
+      margin-left: -45% !important;
     }
 }
 @media screen and (max-width: 992px) {
@@ -13508,5 +13532,8 @@ html {
   }
   .navbar .dropdown a {
     padding: 5px 16px;
+  }
+  .carousel .control-dots .dot {
+    display: none !important;
   }
 }

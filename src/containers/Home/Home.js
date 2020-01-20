@@ -1,33 +1,60 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
 class Home extends Component {
   render = () => (
     <>
-    <div>
-          {/* ./Page header */}
-      <header className="header online-payment-header section color-1 alpha-9" style={{backgroundImage: 'url(/img/banner-bg.jpg)',
-      backgroundSize: 'cover', zIndex: '9', height: '500px', backgroundPositionY: 'center'}}>
-            {/* <div id="stripes"></div> */}
-            {/* <img src="/img/Bdx_web-02.jpg"></img> */}
-            <div className="container overflow-hidden bring-to-front banner" style={{paddingBottom: 0, }}>
-              <div className="row">
-                <div className="col-lg-6 mx-auto text-center text-lg-left banner-text" style={{margin:'50px'}}>
-                  <h1 className="light display-4 color-1">Welcome to the  <span className="bold d-block" style={{fontSize:'48px', color:'#fff', lineHeight:'44px'}}>Future of Prediction</span></h1>
-                  <p className="color-1 lead alpha-8 my-5" style={{fontSize:'18px',}}>"Luck Becomes Limitless Opportunity with Confident Preparation <br></br>
-                  <b style={{fontWeight:'800', fontStyle:'italic'}}>Decentralized, Transparent & Trustless</b>
+  <div>
+        {/* ./Page header */}
+    <header className="header online-payment-header section color-1 alpha-9" style={{backgroundImage: 'url(/img/banner-bg.jpg)',
+    backgroundSize: 'cover', zIndex: '9', height: '500px', backgroundPositionY: 'center'}}>
+          {/* <div id="stripes"></div> */}
+          {/* <img src="/img/Bdx_web-02.jpg"></img> */}
+          <div className="container overflow-hidden bring-to-front banner" style={{paddingBottom: 0, }}>
+            <div className="row">
+              <div className="col-lg-6 mx-auto text-center text-lg-left banner-text" style={{margin:'50px'}}>
+                <h1 className="light display-4 color-1">Welcome to the  <span className="bold d-block" style={{fontSize:'48px', color:'#fff', lineHeight:'44px'}}>Future of Prediction</span></h1>
+                <p className="color-1 lead alpha-8 my-5" style={{fontSize:'18px',}}>"Luck Becomes Limitless Opportunity with Confident Preparation <br></br>
+                <b style={{fontWeight:'800', fontStyle:'italic'}}>Decentralized, Transparent & Trustless</b>
 
-                    {/* <br> No Login, No Hassle, No Limits.*/}</p>
-                    <button onClick={() => this.props.history.push('/explore')} class="btn btn-rounded btn-lg btn-accent text-center ml-0 my-3"> Explore Events now</button>
+                  {/* <br> No Login, No Hassle, No Limits.*/}</p>
+                  <button onClick={() => this.props.history.push('/explore')} class="btn btn-rounded btn-lg btn-accent text-center ml-0 my-3"> Explore Events now</button>
+              </div>
+              <div className="col-lg-6 col-md-9 mx-md-auto mx-lg-0 pr-lg-0 pc" data-aos="fade-left">
+                <img src="img/betdeex-logo.png" alt="Dashcore" className="d-blocks img-responsive logo" />
+                <b style={{fontWeight:'800', fontStyle:'italic', marginBottom:'50px'}}>Powered by Era Swap</b>
+              </div>
+             </div>
+          </div>
+    </header>
+        {/*Cycle  */}
+
+        <section>
+          <div className="inn-title" style={{'margin-top':'50px'}}>
+            <h2 style={{fontWeight:'800', textTransform:'uppercase'}}><i className="fa fa-check" aria-hidden="true" /> Hot Events <img src="/img/era-icon.png"/><span>events 2020</span></h2>
+          </div>
+          <div className="container-fluid" style={{'margin-top':'40px', padding: '0'}}>
+              <Carousel infiniteLoop autoPlay emulateTouch={true} showArrows={false} >
+                <div >
+                  <img src="/img/BetDeEx_Infographic_01.jpg"  />
+                  <button className="legend" onClick={() => this.props.history.push('/bet/0x8F7f501f399323239C61449bE99b4ee9A02E2E4e')}>Click here to go to the event</button>
                 </div>
-                <div className="col-lg-6 col-md-9 mx-md-auto mx-lg-0 pr-lg-0 pc" data-aos="fade-left">
-                  <img src="img/betdeex-logo.png" alt="Dashcore" className="d-blocks img-responsive logo" />
-                  <b style={{fontWeight:'800', fontStyle:'italic', marginBottom:'50px'}}>Powered by Era Swap</b>
+                <div>
+                  <img src="/img/BetDeEx_Infographic_02.jpg" />
+                  <button className="legend" onClick={() => this.props.history.push('/bet/0x8F7f501f399323239C61449bE99b4ee9A02E2E4e')}>Click here to go to the event</button>
                 </div>
-               </div>
-            </div>
-      </header>
-          {/*Cycle  */}
+                <div>
+                  <img src="/img/BetDeEx_Infographic_03.jpg" />
+                  <button className="legend" onClick={() => this.props.history.push('/bet/0x8F7f501f399323239C61449bE99b4ee9A02E2E4e')}>Click here to go to the event</button>
+                </div>
+                <div>
+                  <img src="/img/BetDeEx_Infographic_04.jpg" />
+                  <button className="last-img legend" onClick={() => this.props.history.push('/bet/0x8F7f501f399323239C61449bE99b4ee9A02E2E4e')}>Click here to go to the event</button>
+                </div>
+              </Carousel>
+          </div>
+        </section>
 
           <section>
           <div className="lp spe-bot-red-3" style={{zIndex:'9', paddingLeft: '65px'}}>
