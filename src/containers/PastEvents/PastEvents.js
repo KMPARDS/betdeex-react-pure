@@ -24,5 +24,9 @@ export default () => (
       <img src="/img/wildfire.jpg" />
       <button className="last-img legend" onClick={() => this.props.history.push('/bet/0x685e784d7d91e5cb15d8a0fde64625bc83b4159b')}>Click here to go to the event</button>
     </div>
+    <div>
+      <img src="/img/dsbelt.jpg" />
+      <button className="legend" onClick={() => this.props.history.push('/bet/0xa13225ec00a1134f2bda5c84b002e18a4fe47480')}>Click here to go to the event</button>
+    </div>
   </Carousel>
 );

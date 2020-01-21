@@ -47,6 +47,11 @@ class Home extends Component {
                   <img src="/img/ruling-party.jpg" />
                   <button className="legend" onClick={() => this.props.history.push('/bet/0xcb07fcabbf589621e6b0d4e6d507aa3919e23c49')}>Click here to go to the event</button>
                 </div>
+                <div>
+                  <img src="/img/bitcoin.jpg" />
+                  <button className="legend" onClick={() => this.props.history.push('/bet/0x565a093f3230ade853c45c5cd7c84344e75b4393')}>Click here to go to the event</button>
+                </div>
+
               </Carousel>
           </div>
         </section>
