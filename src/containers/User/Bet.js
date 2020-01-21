@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, Button, Spinner } from 'react-bootstrap';
 import createBetInstance from '../../ethereum/betInstance';
+import TransactionModal from '../TransactionModal/TransactionModal2';
 
 const ethers = require('ethers');
 
@@ -65,16 +66,20 @@ class Bet extends Component {
   }
 
   withdrawWinnings = async() => {
-    this.setState({ withdrawing: 1, withdrawErrorMessage: '' });
-    try {
-      const tx = await this.betInstance.functions.withdrawPrize();
-      this.setState({ withdrawing: 2 });
-      tx.wait();
-      this.setState({ withdrawing: 3 });
-      this.props.refreshBalances();
-    } catch (err) {
-      this.setState({ withdrawErrorMessage: err });
-    }
+    this.setState({
+      withdrawing: 1,
+      withdrawErrorMessage: '',
+      showWithdrawTransactionModal:true
+    });
+    // try {
+    //   const tx = await this.betInstance.functions.withdrawPrize();
+    //   this.setState({ withdrawing: 2 });
+    //   tx.wait();
+    //   this.setState({ withdrawing: 3 });
+    //   this.props.refreshBalances();
+    // } catch (err) {
+    //   this.setState({ withdrawErrorMessage: err });
+    // }
     // this.setState({ withdrawing: 4 });
   }
 
@@ -234,6 +239,29 @@ class Bet extends Component {
           : null)
         }</>}
       </Card>*/}
+
+      <TransactionModal
+        show={this.state.showWithdrawTransactionModal}
+        hideFunction={() => this.setState({ showWithdrawTransactionModal: false })}
+        ethereum={{
+          transactor: this.betInstance.functions.withdrawPrize,
+          estimator: this.betInstance.estimate.withdrawPrize,
+          contract: this.betInstance,
+          contractName: 'BET',
+          arguments: [],
+          ESAmount: '0.0',
+          headingName: 'Withdraw Winnings',
+          functionName: 'withdrawWinnings',
+          directGasScreen: true,
+          continueFunction: () => {
+            this.props.refreshBalances();
+            this.setState({
+              showWithdrawTransactionModal: false,
+              withdrawing: 3
+            });
+          }
+        }}
+        />
       </>
     );
   }

@@ -71,6 +71,25 @@ class TransactionModal extends Component {
     });
 
     try {
+      //const amountStringArray = this.state.esTokensToBet.split('.');
+      //
+      // let betTokensInExaEsString;
+      // if(amountStringArray[0].length === this.state.esTokensToBet.length) {
+      //   // no decimal point
+      //   betTokensInExaEsString = this.state.esTokensToBet + '0'.repeat(18);
+      // } else {
+      //   // decimal point is entered
+      //   if(amountStringArray[1].length > 18 || amountStringArray[2]) {
+      //     throw new Error('Can have only upto 18 decimal points');
+      //   } else {
+      //     // between 1 and 18 decimals
+      //     betTokensInExaEsString = amountStringArray[0] + amountStringArray[1] + '0'.repeat(18 - amountStringArray[1].length);
+      //   }
+      // }
+      //
+      // this.state.exaEsTokensToBet = betTokensInExaEsString;
+      //
+      // const betTokensInExaEs = ethers.utils.bigNumberify(this.state.exaEsTokensToBet)//.mul(10**15).mul(10**3);
       const args =  this.props.ethereum.directGasScreen ? this.props.ethereum.arguments : [this.state.stakingPlan];
       const estimatedGas = (await this.props.ethereum.estimator( ...args )).toNumber();
       let ethGasStationResponse;
@@ -208,15 +227,14 @@ class TransactionModal extends Component {
             <span style={{display: 'block', fontSize: '1.8rem'}}>
               {Math.round(this.state.estimatedGas * ( this.state.selectedGwei )) / 10**9}<strong>ETH</strong>
             </span>
-            <span onClick={()=>this.setState({currentScreen: 2})} style={{display: 'inline-block', float:'right', fontSize: '0.8rem'}}>Advanced settings</span>
+            <span onClick={()=>this.setState({currentScreen: 2})} style={{cursor:'pointer', display: 'inline-block', float:'right', fontSize: '0.8rem', textDecoration: 'underline'}}>Advanced settings</span>
           </Card>
-          <Button style={{margin:'0'}}variant="primary" size="lg" block onClick={this.sendTransaction}>Proceed</Button>
+          <Button style={{margin:'0'}}variant="primary" size="lg" block onClick={this.sendTransaction}>{window.connectedToMetamask ? 'Proceed to Metamask' : 'Sign and Submit'}</Button>
           {/*<Row style={{marginTop: '12px'}}>
             <Col style={{paddingRight: '6px'}}>
               <Button variant="secondary" size="lg" block>Reject</Button>
             </Col>
             <Col>
-
             </Col>
           </Row>*/}
         </Modal.Body>
@@ -232,7 +250,7 @@ class TransactionModal extends Component {
             {name: 'Fast', gwei: this.state.ethGasStation[2], time: 'around 2 mins to confirm' },
             {name: 'Faster', gwei: this.state.ethGasStation[3], time: 'around 30 secs to confirm'}
           ].map(plan => (
-            <Card key={'advanced-'+plan.name} style={{margin: '10px 0', padding:'10px'}} onClick={() => {
+            <Card key={'advanced-'+plan.name} style={{cursor: 'pointer', margin: '10px 0', padding:'10px'}} onClick={() => {
               // update the gwei being used
               // change screen to 1
               this.setState({
@@ -271,7 +289,9 @@ class TransactionModal extends Component {
             ? 'Your transaction is being prepared...'
             : (
               this.state.transactionStatus === 1
-              ? 'Sending your transaction to the Blockchain...'
+              ? (window.connectedToMetamask
+                ? 'Please check MetaMask and CONFIRM to proceed...'
+                : 'Sending your transaction to the Blockchain...')
               : (
                 this.state.transactionStatus === 2
                 ? 'Waiting for confirmation of the transaction...'
@@ -283,7 +303,7 @@ class TransactionModal extends Component {
               )
             )
           )}</p>
-          <p>You can view your transaction on <a href={`https://${network === 'homestead' ? '' : 'kovan.' }etherscan.io/tx/${this.state.hash}`} style={{color: 'black'}} target="_blank" rel="noopener noreferrer">EtherScan</a></p>
+          {this.state.hash ? <p>You can view your transaction on <a href={`https://${network === 'homestead' ? '' : 'kovan.' }etherscan.io/tx/${this.state.hash}`} style={{color: 'black', textDecoration: 'underline'}} target="_blank" rel="noopener noreferrer">EtherScan</a></p> : null}
 
         {this.state.transactionStatus === 3 ? <Button style={{margin:'0'}} variant="primary" size="lg" block onClick={this.props.ethereum.continueFunction ? this.props.ethereum.continueFunction.bind(this, this.state.hash) : () => this.props.history.push('/stakings')}>{this.props.ethereum.continueFunction ? 'Continue' : 'Go to Stakings Page'}</Button> : null}
         </Modal.Body>
@@ -331,6 +351,7 @@ class TransactionModal extends Component {
         size="sm"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        backdrop="static"
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter" style={{
