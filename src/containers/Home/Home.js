@@ -371,6 +371,8 @@ class Home extends Component {
                     <a className="nav-item py-2 color-1" href="/pdf/privacy.pdf" target="_blank"><span style={{color:'#848080'}}>Privacy Policy</span></a>
                     <a className="nav-item py-2 color-1" href="https://etherscan.io/address/0x42225682113E6Ed3616B36B4A72BbaE376041D7c#code" target="_blank"><span style={{color:'#848080'}}>BetDeEx DApp Smart Contract</span></a>
                     <a className="nav-item py-2 color-1" href="https://eraswaptoken.io/era-swap-howey-test-letter-august7-2018.php" target="_blank"><span style={{color:'#848080'}}>Howey Test</span></a>
+                    <a className="nav-item py-2 color-1" href="https://coinmarketcap.com/currencies/era-swap/" target="_blank"><span style={{color:'#848080'}}>CoinMarketCap</span></a>
+                    <a className="nav-item py-2 color-1" href="https://ethplorer.io/address/0xef1344bdf80bef3ff4428d8becec3eea4a2cf574" target="_blank"><span style={{color:'#848080'}}>Ethplorer</span></a>
                   </nav>
                 </div>
 

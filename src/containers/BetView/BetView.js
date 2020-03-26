@@ -184,7 +184,7 @@ class BetView extends Component {
 
     const minimumBetInEs
       = this.state.minimumBetInExaEs !== undefined
-        ? ethers.utils.formatEther(ethers.utils.bigNumberify(this.state.minimumBetInExaEs) || ethers.utils.bigNumberify(0))
+        ? ethers.utils.formatEther(ethers.utils.bigNumberify(this.state.minimumBetInExaEs).add(ethers.utils.parseEther('1')) || ethers.utils.bigNumberify(0))
         : undefined;
 
     // const totalPrizeInEs
