@@ -1,5 +1,5 @@
 const network =
-  'rinkeby'
+  (process.env.REACT_APP_ETH_NETWORK) || 'rinkeby'
   // 'homestead'
   ;
 module.exports = {
