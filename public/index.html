@@ -6,11 +6,14 @@
   <link rel="shortcut icon" href="/img/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
+
   <title>BetDeEx – Welcome to the Future of Prediction</title>
   <meta name="description" content="Decentralized & Transparent Prediction Platform, where users can predict and win on their favorite and trending events | from sports to politics all categories covered"/>
+
   <meta name="keywords" content="Prediction, prediction platform, decentralized prediction platform, predict and win, earn rewards, decentralized lottery, online prediction games, online lottery, gaming, fun gaming, Luck, Prediction gaming, online prediction, events, predict and earn
  satta"/>
- <meta property="og:site_name" content="BetdeEx - Welcome to the Future of Prediction(Decentralized & Transparent" />
+ <meta property="og:site_name" content="BetdeEx - Welcome to the Future of Prediction(Decentralized & Transparent)" />
+  
   <meta property="og:title" content="BetdeEx - Welcome to the Future of Prediction(Decentralized & Transparent" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://www.betdeex.com/" />
@@ -109,6 +112,78 @@
 
 
     /* loader */
+	
+	
+
+/* modal css start here*/
+#css-only-modals {
+  position: fixed;
+  pointer-events: none;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000000;
+  text-align: center;
+  white-space: nowrap;
+  height: 100%;
+ 
+}
+
+#css-only-modals:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em;
+  background: #00000069;
+}
+
+.css-only-modal-check {
+  pointer-events: auto;
+}
+
+.css-only-modal-check:checked ~ .css-only-modal {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.css-only-modal {
+  width:35%;
+  background: #FFF;
+  z-index: 1;
+  display: inline-block;
+  position: relative;
+  pointer-events: auto;
+  padding: 4px;
+  text-align: right;
+  border-radius: 10px;
+  white-space: normal;
+  display: inline-block;
+  vertical-align: middle;
+  opacity: 0;
+    pointer-events: none;
+    
+}
+
+.css-only-modal h2 {
+  text-align: center;
+}
+
+.css-only-modal p {
+  text-align: left;
+}
+
+.css-only-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor:pointer;
+}
+
+.css-only-modal-check {
+  display: none;
+}
   </style>
   <script type="text/javascript" src="/js/jquery.min.js"></script>
   <script type="text/javascript" src="/js/bootstrap.js"></script>
@@ -164,6 +239,15 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+	<div id="css-only-modals">
+       <input id="modal1" class="css-only-modal-check" type="checkbox" checked/>
+     <div class="css-only-modal">
+        <label for="modal1" class="css-only-modal-close"><i class="fa fa-times fa-2x"></i></label>
+        <a href="" target="_blank"><img src="/img/Betdeex_contest.jpg" class="img-responsive svelte-1ewjq1k" alt="" style="width:100%"/>  </a>
+        </div> 
+     <div id="screen-shade"></div>
+  </div>
+
 </body>
 
 </html>
