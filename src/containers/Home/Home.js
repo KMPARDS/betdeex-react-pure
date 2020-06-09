@@ -352,7 +352,7 @@ class Home extends Component {
           <footer className="site-footer section bg-1 color-1 block bg-1">
             <div className="container py-4">
               <div className="row gap-y text-center text-md-left">
-                <div className="col-md-4 mr-auto">
+                <div className="col-md-4">
                   <img src="img/betdeex-logo.png" alt="" className="logo" />
                   <p>Please read the Disclaimer, Terms and Conditions, Legal Terms carefully before strating with BetDeEx.</p>
                 </div>
@@ -363,13 +363,17 @@ class Home extends Component {
                     <a className="nav-item py-2 color-1" href="disclaimer.html">Disclaimer</a>
                   </nav>
                 </div> */}
-                <div className="col-md-3">
+                <div className="col-md-4">
                   <nav className="nav flex-column">
                     <a className="nav-item py-2 color-1" href="/pdf/betdeex-user-guide.pdf" target="_blank"><span style={{color:'#848080'}}>User Guide</span></a>
                     <a className="nav-item py-2 color-1" onClick={() => this.props.history.push('/results')} style={{cursor:'pointer'}} target="_blank"><span style={{color:'#848080'}}>Results</span></a>
                     <a className="nav-item py-2 color-1" href="/pdf/t&c.pdf" target="_blank"><span style={{color:'#848080'}}>Terms &amp; Conditions</span></a>
                     <a className="nav-item py-2 color-1" href="/pdf/privacy.pdf" target="_blank"><span style={{color:'#848080'}}>Privacy Policy</span></a>
                     <a className="nav-item py-2 color-1" href="/pdf/eraswap_whitepaper.pdf" target="_blank"><span style={{color:'#848080'}}>Eraswap white paper</span></a>
+                  </nav>
+                </div>
+                <div className="col-md-4">
+                  <nav className="nav flex-column">
                     <a className="nav-item py-2 color-1" href="https://etherscan.io/address/0x42225682113E6Ed3616B36B4A72BbaE376041D7c#code" target="_blank"><span style={{color:'#848080'}}>BetDeEx DApp Smart Contract</span></a>
                     <a className="nav-item py-2 color-1" href="https://eraswaptoken.io/era-swap-howey-test-letter-august7-2018.php" target="_blank"><span style={{color:'#848080'}}>Howey Test</span></a>
                     <a className="nav-item py-2 color-1" href="https://coinmarketcap.com/currencies/era-swap/" target="_blank"><span style={{color:'#848080'}}>CoinMarketCap</span></a>
@@ -379,11 +383,11 @@ class Home extends Component {
 
               </div>
               <hr className="mt-5 bg-2 op-5" />
-              <div className="row small align-items-center">
-                <div className="col-md-4">
+              <div className="row small">
+                <div className="col-md-10 text-left">
                   <p className="mt-2 mb-0">© {new Date().getFullYear()} BetDeEx. All Rights Reserved</p>
                 </div>
-                <div className="col-md-8">
+                <div className="col-md-2 text-right">
                    <nav className="nav ">
                     <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a> |
                     <a href="https://github.com/KMPARDS/betdeex-react.git" target="_blank" className="btn btn-circle btn-sm brand-github"><i className="fa fa-github" /></a> |
