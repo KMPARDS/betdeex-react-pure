@@ -13537,3 +13537,36 @@ html {
     display: none !important;
   }
 }
+
+.social-menu {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+.social-menu li {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 6px;
+}
+
+.social-menu li a i {
+   width: 31px;
+    height: 30px;
+    background-color: #510000;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 14px;
+    -webkit-box-shadow: 0 0 0 0 transparent;
+    box-shadow: 0 0 0 0 transparent;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+}
+
+.social-menu li a:hover i {
+    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .4);
+   box-shadow: 0 0 10px 0 rgba(0, 0, 0, .4)
+}
