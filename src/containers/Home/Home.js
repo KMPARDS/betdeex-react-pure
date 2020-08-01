@@ -294,7 +294,7 @@ class Home extends Component {
                           <div className="card mb-3">
                             <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q1">What is Era Swap Token?</a></div>
                             <div id="v1-q1" className="collapse" data-parent="#faqs-accordion">
-                              <div className="card-body">Era Swap Token or ES is a decentralized utility token currently based on Ethereum blockchain (ERC20) which will be used on multiple platforms for exchange of services(P2P), avail discounts, get rewards and many more utility.</div>
+                              <div className="card-body">Era Swap Token is a decentralized utility token that allows holders to Connect & Exchange in Peer-to-Peer Network using Smart Contracts. Era Swap is a native token of Era Swap Network (ESN) Blockchain Proof-of-stake Consensus Protocol, designed to optimize utilization in Era Swap Decentralized Ecosystem.</div>
 
 
                             </div>
@@ -328,9 +328,9 @@ class Home extends Component {
                           </div>
 
                             <div className="card mb-3">
-                              <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q4">Do you store my private keys, Keystore or mnemonic in BetDeEx?</a></div>
+                              <div className="card-header"><a href="#" className="card-title btn" data-toggle="collapse" data-target="#v1-q4">DO YOU STORE MY PRIVATE KEYS, KEY STORE OR MNEMONIC IN BETDEEX?</a></div>
                               <div id="v1-q4" className="collapse" data-parent="#faqs-accordion">
-                                <div className="card-body">When you load Wallet in the BetDeEx ÐApp, your private keys stay only on your computer. The BetDeEx ÐApp directly talks with blockchain hence any centralized intermediate server is not at all required and hence any of your data is NOT sent to our servers (we are also not recording any usage data). Your computer signs any transactions you authorise and only the signed transaction is submitted to blockchain for being included in blocks by miners who are mining in Ethereum. When you logout or even refresh page your private keys are erased from computer’s memory. The BetDeEx ÐApp source code is open source and anyone can check what is happening.</div>
+                                <div className="card-body">The private keys are stored only with users. BetDeEx connects with Decentralized Blockchain hence any centralized intermediate server is not at all required and hence any of your data is not sent to our servers. With Era Swap Wallet, Control & Privacy are in your hands as the private keys stay only with you.</div>
                               </div>
                             </div>
                             <div className="card mb-3">
@@ -375,9 +375,10 @@ class Home extends Component {
                 </div>
                 <div className="col-md-4">
                   <nav className="nav flex-column">
-                    <a className="nav-item py-2 color-1" href="http://eraswaptoken.io/pdf/eraswap_whitepaper.pdf" target="_blank"><span style={{color:'#848080'}}>Eraswap white paper</span></a>
-                    <a className="nav-item py-2 color-1" href="https://etherscan.io/address/0x42225682113E6Ed3616B36B4A72BbaE376041D7c#code" target="_blank"><span style={{color:'#848080'}}>BetDeEx DApp Smart Contract</span></a>
+                    <a className="nav-item py-2 color-1" href="http://eraswaptoken.io/pdf/eraswap_whitepaper.pdf" target="_blank"><span style={{color:'#848080'}}>Era Swap white paper</span></a>
                     <a className="nav-item py-2 color-1" href="http://eraswaptoken.io/pdf/era-swap-howey-test-letter-august7-2018.pdf" target="_blank"><span style={{color:'#848080'}}>Howey Test</span></a>
+                    <a className="nav-item py-2 color-1" href="http://eraswaptoken.io/pdf/es-statuary-warning.pdf" target="_blank"><span style={{color:'#848080'}}>Statuary Warning</span></a>
+                    <a className="nav-item py-2 color-1" href="https://etherscan.io/address/0x42225682113E6Ed3616B36B4A72BbaE376041D7c#code" target="_blank"><span style={{color:'#848080'}}>BetDeEx DApp Smart Contract</span></a>
                     <a className="nav-item py-2 color-1" href="https://coinmarketcap.com/currencies/era-swap/" target="_blank"><span style={{color:'#848080'}}>CoinMarketCap</span></a>
                     <a className="nav-item py-2 color-1" href="https://ethplorer.io/address/0xef1344bdf80bef3ff4428d8becec3eea4a2cf574" target="_blank"><span style={{color:'#848080'}}>Ethplorer</span></a>
                   </nav>
@@ -386,15 +387,23 @@ class Home extends Component {
               </div>
               <hr className="mt-5 bg-2 op-5" />
               <div className="row small">
-                <div className="col-md-10 text-left">
+                <div className="col-md-4 text-left">
                   <p className="mt-2 mb-0">© {new Date().getFullYear()} BetDeEx. All Rights Reserved</p>
                 </div>
-                <div className="col-md-2 text-right">
-                   <nav className="nav ">
-                    <a href="https://www.facebook.com/pages/BetDeEx/808455639538643" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-facebook" /></a> |
-                    <a href="https://github.com/KMPARDS/betdeex-react.git" target="_blank" className="btn btn-circle btn-sm brand-github"><i className="fa fa-github" /></a> |
-                    <a href="https://twitter.com/BetDeEx" target="_blank" className="btn btn-circle btn-sm brand-facebook"><i className="fa fa-twitter" /></a>
-                  </nav>
+                <div className="col-md-8 text-right">
+                   
+                      <ul class="social-menu">
+                      <li><a href="https://www.facebook.com/eraswap" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="https://www.linkedin.com/company/eraswap/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                      <li><a href="https://www.instagram.com/eraswap/?hl=en" target="_blank"><i class="fa fa-instagram"></i></a> </li>
+                      <li><a href="https://twitter.com/EraSwapTech" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                      <li><a href="https://medium.com/@eraswap" target="_blank"><i class="fa fa-medium"></i></a></li>
+                      <li><a href="https://eraswap.tumblr.com/" target="_blank"><i class="fa fa-tumblr"></i></a></li>
+                      <li><a href="https://t.me/eraswap" target="_blank"><i class="fa fa-telegram"></i></a></li>
+                      <li> <a href="https://github.com/KMPARDS" target="_blank"><i class="fa fa-github"></i></a></li>
+                      <li><a href="https://www.reddit.com/user/EraSwap" target="_blank"><i class="fa fa-reddit"></i></a> </li>
+                      <li><a href="https://www.youtube.com/channel/UCGCP4f5DF1W6sbCjS6y3T1g?view_as=subscriber" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                      </ul>
                 </div>
               </div>
             </div>

@@ -64,7 +64,7 @@ class Results extends Component {
                 <thead>
                   <tr>
                     <th>Event</th>
-                    <th>Winning Choice</th>
+                    <th>Predictions</th>
                     <th>Prize Pool</th>
                     <th>End Time</th>
                   </tr>
